@@ -8,140 +8,139 @@
 
 /* Begin PBXBuildFile section */
 		FE624C112C92CCEC005195EC /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = FE624C102C92CCEC005195EC /* SQLite */; };
+		FE6DD0522C930E5D00736D71 /* அரண்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFCE2C930E5B00736D71 /* அரண்.mp3 */; };
+		FE6DD0532C930E5D00736D71 /* இல்வாழ்க்கை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFCF2C930E5B00736D71 /* இல்வாழ்க்கை.mp3 */; };
+		FE6DD0542C930E5D00736D71 /* வலியறிதல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFD02C930E5B00736D71 /* வலியறிதல்.mp3 */; };
+		FE6DD0552C930E5D00736D71 /* புலவி.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFD12C930E5B00736D71 /* புலவி.mp3 */; };
+		FE6DD0562C930E5D00736D71 /* பிரிவாற்றாமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFD22C930E5B00736D71 /* பிரிவாற்றாமை.mp3 */; };
+		FE6DD0572C930E5D00736D71 /* இடனறிதல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFD32C930E5B00736D71 /* இடனறிதல்.mp3 */; };
+		FE6DD0582C930E5D00736D71 /* நாணுத்துறவுரைத்தல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFD42C930E5B00736D71 /* நாணுத்துறவுரைத்தல்.mp3 */; };
+		FE6DD0592C930E5D00736D71 /* குறிப்பறிதல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFD52C930E5B00736D71 /* குறிப்பறிதல்.mp3 */; };
+		FE6DD05A2C930E5D00736D71 /* பகைத்திறந்தெரிதல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFD62C930E5B00736D71 /* பகைத்திறந்தெரிதல்.mp3 */; };
+		FE6DD05B2C930E5D00736D71 /* பெரியாரைப் பிழையாமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFD72C930E5B00736D71 /* பெரியாரைப் பிழையாமை.mp3 */; };
+		FE6DD05C2C930E5D00736D71 /* நலம்புனைந்துரைத்தல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFD82C930E5B00736D71 /* நலம்புனைந்துரைத்தல்.mp3 */; };
+		FE6DD05D2C930E5D00736D71 /* கல்வி.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFD92C930E5B00736D71 /* கல்வி.mp3 */; };
+		FE6DD05E2C930E5D00736D71 /* மடியின்மை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFDA2C930E5B00736D71 /* மடியின்மை.mp3 */; };
+		FE6DD05F2C930E5D00736D71 /* சிற்றினஞ்சேராமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFDB2C930E5B00736D71 /* சிற்றினஞ்சேராமை.mp3 */; };
+		FE6DD0602C930E5D00736D71 /* கூடாவொழுக்கம்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFDC2C930E5B00736D71 /* கூடாவொழுக்கம்.mp3 */; };
+		FE6DD0612C930E5D00736D71 /* நினைந்தவர்புலம்பல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFDD2C930E5B00736D71 /* நினைந்தவர்புலம்பல்.mp3 */; };
+		FE6DD0622C930E5D00736D71 /* தெரிந்துதெளிதல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFDE2C930E5B00736D71 /* தெரிந்துதெளிதல்.mp3 */; };
+		FE6DD0632C930E5D00736D71 /* புணர்ச்சிவிதும்பல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFDF2C930E5B00736D71 /* புணர்ச்சிவிதும்பல்.mp3 */; };
+		FE6DD0642C930E5D00736D71 /* பொறையுடைமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFE02C930E5B00736D71 /* பொறையுடைமை.mp3 */; };
+		FE6DD0652C930E5D00736D71 /* அறிவுடைமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFE12C930E5B00736D71 /* அறிவுடைமை.mp3 */; };
+		FE6DD0662C930E5D00736D71 /* மருந்து.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFE22C930E5B00736D71 /* மருந்து.mp3 */; };
+		FE6DD0672C930E5D00736D71 /* பெரியாரைத் துணைக்கோடல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFE32C930E5B00736D71 /* பெரியாரைத் துணைக்கோடல்.mp3 */; };
+		FE6DD0682C930E5D00736D71 /* இகல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFE42C930E5B00736D71 /* இகல்.mp3 */; };
+		FE6DD0692C930E5D00736D71 /* நாடு.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFE52C930E5B00736D71 /* நாடு.mp3 */; };
+		FE6DD06A2C930E5D00736D71 /* அவையறிதல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFE62C930E5B00736D71 /* அவையறிதல்.mp3 */; };
+		FE6DD06B2C930E5D00736D71 /* நடுவு நிலைமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFE72C930E5B00736D71 /* நடுவு நிலைமை.mp3 */; };
+		FE6DD06C2C930E5D00736D71 /* ஒப்புரவறிதல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFE82C930E5B00736D71 /* ஒப்புரவறிதல்.mp3 */; };
+		FE6DD06D2C930E5D00736D71 /* பயனில சொல்லாமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFE92C930E5B00736D71 /* பயனில சொல்லாமை.mp3 */; };
+		FE6DD06E2C930E5D00736D71 /* பொருள்செயல்வகை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFEA2C930E5B00736D71 /* பொருள்செயல்வகை.mp3 */; };
+		FE6DD06F2C930E5D00736D71 /* மன்னரைச் சேர்ந்தொழுதல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFEB2C930E5B00736D71 /* மன்னரைச் சேர்ந்தொழுதல்.mp3 */; };
+		FE6DD0702C930E5D00736D71 /* இரவச்சம்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFEC2C930E5B00736D71 /* இரவச்சம்.mp3 */; };
+		FE6DD0712C930E5D00736D71 /* மெய்யுணர்தல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFED2C930E5B00736D71 /* மெய்யுணர்தல்.mp3 */; };
+		FE6DD0722C930E5D00736D71 /* கடவுள் வாழ்த்து.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFEE2C930E5B00736D71 /* கடவுள் வாழ்த்து.mp3 */; };
+		FE6DD0732C930E5D00736D71 /* ஊடலுவகை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFEF2C930E5B00736D71 /* ஊடலுவகை.mp3 */; };
+		FE6DD0742C930E5D00736D71 /* விருந்தோம்பல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFF02C930E5B00736D71 /* விருந்தோம்பல்.mp3 */; };
+		FE6DD0752C930E5D00736D71 /* குடிசெயல்வகை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFF12C930E5B00736D71 /* குடிசெயல்வகை.mp3 */; };
+		FE6DD0762C930E5D00736D71 /* கள்ளுண்ணாமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFF22C930E5B00736D71 /* கள்ளுண்ணாமை.mp3 */; };
+		FE6DD0772C930E5D00736D71 /* புணர்ச்சிமகிழ்தல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFF32C930E5B00736D71 /* புணர்ச்சிமகிழ்தல்.mp3 */; };
+		FE6DD0782C930E5D00736D71 /* கொடுங்கோன்மை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFF42C930E5B00736D71 /* கொடுங்கோன்மை.mp3 */; };
+		FE6DD0792C930E5D00736D71 /* ஊக்கமுடைமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFF52C930E5B00736D71 /* ஊக்கமுடைமை.mp3 */; };
+		FE6DD07A2C930E5D00736D71 /* புறங்கூறாமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFF62C930E5B00736D71 /* புறங்கூறாமை.mp3 */; };
+		FE6DD07B2C930E5D00736D71 /* ஒற்றாடல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFF72C930E5B00736D71 /* ஒற்றாடல்.mp3 */; };
+		FE6DD07C2C930E5D00736D71 /* நாணுடைமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFF82C930E5B00736D71 /* நாணுடைமை.mp3 */; };
+		FE6DD07D2C930E5D00736D71 /* தனிப்படர்மிகுதி.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFF92C930E5B00736D71 /* தனிப்படர்மிகுதி.mp3 */; };
+		FE6DD07E2C930E5D00736D71 /* அருளுடைமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFFA2C930E5B00736D71 /* அருளுடைமை.mp3 */; };
+		FE6DD07F2C930E5D00736D71 /* மக்கட்பேறு.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFFB2C930E5B00736D71 /* மக்கட்பேறு.mp3 */; };
+		FE6DD0802C930E5D00736D71 /* நெஞ்சொடுகிளத்தல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFFC2C930E5B00736D71 /* நெஞ்சொடுகிளத்தல்.mp3 */; };
+		FE6DD0812C930E5D00736D71 /* நெஞ்சொடுபுலத்தல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFFD2C930E5B00736D71 /* நெஞ்சொடுபுலத்தல்.mp3 */; };
+		FE6DD0822C930E5D00736D71 /* புல்லறிவாண்மை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFFE2C930E5B00736D71 /* புல்லறிவாண்மை.mp3 */; };
+		FE6DD0832C930E5D00736D71 /* அறன் வலியுறுத்தல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFFF2C930E5B00736D71 /* அறன் வலியுறுத்தல்.mp3 */; };
+		FE6DD0842C930E5D00736D71 /* கயமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0002C930E5C00736D71 /* கயமை.mp3 */; };
+		FE6DD0852C930E5D00736D71 /* வரைவின்மகளிர்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0012C930E5C00736D71 /* வரைவின்மகளிர்.mp3 */; };
+		FE6DD0862C930E5D00736D71 /* நல்குரவு.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0022C930E5C00736D71 /* நல்குரவு.mp3 */; };
+		FE6DD0872C930E5D00736D71 /* வினைசெயல்வகை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0032C930E5C00736D71 /* வினைசெயல்வகை.mp3 */; };
+		FE6DD0882C930E5D00736D71 /* ஊழ்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0042C930E5C00736D71 /* ஊழ்.mp3 */; };
+		FE6DD0892C930E5D00736D71 /* படர்மெலிந்திரங்கல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0052C930E5C00736D71 /* படர்மெலிந்திரங்கல்.mp3 */; };
+		FE6DD08A2C930E5D00736D71 /* வெருவந்தசெய்யாமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0062C930E5C00736D71 /* வெருவந்தசெய்யாமை.mp3 */; };
+		FE6DD08B2C930E5D00736D71 /* நிலையாமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0072C930E5C00736D71 /* நிலையாமை.mp3 */; };
+		FE6DD08C2C930E5D00736D71 /* படைமாட்சி.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0082C930E5C00736D71 /* படைமாட்சி.mp3 */; };
+		FE6DD08D2C930E5D00736D71 /* குற்றங்கடிதல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0092C930E5C00736D71 /* குற்றங்கடிதல்.mp3 */; };
+		FE6DD08E2C930E5D00736D71 /* மானம்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD00A2C930E5C00736D71 /* மானம்.mp3 */; };
+		FE6DD08F2C930E5D00736D71 /* இடுக்கணழியாமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD00B2C930E5C00736D71 /* இடுக்கணழியாமை.mp3 */; };
+		FE6DD0902C930E5D00736D71 /* நீத்தார் பெருமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD00C2C930E5C00736D71 /* நீத்தார் பெருமை.mp3 */; };
+		FE6DD0912C930E5D00736D71 /* காலமறிதல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD00D2C930E5C00736D71 /* காலமறிதல்.mp3 */; };
+		FE6DD0922C930E5D00736D71 /* அவர்வயின்விதும்பல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD00E2C930E5C00736D71 /* அவர்வயின்விதும்பல்.mp3 */; };
+		FE6DD0932C930E5D00736D71 /* கூடாநட்பு.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD00F2C930E5C00736D71 /* கூடாநட்பு.mp3 */; };
+		FE6DD0942C930E5D00736D71 /* அமைச்சு.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0102C930E5C00736D71 /* அமைச்சு.mp3 */; };
+		FE6DD0952C930E5D00736D71 /* தகையணங்குறுத்தல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0112C930E5C00736D71 /* தகையணங்குறுத்தல்.mp3 */; };
+		FE6DD0962C930E5D00736D71 /* அடக்கமுடைமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0122C930E5C00736D71 /* அடக்கமுடைமை.mp3 */; };
+		FE6DD0972C930E5D00736D71 /* கல்லாமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0132C930E5C00736D71 /* கல்லாமை.mp3 */; };
+		FE6DD0982C930E5D00736D71 /* குறிப்பறிவுறுத்தல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0142C930E5C00736D71 /* குறிப்பறிவுறுத்தல்.mp3 */; };
+		FE6DD0992C930E5D00736D71 /* ஒழுக்கமுடைமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0152C930E5C00736D71 /* ஒழுக்கமுடைமை.mp3 */; };
+		FE6DD09A2C930E5D00736D71 /* வாழ்க்கைத் துணைநலம்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0162C930E5C00736D71 /* வாழ்க்கைத் துணைநலம்.mp3 */; };
+		FE6DD09B2C930E5D00736D71 /* தெரிந்துசெயல்வகை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0172C930E5C00736D71 /* தெரிந்துசெயல்வகை.mp3 */; };
+		FE6DD09C2C930E5D00736D71 /* பகைமாட்சி.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0182C930E5C00736D71 /* பகைமாட்சி.mp3 */; };
+		FE6DD09D2C930E5D00736D71 /* புலான்மறுத்தல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0192C930E5C00736D71 /* புலான்மறுத்தல்.mp3 */; };
+		FE6DD09E2C930E5D00736D71 /* பேதைமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD01A2C930E5C00736D71 /* பேதைமை.mp3 */; };
+		FE6DD09F2C930E5D00736D71 /* அலரறிவுறுத்தல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD01B2C930E5C00736D71 /* அலரறிவுறுத்தல்.mp3 */; };
+		FE6DD0A02C930E5D00736D71 /* தெரிந்துவினையாடல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD01C2C930E5C00736D71 /* தெரிந்துவினையாடல்.mp3 */; };
+		FE6DD0A12C930E5D00736D71 /* பொழுதுகண்டிரங்கல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD01D2C930E5C00736D71 /* பொழுதுகண்டிரங்கல்.mp3 */; };
+		FE6DD0A22C930E5D00736D71 /* சூது.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD01E2C930E5C00736D71 /* சூது.mp3 */; };
+		FE6DD0A32C930E5D00736D71 /* செய்ந்நன்றி அறிதல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD01F2C930E5C00736D71 /* செய்ந்நன்றி அறிதல்.mp3 */; };
+		FE6DD0A42C930E5D00736D71 /* அன்புடைமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0202C930E5C00736D71 /* அன்புடைமை.mp3 */; };
+		FE6DD0A52C930E5D00736D71 /* தீ நட்பு.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0212C930E5C00736D71 /* தீ நட்பு.mp3 */; };
+		FE6DD0A62C930E5D00736D71 /* பெண்வழிச்சேறல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0222C930E5C00736D71 /* பெண்வழிச்சேறல்.mp3 */; };
+		FE6DD0A72C930E5D00736D71 /* தூது.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0232C930E5C00736D71 /* தூது.mp3 */; };
+		FE6DD0A82C930E5D00736D71 /* படைச்செருக்கு.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0242C930E5C00736D71 /* படைச்செருக்கு.mp3 */; };
+		FE6DD0A92C930E5D00736D71 /* உழவு.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0252C930E5C00736D71 /* உழவு.mp3 */; };
+		FE6DD0AA2C930E5D00736D71 /* சுற்றந்தழால்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0262C930E5C00736D71 /* சுற்றந்தழால்.mp3 */; };
+		FE6DD0AB2C930E5D00736D71 /* பண்புடைமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0272C930E5C00736D71 /* பண்புடைமை.mp3 */; };
+		FE6DD0AC2C930E5D00736D71 /* அவையஞ்சாமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0282C930E5C00736D71 /* அவையஞ்சாமை.mp3 */; };
+		FE6DD0AD2C930E5D00736D71 /* தீவினையச்சம்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0292C930E5C00736D71 /* தீவினையச்சம்.mp3 */; };
+		FE6DD0AE2C930E5D00736D71 /* வெஃகாமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD02A2C930E5C00736D71 /* வெஃகாமை.mp3 */; };
+		FE6DD0AF2C930E5D00736D71 /* நட்பாராய்தல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD02B2C930E5C00736D71 /* நட்பாராய்தல்.mp3 */; };
+		FE6DD0B02C930E5D00736D71 /* அவாவறுத்தல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD02C2C930E5C00736D71 /* அவாவறுத்தல்.mp3 */; };
+		FE6DD0B12C930E5D00736D71 /* பொச்சாவாமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD02D2C930E5C00736D71 /* பொச்சாவாமை.mp3 */; };
+		FE6DD0B22C930E5D00736D71 /* பழைமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD02E2C930E5C00736D71 /* பழைமை.mp3 */; };
+		FE6DD0B32C930E5D00736D71 /* குடிமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD02F2C930E5C00736D71 /* குடிமை.mp3 */; };
+		FE6DD0B42C930E5D00736D71 /* இனியவைகூறல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0302C930E5C00736D71 /* இனியவைகூறல்.mp3 */; };
+		FE6DD0B52C930E5D00736D71 /* துறவு.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0312C930E5C00736D71 /* துறவு.mp3 */; };
+		FE6DD0B62C930E5D00736D71 /* வினைத்தூய்மை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0322C930E5C00736D71 /* வினைத்தூய்மை.mp3 */; };
+		FE6DD0B72C930E5D00736D71 /* பிறனில் விழையாமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0332C930E5C00736D71 /* பிறனில் விழையாமை.mp3 */; };
+		FE6DD0B82C930E5D00736D71 /* செங்கோன்மை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0342C930E5C00736D71 /* செங்கோன்மை.mp3 */; };
+		FE6DD0B92C930E5D00736D71 /* பசப்புறுபருவரல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0352C930E5C00736D71 /* பசப்புறுபருவரல்.mp3 */; };
+		FE6DD0BA2C930E5D00736D71 /* கொல்லாமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0362C930E5C00736D71 /* கொல்லாமை.mp3 */; };
+		FE6DD0BB2C930E5D00736D71 /* சான்றாண்மை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0372C930E5C00736D71 /* சான்றாண்மை.mp3 */; };
+		FE6DD0BC2C930E5D00736D71 /* உறுப்புநலனழிதல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0382C930E5C00736D71 /* உறுப்புநலனழிதல்.mp3 */; };
+		FE6DD0BD2C930E5D00736D71 /* கண்ணோட்டம்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0392C930E5C00736D71 /* கண்ணோட்டம்.mp3 */; };
+		FE6DD0BE2C930E5D00736D71 /* சொல்வன்மை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD03A2C930E5C00736D71 /* சொல்வன்மை.mp3 */; };
+		FE6DD0BF2C930E5D00736D71 /* உட்பகை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD03B2C930E5C00736D71 /* உட்பகை.mp3 */; };
+		FE6DD0C02C930E5D00736D71 /* காதற்சிறப்புரைத்தல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD03C2C930E5C00736D71 /* காதற்சிறப்புரைத்தல்.mp3 */; };
+		FE6DD0C12C930E5D00736D71 /* கள்ளாமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD03D2C930E5C00736D71 /* கள்ளாமை.mp3 */; };
+		FE6DD0C22C930E5D00736D71 /* கனவுநிலையுரைத்தல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD03E2C930E5C00736D71 /* கனவுநிலையுரைத்தல்.mp3 */; };
+		FE6DD0C32C930E5D00736D71 /* இறைமாட்சி.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD03F2C930E5C00736D71 /* இறைமாட்சி.mp3 */; };
+		FE6DD0C42C930E5D00736D71 /* ஈகை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0402C930E5C00736D71 /* ஈகை.mp3 */; };
+		FE6DD0C52C930E5D00736D71 /* இரவு.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0412C930E5C00736D71 /* இரவு.mp3 */; };
+		FE6DD0C62C930E5D00736D71 /* கண்விதுப்பழிதல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0422C930E5C00736D71 /* கண்விதுப்பழிதல்.mp3 */; };
+		FE6DD0C72C930E5D00736D71 /* வாய்மை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0432C930E5C00736D71 /* வாய்மை.mp3 */; };
+		FE6DD0C82C930E5D00736D71 /* பெருமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0442C930E5C00736D71 /* பெருமை.mp3 */; };
+		FE6DD0C92C930E5D00736D71 /* நிறையழிதல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0452C930E5C00736D71 /* நிறையழிதல்.mp3 */; };
+		FE6DD0CA2C930E5D00736D71 /* வான்சிறப்பு.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0462C930E5C00736D71 /* வான்சிறப்பு.mp3 */; };
+		FE6DD0CB2C930E5D00736D71 /* தவம்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0472C930E5C00736D71 /* தவம்.mp3 */; };
+		FE6DD0CC2C930E5D00736D71 /* நட்பு.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0482C930E5C00736D71 /* நட்பு.mp3 */; };
+		FE6DD0CD2C930E5D00736D71 /* வினைத்திட்பம்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0492C930E5C00736D71 /* வினைத்திட்பம்.mp3 */; };
+		FE6DD0CE2C930E5D00736D71 /* வெகுளாமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD04A2C930E5C00736D71 /* வெகுளாமை.mp3 */; };
+		FE6DD0CF2C930E5D00736D71 /* கேள்வி.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD04B2C930E5C00736D71 /* கேள்வி.mp3 */; };
+		FE6DD0D02C930E5D00736D71 /* அழுக்காறாமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD04C2C930E5C00736D71 /* அழுக்காறாமை.mp3 */; };
+		FE6DD0D12C930E5D00736D71 /* புகழ்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD04D2C930E5C00736D71 /* புகழ்.mp3 */; };
+		FE6DD0D22C930E5D00736D71 /* இன்னாசெய்யாமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD04E2C930E5C00736D71 /* இன்னாசெய்யாமை.mp3 */; };
+		FE6DD0D32C930E5D00736D71 /* ஆள்வினையுடைமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD04F2C930E5D00736D71 /* ஆள்வினையுடைமை.mp3 */; };
+		FE6DD0D42C930E5D00736D71 /* புலவி நுணுக்கம்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0502C930E5D00736D71 /* புலவி நுணுக்கம்.mp3 */; };
+		FE6DD0D52C930E5D00736D71 /* நன்றியில்செல்வம்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0512C930E5D00736D71 /* நன்றியில்செல்வம்.mp3 */; };
 		FECB70042C92F33E00989E70 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FECB6F762C92F33E00989E70 /* Preview Assets.xcassets */; };
-		FECB70052C92F33E00989E70 /* 001 கடவுள் வாழ்த்து.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6F782C92F33E00989E70 /* 001 கடவுள் வாழ்த்து.mp3 */; };
-		FECB70062C92F33E00989E70 /* 002 வான்சிறப்பு.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6F792C92F33E00989E70 /* 002 வான்சிறப்பு.mp3 */; };
-		FECB70072C92F33E00989E70 /* 003 நீத்தார் பெருமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6F7A2C92F33E00989E70 /* 003 நீத்தார் பெருமை.mp3 */; };
-		FECB70082C92F33E00989E70 /* 004 அறன் வலியுறுத்தல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6F7B2C92F33E00989E70 /* 004 அறன் வலியுறுத்தல்.mp3 */; };
-		FECB70092C92F33E00989E70 /* 005 இல்வாழ்க்கை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6F7C2C92F33E00989E70 /* 005 இல்வாழ்க்கை.mp3 */; };
-		FECB700A2C92F33E00989E70 /* 006 வாழ்க்கைத் துணைநலம்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6F7D2C92F33E00989E70 /* 006 வாழ்க்கைத் துணைநலம்.mp3 */; };
-		FECB700B2C92F33E00989E70 /* 007 மக்கட்பேறு.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6F7E2C92F33E00989E70 /* 007 மக்கட்பேறு.mp3 */; };
-		FECB700C2C92F33E00989E70 /* 008 அன்புடைமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6F7F2C92F33E00989E70 /* 008 அன்புடைமை.mp3 */; };
-		FECB700D2C92F33E00989E70 /* 009 விருந்தோம்பல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6F802C92F33E00989E70 /* 009 விருந்தோம்பல்.mp3 */; };
-		FECB700E2C92F33E00989E70 /* 010 இனியவைகூறல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6F812C92F33E00989E70 /* 010 இனியவைகூறல்.mp3 */; };
-		FECB700F2C92F33E00989E70 /* 011 செய்ந்நன்றி அறிதல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6F822C92F33E00989E70 /* 011 செய்ந்நன்றி அறிதல்.mp3 */; };
-		FECB70102C92F33E00989E70 /* 012 நடுவு நிலைமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6F832C92F33E00989E70 /* 012 நடுவு நிலைமை.mp3 */; };
-		FECB70112C92F33E00989E70 /* 013 அடக்கமுடைமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6F842C92F33E00989E70 /* 013 அடக்கமுடைமை.mp3 */; };
-		FECB70122C92F33E00989E70 /* 014 ஒழுக்கமுடைமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6F852C92F33E00989E70 /* 014 ஒழுக்கமுடைமை.mp3 */; };
-		FECB70132C92F33E00989E70 /* 015 பிறனில் விழையாமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6F862C92F33E00989E70 /* 015 பிறனில் விழையாமை.mp3 */; };
-		FECB70142C92F33E00989E70 /* 016 பொறையுடைமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6F872C92F33E00989E70 /* 016 பொறையுடைமை.mp3 */; };
-		FECB70152C92F33E00989E70 /* 017 அழுக்காறாமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6F882C92F33E00989E70 /* 017 அழுக்காறாமை.mp3 */; };
-		FECB70162C92F33E00989E70 /* 018 வெஃகாமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6F892C92F33E00989E70 /* 018 வெஃகாமை.mp3 */; };
-		FECB70172C92F33E00989E70 /* 019 புறங்கூறாமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6F8A2C92F33E00989E70 /* 019 புறங்கூறாமை.mp3 */; };
-		FECB70182C92F33E00989E70 /* 020 பயனில சொல்லாமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6F8B2C92F33E00989E70 /* 020 பயனில சொல்லாமை.mp3 */; };
-		FECB70192C92F33E00989E70 /* 021 தீவினையச்சம்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6F8C2C92F33E00989E70 /* 021 தீவினையச்சம்.mp3 */; };
-		FECB701A2C92F33E00989E70 /* 022 ஒப்புரவறிதல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6F8D2C92F33E00989E70 /* 022 ஒப்புரவறிதல்.mp3 */; };
-		FECB701B2C92F33E00989E70 /* 023 ஈகை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6F8E2C92F33E00989E70 /* 023 ஈகை.mp3 */; };
-		FECB701C2C92F33E00989E70 /* 024 புகழ்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6F8F2C92F33E00989E70 /* 024 புகழ்.mp3 */; };
-		FECB701D2C92F33E00989E70 /* 025 அருளுடைமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6F902C92F33E00989E70 /* 025 அருளுடைமை.mp3 */; };
-		FECB701E2C92F33E00989E70 /* 026 புலான்மறுத்தல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6F912C92F33E00989E70 /* 026 புலான்மறுத்தல்.mp3 */; };
-		FECB701F2C92F33E00989E70 /* 027 தவம்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6F922C92F33E00989E70 /* 027 தவம்.mp3 */; };
-		FECB70202C92F33E00989E70 /* 028 கூடாவொழுக்கம்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6F932C92F33E00989E70 /* 028 கூடாவொழுக்கம்.mp3 */; };
-		FECB70212C92F33E00989E70 /* 029 கள்ளாமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6F942C92F33E00989E70 /* 029 கள்ளாமை.mp3 */; };
-		FECB70222C92F33E00989E70 /* 030 வாய்மை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6F952C92F33E00989E70 /* 030 வாய்மை.mp3 */; };
-		FECB70232C92F33E00989E70 /* 031 வெகுளாமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6F962C92F33E00989E70 /* 031 வெகுளாமை.mp3 */; };
-		FECB70242C92F33E00989E70 /* 032 இன்னாசெய்யாமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6F972C92F33E00989E70 /* 032 இன்னாசெய்யாமை.mp3 */; };
-		FECB70252C92F33E00989E70 /* 033 கொல்லாமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6F982C92F33E00989E70 /* 033 கொல்லாமை.mp3 */; };
-		FECB70262C92F33E00989E70 /* 034 நிலையாமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6F992C92F33E00989E70 /* 034 நிலையாமை.mp3 */; };
-		FECB70272C92F33E00989E70 /* 035 துறவு.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6F9A2C92F33E00989E70 /* 035 துறவு.mp3 */; };
-		FECB70282C92F33E00989E70 /* 036 மெய்யுணர்தல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6F9B2C92F33E00989E70 /* 036 மெய்யுணர்தல்.mp3 */; };
-		FECB70292C92F33E00989E70 /* 037 அவாவறுத்தல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6F9C2C92F33E00989E70 /* 037 அவாவறுத்தல்.mp3 */; };
-		FECB702A2C92F33E00989E70 /* 038 ஊழ்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6F9D2C92F33E00989E70 /* 038 ஊழ்.mp3 */; };
-		FECB702B2C92F33E00989E70 /* 039 இறைமாட்சி.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6F9E2C92F33E00989E70 /* 039 இறைமாட்சி.mp3 */; };
-		FECB702C2C92F33E00989E70 /* 040 கல்வி.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6F9F2C92F33E00989E70 /* 040 கல்வி.mp3 */; };
-		FECB702D2C92F33E00989E70 /* 041 கல்லாமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FA02C92F33E00989E70 /* 041 கல்லாமை.mp3 */; };
-		FECB702E2C92F33E00989E70 /* 042 கேள்வி.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FA12C92F33E00989E70 /* 042 கேள்வி.mp3 */; };
-		FECB702F2C92F33E00989E70 /* 043 அறிவுடைமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FA22C92F33E00989E70 /* 043 அறிவுடைமை.mp3 */; };
-		FECB70302C92F33E00989E70 /* 044 குற்றங்கடிதல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FA32C92F33E00989E70 /* 044 குற்றங்கடிதல்.mp3 */; };
-		FECB70312C92F33E00989E70 /* 045 பெரியாரைத் துணைக்கோடல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FA42C92F33E00989E70 /* 045 பெரியாரைத் துணைக்கோடல்.mp3 */; };
-		FECB70322C92F33E00989E70 /* 046 சிற்றினஞ்சேராமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FA52C92F33E00989E70 /* 046 சிற்றினஞ்சேராமை.mp3 */; };
-		FECB70332C92F33E00989E70 /* 047 தெரிந்துசெயல்வகை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FA62C92F33E00989E70 /* 047 தெரிந்துசெயல்வகை.mp3 */; };
-		FECB70342C92F33E00989E70 /* 048 வலியறிதல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FA72C92F33E00989E70 /* 048 வலியறிதல்.mp3 */; };
-		FECB70352C92F33E00989E70 /* 049 காலமறிதல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FA82C92F33E00989E70 /* 049 காலமறிதல்.mp3 */; };
-		FECB70362C92F33E00989E70 /* 050 இடனறிதல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FA92C92F33E00989E70 /* 050 இடனறிதல்.mp3 */; };
-		FECB70372C92F33E00989E70 /* 051 தெரிந்துதெளிதல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FAA2C92F33E00989E70 /* 051 தெரிந்துதெளிதல்.mp3 */; };
-		FECB70382C92F33E00989E70 /* 052 தெரிந்துவினையாடல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FAB2C92F33E00989E70 /* 052 தெரிந்துவினையாடல்.mp3 */; };
-		FECB70392C92F33E00989E70 /* 053 சுற்றந்தழால்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FAC2C92F33E00989E70 /* 053 சுற்றந்தழால்.mp3 */; };
-		FECB703A2C92F33E00989E70 /* 054 பொச்சாவாமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FAD2C92F33E00989E70 /* 054 பொச்சாவாமை.mp3 */; };
-		FECB703B2C92F33E00989E70 /* 055 செங்கோன்மை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FAE2C92F33E00989E70 /* 055 செங்கோன்மை.mp3 */; };
-		FECB703C2C92F33E00989E70 /* 056 கொடுங்கோன்மை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FAF2C92F33E00989E70 /* 056 கொடுங்கோன்மை.mp3 */; };
-		FECB703D2C92F33E00989E70 /* 057 வெருவந்தசெய்யாமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FB02C92F33E00989E70 /* 057 வெருவந்தசெய்யாமை.mp3 */; };
-		FECB703E2C92F33E00989E70 /* 058 கண்ணோட்டம்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FB12C92F33E00989E70 /* 058 கண்ணோட்டம்.mp3 */; };
-		FECB703F2C92F33E00989E70 /* 059 ஒற்றாடல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FB22C92F33E00989E70 /* 059 ஒற்றாடல்.mp3 */; };
-		FECB70402C92F33E00989E70 /* 060 ஊக்கமுடைமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FB32C92F33E00989E70 /* 060 ஊக்கமுடைமை.mp3 */; };
-		FECB70412C92F33E00989E70 /* 061 மடியின்மை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FB42C92F33E00989E70 /* 061 மடியின்மை.mp3 */; };
-		FECB70422C92F33E00989E70 /* 062 ஆள்வினையுடைமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FB52C92F33E00989E70 /* 062 ஆள்வினையுடைமை.mp3 */; };
-		FECB70432C92F33E00989E70 /* 063 இடுக்கணழியாமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FB62C92F33E00989E70 /* 063 இடுக்கணழியாமை.mp3 */; };
-		FECB70442C92F33E00989E70 /* 064 அமைச்சு.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FB72C92F33E00989E70 /* 064 அமைச்சு.mp3 */; };
-		FECB70452C92F33E00989E70 /* 065 சொல்வன்மை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FB82C92F33E00989E70 /* 065 சொல்வன்மை.mp3 */; };
-		FECB70462C92F33E00989E70 /* 066 வினைத்தூய்மை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FB92C92F33E00989E70 /* 066 வினைத்தூய்மை.mp3 */; };
-		FECB70472C92F33E00989E70 /* 067 வினைத்திட்பம்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FBA2C92F33E00989E70 /* 067 வினைத்திட்பம்.mp3 */; };
-		FECB70482C92F33E00989E70 /* 068 வினைசெயல்வகை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FBB2C92F33E00989E70 /* 068 வினைசெயல்வகை.mp3 */; };
-		FECB70492C92F33E00989E70 /* 069 தூது.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FBC2C92F33E00989E70 /* 069 தூது.mp3 */; };
-		FECB704A2C92F33E00989E70 /* 070 மன்னரைச் சேர்ந்தொழுதல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FBD2C92F33E00989E70 /* 070 மன்னரைச் சேர்ந்தொழுதல்.mp3 */; };
-		FECB704B2C92F33E00989E70 /* 071 குறிப்பறிதல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FBE2C92F33E00989E70 /* 071 குறிப்பறிதல்.mp3 */; };
-		FECB704C2C92F33E00989E70 /* 072 அவையறிதல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FBF2C92F33E00989E70 /* 072 அவையறிதல்.mp3 */; };
-		FECB704D2C92F33E00989E70 /* 073 அவையஞ்சாமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FC02C92F33E00989E70 /* 073 அவையஞ்சாமை.mp3 */; };
-		FECB704E2C92F33E00989E70 /* 074 நாடு.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FC12C92F33E00989E70 /* 074 நாடு.mp3 */; };
-		FECB704F2C92F33E00989E70 /* 075 அரண்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FC22C92F33E00989E70 /* 075 அரண்.mp3 */; };
-		FECB70502C92F33E00989E70 /* 076 பொருள்செயல்வகை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FC32C92F33E00989E70 /* 076 பொருள்செயல்வகை.mp3 */; };
-		FECB70512C92F33E00989E70 /* 077 படைமாட்சி.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FC42C92F33E00989E70 /* 077 படைமாட்சி.mp3 */; };
-		FECB70522C92F33E00989E70 /* 078 படைச்செருக்கு.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FC52C92F33E00989E70 /* 078 படைச்செருக்கு.mp3 */; };
-		FECB70532C92F33E00989E70 /* 079 நட்பு.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FC62C92F33E00989E70 /* 079 நட்பு.mp3 */; };
-		FECB70542C92F33E00989E70 /* 080 நட்பாராய்தல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FC72C92F33E00989E70 /* 080 நட்பாராய்தல்.mp3 */; };
-		FECB70552C92F33E00989E70 /* 081 பழைமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FC82C92F33E00989E70 /* 081 பழைமை.mp3 */; };
-		FECB70562C92F33E00989E70 /* 082 தீ நட்பு.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FC92C92F33E00989E70 /* 082 தீ நட்பு.mp3 */; };
-		FECB70572C92F33E00989E70 /* 083 கூடாநட்பு.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FCA2C92F33E00989E70 /* 083 கூடாநட்பு.mp3 */; };
-		FECB70582C92F33E00989E70 /* 084 பேதைமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FCB2C92F33E00989E70 /* 084 பேதைமை.mp3 */; };
-		FECB70592C92F33E00989E70 /* 085 புல்லறிவாண்மை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FCC2C92F33E00989E70 /* 085 புல்லறிவாண்மை.mp3 */; };
-		FECB705A2C92F33E00989E70 /* 086 இகல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FCD2C92F33E00989E70 /* 086 இகல்.mp3 */; };
-		FECB705B2C92F33E00989E70 /* 087 பகைமாட்சி.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FCE2C92F33E00989E70 /* 087 பகைமாட்சி.mp3 */; };
-		FECB705C2C92F33E00989E70 /* 088 பகைத்திறந்தெரிதல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FCF2C92F33E00989E70 /* 088 பகைத்திறந்தெரிதல்.mp3 */; };
-		FECB705D2C92F33E00989E70 /* 089 உட்பகை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FD02C92F33E00989E70 /* 089 உட்பகை.mp3 */; };
-		FECB705E2C92F33E00989E70 /* 090 பெரியாரைப் பிழையாமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FD12C92F33E00989E70 /* 090 பெரியாரைப் பிழையாமை.mp3 */; };
-		FECB705F2C92F33E00989E70 /* 091 பெண்வழிச்சேறல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FD22C92F33E00989E70 /* 091 பெண்வழிச்சேறல்.mp3 */; };
-		FECB70602C92F33E00989E70 /* 092 வரைவின்மகளிர்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FD32C92F33E00989E70 /* 092 வரைவின்மகளிர்.mp3 */; };
-		FECB70612C92F33E00989E70 /* 093 கள்ளுண்ணாமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FD42C92F33E00989E70 /* 093 கள்ளுண்ணாமை.mp3 */; };
-		FECB70622C92F33E00989E70 /* 094 சூது.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FD52C92F33E00989E70 /* 094 சூது.mp3 */; };
-		FECB70632C92F33E00989E70 /* 095 மருந்து.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FD62C92F33E00989E70 /* 095 மருந்து.mp3 */; };
-		FECB70642C92F33E00989E70 /* 096 குடிமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FD72C92F33E00989E70 /* 096 குடிமை.mp3 */; };
-		FECB70652C92F33E00989E70 /* 097 மானம்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FD82C92F33E00989E70 /* 097 மானம்.mp3 */; };
-		FECB70662C92F33E00989E70 /* 098 பெருமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FD92C92F33E00989E70 /* 098 பெருமை.mp3 */; };
-		FECB70672C92F33E00989E70 /* 099 சான்றாண்மை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FDA2C92F33E00989E70 /* 099 சான்றாண்மை.mp3 */; };
-		FECB70682C92F33E00989E70 /* 100 பண்புடைமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FDB2C92F33E00989E70 /* 100 பண்புடைமை.mp3 */; };
-		FECB70692C92F33E00989E70 /* 101 நன்றியில்செல்வம்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FDC2C92F33E00989E70 /* 101 நன்றியில்செல்வம்.mp3 */; };
-		FECB706A2C92F33E00989E70 /* 102 நாணுடைமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FDD2C92F33E00989E70 /* 102 நாணுடைமை.mp3 */; };
-		FECB706B2C92F33E00989E70 /* 103 குடிசெயல்வகை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FDE2C92F33E00989E70 /* 103 குடிசெயல்வகை.mp3 */; };
-		FECB706C2C92F33E00989E70 /* 104 உழவு.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FDF2C92F33E00989E70 /* 104 உழவு.mp3 */; };
-		FECB706D2C92F33E00989E70 /* 105 நல்குரவு.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FE02C92F33E00989E70 /* 105 நல்குரவு.mp3 */; };
-		FECB706E2C92F33E00989E70 /* 106 இரவு.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FE12C92F33E00989E70 /* 106 இரவு.mp3 */; };
-		FECB706F2C92F33E00989E70 /* 107 இரவச்சம்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FE22C92F33E00989E70 /* 107 இரவச்சம்.mp3 */; };
-		FECB70702C92F33E00989E70 /* 108 கயமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FE32C92F33E00989E70 /* 108 கயமை.mp3 */; };
-		FECB70712C92F33E00989E70 /* 109 தகையணங்குறுத்தல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FE42C92F33E00989E70 /* 109 தகையணங்குறுத்தல்.mp3 */; };
-		FECB70722C92F33E00989E70 /* 110 குறிப்பறிதல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FE52C92F33E00989E70 /* 110 குறிப்பறிதல்.mp3 */; };
-		FECB70732C92F33E00989E70 /* 111 புணர்ச்சிமகிழ்தல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FE62C92F33E00989E70 /* 111 புணர்ச்சிமகிழ்தல்.mp3 */; };
-		FECB70742C92F33E00989E70 /* 112 நலம்புனைந்துரைத்தல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FE72C92F33E00989E70 /* 112 நலம்புனைந்துரைத்தல்.mp3 */; };
-		FECB70752C92F33E00989E70 /* 113 காதற்சிறப்புரைத்தல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FE82C92F33E00989E70 /* 113 காதற்சிறப்புரைத்தல்.mp3 */; };
-		FECB70762C92F33E00989E70 /* 114 நாணுத்துறவுரைத்தல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FE92C92F33E00989E70 /* 114 நாணுத்துறவுரைத்தல்.mp3 */; };
-		FECB70772C92F33E00989E70 /* 115 அலரறிவுறுத்தல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FEA2C92F33E00989E70 /* 115 அலரறிவுறுத்தல்.mp3 */; };
-		FECB70782C92F33E00989E70 /* 116 பிரிவாற்றாமை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FEB2C92F33E00989E70 /* 116 பிரிவாற்றாமை.mp3 */; };
-		FECB70792C92F33E00989E70 /* 117 படர்மெலிந்திரங்கல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FEC2C92F33E00989E70 /* 117 படர்மெலிந்திரங்கல்.mp3 */; };
-		FECB707A2C92F33E00989E70 /* 118 கண்விதுப்பழிதல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FED2C92F33E00989E70 /* 118 கண்விதுப்பழிதல்.mp3 */; };
-		FECB707B2C92F33E00989E70 /* 119 பசப்புறுபருவரல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FEE2C92F33E00989E70 /* 119 பசப்புறுபருவரல்.mp3 */; };
-		FECB707C2C92F33E00989E70 /* 120 தனிப்படர்மிகுதி.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FEF2C92F33E00989E70 /* 120 தனிப்படர்மிகுதி.mp3 */; };
-		FECB707D2C92F33E00989E70 /* 121 நினைந்தவர்புலம்பல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FF02C92F33E00989E70 /* 121 நினைந்தவர்புலம்பல்.mp3 */; };
-		FECB707E2C92F33E00989E70 /* 122 கனவுநிலையுரைத்தல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FF12C92F33E00989E70 /* 122 கனவுநிலையுரைத்தல்.mp3 */; };
-		FECB707F2C92F33E00989E70 /* 123 பொழுதுகண்டிரங்கல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FF22C92F33E00989E70 /* 123 பொழுதுகண்டிரங்கல்.mp3 */; };
-		FECB70802C92F33E00989E70 /* 124 உறுப்புநலனழிதல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FF32C92F33E00989E70 /* 124 உறுப்புநலனழிதல்.mp3 */; };
-		FECB70812C92F33E00989E70 /* 125 நெஞ்சொடுகிளத்தல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FF42C92F33E00989E70 /* 125 நெஞ்சொடுகிளத்தல்.mp3 */; };
-		FECB70822C92F33E00989E70 /* 126 நிறையழிதல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FF52C92F33E00989E70 /* 126 நிறையழிதல்.mp3 */; };
-		FECB70832C92F33E00989E70 /* 127 அவர்வயின்விதும்பல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FF62C92F33E00989E70 /* 127 அவர்வயின்விதும்பல்.mp3 */; };
-		FECB70842C92F33E00989E70 /* 128 குறிப்பறிவுறுத்தல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FF72C92F33E00989E70 /* 128 குறிப்பறிவுறுத்தல்.mp3 */; };
-		FECB70852C92F33E00989E70 /* 129 புணர்ச்சிவிதும்பல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FF82C92F33E00989E70 /* 129 புணர்ச்சிவிதும்பல்.mp3 */; };
-		FECB70862C92F33E00989E70 /* 130 நெஞ்சொடுபுலத்தல்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FF92C92F33E00989E70 /* 130 நெஞ்சொடுபுலத்தல்.mp3 */; };
-		FECB70872C92F33E00989E70 /* 131 புலவி.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FFA2C92F33E00989E70 /* 131 புலவி.mp3 */; };
-		FECB70882C92F33E00989E70 /* 132 புலவி நுணுக்கம்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FFB2C92F33E00989E70 /* 132 புலவி நுணுக்கம்.mp3 */; };
-		FECB70892C92F33E00989E70 /* 133 ஊடலுவகை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FFC2C92F33E00989E70 /* 133 ஊடலுவகை.mp3 */; };
 		FECB708A2C92F33E00989E70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FFE2C92F33E00989E70 /* Assets.xcassets */; };
 		FECB708B2C92F33E00989E70 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECB6FFF2C92F33E00989E70 /* ContentView.swift */; };
 		FECB708C2C92F33E00989E70 /* data.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = FECB70002C92F33E00989E70 /* data.sqlite */; };
@@ -151,140 +150,139 @@
 
 /* Begin PBXFileReference section */
 		FE1B2D832C92C133006DBC55 /* valluvan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = valluvan.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE6DCFCE2C930E5B00736D71 /* அரண்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "அரண்.mp3"; sourceTree = "<group>"; };
+		FE6DCFCF2C930E5B00736D71 /* இல்வாழ்க்கை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "இல்வாழ்க்கை.mp3"; sourceTree = "<group>"; };
+		FE6DCFD02C930E5B00736D71 /* வலியறிதல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "வலியறிதல்.mp3"; sourceTree = "<group>"; };
+		FE6DCFD12C930E5B00736D71 /* புலவி.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "புலவி.mp3"; sourceTree = "<group>"; };
+		FE6DCFD22C930E5B00736D71 /* பிரிவாற்றாமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "பிரிவாற்றாமை.mp3"; sourceTree = "<group>"; };
+		FE6DCFD32C930E5B00736D71 /* இடனறிதல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "இடனறிதல்.mp3"; sourceTree = "<group>"; };
+		FE6DCFD42C930E5B00736D71 /* நாணுத்துறவுரைத்தல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "நாணுத்துறவுரைத்தல்.mp3"; sourceTree = "<group>"; };
+		FE6DCFD52C930E5B00736D71 /* குறிப்பறிதல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "குறிப்பறிதல்.mp3"; sourceTree = "<group>"; };
+		FE6DCFD62C930E5B00736D71 /* பகைத்திறந்தெரிதல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "பகைத்திறந்தெரிதல்.mp3"; sourceTree = "<group>"; };
+		FE6DCFD72C930E5B00736D71 /* பெரியாரைப் பிழையாமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "பெரியாரைப் பிழையாமை.mp3"; sourceTree = "<group>"; };
+		FE6DCFD82C930E5B00736D71 /* நலம்புனைந்துரைத்தல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "நலம்புனைந்துரைத்தல்.mp3"; sourceTree = "<group>"; };
+		FE6DCFD92C930E5B00736D71 /* கல்வி.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "கல்வி.mp3"; sourceTree = "<group>"; };
+		FE6DCFDA2C930E5B00736D71 /* மடியின்மை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "மடியின்மை.mp3"; sourceTree = "<group>"; };
+		FE6DCFDB2C930E5B00736D71 /* சிற்றினஞ்சேராமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "சிற்றினஞ்சேராமை.mp3"; sourceTree = "<group>"; };
+		FE6DCFDC2C930E5B00736D71 /* கூடாவொழுக்கம்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "கூடாவொழுக்கம்.mp3"; sourceTree = "<group>"; };
+		FE6DCFDD2C930E5B00736D71 /* நினைந்தவர்புலம்பல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "நினைந்தவர்புலம்பல்.mp3"; sourceTree = "<group>"; };
+		FE6DCFDE2C930E5B00736D71 /* தெரிந்துதெளிதல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "தெரிந்துதெளிதல்.mp3"; sourceTree = "<group>"; };
+		FE6DCFDF2C930E5B00736D71 /* புணர்ச்சிவிதும்பல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "புணர்ச்சிவிதும்பல்.mp3"; sourceTree = "<group>"; };
+		FE6DCFE02C930E5B00736D71 /* பொறையுடைமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "பொறையுடைமை.mp3"; sourceTree = "<group>"; };
+		FE6DCFE12C930E5B00736D71 /* அறிவுடைமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "அறிவுடைமை.mp3"; sourceTree = "<group>"; };
+		FE6DCFE22C930E5B00736D71 /* மருந்து.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "மருந்து.mp3"; sourceTree = "<group>"; };
+		FE6DCFE32C930E5B00736D71 /* பெரியாரைத் துணைக்கோடல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "பெரியாரைத் துணைக்கோடல்.mp3"; sourceTree = "<group>"; };
+		FE6DCFE42C930E5B00736D71 /* இகல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "இகல்.mp3"; sourceTree = "<group>"; };
+		FE6DCFE52C930E5B00736D71 /* நாடு.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "நாடு.mp3"; sourceTree = "<group>"; };
+		FE6DCFE62C930E5B00736D71 /* அவையறிதல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "அவையறிதல்.mp3"; sourceTree = "<group>"; };
+		FE6DCFE72C930E5B00736D71 /* நடுவு நிலைமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "நடுவு நிலைமை.mp3"; sourceTree = "<group>"; };
+		FE6DCFE82C930E5B00736D71 /* ஒப்புரவறிதல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "ஒப்புரவறிதல்.mp3"; sourceTree = "<group>"; };
+		FE6DCFE92C930E5B00736D71 /* பயனில சொல்லாமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "பயனில சொல்லாமை.mp3"; sourceTree = "<group>"; };
+		FE6DCFEA2C930E5B00736D71 /* பொருள்செயல்வகை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "பொருள்செயல்வகை.mp3"; sourceTree = "<group>"; };
+		FE6DCFEB2C930E5B00736D71 /* மன்னரைச் சேர்ந்தொழுதல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "மன்னரைச் சேர்ந்தொழுதல்.mp3"; sourceTree = "<group>"; };
+		FE6DCFEC2C930E5B00736D71 /* இரவச்சம்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "இரவச்சம்.mp3"; sourceTree = "<group>"; };
+		FE6DCFED2C930E5B00736D71 /* மெய்யுணர்தல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "மெய்யுணர்தல்.mp3"; sourceTree = "<group>"; };
+		FE6DCFEE2C930E5B00736D71 /* கடவுள் வாழ்த்து.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "கடவுள் வாழ்த்து.mp3"; sourceTree = "<group>"; };
+		FE6DCFEF2C930E5B00736D71 /* ஊடலுவகை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "ஊடலுவகை.mp3"; sourceTree = "<group>"; };
+		FE6DCFF02C930E5B00736D71 /* விருந்தோம்பல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "விருந்தோம்பல்.mp3"; sourceTree = "<group>"; };
+		FE6DCFF12C930E5B00736D71 /* குடிசெயல்வகை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "குடிசெயல்வகை.mp3"; sourceTree = "<group>"; };
+		FE6DCFF22C930E5B00736D71 /* கள்ளுண்ணாமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "கள்ளுண்ணாமை.mp3"; sourceTree = "<group>"; };
+		FE6DCFF32C930E5B00736D71 /* புணர்ச்சிமகிழ்தல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "புணர்ச்சிமகிழ்தல்.mp3"; sourceTree = "<group>"; };
+		FE6DCFF42C930E5B00736D71 /* கொடுங்கோன்மை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "கொடுங்கோன்மை.mp3"; sourceTree = "<group>"; };
+		FE6DCFF52C930E5B00736D71 /* ஊக்கமுடைமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "ஊக்கமுடைமை.mp3"; sourceTree = "<group>"; };
+		FE6DCFF62C930E5B00736D71 /* புறங்கூறாமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "புறங்கூறாமை.mp3"; sourceTree = "<group>"; };
+		FE6DCFF72C930E5B00736D71 /* ஒற்றாடல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "ஒற்றாடல்.mp3"; sourceTree = "<group>"; };
+		FE6DCFF82C930E5B00736D71 /* நாணுடைமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "நாணுடைமை.mp3"; sourceTree = "<group>"; };
+		FE6DCFF92C930E5B00736D71 /* தனிப்படர்மிகுதி.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "தனிப்படர்மிகுதி.mp3"; sourceTree = "<group>"; };
+		FE6DCFFA2C930E5B00736D71 /* அருளுடைமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "அருளுடைமை.mp3"; sourceTree = "<group>"; };
+		FE6DCFFB2C930E5B00736D71 /* மக்கட்பேறு.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "மக்கட்பேறு.mp3"; sourceTree = "<group>"; };
+		FE6DCFFC2C930E5B00736D71 /* நெஞ்சொடுகிளத்தல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "நெஞ்சொடுகிளத்தல்.mp3"; sourceTree = "<group>"; };
+		FE6DCFFD2C930E5B00736D71 /* நெஞ்சொடுபுலத்தல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "நெஞ்சொடுபுலத்தல்.mp3"; sourceTree = "<group>"; };
+		FE6DCFFE2C930E5B00736D71 /* புல்லறிவாண்மை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "புல்லறிவாண்மை.mp3"; sourceTree = "<group>"; };
+		FE6DCFFF2C930E5B00736D71 /* அறன் வலியுறுத்தல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "அறன் வலியுறுத்தல்.mp3"; sourceTree = "<group>"; };
+		FE6DD0002C930E5C00736D71 /* கயமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "கயமை.mp3"; sourceTree = "<group>"; };
+		FE6DD0012C930E5C00736D71 /* வரைவின்மகளிர்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "வரைவின்மகளிர்.mp3"; sourceTree = "<group>"; };
+		FE6DD0022C930E5C00736D71 /* நல்குரவு.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "நல்குரவு.mp3"; sourceTree = "<group>"; };
+		FE6DD0032C930E5C00736D71 /* வினைசெயல்வகை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "வினைசெயல்வகை.mp3"; sourceTree = "<group>"; };
+		FE6DD0042C930E5C00736D71 /* ஊழ்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "ஊழ்.mp3"; sourceTree = "<group>"; };
+		FE6DD0052C930E5C00736D71 /* படர்மெலிந்திரங்கல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "படர்மெலிந்திரங்கல்.mp3"; sourceTree = "<group>"; };
+		FE6DD0062C930E5C00736D71 /* வெருவந்தசெய்யாமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "வெருவந்தசெய்யாமை.mp3"; sourceTree = "<group>"; };
+		FE6DD0072C930E5C00736D71 /* நிலையாமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "நிலையாமை.mp3"; sourceTree = "<group>"; };
+		FE6DD0082C930E5C00736D71 /* படைமாட்சி.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "படைமாட்சி.mp3"; sourceTree = "<group>"; };
+		FE6DD0092C930E5C00736D71 /* குற்றங்கடிதல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "குற்றங்கடிதல்.mp3"; sourceTree = "<group>"; };
+		FE6DD00A2C930E5C00736D71 /* மானம்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "மானம்.mp3"; sourceTree = "<group>"; };
+		FE6DD00B2C930E5C00736D71 /* இடுக்கணழியாமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "இடுக்கணழியாமை.mp3"; sourceTree = "<group>"; };
+		FE6DD00C2C930E5C00736D71 /* நீத்தார் பெருமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "நீத்தார் பெருமை.mp3"; sourceTree = "<group>"; };
+		FE6DD00D2C930E5C00736D71 /* காலமறிதல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "காலமறிதல்.mp3"; sourceTree = "<group>"; };
+		FE6DD00E2C930E5C00736D71 /* அவர்வயின்விதும்பல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "அவர்வயின்விதும்பல்.mp3"; sourceTree = "<group>"; };
+		FE6DD00F2C930E5C00736D71 /* கூடாநட்பு.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "கூடாநட்பு.mp3"; sourceTree = "<group>"; };
+		FE6DD0102C930E5C00736D71 /* அமைச்சு.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "அமைச்சு.mp3"; sourceTree = "<group>"; };
+		FE6DD0112C930E5C00736D71 /* தகையணங்குறுத்தல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "தகையணங்குறுத்தல்.mp3"; sourceTree = "<group>"; };
+		FE6DD0122C930E5C00736D71 /* அடக்கமுடைமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "அடக்கமுடைமை.mp3"; sourceTree = "<group>"; };
+		FE6DD0132C930E5C00736D71 /* கல்லாமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "கல்லாமை.mp3"; sourceTree = "<group>"; };
+		FE6DD0142C930E5C00736D71 /* குறிப்பறிவுறுத்தல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "குறிப்பறிவுறுத்தல்.mp3"; sourceTree = "<group>"; };
+		FE6DD0152C930E5C00736D71 /* ஒழுக்கமுடைமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "ஒழுக்கமுடைமை.mp3"; sourceTree = "<group>"; };
+		FE6DD0162C930E5C00736D71 /* வாழ்க்கைத் துணைநலம்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "வாழ்க்கைத் துணைநலம்.mp3"; sourceTree = "<group>"; };
+		FE6DD0172C930E5C00736D71 /* தெரிந்துசெயல்வகை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "தெரிந்துசெயல்வகை.mp3"; sourceTree = "<group>"; };
+		FE6DD0182C930E5C00736D71 /* பகைமாட்சி.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "பகைமாட்சி.mp3"; sourceTree = "<group>"; };
+		FE6DD0192C930E5C00736D71 /* புலான்மறுத்தல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "புலான்மறுத்தல்.mp3"; sourceTree = "<group>"; };
+		FE6DD01A2C930E5C00736D71 /* பேதைமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "பேதைமை.mp3"; sourceTree = "<group>"; };
+		FE6DD01B2C930E5C00736D71 /* அலரறிவுறுத்தல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "அலரறிவுறுத்தல்.mp3"; sourceTree = "<group>"; };
+		FE6DD01C2C930E5C00736D71 /* தெரிந்துவினையாடல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "தெரிந்துவினையாடல்.mp3"; sourceTree = "<group>"; };
+		FE6DD01D2C930E5C00736D71 /* பொழுதுகண்டிரங்கல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "பொழுதுகண்டிரங்கல்.mp3"; sourceTree = "<group>"; };
+		FE6DD01E2C930E5C00736D71 /* சூது.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "சூது.mp3"; sourceTree = "<group>"; };
+		FE6DD01F2C930E5C00736D71 /* செய்ந்நன்றி அறிதல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "செய்ந்நன்றி அறிதல்.mp3"; sourceTree = "<group>"; };
+		FE6DD0202C930E5C00736D71 /* அன்புடைமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "அன்புடைமை.mp3"; sourceTree = "<group>"; };
+		FE6DD0212C930E5C00736D71 /* தீ நட்பு.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "தீ நட்பு.mp3"; sourceTree = "<group>"; };
+		FE6DD0222C930E5C00736D71 /* பெண்வழிச்சேறல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "பெண்வழிச்சேறல்.mp3"; sourceTree = "<group>"; };
+		FE6DD0232C930E5C00736D71 /* தூது.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "தூது.mp3"; sourceTree = "<group>"; };
+		FE6DD0242C930E5C00736D71 /* படைச்செருக்கு.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "படைச்செருக்கு.mp3"; sourceTree = "<group>"; };
+		FE6DD0252C930E5C00736D71 /* உழவு.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "உழவு.mp3"; sourceTree = "<group>"; };
+		FE6DD0262C930E5C00736D71 /* சுற்றந்தழால்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "சுற்றந்தழால்.mp3"; sourceTree = "<group>"; };
+		FE6DD0272C930E5C00736D71 /* பண்புடைமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "பண்புடைமை.mp3"; sourceTree = "<group>"; };
+		FE6DD0282C930E5C00736D71 /* அவையஞ்சாமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "அவையஞ்சாமை.mp3"; sourceTree = "<group>"; };
+		FE6DD0292C930E5C00736D71 /* தீவினையச்சம்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "தீவினையச்சம்.mp3"; sourceTree = "<group>"; };
+		FE6DD02A2C930E5C00736D71 /* வெஃகாமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "வெஃகாமை.mp3"; sourceTree = "<group>"; };
+		FE6DD02B2C930E5C00736D71 /* நட்பாராய்தல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "நட்பாராய்தல்.mp3"; sourceTree = "<group>"; };
+		FE6DD02C2C930E5C00736D71 /* அவாவறுத்தல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "அவாவறுத்தல்.mp3"; sourceTree = "<group>"; };
+		FE6DD02D2C930E5C00736D71 /* பொச்சாவாமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "பொச்சாவாமை.mp3"; sourceTree = "<group>"; };
+		FE6DD02E2C930E5C00736D71 /* பழைமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "பழைமை.mp3"; sourceTree = "<group>"; };
+		FE6DD02F2C930E5C00736D71 /* குடிமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "குடிமை.mp3"; sourceTree = "<group>"; };
+		FE6DD0302C930E5C00736D71 /* இனியவைகூறல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "இனியவைகூறல்.mp3"; sourceTree = "<group>"; };
+		FE6DD0312C930E5C00736D71 /* துறவு.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "துறவு.mp3"; sourceTree = "<group>"; };
+		FE6DD0322C930E5C00736D71 /* வினைத்தூய்மை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "வினைத்தூய்மை.mp3"; sourceTree = "<group>"; };
+		FE6DD0332C930E5C00736D71 /* பிறனில் விழையாமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "பிறனில் விழையாமை.mp3"; sourceTree = "<group>"; };
+		FE6DD0342C930E5C00736D71 /* செங்கோன்மை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "செங்கோன்மை.mp3"; sourceTree = "<group>"; };
+		FE6DD0352C930E5C00736D71 /* பசப்புறுபருவரல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "பசப்புறுபருவரல்.mp3"; sourceTree = "<group>"; };
+		FE6DD0362C930E5C00736D71 /* கொல்லாமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "கொல்லாமை.mp3"; sourceTree = "<group>"; };
+		FE6DD0372C930E5C00736D71 /* சான்றாண்மை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "சான்றாண்மை.mp3"; sourceTree = "<group>"; };
+		FE6DD0382C930E5C00736D71 /* உறுப்புநலனழிதல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "உறுப்புநலனழிதல்.mp3"; sourceTree = "<group>"; };
+		FE6DD0392C930E5C00736D71 /* கண்ணோட்டம்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "கண்ணோட்டம்.mp3"; sourceTree = "<group>"; };
+		FE6DD03A2C930E5C00736D71 /* சொல்வன்மை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "சொல்வன்மை.mp3"; sourceTree = "<group>"; };
+		FE6DD03B2C930E5C00736D71 /* உட்பகை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "உட்பகை.mp3"; sourceTree = "<group>"; };
+		FE6DD03C2C930E5C00736D71 /* காதற்சிறப்புரைத்தல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "காதற்சிறப்புரைத்தல்.mp3"; sourceTree = "<group>"; };
+		FE6DD03D2C930E5C00736D71 /* கள்ளாமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "கள்ளாமை.mp3"; sourceTree = "<group>"; };
+		FE6DD03E2C930E5C00736D71 /* கனவுநிலையுரைத்தல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "கனவுநிலையுரைத்தல்.mp3"; sourceTree = "<group>"; };
+		FE6DD03F2C930E5C00736D71 /* இறைமாட்சி.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "இறைமாட்சி.mp3"; sourceTree = "<group>"; };
+		FE6DD0402C930E5C00736D71 /* ஈகை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "ஈகை.mp3"; sourceTree = "<group>"; };
+		FE6DD0412C930E5C00736D71 /* இரவு.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "இரவு.mp3"; sourceTree = "<group>"; };
+		FE6DD0422C930E5C00736D71 /* கண்விதுப்பழிதல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "கண்விதுப்பழிதல்.mp3"; sourceTree = "<group>"; };
+		FE6DD0432C930E5C00736D71 /* வாய்மை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "வாய்மை.mp3"; sourceTree = "<group>"; };
+		FE6DD0442C930E5C00736D71 /* பெருமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "பெருமை.mp3"; sourceTree = "<group>"; };
+		FE6DD0452C930E5C00736D71 /* நிறையழிதல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "நிறையழிதல்.mp3"; sourceTree = "<group>"; };
+		FE6DD0462C930E5C00736D71 /* வான்சிறப்பு.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "வான்சிறப்பு.mp3"; sourceTree = "<group>"; };
+		FE6DD0472C930E5C00736D71 /* தவம்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "தவம்.mp3"; sourceTree = "<group>"; };
+		FE6DD0482C930E5C00736D71 /* நட்பு.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "நட்பு.mp3"; sourceTree = "<group>"; };
+		FE6DD0492C930E5C00736D71 /* வினைத்திட்பம்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "வினைத்திட்பம்.mp3"; sourceTree = "<group>"; };
+		FE6DD04A2C930E5C00736D71 /* வெகுளாமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "வெகுளாமை.mp3"; sourceTree = "<group>"; };
+		FE6DD04B2C930E5C00736D71 /* கேள்வி.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "கேள்வி.mp3"; sourceTree = "<group>"; };
+		FE6DD04C2C930E5C00736D71 /* அழுக்காறாமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "அழுக்காறாமை.mp3"; sourceTree = "<group>"; };
+		FE6DD04D2C930E5C00736D71 /* புகழ்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "புகழ்.mp3"; sourceTree = "<group>"; };
+		FE6DD04E2C930E5C00736D71 /* இன்னாசெய்யாமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "இன்னாசெய்யாமை.mp3"; sourceTree = "<group>"; };
+		FE6DD04F2C930E5D00736D71 /* ஆள்வினையுடைமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "ஆள்வினையுடைமை.mp3"; sourceTree = "<group>"; };
+		FE6DD0502C930E5D00736D71 /* புலவி நுணுக்கம்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "புலவி நுணுக்கம்.mp3"; sourceTree = "<group>"; };
+		FE6DD0512C930E5D00736D71 /* நன்றியில்செல்வம்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "நன்றியில்செல்வம்.mp3"; sourceTree = "<group>"; };
 		FECB6F762C92F33E00989E70 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		FECB6F782C92F33E00989E70 /* 001 கடவுள் வாழ்த்து.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "001 கடவுள் வாழ்த்து.mp3"; sourceTree = "<group>"; };
-		FECB6F792C92F33E00989E70 /* 002 வான்சிறப்பு.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "002 வான்சிறப்பு.mp3"; sourceTree = "<group>"; };
-		FECB6F7A2C92F33E00989E70 /* 003 நீத்தார் பெருமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "003 நீத்தார் பெருமை.mp3"; sourceTree = "<group>"; };
-		FECB6F7B2C92F33E00989E70 /* 004 அறன் வலியுறுத்தல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "004 அறன் வலியுறுத்தல்.mp3"; sourceTree = "<group>"; };
-		FECB6F7C2C92F33E00989E70 /* 005 இல்வாழ்க்கை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "005 இல்வாழ்க்கை.mp3"; sourceTree = "<group>"; };
-		FECB6F7D2C92F33E00989E70 /* 006 வாழ்க்கைத் துணைநலம்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "006 வாழ்க்கைத் துணைநலம்.mp3"; sourceTree = "<group>"; };
-		FECB6F7E2C92F33E00989E70 /* 007 மக்கட்பேறு.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "007 மக்கட்பேறு.mp3"; sourceTree = "<group>"; };
-		FECB6F7F2C92F33E00989E70 /* 008 அன்புடைமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "008 அன்புடைமை.mp3"; sourceTree = "<group>"; };
-		FECB6F802C92F33E00989E70 /* 009 விருந்தோம்பல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "009 விருந்தோம்பல்.mp3"; sourceTree = "<group>"; };
-		FECB6F812C92F33E00989E70 /* 010 இனியவைகூறல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "010 இனியவைகூறல்.mp3"; sourceTree = "<group>"; };
-		FECB6F822C92F33E00989E70 /* 011 செய்ந்நன்றி அறிதல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "011 செய்ந்நன்றி அறிதல்.mp3"; sourceTree = "<group>"; };
-		FECB6F832C92F33E00989E70 /* 012 நடுவு நிலைமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "012 நடுவு நிலைமை.mp3"; sourceTree = "<group>"; };
-		FECB6F842C92F33E00989E70 /* 013 அடக்கமுடைமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "013 அடக்கமுடைமை.mp3"; sourceTree = "<group>"; };
-		FECB6F852C92F33E00989E70 /* 014 ஒழுக்கமுடைமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "014 ஒழுக்கமுடைமை.mp3"; sourceTree = "<group>"; };
-		FECB6F862C92F33E00989E70 /* 015 பிறனில் விழையாமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "015 பிறனில் விழையாமை.mp3"; sourceTree = "<group>"; };
-		FECB6F872C92F33E00989E70 /* 016 பொறையுடைமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "016 பொறையுடைமை.mp3"; sourceTree = "<group>"; };
-		FECB6F882C92F33E00989E70 /* 017 அழுக்காறாமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "017 அழுக்காறாமை.mp3"; sourceTree = "<group>"; };
-		FECB6F892C92F33E00989E70 /* 018 வெஃகாமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "018 வெஃகாமை.mp3"; sourceTree = "<group>"; };
-		FECB6F8A2C92F33E00989E70 /* 019 புறங்கூறாமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "019 புறங்கூறாமை.mp3"; sourceTree = "<group>"; };
-		FECB6F8B2C92F33E00989E70 /* 020 பயனில சொல்லாமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "020 பயனில சொல்லாமை.mp3"; sourceTree = "<group>"; };
-		FECB6F8C2C92F33E00989E70 /* 021 தீவினையச்சம்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "021 தீவினையச்சம்.mp3"; sourceTree = "<group>"; };
-		FECB6F8D2C92F33E00989E70 /* 022 ஒப்புரவறிதல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "022 ஒப்புரவறிதல்.mp3"; sourceTree = "<group>"; };
-		FECB6F8E2C92F33E00989E70 /* 023 ஈகை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "023 ஈகை.mp3"; sourceTree = "<group>"; };
-		FECB6F8F2C92F33E00989E70 /* 024 புகழ்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "024 புகழ்.mp3"; sourceTree = "<group>"; };
-		FECB6F902C92F33E00989E70 /* 025 அருளுடைமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "025 அருளுடைமை.mp3"; sourceTree = "<group>"; };
-		FECB6F912C92F33E00989E70 /* 026 புலான்மறுத்தல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "026 புலான்மறுத்தல்.mp3"; sourceTree = "<group>"; };
-		FECB6F922C92F33E00989E70 /* 027 தவம்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "027 தவம்.mp3"; sourceTree = "<group>"; };
-		FECB6F932C92F33E00989E70 /* 028 கூடாவொழுக்கம்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "028 கூடாவொழுக்கம்.mp3"; sourceTree = "<group>"; };
-		FECB6F942C92F33E00989E70 /* 029 கள்ளாமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "029 கள்ளாமை.mp3"; sourceTree = "<group>"; };
-		FECB6F952C92F33E00989E70 /* 030 வாய்மை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "030 வாய்மை.mp3"; sourceTree = "<group>"; };
-		FECB6F962C92F33E00989E70 /* 031 வெகுளாமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "031 வெகுளாமை.mp3"; sourceTree = "<group>"; };
-		FECB6F972C92F33E00989E70 /* 032 இன்னாசெய்யாமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "032 இன்னாசெய்யாமை.mp3"; sourceTree = "<group>"; };
-		FECB6F982C92F33E00989E70 /* 033 கொல்லாமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "033 கொல்லாமை.mp3"; sourceTree = "<group>"; };
-		FECB6F992C92F33E00989E70 /* 034 நிலையாமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "034 நிலையாமை.mp3"; sourceTree = "<group>"; };
-		FECB6F9A2C92F33E00989E70 /* 035 துறவு.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "035 துறவு.mp3"; sourceTree = "<group>"; };
-		FECB6F9B2C92F33E00989E70 /* 036 மெய்யுணர்தல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "036 மெய்யுணர்தல்.mp3"; sourceTree = "<group>"; };
-		FECB6F9C2C92F33E00989E70 /* 037 அவாவறுத்தல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "037 அவாவறுத்தல்.mp3"; sourceTree = "<group>"; };
-		FECB6F9D2C92F33E00989E70 /* 038 ஊழ்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "038 ஊழ்.mp3"; sourceTree = "<group>"; };
-		FECB6F9E2C92F33E00989E70 /* 039 இறைமாட்சி.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "039 இறைமாட்சி.mp3"; sourceTree = "<group>"; };
-		FECB6F9F2C92F33E00989E70 /* 040 கல்வி.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "040 கல்வி.mp3"; sourceTree = "<group>"; };
-		FECB6FA02C92F33E00989E70 /* 041 கல்லாமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "041 கல்லாமை.mp3"; sourceTree = "<group>"; };
-		FECB6FA12C92F33E00989E70 /* 042 கேள்வி.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "042 கேள்வி.mp3"; sourceTree = "<group>"; };
-		FECB6FA22C92F33E00989E70 /* 043 அறிவுடைமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "043 அறிவுடைமை.mp3"; sourceTree = "<group>"; };
-		FECB6FA32C92F33E00989E70 /* 044 குற்றங்கடிதல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "044 குற்றங்கடிதல்.mp3"; sourceTree = "<group>"; };
-		FECB6FA42C92F33E00989E70 /* 045 பெரியாரைத் துணைக்கோடல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "045 பெரியாரைத் துணைக்கோடல்.mp3"; sourceTree = "<group>"; };
-		FECB6FA52C92F33E00989E70 /* 046 சிற்றினஞ்சேராமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "046 சிற்றினஞ்சேராமை.mp3"; sourceTree = "<group>"; };
-		FECB6FA62C92F33E00989E70 /* 047 தெரிந்துசெயல்வகை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "047 தெரிந்துசெயல்வகை.mp3"; sourceTree = "<group>"; };
-		FECB6FA72C92F33E00989E70 /* 048 வலியறிதல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "048 வலியறிதல்.mp3"; sourceTree = "<group>"; };
-		FECB6FA82C92F33E00989E70 /* 049 காலமறிதல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "049 காலமறிதல்.mp3"; sourceTree = "<group>"; };
-		FECB6FA92C92F33E00989E70 /* 050 இடனறிதல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "050 இடனறிதல்.mp3"; sourceTree = "<group>"; };
-		FECB6FAA2C92F33E00989E70 /* 051 தெரிந்துதெளிதல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "051 தெரிந்துதெளிதல்.mp3"; sourceTree = "<group>"; };
-		FECB6FAB2C92F33E00989E70 /* 052 தெரிந்துவினையாடல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "052 தெரிந்துவினையாடல்.mp3"; sourceTree = "<group>"; };
-		FECB6FAC2C92F33E00989E70 /* 053 சுற்றந்தழால்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "053 சுற்றந்தழால்.mp3"; sourceTree = "<group>"; };
-		FECB6FAD2C92F33E00989E70 /* 054 பொச்சாவாமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "054 பொச்சாவாமை.mp3"; sourceTree = "<group>"; };
-		FECB6FAE2C92F33E00989E70 /* 055 செங்கோன்மை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "055 செங்கோன்மை.mp3"; sourceTree = "<group>"; };
-		FECB6FAF2C92F33E00989E70 /* 056 கொடுங்கோன்மை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "056 கொடுங்கோன்மை.mp3"; sourceTree = "<group>"; };
-		FECB6FB02C92F33E00989E70 /* 057 வெருவந்தசெய்யாமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "057 வெருவந்தசெய்யாமை.mp3"; sourceTree = "<group>"; };
-		FECB6FB12C92F33E00989E70 /* 058 கண்ணோட்டம்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "058 கண்ணோட்டம்.mp3"; sourceTree = "<group>"; };
-		FECB6FB22C92F33E00989E70 /* 059 ஒற்றாடல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "059 ஒற்றாடல்.mp3"; sourceTree = "<group>"; };
-		FECB6FB32C92F33E00989E70 /* 060 ஊக்கமுடைமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "060 ஊக்கமுடைமை.mp3"; sourceTree = "<group>"; };
-		FECB6FB42C92F33E00989E70 /* 061 மடியின்மை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "061 மடியின்மை.mp3"; sourceTree = "<group>"; };
-		FECB6FB52C92F33E00989E70 /* 062 ஆள்வினையுடைமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "062 ஆள்வினையுடைமை.mp3"; sourceTree = "<group>"; };
-		FECB6FB62C92F33E00989E70 /* 063 இடுக்கணழியாமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "063 இடுக்கணழியாமை.mp3"; sourceTree = "<group>"; };
-		FECB6FB72C92F33E00989E70 /* 064 அமைச்சு.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "064 அமைச்சு.mp3"; sourceTree = "<group>"; };
-		FECB6FB82C92F33E00989E70 /* 065 சொல்வன்மை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "065 சொல்வன்மை.mp3"; sourceTree = "<group>"; };
-		FECB6FB92C92F33E00989E70 /* 066 வினைத்தூய்மை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "066 வினைத்தூய்மை.mp3"; sourceTree = "<group>"; };
-		FECB6FBA2C92F33E00989E70 /* 067 வினைத்திட்பம்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "067 வினைத்திட்பம்.mp3"; sourceTree = "<group>"; };
-		FECB6FBB2C92F33E00989E70 /* 068 வினைசெயல்வகை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "068 வினைசெயல்வகை.mp3"; sourceTree = "<group>"; };
-		FECB6FBC2C92F33E00989E70 /* 069 தூது.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "069 தூது.mp3"; sourceTree = "<group>"; };
-		FECB6FBD2C92F33E00989E70 /* 070 மன்னரைச் சேர்ந்தொழுதல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "070 மன்னரைச் சேர்ந்தொழுதல்.mp3"; sourceTree = "<group>"; };
-		FECB6FBE2C92F33E00989E70 /* 071 குறிப்பறிதல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "071 குறிப்பறிதல்.mp3"; sourceTree = "<group>"; };
-		FECB6FBF2C92F33E00989E70 /* 072 அவையறிதல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "072 அவையறிதல்.mp3"; sourceTree = "<group>"; };
-		FECB6FC02C92F33E00989E70 /* 073 அவையஞ்சாமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "073 அவையஞ்சாமை.mp3"; sourceTree = "<group>"; };
-		FECB6FC12C92F33E00989E70 /* 074 நாடு.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "074 நாடு.mp3"; sourceTree = "<group>"; };
-		FECB6FC22C92F33E00989E70 /* 075 அரண்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "075 அரண்.mp3"; sourceTree = "<group>"; };
-		FECB6FC32C92F33E00989E70 /* 076 பொருள்செயல்வகை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "076 பொருள்செயல்வகை.mp3"; sourceTree = "<group>"; };
-		FECB6FC42C92F33E00989E70 /* 077 படைமாட்சி.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "077 படைமாட்சி.mp3"; sourceTree = "<group>"; };
-		FECB6FC52C92F33E00989E70 /* 078 படைச்செருக்கு.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "078 படைச்செருக்கு.mp3"; sourceTree = "<group>"; };
-		FECB6FC62C92F33E00989E70 /* 079 நட்பு.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "079 நட்பு.mp3"; sourceTree = "<group>"; };
-		FECB6FC72C92F33E00989E70 /* 080 நட்பாராய்தல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "080 நட்பாராய்தல்.mp3"; sourceTree = "<group>"; };
-		FECB6FC82C92F33E00989E70 /* 081 பழைமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "081 பழைமை.mp3"; sourceTree = "<group>"; };
-		FECB6FC92C92F33E00989E70 /* 082 தீ நட்பு.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "082 தீ நட்பு.mp3"; sourceTree = "<group>"; };
-		FECB6FCA2C92F33E00989E70 /* 083 கூடாநட்பு.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "083 கூடாநட்பு.mp3"; sourceTree = "<group>"; };
-		FECB6FCB2C92F33E00989E70 /* 084 பேதைமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "084 பேதைமை.mp3"; sourceTree = "<group>"; };
-		FECB6FCC2C92F33E00989E70 /* 085 புல்லறிவாண்மை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "085 புல்லறிவாண்மை.mp3"; sourceTree = "<group>"; };
-		FECB6FCD2C92F33E00989E70 /* 086 இகல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "086 இகல்.mp3"; sourceTree = "<group>"; };
-		FECB6FCE2C92F33E00989E70 /* 087 பகைமாட்சி.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "087 பகைமாட்சி.mp3"; sourceTree = "<group>"; };
-		FECB6FCF2C92F33E00989E70 /* 088 பகைத்திறந்தெரிதல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "088 பகைத்திறந்தெரிதல்.mp3"; sourceTree = "<group>"; };
-		FECB6FD02C92F33E00989E70 /* 089 உட்பகை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "089 உட்பகை.mp3"; sourceTree = "<group>"; };
-		FECB6FD12C92F33E00989E70 /* 090 பெரியாரைப் பிழையாமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "090 பெரியாரைப் பிழையாமை.mp3"; sourceTree = "<group>"; };
-		FECB6FD22C92F33E00989E70 /* 091 பெண்வழிச்சேறல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "091 பெண்வழிச்சேறல்.mp3"; sourceTree = "<group>"; };
-		FECB6FD32C92F33E00989E70 /* 092 வரைவின்மகளிர்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "092 வரைவின்மகளிர்.mp3"; sourceTree = "<group>"; };
-		FECB6FD42C92F33E00989E70 /* 093 கள்ளுண்ணாமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "093 கள்ளுண்ணாமை.mp3"; sourceTree = "<group>"; };
-		FECB6FD52C92F33E00989E70 /* 094 சூது.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "094 சூது.mp3"; sourceTree = "<group>"; };
-		FECB6FD62C92F33E00989E70 /* 095 மருந்து.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "095 மருந்து.mp3"; sourceTree = "<group>"; };
-		FECB6FD72C92F33E00989E70 /* 096 குடிமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "096 குடிமை.mp3"; sourceTree = "<group>"; };
-		FECB6FD82C92F33E00989E70 /* 097 மானம்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "097 மானம்.mp3"; sourceTree = "<group>"; };
-		FECB6FD92C92F33E00989E70 /* 098 பெருமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "098 பெருமை.mp3"; sourceTree = "<group>"; };
-		FECB6FDA2C92F33E00989E70 /* 099 சான்றாண்மை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "099 சான்றாண்மை.mp3"; sourceTree = "<group>"; };
-		FECB6FDB2C92F33E00989E70 /* 100 பண்புடைமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "100 பண்புடைமை.mp3"; sourceTree = "<group>"; };
-		FECB6FDC2C92F33E00989E70 /* 101 நன்றியில்செல்வம்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "101 நன்றியில்செல்வம்.mp3"; sourceTree = "<group>"; };
-		FECB6FDD2C92F33E00989E70 /* 102 நாணுடைமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "102 நாணுடைமை.mp3"; sourceTree = "<group>"; };
-		FECB6FDE2C92F33E00989E70 /* 103 குடிசெயல்வகை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "103 குடிசெயல்வகை.mp3"; sourceTree = "<group>"; };
-		FECB6FDF2C92F33E00989E70 /* 104 உழவு.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "104 உழவு.mp3"; sourceTree = "<group>"; };
-		FECB6FE02C92F33E00989E70 /* 105 நல்குரவு.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "105 நல்குரவு.mp3"; sourceTree = "<group>"; };
-		FECB6FE12C92F33E00989E70 /* 106 இரவு.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "106 இரவு.mp3"; sourceTree = "<group>"; };
-		FECB6FE22C92F33E00989E70 /* 107 இரவச்சம்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "107 இரவச்சம்.mp3"; sourceTree = "<group>"; };
-		FECB6FE32C92F33E00989E70 /* 108 கயமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "108 கயமை.mp3"; sourceTree = "<group>"; };
-		FECB6FE42C92F33E00989E70 /* 109 தகையணங்குறுத்தல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "109 தகையணங்குறுத்தல்.mp3"; sourceTree = "<group>"; };
-		FECB6FE52C92F33E00989E70 /* 110 குறிப்பறிதல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "110 குறிப்பறிதல்.mp3"; sourceTree = "<group>"; };
-		FECB6FE62C92F33E00989E70 /* 111 புணர்ச்சிமகிழ்தல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "111 புணர்ச்சிமகிழ்தல்.mp3"; sourceTree = "<group>"; };
-		FECB6FE72C92F33E00989E70 /* 112 நலம்புனைந்துரைத்தல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "112 நலம்புனைந்துரைத்தல்.mp3"; sourceTree = "<group>"; };
-		FECB6FE82C92F33E00989E70 /* 113 காதற்சிறப்புரைத்தல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "113 காதற்சிறப்புரைத்தல்.mp3"; sourceTree = "<group>"; };
-		FECB6FE92C92F33E00989E70 /* 114 நாணுத்துறவுரைத்தல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "114 நாணுத்துறவுரைத்தல்.mp3"; sourceTree = "<group>"; };
-		FECB6FEA2C92F33E00989E70 /* 115 அலரறிவுறுத்தல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "115 அலரறிவுறுத்தல்.mp3"; sourceTree = "<group>"; };
-		FECB6FEB2C92F33E00989E70 /* 116 பிரிவாற்றாமை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "116 பிரிவாற்றாமை.mp3"; sourceTree = "<group>"; };
-		FECB6FEC2C92F33E00989E70 /* 117 படர்மெலிந்திரங்கல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "117 படர்மெலிந்திரங்கல்.mp3"; sourceTree = "<group>"; };
-		FECB6FED2C92F33E00989E70 /* 118 கண்விதுப்பழிதல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "118 கண்விதுப்பழிதல்.mp3"; sourceTree = "<group>"; };
-		FECB6FEE2C92F33E00989E70 /* 119 பசப்புறுபருவரல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "119 பசப்புறுபருவரல்.mp3"; sourceTree = "<group>"; };
-		FECB6FEF2C92F33E00989E70 /* 120 தனிப்படர்மிகுதி.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "120 தனிப்படர்மிகுதி.mp3"; sourceTree = "<group>"; };
-		FECB6FF02C92F33E00989E70 /* 121 நினைந்தவர்புலம்பல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "121 நினைந்தவர்புலம்பல்.mp3"; sourceTree = "<group>"; };
-		FECB6FF12C92F33E00989E70 /* 122 கனவுநிலையுரைத்தல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "122 கனவுநிலையுரைத்தல்.mp3"; sourceTree = "<group>"; };
-		FECB6FF22C92F33E00989E70 /* 123 பொழுதுகண்டிரங்கல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "123 பொழுதுகண்டிரங்கல்.mp3"; sourceTree = "<group>"; };
-		FECB6FF32C92F33E00989E70 /* 124 உறுப்புநலனழிதல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "124 உறுப்புநலனழிதல்.mp3"; sourceTree = "<group>"; };
-		FECB6FF42C92F33E00989E70 /* 125 நெஞ்சொடுகிளத்தல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "125 நெஞ்சொடுகிளத்தல்.mp3"; sourceTree = "<group>"; };
-		FECB6FF52C92F33E00989E70 /* 126 நிறையழிதல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "126 நிறையழிதல்.mp3"; sourceTree = "<group>"; };
-		FECB6FF62C92F33E00989E70 /* 127 அவர்வயின்விதும்பல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "127 அவர்வயின்விதும்பல்.mp3"; sourceTree = "<group>"; };
-		FECB6FF72C92F33E00989E70 /* 128 குறிப்பறிவுறுத்தல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "128 குறிப்பறிவுறுத்தல்.mp3"; sourceTree = "<group>"; };
-		FECB6FF82C92F33E00989E70 /* 129 புணர்ச்சிவிதும்பல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "129 புணர்ச்சிவிதும்பல்.mp3"; sourceTree = "<group>"; };
-		FECB6FF92C92F33E00989E70 /* 130 நெஞ்சொடுபுலத்தல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "130 நெஞ்சொடுபுலத்தல்.mp3"; sourceTree = "<group>"; };
-		FECB6FFA2C92F33E00989E70 /* 131 புலவி.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "131 புலவி.mp3"; sourceTree = "<group>"; };
-		FECB6FFB2C92F33E00989E70 /* 132 புலவி நுணுக்கம்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "132 புலவி நுணுக்கம்.mp3"; sourceTree = "<group>"; };
-		FECB6FFC2C92F33E00989E70 /* 133 ஊடலுவகை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "133 ஊடலுவகை.mp3"; sourceTree = "<group>"; };
 		FECB6FFE2C92F33E00989E70 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FECB6FFF2C92F33E00989E70 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FECB70002C92F33E00989E70 /* data.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = data.sqlite; sourceTree = "<group>"; };
@@ -331,139 +329,138 @@
 		FECB6FFD2C92F33E00989E70 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				FECB6F782C92F33E00989E70 /* 001 கடவுள் வாழ்த்து.mp3 */,
-				FECB6F792C92F33E00989E70 /* 002 வான்சிறப்பு.mp3 */,
-				FECB6F7A2C92F33E00989E70 /* 003 நீத்தார் பெருமை.mp3 */,
-				FECB6F7B2C92F33E00989E70 /* 004 அறன் வலியுறுத்தல்.mp3 */,
-				FECB6F7C2C92F33E00989E70 /* 005 இல்வாழ்க்கை.mp3 */,
-				FECB6F7D2C92F33E00989E70 /* 006 வாழ்க்கைத் துணைநலம்.mp3 */,
-				FECB6F7E2C92F33E00989E70 /* 007 மக்கட்பேறு.mp3 */,
-				FECB6F7F2C92F33E00989E70 /* 008 அன்புடைமை.mp3 */,
-				FECB6F802C92F33E00989E70 /* 009 விருந்தோம்பல்.mp3 */,
-				FECB6F812C92F33E00989E70 /* 010 இனியவைகூறல்.mp3 */,
-				FECB6F822C92F33E00989E70 /* 011 செய்ந்நன்றி அறிதல்.mp3 */,
-				FECB6F832C92F33E00989E70 /* 012 நடுவு நிலைமை.mp3 */,
-				FECB6F842C92F33E00989E70 /* 013 அடக்கமுடைமை.mp3 */,
-				FECB6F852C92F33E00989E70 /* 014 ஒழுக்கமுடைமை.mp3 */,
-				FECB6F862C92F33E00989E70 /* 015 பிறனில் விழையாமை.mp3 */,
-				FECB6F872C92F33E00989E70 /* 016 பொறையுடைமை.mp3 */,
-				FECB6F882C92F33E00989E70 /* 017 அழுக்காறாமை.mp3 */,
-				FECB6F892C92F33E00989E70 /* 018 வெஃகாமை.mp3 */,
-				FECB6F8A2C92F33E00989E70 /* 019 புறங்கூறாமை.mp3 */,
-				FECB6F8B2C92F33E00989E70 /* 020 பயனில சொல்லாமை.mp3 */,
-				FECB6F8C2C92F33E00989E70 /* 021 தீவினையச்சம்.mp3 */,
-				FECB6F8D2C92F33E00989E70 /* 022 ஒப்புரவறிதல்.mp3 */,
-				FECB6F8E2C92F33E00989E70 /* 023 ஈகை.mp3 */,
-				FECB6F8F2C92F33E00989E70 /* 024 புகழ்.mp3 */,
-				FECB6F902C92F33E00989E70 /* 025 அருளுடைமை.mp3 */,
-				FECB6F912C92F33E00989E70 /* 026 புலான்மறுத்தல்.mp3 */,
-				FECB6F922C92F33E00989E70 /* 027 தவம்.mp3 */,
-				FECB6F932C92F33E00989E70 /* 028 கூடாவொழுக்கம்.mp3 */,
-				FECB6F942C92F33E00989E70 /* 029 கள்ளாமை.mp3 */,
-				FECB6F952C92F33E00989E70 /* 030 வாய்மை.mp3 */,
-				FECB6F962C92F33E00989E70 /* 031 வெகுளாமை.mp3 */,
-				FECB6F972C92F33E00989E70 /* 032 இன்னாசெய்யாமை.mp3 */,
-				FECB6F982C92F33E00989E70 /* 033 கொல்லாமை.mp3 */,
-				FECB6F992C92F33E00989E70 /* 034 நிலையாமை.mp3 */,
-				FECB6F9A2C92F33E00989E70 /* 035 துறவு.mp3 */,
-				FECB6F9B2C92F33E00989E70 /* 036 மெய்யுணர்தல்.mp3 */,
-				FECB6F9C2C92F33E00989E70 /* 037 அவாவறுத்தல்.mp3 */,
-				FECB6F9D2C92F33E00989E70 /* 038 ஊழ்.mp3 */,
-				FECB6F9E2C92F33E00989E70 /* 039 இறைமாட்சி.mp3 */,
-				FECB6F9F2C92F33E00989E70 /* 040 கல்வி.mp3 */,
-				FECB6FA02C92F33E00989E70 /* 041 கல்லாமை.mp3 */,
-				FECB6FA12C92F33E00989E70 /* 042 கேள்வி.mp3 */,
-				FECB6FA22C92F33E00989E70 /* 043 அறிவுடைமை.mp3 */,
-				FECB6FA32C92F33E00989E70 /* 044 குற்றங்கடிதல்.mp3 */,
-				FECB6FA42C92F33E00989E70 /* 045 பெரியாரைத் துணைக்கோடல்.mp3 */,
-				FECB6FA52C92F33E00989E70 /* 046 சிற்றினஞ்சேராமை.mp3 */,
-				FECB6FA62C92F33E00989E70 /* 047 தெரிந்துசெயல்வகை.mp3 */,
-				FECB6FA72C92F33E00989E70 /* 048 வலியறிதல்.mp3 */,
-				FECB6FA82C92F33E00989E70 /* 049 காலமறிதல்.mp3 */,
-				FECB6FA92C92F33E00989E70 /* 050 இடனறிதல்.mp3 */,
-				FECB6FAA2C92F33E00989E70 /* 051 தெரிந்துதெளிதல்.mp3 */,
-				FECB6FAB2C92F33E00989E70 /* 052 தெரிந்துவினையாடல்.mp3 */,
-				FECB6FAC2C92F33E00989E70 /* 053 சுற்றந்தழால்.mp3 */,
-				FECB6FAD2C92F33E00989E70 /* 054 பொச்சாவாமை.mp3 */,
-				FECB6FAE2C92F33E00989E70 /* 055 செங்கோன்மை.mp3 */,
-				FECB6FAF2C92F33E00989E70 /* 056 கொடுங்கோன்மை.mp3 */,
-				FECB6FB02C92F33E00989E70 /* 057 வெருவந்தசெய்யாமை.mp3 */,
-				FECB6FB12C92F33E00989E70 /* 058 கண்ணோட்டம்.mp3 */,
-				FECB6FB22C92F33E00989E70 /* 059 ஒற்றாடல்.mp3 */,
-				FECB6FB32C92F33E00989E70 /* 060 ஊக்கமுடைமை.mp3 */,
-				FECB6FB42C92F33E00989E70 /* 061 மடியின்மை.mp3 */,
-				FECB6FB52C92F33E00989E70 /* 062 ஆள்வினையுடைமை.mp3 */,
-				FECB6FB62C92F33E00989E70 /* 063 இடுக்கணழியாமை.mp3 */,
-				FECB6FB72C92F33E00989E70 /* 064 அமைச்சு.mp3 */,
-				FECB6FB82C92F33E00989E70 /* 065 சொல்வன்மை.mp3 */,
-				FECB6FB92C92F33E00989E70 /* 066 வினைத்தூய்மை.mp3 */,
-				FECB6FBA2C92F33E00989E70 /* 067 வினைத்திட்பம்.mp3 */,
-				FECB6FBB2C92F33E00989E70 /* 068 வினைசெயல்வகை.mp3 */,
-				FECB6FBC2C92F33E00989E70 /* 069 தூது.mp3 */,
-				FECB6FBD2C92F33E00989E70 /* 070 மன்னரைச் சேர்ந்தொழுதல்.mp3 */,
-				FECB6FBE2C92F33E00989E70 /* 071 குறிப்பறிதல்.mp3 */,
-				FECB6FBF2C92F33E00989E70 /* 072 அவையறிதல்.mp3 */,
-				FECB6FC02C92F33E00989E70 /* 073 அவையஞ்சாமை.mp3 */,
-				FECB6FC12C92F33E00989E70 /* 074 நாடு.mp3 */,
-				FECB6FC22C92F33E00989E70 /* 075 அரண்.mp3 */,
-				FECB6FC32C92F33E00989E70 /* 076 பொருள்செயல்வகை.mp3 */,
-				FECB6FC42C92F33E00989E70 /* 077 படைமாட்சி.mp3 */,
-				FECB6FC52C92F33E00989E70 /* 078 படைச்செருக்கு.mp3 */,
-				FECB6FC62C92F33E00989E70 /* 079 நட்பு.mp3 */,
-				FECB6FC72C92F33E00989E70 /* 080 நட்பாராய்தல்.mp3 */,
-				FECB6FC82C92F33E00989E70 /* 081 பழைமை.mp3 */,
-				FECB6FC92C92F33E00989E70 /* 082 தீ நட்பு.mp3 */,
-				FECB6FCA2C92F33E00989E70 /* 083 கூடாநட்பு.mp3 */,
-				FECB6FCB2C92F33E00989E70 /* 084 பேதைமை.mp3 */,
-				FECB6FCC2C92F33E00989E70 /* 085 புல்லறிவாண்மை.mp3 */,
-				FECB6FCD2C92F33E00989E70 /* 086 இகல்.mp3 */,
-				FECB6FCE2C92F33E00989E70 /* 087 பகைமாட்சி.mp3 */,
-				FECB6FCF2C92F33E00989E70 /* 088 பகைத்திறந்தெரிதல்.mp3 */,
-				FECB6FD02C92F33E00989E70 /* 089 உட்பகை.mp3 */,
-				FECB6FD12C92F33E00989E70 /* 090 பெரியாரைப் பிழையாமை.mp3 */,
-				FECB6FD22C92F33E00989E70 /* 091 பெண்வழிச்சேறல்.mp3 */,
-				FECB6FD32C92F33E00989E70 /* 092 வரைவின்மகளிர்.mp3 */,
-				FECB6FD42C92F33E00989E70 /* 093 கள்ளுண்ணாமை.mp3 */,
-				FECB6FD52C92F33E00989E70 /* 094 சூது.mp3 */,
-				FECB6FD62C92F33E00989E70 /* 095 மருந்து.mp3 */,
-				FECB6FD72C92F33E00989E70 /* 096 குடிமை.mp3 */,
-				FECB6FD82C92F33E00989E70 /* 097 மானம்.mp3 */,
-				FECB6FD92C92F33E00989E70 /* 098 பெருமை.mp3 */,
-				FECB6FDA2C92F33E00989E70 /* 099 சான்றாண்மை.mp3 */,
-				FECB6FDB2C92F33E00989E70 /* 100 பண்புடைமை.mp3 */,
-				FECB6FDC2C92F33E00989E70 /* 101 நன்றியில்செல்வம்.mp3 */,
-				FECB6FDD2C92F33E00989E70 /* 102 நாணுடைமை.mp3 */,
-				FECB6FDE2C92F33E00989E70 /* 103 குடிசெயல்வகை.mp3 */,
-				FECB6FDF2C92F33E00989E70 /* 104 உழவு.mp3 */,
-				FECB6FE02C92F33E00989E70 /* 105 நல்குரவு.mp3 */,
-				FECB6FE12C92F33E00989E70 /* 106 இரவு.mp3 */,
-				FECB6FE22C92F33E00989E70 /* 107 இரவச்சம்.mp3 */,
-				FECB6FE32C92F33E00989E70 /* 108 கயமை.mp3 */,
-				FECB6FE42C92F33E00989E70 /* 109 தகையணங்குறுத்தல்.mp3 */,
-				FECB6FE52C92F33E00989E70 /* 110 குறிப்பறிதல்.mp3 */,
-				FECB6FE62C92F33E00989E70 /* 111 புணர்ச்சிமகிழ்தல்.mp3 */,
-				FECB6FE72C92F33E00989E70 /* 112 நலம்புனைந்துரைத்தல்.mp3 */,
-				FECB6FE82C92F33E00989E70 /* 113 காதற்சிறப்புரைத்தல்.mp3 */,
-				FECB6FE92C92F33E00989E70 /* 114 நாணுத்துறவுரைத்தல்.mp3 */,
-				FECB6FEA2C92F33E00989E70 /* 115 அலரறிவுறுத்தல்.mp3 */,
-				FECB6FEB2C92F33E00989E70 /* 116 பிரிவாற்றாமை.mp3 */,
-				FECB6FEC2C92F33E00989E70 /* 117 படர்மெலிந்திரங்கல்.mp3 */,
-				FECB6FED2C92F33E00989E70 /* 118 கண்விதுப்பழிதல்.mp3 */,
-				FECB6FEE2C92F33E00989E70 /* 119 பசப்புறுபருவரல்.mp3 */,
-				FECB6FEF2C92F33E00989E70 /* 120 தனிப்படர்மிகுதி.mp3 */,
-				FECB6FF02C92F33E00989E70 /* 121 நினைந்தவர்புலம்பல்.mp3 */,
-				FECB6FF12C92F33E00989E70 /* 122 கனவுநிலையுரைத்தல்.mp3 */,
-				FECB6FF22C92F33E00989E70 /* 123 பொழுதுகண்டிரங்கல்.mp3 */,
-				FECB6FF32C92F33E00989E70 /* 124 உறுப்புநலனழிதல்.mp3 */,
-				FECB6FF42C92F33E00989E70 /* 125 நெஞ்சொடுகிளத்தல்.mp3 */,
-				FECB6FF52C92F33E00989E70 /* 126 நிறையழிதல்.mp3 */,
-				FECB6FF62C92F33E00989E70 /* 127 அவர்வயின்விதும்பல்.mp3 */,
-				FECB6FF72C92F33E00989E70 /* 128 குறிப்பறிவுறுத்தல்.mp3 */,
-				FECB6FF82C92F33E00989E70 /* 129 புணர்ச்சிவிதும்பல்.mp3 */,
-				FECB6FF92C92F33E00989E70 /* 130 நெஞ்சொடுபுலத்தல்.mp3 */,
-				FECB6FFA2C92F33E00989E70 /* 131 புலவி.mp3 */,
-				FECB6FFB2C92F33E00989E70 /* 132 புலவி நுணுக்கம்.mp3 */,
-				FECB6FFC2C92F33E00989E70 /* 133 ஊடலுவகை.mp3 */,
+				FE6DD0122C930E5C00736D71 /* அடக்கமுடைமை.mp3 */,
+				FE6DD0102C930E5C00736D71 /* அமைச்சு.mp3 */,
+				FE6DCFCE2C930E5B00736D71 /* அரண்.mp3 */,
+				FE6DCFFA2C930E5B00736D71 /* அருளுடைமை.mp3 */,
+				FE6DD01B2C930E5C00736D71 /* அலரறிவுறுத்தல்.mp3 */,
+				FE6DD00E2C930E5C00736D71 /* அவர்வயின்விதும்பல்.mp3 */,
+				FE6DD02C2C930E5C00736D71 /* அவாவறுத்தல்.mp3 */,
+				FE6DD0282C930E5C00736D71 /* அவையஞ்சாமை.mp3 */,
+				FE6DCFE62C930E5B00736D71 /* அவையறிதல்.mp3 */,
+				FE6DD04C2C930E5C00736D71 /* அழுக்காறாமை.mp3 */,
+				FE6DCFFF2C930E5B00736D71 /* அறன் வலியுறுத்தல்.mp3 */,
+				FE6DCFE12C930E5B00736D71 /* அறிவுடைமை.mp3 */,
+				FE6DD0202C930E5C00736D71 /* அன்புடைமை.mp3 */,
+				FE6DD04F2C930E5D00736D71 /* ஆள்வினையுடைமை.mp3 */,
+				FE6DCFE42C930E5B00736D71 /* இகல்.mp3 */,
+				FE6DCFD32C930E5B00736D71 /* இடனறிதல்.mp3 */,
+				FE6DD00B2C930E5C00736D71 /* இடுக்கணழியாமை.mp3 */,
+				FE6DCFEC2C930E5B00736D71 /* இரவச்சம்.mp3 */,
+				FE6DD0412C930E5C00736D71 /* இரவு.mp3 */,
+				FE6DCFCF2C930E5B00736D71 /* இல்வாழ்க்கை.mp3 */,
+				FE6DD03F2C930E5C00736D71 /* இறைமாட்சி.mp3 */,
+				FE6DD0302C930E5C00736D71 /* இனியவைகூறல்.mp3 */,
+				FE6DD04E2C930E5C00736D71 /* இன்னாசெய்யாமை.mp3 */,
+				FE6DD0402C930E5C00736D71 /* ஈகை.mp3 */,
+				FE6DD03B2C930E5C00736D71 /* உட்பகை.mp3 */,
+				FE6DD0252C930E5C00736D71 /* உழவு.mp3 */,
+				FE6DD0382C930E5C00736D71 /* உறுப்புநலனழிதல்.mp3 */,
+				FE6DCFF52C930E5B00736D71 /* ஊக்கமுடைமை.mp3 */,
+				FE6DCFEF2C930E5B00736D71 /* ஊடலுவகை.mp3 */,
+				FE6DD0042C930E5C00736D71 /* ஊழ்.mp3 */,
+				FE6DCFE82C930E5B00736D71 /* ஒப்புரவறிதல்.mp3 */,
+				FE6DD0152C930E5C00736D71 /* ஒழுக்கமுடைமை.mp3 */,
+				FE6DCFF72C930E5B00736D71 /* ஒற்றாடல்.mp3 */,
+				FE6DCFEE2C930E5B00736D71 /* கடவுள் வாழ்த்து.mp3 */,
+				FE6DD0392C930E5C00736D71 /* கண்ணோட்டம்.mp3 */,
+				FE6DD0422C930E5C00736D71 /* கண்விதுப்பழிதல்.mp3 */,
+				FE6DD0002C930E5C00736D71 /* கயமை.mp3 */,
+				FE6DD0132C930E5C00736D71 /* கல்லாமை.mp3 */,
+				FE6DCFD92C930E5B00736D71 /* கல்வி.mp3 */,
+				FE6DD03D2C930E5C00736D71 /* கள்ளாமை.mp3 */,
+				FE6DCFF22C930E5B00736D71 /* கள்ளுண்ணாமை.mp3 */,
+				FE6DD03E2C930E5C00736D71 /* கனவுநிலையுரைத்தல்.mp3 */,
+				FE6DD03C2C930E5C00736D71 /* காதற்சிறப்புரைத்தல்.mp3 */,
+				FE6DD00D2C930E5C00736D71 /* காலமறிதல்.mp3 */,
+				FE6DCFF12C930E5B00736D71 /* குடிசெயல்வகை.mp3 */,
+				FE6DD02F2C930E5C00736D71 /* குடிமை.mp3 */,
+				FE6DCFD52C930E5B00736D71 /* குறிப்பறிதல்.mp3 */,
+				FE6DD0142C930E5C00736D71 /* குறிப்பறிவுறுத்தல்.mp3 */,
+				FE6DD0092C930E5C00736D71 /* குற்றங்கடிதல்.mp3 */,
+				FE6DD00F2C930E5C00736D71 /* கூடாநட்பு.mp3 */,
+				FE6DCFDC2C930E5B00736D71 /* கூடாவொழுக்கம்.mp3 */,
+				FE6DD04B2C930E5C00736D71 /* கேள்வி.mp3 */,
+				FE6DCFF42C930E5B00736D71 /* கொடுங்கோன்மை.mp3 */,
+				FE6DD0362C930E5C00736D71 /* கொல்லாமை.mp3 */,
+				FE6DD0372C930E5C00736D71 /* சான்றாண்மை.mp3 */,
+				FE6DCFDB2C930E5B00736D71 /* சிற்றினஞ்சேராமை.mp3 */,
+				FE6DD0262C930E5C00736D71 /* சுற்றந்தழால்.mp3 */,
+				FE6DD01E2C930E5C00736D71 /* சூது.mp3 */,
+				FE6DD0342C930E5C00736D71 /* செங்கோன்மை.mp3 */,
+				FE6DD01F2C930E5C00736D71 /* செய்ந்நன்றி அறிதல்.mp3 */,
+				FE6DD03A2C930E5C00736D71 /* சொல்வன்மை.mp3 */,
+				FE6DD0112C930E5C00736D71 /* தகையணங்குறுத்தல்.mp3 */,
+				FE6DD0472C930E5C00736D71 /* தவம்.mp3 */,
+				FE6DCFF92C930E5B00736D71 /* தனிப்படர்மிகுதி.mp3 */,
+				FE6DD0212C930E5C00736D71 /* தீ நட்பு.mp3 */,
+				FE6DD0292C930E5C00736D71 /* தீவினையச்சம்.mp3 */,
+				FE6DD0312C930E5C00736D71 /* துறவு.mp3 */,
+				FE6DD0232C930E5C00736D71 /* தூது.mp3 */,
+				FE6DD0172C930E5C00736D71 /* தெரிந்துசெயல்வகை.mp3 */,
+				FE6DCFDE2C930E5B00736D71 /* தெரிந்துதெளிதல்.mp3 */,
+				FE6DD01C2C930E5C00736D71 /* தெரிந்துவினையாடல்.mp3 */,
+				FE6DCFE72C930E5B00736D71 /* நடுவு நிலைமை.mp3 */,
+				FE6DD02B2C930E5C00736D71 /* நட்பாராய்தல்.mp3 */,
+				FE6DD0482C930E5C00736D71 /* நட்பு.mp3 */,
+				FE6DCFD82C930E5B00736D71 /* நலம்புனைந்துரைத்தல்.mp3 */,
+				FE6DD0022C930E5C00736D71 /* நல்குரவு.mp3 */,
+				FE6DD0512C930E5D00736D71 /* நன்றியில்செல்வம்.mp3 */,
+				FE6DCFE52C930E5B00736D71 /* நாடு.mp3 */,
+				FE6DCFF82C930E5B00736D71 /* நாணுடைமை.mp3 */,
+				FE6DCFD42C930E5B00736D71 /* நாணுத்துறவுரைத்தல்.mp3 */,
+				FE6DD0072C930E5C00736D71 /* நிலையாமை.mp3 */,
+				FE6DD0452C930E5C00736D71 /* நிறையழிதல்.mp3 */,
+				FE6DCFDD2C930E5B00736D71 /* நினைந்தவர்புலம்பல்.mp3 */,
+				FE6DD00C2C930E5C00736D71 /* நீத்தார் பெருமை.mp3 */,
+				FE6DCFFC2C930E5B00736D71 /* நெஞ்சொடுகிளத்தல்.mp3 */,
+				FE6DCFFD2C930E5B00736D71 /* நெஞ்சொடுபுலத்தல்.mp3 */,
+				FE6DCFD62C930E5B00736D71 /* பகைத்திறந்தெரிதல்.mp3 */,
+				FE6DD0182C930E5C00736D71 /* பகைமாட்சி.mp3 */,
+				FE6DD0352C930E5C00736D71 /* பசப்புறுபருவரல்.mp3 */,
+				FE6DD0052C930E5C00736D71 /* படர்மெலிந்திரங்கல்.mp3 */,
+				FE6DD0242C930E5C00736D71 /* படைச்செருக்கு.mp3 */,
+				FE6DD0082C930E5C00736D71 /* படைமாட்சி.mp3 */,
+				FE6DD0272C930E5C00736D71 /* பண்புடைமை.mp3 */,
+				FE6DCFE92C930E5B00736D71 /* பயனில சொல்லாமை.mp3 */,
+				FE6DD02E2C930E5C00736D71 /* பழைமை.mp3 */,
+				FE6DCFD22C930E5B00736D71 /* பிரிவாற்றாமை.mp3 */,
+				FE6DD0332C930E5C00736D71 /* பிறனில் விழையாமை.mp3 */,
+				FE6DD04D2C930E5C00736D71 /* புகழ்.mp3 */,
+				FE6DCFF32C930E5B00736D71 /* புணர்ச்சிமகிழ்தல்.mp3 */,
+				FE6DCFDF2C930E5B00736D71 /* புணர்ச்சிவிதும்பல்.mp3 */,
+				FE6DD0502C930E5D00736D71 /* புலவி நுணுக்கம்.mp3 */,
+				FE6DCFD12C930E5B00736D71 /* புலவி.mp3 */,
+				FE6DD0192C930E5C00736D71 /* புலான்மறுத்தல்.mp3 */,
+				FE6DCFFE2C930E5B00736D71 /* புல்லறிவாண்மை.mp3 */,
+				FE6DCFF62C930E5B00736D71 /* புறங்கூறாமை.mp3 */,
+				FE6DD0222C930E5C00736D71 /* பெண்வழிச்சேறல்.mp3 */,
+				FE6DCFE32C930E5B00736D71 /* பெரியாரைத் துணைக்கோடல்.mp3 */,
+				FE6DCFD72C930E5B00736D71 /* பெரியாரைப் பிழையாமை.mp3 */,
+				FE6DD0442C930E5C00736D71 /* பெருமை.mp3 */,
+				FE6DD01A2C930E5C00736D71 /* பேதைமை.mp3 */,
+				FE6DD02D2C930E5C00736D71 /* பொச்சாவாமை.mp3 */,
+				FE6DCFEA2C930E5B00736D71 /* பொருள்செயல்வகை.mp3 */,
+				FE6DD01D2C930E5C00736D71 /* பொழுதுகண்டிரங்கல்.mp3 */,
+				FE6DCFE02C930E5B00736D71 /* பொறையுடைமை.mp3 */,
+				FE6DCFFB2C930E5B00736D71 /* மக்கட்பேறு.mp3 */,
+				FE6DCFDA2C930E5B00736D71 /* மடியின்மை.mp3 */,
+				FE6DCFE22C930E5B00736D71 /* மருந்து.mp3 */,
+				FE6DCFEB2C930E5B00736D71 /* மன்னரைச் சேர்ந்தொழுதல்.mp3 */,
+				FE6DD00A2C930E5C00736D71 /* மானம்.mp3 */,
+				FE6DCFED2C930E5B00736D71 /* மெய்யுணர்தல்.mp3 */,
+				FE6DD0012C930E5C00736D71 /* வரைவின்மகளிர்.mp3 */,
+				FE6DCFD02C930E5B00736D71 /* வலியறிதல்.mp3 */,
+				FE6DD0432C930E5C00736D71 /* வாய்மை.mp3 */,
+				FE6DD0162C930E5C00736D71 /* வாழ்க்கைத் துணைநலம்.mp3 */,
+				FE6DD0462C930E5C00736D71 /* வான்சிறப்பு.mp3 */,
+				FE6DCFF02C930E5B00736D71 /* விருந்தோம்பல்.mp3 */,
+				FE6DD0032C930E5C00736D71 /* வினைசெயல்வகை.mp3 */,
+				FE6DD0492C930E5C00736D71 /* வினைத்திட்பம்.mp3 */,
+				FE6DD0322C930E5C00736D71 /* வினைத்தூய்மை.mp3 */,
+				FE6DD02A2C930E5C00736D71 /* வெஃகாமை.mp3 */,
+				FE6DD04A2C930E5C00736D71 /* வெகுளாமை.mp3 */,
+				FE6DD0062C930E5C00736D71 /* வெருவந்தசெய்யாமை.mp3 */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -546,142 +543,141 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FECB703F2C92F33E00989E70 /* 059 ஒற்றாடல்.mp3 in Resources */,
-				FECB70452C92F33E00989E70 /* 065 சொல்வன்மை.mp3 in Resources */,
-				FECB70562C92F33E00989E70 /* 082 தீ நட்பு.mp3 in Resources */,
-				FECB70072C92F33E00989E70 /* 003 நீத்தார் பெருமை.mp3 in Resources */,
-				FECB705E2C92F33E00989E70 /* 090 பெரியாரைப் பிழையாமை.mp3 in Resources */,
-				FECB70142C92F33E00989E70 /* 016 பொறையுடைமை.mp3 in Resources */,
-				FECB702C2C92F33E00989E70 /* 040 கல்வி.mp3 in Resources */,
-				FECB70642C92F33E00989E70 /* 096 குடிமை.mp3 in Resources */,
+				FE6DD0BF2C930E5D00736D71 /* உட்பகை.mp3 in Resources */,
+				FE6DD0602C930E5D00736D71 /* கூடாவொழுக்கம்.mp3 in Resources */,
+				FE6DD0CE2C930E5D00736D71 /* வெகுளாமை.mp3 in Resources */,
+				FE6DD0612C930E5D00736D71 /* நினைந்தவர்புலம்பல்.mp3 in Resources */,
+				FE6DD07B2C930E5D00736D71 /* ஒற்றாடல்.mp3 in Resources */,
+				FE6DD0A12C930E5D00736D71 /* பொழுதுகண்டிரங்கல்.mp3 in Resources */,
+				FE6DD0662C930E5D00736D71 /* மருந்து.mp3 in Resources */,
+				FE6DD0822C930E5D00736D71 /* புல்லறிவாண்மை.mp3 in Resources */,
+				FE6DD0A52C930E5D00736D71 /* தீ நட்பு.mp3 in Resources */,
+				FE6DD06D2C930E5D00736D71 /* பயனில சொல்லாமை.mp3 in Resources */,
+				FE6DD0AD2C930E5D00736D71 /* தீவினையச்சம்.mp3 in Resources */,
+				FE6DD0A82C930E5D00736D71 /* படைச்செருக்கு.mp3 in Resources */,
+				FE6DD0C32C930E5D00736D71 /* இறைமாட்சி.mp3 in Resources */,
+				FE6DD0772C930E5D00736D71 /* புணர்ச்சிமகிழ்தல்.mp3 in Resources */,
+				FE6DD08D2C930E5D00736D71 /* குற்றங்கடிதல்.mp3 in Resources */,
+				FE6DD0C62C930E5D00736D71 /* கண்விதுப்பழிதல்.mp3 in Resources */,
+				FE6DD05A2C930E5D00736D71 /* பகைத்திறந்தெரிதல்.mp3 in Resources */,
+				FE6DD0792C930E5D00736D71 /* ஊக்கமுடைமை.mp3 in Resources */,
+				FE6DD0812C930E5D00736D71 /* நெஞ்சொடுபுலத்தல்.mp3 in Resources */,
+				FE6DD0A42C930E5D00736D71 /* அன்புடைமை.mp3 in Resources */,
+				FE6DD0632C930E5D00736D71 /* புணர்ச்சிவிதும்பல்.mp3 in Resources */,
+				FE6DD0952C930E5D00736D71 /* தகையணங்குறுத்தல்.mp3 in Resources */,
+				FE6DD0702C930E5D00736D71 /* இரவச்சம்.mp3 in Resources */,
+				FE6DD0A02C930E5D00736D71 /* தெரிந்துவினையாடல்.mp3 in Resources */,
+				FE6DD05E2C930E5D00736D71 /* மடியின்மை.mp3 in Resources */,
 				FECB70042C92F33E00989E70 /* Preview Assets.xcassets in Resources */,
-				FECB700C2C92F33E00989E70 /* 008 அன்புடைமை.mp3 in Resources */,
-				FECB70302C92F33E00989E70 /* 044 குற்றங்கடிதல்.mp3 in Resources */,
-				FECB705C2C92F33E00989E70 /* 088 பகைத்திறந்தெரிதல்.mp3 in Resources */,
-				FECB70542C92F33E00989E70 /* 080 நட்பாராய்தல்.mp3 in Resources */,
-				FECB70152C92F33E00989E70 /* 017 அழுக்காறாமை.mp3 in Resources */,
-				FECB707A2C92F33E00989E70 /* 118 கண்விதுப்பழிதல்.mp3 in Resources */,
-				FECB70832C92F33E00989E70 /* 127 அவர்வயின்விதும்பல்.mp3 in Resources */,
-				FECB70512C92F33E00989E70 /* 077 படைமாட்சி.mp3 in Resources */,
-				FECB704A2C92F33E00989E70 /* 070 மன்னரைச் சேர்ந்தொழுதல்.mp3 in Resources */,
-				FECB700B2C92F33E00989E70 /* 007 மக்கட்பேறு.mp3 in Resources */,
-				FECB70092C92F33E00989E70 /* 005 இல்வாழ்க்கை.mp3 in Resources */,
-				FECB70412C92F33E00989E70 /* 061 மடியின்மை.mp3 in Resources */,
-				FECB70202C92F33E00989E70 /* 028 கூடாவொழுக்கம்.mp3 in Resources */,
-				FECB70382C92F33E00989E70 /* 052 தெரிந்துவினையாடல்.mp3 in Resources */,
-				FECB705B2C92F33E00989E70 /* 087 பகைமாட்சி.mp3 in Resources */,
-				FECB706D2C92F33E00989E70 /* 105 நல்குரவு.mp3 in Resources */,
-				FECB702B2C92F33E00989E70 /* 039 இறைமாட்சி.mp3 in Resources */,
-				FECB70082C92F33E00989E70 /* 004 அறன் வலியுறுத்தல்.mp3 in Resources */,
-				FECB701C2C92F33E00989E70 /* 024 புகழ்.mp3 in Resources */,
-				FECB705A2C92F33E00989E70 /* 086 இகல்.mp3 in Resources */,
-				FECB70402C92F33E00989E70 /* 060 ஊக்கமுடைமை.mp3 in Resources */,
-				FECB70522C92F33E00989E70 /* 078 படைச்செருக்கு.mp3 in Resources */,
-				FECB70182C92F33E00989E70 /* 020 பயனில சொல்லாமை.mp3 in Resources */,
-				FECB701E2C92F33E00989E70 /* 026 புலான்மறுத்தல்.mp3 in Resources */,
-				FECB702D2C92F33E00989E70 /* 041 கல்லாமை.mp3 in Resources */,
-				FECB706C2C92F33E00989E70 /* 104 உழவு.mp3 in Resources */,
-				FECB70462C92F33E00989E70 /* 066 வினைத்தூய்மை.mp3 in Resources */,
-				FECB703C2C92F33E00989E70 /* 056 கொடுங்கோன்மை.mp3 in Resources */,
-				FECB70342C92F33E00989E70 /* 048 வலியறிதல்.mp3 in Resources */,
-				FECB704F2C92F33E00989E70 /* 075 அரண்.mp3 in Resources */,
-				FECB701B2C92F33E00989E70 /* 023 ஈகை.mp3 in Resources */,
-				FECB706B2C92F33E00989E70 /* 103 குடிசெயல்வகை.mp3 in Resources */,
-				FECB70472C92F33E00989E70 /* 067 வினைத்திட்பம்.mp3 in Resources */,
-				FECB70632C92F33E00989E70 /* 095 மருந்து.mp3 in Resources */,
-				FECB70422C92F33E00989E70 /* 062 ஆள்வினையுடைமை.mp3 in Resources */,
-				FECB701D2C92F33E00989E70 /* 025 அருளுடைமை.mp3 in Resources */,
-				FECB70272C92F33E00989E70 /* 035 துறவு.mp3 in Resources */,
-				FECB70352C92F33E00989E70 /* 049 காலமறிதல்.mp3 in Resources */,
-				FECB707B2C92F33E00989E70 /* 119 பசப்புறுபருவரல்.mp3 in Resources */,
-				FECB706F2C92F33E00989E70 /* 107 இரவச்சம்.mp3 in Resources */,
-				FECB703B2C92F33E00989E70 /* 055 செங்கோன்மை.mp3 in Resources */,
-				FECB701F2C92F33E00989E70 /* 027 தவம்.mp3 in Resources */,
-				FECB70842C92F33E00989E70 /* 128 குறிப்பறிவுறுத்தல்.mp3 in Resources */,
-				FECB70602C92F33E00989E70 /* 092 வரைவின்மகளிர்.mp3 in Resources */,
-				FECB70672C92F33E00989E70 /* 099 சான்றாண்மை.mp3 in Resources */,
-				FECB70802C92F33E00989E70 /* 124 உறுப்புநலனழிதல்.mp3 in Resources */,
-				FECB70252C92F33E00989E70 /* 033 கொல்லாமை.mp3 in Resources */,
-				FECB700A2C92F33E00989E70 /* 006 வாழ்க்கைத் துணைநலம்.mp3 in Resources */,
-				FECB703E2C92F33E00989E70 /* 058 கண்ணோட்டம்.mp3 in Resources */,
-				FECB700F2C92F33E00989E70 /* 011 செய்ந்நன்றி அறிதல்.mp3 in Resources */,
-				FECB705F2C92F33E00989E70 /* 091 பெண்வழிச்சேறல்.mp3 in Resources */,
-				FECB70212C92F33E00989E70 /* 029 கள்ளாமை.mp3 in Resources */,
-				FECB70882C92F33E00989E70 /* 132 புலவி நுணுக்கம்.mp3 in Resources */,
-				FECB70482C92F33E00989E70 /* 068 வினைசெயல்வகை.mp3 in Resources */,
-				FECB707C2C92F33E00989E70 /* 120 தனிப்படர்மிகுதி.mp3 in Resources */,
-				FECB70622C92F33E00989E70 /* 094 சூது.mp3 in Resources */,
-				FECB704B2C92F33E00989E70 /* 071 குறிப்பறிதல்.mp3 in Resources */,
-				FECB70372C92F33E00989E70 /* 051 தெரிந்துதெளிதல்.mp3 in Resources */,
-				FECB70442C92F33E00989E70 /* 064 அமைச்சு.mp3 in Resources */,
-				FECB70282C92F33E00989E70 /* 036 மெய்யுணர்தல்.mp3 in Resources */,
-				FECB704E2C92F33E00989E70 /* 074 நாடு.mp3 in Resources */,
+				FE6DD06A2C930E5D00736D71 /* அவையறிதல்.mp3 in Resources */,
+				FE6DD07C2C930E5D00736D71 /* நாணுடைமை.mp3 in Resources */,
+				FE6DD09A2C930E5D00736D71 /* வாழ்க்கைத் துணைநலம்.mp3 in Resources */,
+				FE6DD0AB2C930E5D00736D71 /* பண்புடைமை.mp3 in Resources */,
+				FE6DD0C82C930E5D00736D71 /* பெருமை.mp3 in Resources */,
+				FE6DD06F2C930E5D00736D71 /* மன்னரைச் சேர்ந்தொழுதல்.mp3 in Resources */,
+				FE6DD0992C930E5D00736D71 /* ஒழுக்கமுடைமை.mp3 in Resources */,
+				FE6DD0B02C930E5D00736D71 /* அவாவறுத்தல்.mp3 in Resources */,
+				FE6DD0A92C930E5D00736D71 /* உழவு.mp3 in Resources */,
+				FE6DD0742C930E5D00736D71 /* விருந்தோம்பல்.mp3 in Resources */,
+				FE6DD0CB2C930E5D00736D71 /* தவம்.mp3 in Resources */,
+				FE6DD0C52C930E5D00736D71 /* இரவு.mp3 in Resources */,
+				FE6DD0962C930E5D00736D71 /* அடக்கமுடைமை.mp3 in Resources */,
+				FE6DD0CF2C930E5D00736D71 /* கேள்வி.mp3 in Resources */,
+				FE6DD09C2C930E5D00736D71 /* பகைமாட்சி.mp3 in Resources */,
+				FE6DD0972C930E5D00736D71 /* கல்லாமை.mp3 in Resources */,
+				FE6DD0B32C930E5D00736D71 /* குடிமை.mp3 in Resources */,
+				FE6DD09B2C930E5D00736D71 /* தெரிந்துசெயல்வகை.mp3 in Resources */,
+				FE6DD0682C930E5D00736D71 /* இகல்.mp3 in Resources */,
+				FE6DD0BD2C930E5D00736D71 /* கண்ணோட்டம்.mp3 in Resources */,
+				FE6DD09D2C930E5D00736D71 /* புலான்மறுத்தல்.mp3 in Resources */,
+				FE6DD0902C930E5D00736D71 /* நீத்தார் பெருமை.mp3 in Resources */,
+				FE6DD0A22C930E5D00736D71 /* சூது.mp3 in Resources */,
+				FE6DD05B2C930E5D00736D71 /* பெரியாரைப் பிழையாமை.mp3 in Resources */,
+				FE6DD0722C930E5D00736D71 /* கடவுள் வாழ்த்து.mp3 in Resources */,
+				FE6DD07D2C930E5D00736D71 /* தனிப்படர்மிகுதி.mp3 in Resources */,
+				FE6DD08E2C930E5D00736D71 /* மானம்.mp3 in Resources */,
+				FE6DD0842C930E5D00736D71 /* கயமை.mp3 in Resources */,
+				FE6DD08A2C930E5D00736D71 /* வெருவந்தசெய்யாமை.mp3 in Resources */,
+				FE6DD0892C930E5D00736D71 /* படர்மெலிந்திரங்கல்.mp3 in Resources */,
+				FE6DD0572C930E5D00736D71 /* இடனறிதல்.mp3 in Resources */,
+				FE6DD08F2C930E5D00736D71 /* இடுக்கணழியாமை.mp3 in Resources */,
+				FE6DD0C42C930E5D00736D71 /* ஈகை.mp3 in Resources */,
+				FE6DD09F2C930E5D00736D71 /* அலரறிவுறுத்தல்.mp3 in Resources */,
+				FE6DD05C2C930E5D00736D71 /* நலம்புனைந்துரைத்தல்.mp3 in Resources */,
+				FE6DD0D42C930E5D00736D71 /* புலவி நுணுக்கம்.mp3 in Resources */,
 				FECB708C2C92F33E00989E70 /* data.sqlite in Resources */,
-				FECB70762C92F33E00989E70 /* 114 நாணுத்துறவுரைத்தல்.mp3 in Resources */,
-				FECB70612C92F33E00989E70 /* 093 கள்ளுண்ணாமை.mp3 in Resources */,
-				FECB70432C92F33E00989E70 /* 063 இடுக்கணழியாமை.mp3 in Resources */,
-				FECB70132C92F33E00989E70 /* 015 பிறனில் விழையாமை.mp3 in Resources */,
-				FECB70052C92F33E00989E70 /* 001 கடவுள் வாழ்த்து.mp3 in Resources */,
-				FECB70122C92F33E00989E70 /* 014 ஒழுக்கமுடைமை.mp3 in Resources */,
-				FECB70772C92F33E00989E70 /* 115 அலரறிவுறுத்தல்.mp3 in Resources */,
-				FECB704D2C92F33E00989E70 /* 073 அவையஞ்சாமை.mp3 in Resources */,
-				FECB70662C92F33E00989E70 /* 098 பெருமை.mp3 in Resources */,
-				FECB70112C92F33E00989E70 /* 013 அடக்கமுடைமை.mp3 in Resources */,
-				FECB70892C92F33E00989E70 /* 133 ஊடலுவகை.mp3 in Resources */,
-				FECB707E2C92F33E00989E70 /* 122 கனவுநிலையுரைத்தல்.mp3 in Resources */,
-				FECB707D2C92F33E00989E70 /* 121 நினைந்தவர்புலம்பல்.mp3 in Resources */,
-				FECB70702C92F33E00989E70 /* 108 கயமை.mp3 in Resources */,
-				FECB706E2C92F33E00989E70 /* 106 இரவு.mp3 in Resources */,
-				FECB70062C92F33E00989E70 /* 002 வான்சிறப்பு.mp3 in Resources */,
-				FECB70742C92F33E00989E70 /* 112 நலம்புனைந்துரைத்தல்.mp3 in Resources */,
-				FECB70322C92F33E00989E70 /* 046 சிற்றினஞ்சேராமை.mp3 in Resources */,
-				FECB70242C92F33E00989E70 /* 032 இன்னாசெய்யாமை.mp3 in Resources */,
-				FECB701A2C92F33E00989E70 /* 022 ஒப்புரவறிதல்.mp3 in Resources */,
-				FECB70502C92F33E00989E70 /* 076 பொருள்செயல்வகை.mp3 in Resources */,
-				FECB70852C92F33E00989E70 /* 129 புணர்ச்சிவிதும்பல்.mp3 in Resources */,
-				FECB70582C92F33E00989E70 /* 084 பேதைமை.mp3 in Resources */,
-				FECB70312C92F33E00989E70 /* 045 பெரியாரைத் துணைக்கோடல்.mp3 in Resources */,
-				FECB70752C92F33E00989E70 /* 113 காதற்சிறப்புரைத்தல்.mp3 in Resources */,
-				FECB70592C92F33E00989E70 /* 085 புல்லறிவாண்மை.mp3 in Resources */,
-				FECB70652C92F33E00989E70 /* 097 மானம்.mp3 in Resources */,
-				FECB70822C92F33E00989E70 /* 126 நிறையழிதல்.mp3 in Resources */,
-				FECB70192C92F33E00989E70 /* 021 தீவினையச்சம்.mp3 in Resources */,
-				FECB704C2C92F33E00989E70 /* 072 அவையறிதல்.mp3 in Resources */,
-				FECB702E2C92F33E00989E70 /* 042 கேள்வி.mp3 in Resources */,
-				FECB70782C92F33E00989E70 /* 116 பிரிவாற்றாமை.mp3 in Resources */,
-				FECB70712C92F33E00989E70 /* 109 தகையணங்குறுத்தல்.mp3 in Resources */,
-				FECB70102C92F33E00989E70 /* 012 நடுவு நிலைமை.mp3 in Resources */,
-				FECB70492C92F33E00989E70 /* 069 தூது.mp3 in Resources */,
-				FECB70222C92F33E00989E70 /* 030 வாய்மை.mp3 in Resources */,
-				FECB705D2C92F33E00989E70 /* 089 உட்பகை.mp3 in Resources */,
-				FECB70692C92F33E00989E70 /* 101 நன்றியில்செல்வம்.mp3 in Resources */,
-				FECB70572C92F33E00989E70 /* 083 கூடாநட்பு.mp3 in Resources */,
-				FECB70682C92F33E00989E70 /* 100 பண்புடைமை.mp3 in Resources */,
-				FECB706A2C92F33E00989E70 /* 102 நாணுடைமை.mp3 in Resources */,
-				FECB70792C92F33E00989E70 /* 117 படர்மெலிந்திரங்கல்.mp3 in Resources */,
-				FECB70332C92F33E00989E70 /* 047 தெரிந்துசெயல்வகை.mp3 in Resources */,
-				FECB707F2C92F33E00989E70 /* 123 பொழுதுகண்டிரங்கல்.mp3 in Resources */,
+				FE6DD0932C930E5D00736D71 /* கூடாநட்பு.mp3 in Resources */,
+				FE6DD0B82C930E5D00736D71 /* செங்கோன்மை.mp3 in Resources */,
+				FE6DD0B52C930E5D00736D71 /* துறவு.mp3 in Resources */,
+				FE6DD0C92C930E5D00736D71 /* நிறையழிதல்.mp3 in Resources */,
+				FE6DD0532C930E5D00736D71 /* இல்வாழ்க்கை.mp3 in Resources */,
+				FE6DD0AA2C930E5D00736D71 /* சுற்றந்தழால்.mp3 in Resources */,
+				FE6DD0BE2C930E5D00736D71 /* சொல்வன்மை.mp3 in Resources */,
+				FE6DD0872C930E5D00736D71 /* வினைசெயல்வகை.mp3 in Resources */,
+				FE6DD09E2C930E5D00736D71 /* பேதைமை.mp3 in Resources */,
+				FE6DD0C02C930E5D00736D71 /* காதற்சிறப்புரைத்தல்.mp3 in Resources */,
 				FECB708A2C92F33E00989E70 /* Assets.xcassets in Resources */,
-				FECB70362C92F33E00989E70 /* 050 இடனறிதல்.mp3 in Resources */,
-				FECB70862C92F33E00989E70 /* 130 நெஞ்சொடுபுலத்தல்.mp3 in Resources */,
-				FECB70232C92F33E00989E70 /* 031 வெகுளாமை.mp3 in Resources */,
-				FECB70552C92F33E00989E70 /* 081 பழைமை.mp3 in Resources */,
-				FECB700D2C92F33E00989E70 /* 009 விருந்தோம்பல்.mp3 in Resources */,
-				FECB70872C92F33E00989E70 /* 131 புலவி.mp3 in Resources */,
-				FECB70392C92F33E00989E70 /* 053 சுற்றந்தழால்.mp3 in Resources */,
-				FECB703D2C92F33E00989E70 /* 057 வெருவந்தசெய்யாமை.mp3 in Resources */,
-				FECB702F2C92F33E00989E70 /* 043 அறிவுடைமை.mp3 in Resources */,
-				FECB703A2C92F33E00989E70 /* 054 பொச்சாவாமை.mp3 in Resources */,
-				FECB70732C92F33E00989E70 /* 111 புணர்ச்சிமகிழ்தல்.mp3 in Resources */,
-				FECB702A2C92F33E00989E70 /* 038 ஊழ்.mp3 in Resources */,
-				FECB70162C92F33E00989E70 /* 018 வெஃகாமை.mp3 in Resources */,
-				FECB70292C92F33E00989E70 /* 037 அவாவறுத்தல்.mp3 in Resources */,
-				FECB700E2C92F33E00989E70 /* 010 இனியவைகூறல்.mp3 in Resources */,
-				FECB70262C92F33E00989E70 /* 034 நிலையாமை.mp3 in Resources */,
-				FECB70812C92F33E00989E70 /* 125 நெஞ்சொடுகிளத்தல்.mp3 in Resources */,
-				FECB70172C92F33E00989E70 /* 019 புறங்கூறாமை.mp3 in Resources */,
-				FECB70722C92F33E00989E70 /* 110 குறிப்பறிதல்.mp3 in Resources */,
-				FECB70532C92F33E00989E70 /* 079 நட்பு.mp3 in Resources */,
+				FE6DD07F2C930E5D00736D71 /* மக்கட்பேறு.mp3 in Resources */,
+				FE6DD0BA2C930E5D00736D71 /* கொல்லாமை.mp3 in Resources */,
+				FE6DD06E2C930E5D00736D71 /* பொருள்செயல்வகை.mp3 in Resources */,
+				FE6DD0762C930E5D00736D71 /* கள்ளுண்ணாமை.mp3 in Resources */,
+				FE6DD08B2C930E5D00736D71 /* நிலையாமை.mp3 in Resources */,
+				FE6DD0CD2C930E5D00736D71 /* வினைத்திட்பம்.mp3 in Resources */,
+				FE6DD0622C930E5D00736D71 /* தெரிந்துதெளிதல்.mp3 in Resources */,
+				FE6DD0AC2C930E5D00736D71 /* அவையஞ்சாமை.mp3 in Resources */,
+				FE6DD0912C930E5D00736D71 /* காலமறிதல்.mp3 in Resources */,
+				FE6DD0A32C930E5D00736D71 /* செய்ந்நன்றி அறிதல்.mp3 in Resources */,
+				FE6DD0562C930E5D00736D71 /* பிரிவாற்றாமை.mp3 in Resources */,
+				FE6DD0522C930E5D00736D71 /* அரண்.mp3 in Resources */,
+				FE6DD05D2C930E5D00736D71 /* கல்வி.mp3 in Resources */,
+				FE6DD0C22C930E5D00736D71 /* கனவுநிலையுரைத்தல்.mp3 in Resources */,
+				FE6DD0582C930E5D00736D71 /* நாணுத்துறவுரைத்தல்.mp3 in Resources */,
+				FE6DD0832C930E5D00736D71 /* அறன் வலியுறுத்தல்.mp3 in Resources */,
+				FE6DD0CC2C930E5D00736D71 /* நட்பு.mp3 in Resources */,
+				FE6DD0D22C930E5D00736D71 /* இன்னாசெய்யாமை.mp3 in Resources */,
+				FE6DD0D12C930E5D00736D71 /* புகழ்.mp3 in Resources */,
+				FE6DD0B92C930E5D00736D71 /* பசப்புறுபருவரல்.mp3 in Resources */,
+				FE6DD0CA2C930E5D00736D71 /* வான்சிறப்பு.mp3 in Resources */,
+				FE6DD0552C930E5D00736D71 /* புலவி.mp3 in Resources */,
+				FE6DD0D52C930E5D00736D71 /* நன்றியில்செல்வம்.mp3 in Resources */,
+				FE6DD0A62C930E5D00736D71 /* பெண்வழிச்சேறல்.mp3 in Resources */,
+				FE6DD0672C930E5D00736D71 /* பெரியாரைத் துணைக்கோடல்.mp3 in Resources */,
+				FE6DD0A72C930E5D00736D71 /* தூது.mp3 in Resources */,
+				FE6DD0B62C930E5D00736D71 /* வினைத்தூய்மை.mp3 in Resources */,
+				FE6DD0AF2C930E5D00736D71 /* நட்பாராய்தல்.mp3 in Resources */,
+				FE6DD0D32C930E5D00736D71 /* ஆள்வினையுடைமை.mp3 in Resources */,
+				FE6DD07E2C930E5D00736D71 /* அருளுடைமை.mp3 in Resources */,
+				FE6DD0712C930E5D00736D71 /* மெய்யுணர்தல்.mp3 in Resources */,
+				FE6DD0782C930E5D00736D71 /* கொடுங்கோன்மை.mp3 in Resources */,
+				FE6DD0592C930E5D00736D71 /* குறிப்பறிதல்.mp3 in Resources */,
+				FE6DD0732C930E5D00736D71 /* ஊடலுவகை.mp3 in Resources */,
+				FE6DD0852C930E5D00736D71 /* வரைவின்மகளிர்.mp3 in Resources */,
+				FE6DD0C12C930E5D00736D71 /* கள்ளாமை.mp3 in Resources */,
+				FE6DD0C72C930E5D00736D71 /* வாய்மை.mp3 in Resources */,
+				FE6DD0862C930E5D00736D71 /* நல்குரவு.mp3 in Resources */,
+				FE6DD0AE2C930E5D00736D71 /* வெஃகாமை.mp3 in Resources */,
+				FE6DD0B12C930E5D00736D71 /* பொச்சாவாமை.mp3 in Resources */,
+				FE6DD0D02C930E5D00736D71 /* அழுக்காறாமை.mp3 in Resources */,
+				FE6DD0B72C930E5D00736D71 /* பிறனில் விழையாமை.mp3 in Resources */,
+				FE6DD0692C930E5D00736D71 /* நாடு.mp3 in Resources */,
+				FE6DD06C2C930E5D00736D71 /* ஒப்புரவறிதல்.mp3 in Resources */,
+				FE6DD0922C930E5D00736D71 /* அவர்வயின்விதும்பல்.mp3 in Resources */,
+				FE6DD0642C930E5D00736D71 /* பொறையுடைமை.mp3 in Resources */,
+				FE6DD0802C930E5D00736D71 /* நெஞ்சொடுகிளத்தல்.mp3 in Resources */,
+				FE6DD0752C930E5D00736D71 /* குடிசெயல்வகை.mp3 in Resources */,
+				FE6DD0B42C930E5D00736D71 /* இனியவைகூறல்.mp3 in Resources */,
+				FE6DD08C2C930E5D00736D71 /* படைமாட்சி.mp3 in Resources */,
+				FE6DD0882C930E5D00736D71 /* ஊழ்.mp3 in Resources */,
+				FE6DD0982C930E5D00736D71 /* குறிப்பறிவுறுத்தல்.mp3 in Resources */,
+				FE6DD0BB2C930E5D00736D71 /* சான்றாண்மை.mp3 in Resources */,
+				FE6DD06B2C930E5D00736D71 /* நடுவு நிலைமை.mp3 in Resources */,
+				FE6DD0652C930E5D00736D71 /* அறிவுடைமை.mp3 in Resources */,
+				FE6DD0B22C930E5D00736D71 /* பழைமை.mp3 in Resources */,
+				FE6DD0942C930E5D00736D71 /* அமைச்சு.mp3 in Resources */,
+				FE6DD0542C930E5D00736D71 /* வலியறிதல்.mp3 in Resources */,
+				FE6DD05F2C930E5D00736D71 /* சிற்றினஞ்சேராமை.mp3 in Resources */,
+				FE6DD07A2C930E5D00736D71 /* புறங்கூறாமை.mp3 in Resources */,
+				FE6DD0BC2C930E5D00736D71 /* உறுப்புநலனழிதல்.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

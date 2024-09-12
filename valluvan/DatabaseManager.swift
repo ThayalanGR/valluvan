@@ -75,7 +75,6 @@ public class DatabaseManager {
         } catch {
             print("Error fetching adhigarams: \(error)")
         }
-        print("Fetched adhigarams for \(iyal): \(adhigarams)")
         
         return adhigarams
     } 
@@ -85,16 +84,18 @@ public class DatabaseManager {
         let kuralId = Expression<Int>("திருக்குறள்") 
         let adhigaramExpr = Expression<String>("அதிகாரம்")
         let firstLineExpr = Expression<String>("First Line")
+        let secondLineExpr = Expression<String>("Second Line")
         
         var kurals: [String] = []
         do {
             let query = tirukkuralTable
-                .select(firstLineExpr)   
+                .select(firstLineExpr, secondLineExpr)   
                 .filter(adhigaramExpr == adhigaram)
                 .order(kuralId)  
 
             for row in try db!.prepare(query) {
                 kurals.append(row[firstLineExpr])
+                kurals.append(row[secondLineExpr])
             }
         } catch {
             print("Error fetching first line: \(error)")
