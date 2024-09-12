@@ -162,12 +162,17 @@ struct AdhigaramRowView: View {
                         .foregroundColor(.blue)
                         .font(.title)
                 }
-                Text(adhigaram)
-                Spacer()
-                Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
+                .buttonStyle(PlainButtonStyle())
+                
+                Button(action: onToggleExpand) {
+                    HStack {
+                        Text(adhigaram)
+                        Spacer()
+                        Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
+                    }
+                }
+                .buttonStyle(PlainButtonStyle())
             }
-            .contentShape(Rectangle())
-            .onTapGesture(perform: onToggleExpand)
             
             if isExpanded {
                 ForEach(lines, id: \.self) { linePair in
