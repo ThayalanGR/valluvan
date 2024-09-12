@@ -102,4 +102,10 @@ public class DatabaseManager {
         }
         return kurals
     }
+    
+    func getExplanation(for adhigaram: String, lines: [String]) -> String {
+        // Implement the logic to fetch the explanation from your database
+        // For now, we'll return a placeholder
+        return "This is the explanation for \(adhigaram): \(lines.joined(separator: " "))"
+    }
 }

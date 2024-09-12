@@ -52,53 +52,57 @@ struct AdhigaramView: View {
     let iyal: String
     @State private var adhigarams: [String] = []
     @State private var expandedAdhigaram: String?
-    @State private var allLines: [String: String] = [:]
-    @State private var audioPlayers: [String: AVAudioPlayer] = [:] // New state for audio players
-    @State private var isPlaying: [String: Bool] = [:] // New state to track playing status
+    @State private var allLines: [String: [[String]]] = [:]
+    @State private var audioPlayers: [String: AVAudioPlayer] = [:]
+    @State private var isPlaying: [String: Bool] = [:]
+    @State private var selectedLinePair: SelectedLinePair?
 
     var body: some View {
-        ScrollView {
-            LazyVStack(alignment: .leading, spacing: 10) {
-                ForEach(adhigarams, id: \.self) { adhigaram in
-                    VStack(alignment: .leading) {
-                        HStack {
-                            Button(action: {
-                                togglePlayPause(for: adhigaram)
-                            }) {
-                                Image(systemName: isPlaying[adhigaram] ?? false ? "pause.circle" : "play.circle")
-                                    .foregroundColor(.blue)
-                                    .font(.title)
-                            }
-                            Button(action: {
-                                if expandedAdhigaram == adhigaram {
-                                    expandedAdhigaram = nil
-                                } else {
-                                    expandedAdhigaram = adhigaram
-                                    loadAllLines(for: adhigaram)
-                                }
-                            }) {
-                                HStack {
-                                    Text(adhigaram)
-                                    Spacer()
-                                    Image(systemName: expandedAdhigaram == adhigaram ? "chevron.up" : "chevron.down")
-                                }
+        List {
+            ForEach(adhigarams, id: \.self) { adhigaram in
+                VStack(alignment: .leading, spacing: 10) {
+                    HStack {
+                        Button(action: {
+                            togglePlayPause(for: adhigaram)
+                        }) {
+                            Image(systemName: isPlaying[adhigaram] ?? false ? "pause.circle" : "play.circle")
+                                .foregroundColor(.blue)
+                                .font(.title)
+                        }
+                        Text(adhigaram)
+                        Spacer()
+                        Image(systemName: expandedAdhigaram == adhigaram ? "chevron.up" : "chevron.down")
+                    }
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        withAnimation {
+                            if expandedAdhigaram == adhigaram {
+                                expandedAdhigaram = nil
+                            } else {
+                                expandedAdhigaram = adhigaram
+                                loadAllLines(for: adhigaram)
                             }
                         }
-                        .padding()
-                        .background(Color.gray.opacity(0.1))
-                        .cornerRadius(8)
-                        
-                        if expandedAdhigaram == adhigaram {
-                            Text(allLines[adhigaram] ?? "Loading...")
-                                .padding()
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .background(Color.gray.opacity(0.05))
-                                .cornerRadius(8)
+                    }
+                    
+                    if expandedAdhigaram == adhigaram {
+                        ForEach(allLines[adhigaram] ?? [], id: \.self) { linePair in
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text(linePair[0])
+                                    .fontWeight(.bold)
+                                if linePair.count > 1 {
+                                    Text(linePair[1])
+                                }
+                            }
+                            .padding(.vertical, 4)
+                            .contentShape(Rectangle())
+                            .onTapGesture {
+                                loadExplanation(for: adhigaram, lines: linePair)
+                            }
                         }
                     }
                 }
             }
-            .padding()
         }
         .navigationTitle(iyal)
         .onAppear {
@@ -106,6 +110,9 @@ struct AdhigaramView: View {
         }
         .onDisappear {
             stopAllAudio()
+        }
+        .sheet(item: $selectedLinePair) { pair in
+            ExplanationView(adhigaram: pair.adhigaram, lines: pair.lines, explanation: pair.explanation)
         }
     }
     
@@ -115,14 +122,10 @@ struct AdhigaramView: View {
     
     private func loadAllLines(for adhigaram: String) {
         let lines = DatabaseManager.shared.getFirstLine(for: adhigaram)
-        let formattedLines = lines.enumerated().map { index, line in
-            if (index + 1) % 2 == 0 {
-                return line + "\n\n"
-            } else {
-                return line
-            }
+        let linePairs = stride(from: 0, to: lines.count, by: 2).map {
+            Array(lines[$0..<min($0+2, lines.count)])
         }
-        allLines[adhigaram] = formattedLines.joined(separator: "\n")
+        allLines[adhigaram] = linePairs
     }
     
     private func togglePlayPause(for adhigaram: String) {
@@ -147,7 +150,6 @@ struct AdhigaramView: View {
             }
         }
     }
-     
     
     private func stopAllAudio() {
         for player in audioPlayers.values {
@@ -155,6 +157,47 @@ struct AdhigaramView: View {
         }
         audioPlayers.removeAll()
         isPlaying.removeAll()
+    }
+    
+    private func loadExplanation(for adhigaram: String, lines: [String]) {
+        let explanation = DatabaseManager.shared.getExplanation(for: adhigaram, lines: lines)
+        selectedLinePair = SelectedLinePair(adhigaram: adhigaram, lines: lines, explanation: explanation)
+    }
+}
+
+struct ExplanationView: View {
+    let adhigaram: String
+    let lines: [String]
+    let explanation: String
+    @Environment(\.presentationMode) var presentationMode
+
+    var body: some View {
+        NavigationView {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 20) {
+                    Text(adhigaram)
+                        .font(.title)
+                        .fontWeight(.bold)
+                    
+                    ForEach(lines, id: \.self) { line in
+                        Text(line)
+                            .font(.headline)
+                    }
+                    
+                    Text("Explanation:")
+                        .font(.title2)
+                        .fontWeight(.bold)
+                        .padding(.top)
+                    
+                    Text(explanation)
+                        .font(.body)
+                }
+                .padding()
+            }
+            .navigationBarItems(trailing: Button("Close") {
+                presentationMode.wrappedValue.dismiss()
+            })
+        }
     }
 }
 
@@ -177,4 +220,11 @@ struct PalButton: View {
 
 #Preview {
     ContentView()
+}
+
+struct SelectedLinePair: Identifiable {
+    let id = UUID()
+    let adhigaram: String
+    let lines: [String]
+    let explanation: String
 }
