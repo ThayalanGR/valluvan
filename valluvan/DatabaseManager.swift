@@ -89,12 +89,12 @@ public class DatabaseManager {
         var kurals: [String] = []
         do {
             let query = tirukkuralTable
-                .select(firstLineExpr, secondLineExpr)   
+                .select(kuralId, firstLineExpr, secondLineExpr)   
                 .filter(adhigaramExpr == adhigaram)
                 .order(kuralId)  
 
             for row in try db!.prepare(query) {
-                kurals.append(row[firstLineExpr])
+                kurals.append(String( row[kuralId]) + " " + row[firstLineExpr])
                 kurals.append(row[secondLineExpr])
             }
         } catch {
@@ -103,9 +103,23 @@ public class DatabaseManager {
         return kurals
     }
     
-    func getExplanation(for adhigaram: String, lines: [String]) -> String {
-        // Implement the logic to fetch the explanation from your database
-        // For now, we'll return a placeholder
-        return "This is the explanation for \(adhigaram): \(lines.joined(separator: " "))"
+    func getExplanation(for kuralId: Int) -> String {
+        let tirukkuralTable = Table("tirukkural")
+        let kuralIdExpr = Expression<Int>("திருக்குறள்")
+        let explanationExpr = Expression<String>("கலைஞர்")
+        
+        var explanation: String?
+        do {
+            let query = tirukkuralTable
+                .select(explanationExpr)
+                .filter(kuralIdExpr == kuralId)   
+            
+            if let row = try db!.pluck(query) {
+                explanation = row[explanationExpr]
+            }
+        } catch {
+            print("Error fetching explanation: \(error)")
+        } 
+        return explanation ?? "No explanation found"
     }
 }

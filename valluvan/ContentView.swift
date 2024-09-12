@@ -60,48 +60,17 @@ struct AdhigaramView: View {
     var body: some View {
         List {
             ForEach(adhigarams, id: \.self) { adhigaram in
-                VStack(alignment: .leading, spacing: 10) {
-                    HStack {
-                        Button(action: {
-                            togglePlayPause(for: adhigaram)
-                        }) {
-                            Image(systemName: isPlaying[adhigaram] ?? false ? "pause.circle" : "play.circle")
-                                .foregroundColor(.blue)
-                                .font(.title)
-                        }
-                        Text(adhigaram)
-                        Spacer()
-                        Image(systemName: expandedAdhigaram == adhigaram ? "chevron.up" : "chevron.down")
+                AdhigaramRowView(
+                    adhigaram: adhigaram,
+                    isExpanded: expandedAdhigaram == adhigaram,
+                    lines: allLines[adhigaram] ?? [],
+                    isPlaying: isPlaying[adhigaram] ?? false,
+                    onToggleExpand: { toggleExpand(for: adhigaram) },
+                    onTogglePlayPause: { togglePlayPause(for: adhigaram) },
+                    onSelectLinePair: { lines, kuralId in
+                        loadExplanation(for: adhigaram, lines: lines, kuralId: kuralId)
                     }
-                    .contentShape(Rectangle())
-                    .onTapGesture {
-                        withAnimation {
-                            if expandedAdhigaram == adhigaram {
-                                expandedAdhigaram = nil
-                            } else {
-                                expandedAdhigaram = adhigaram
-                                loadAllLines(for: adhigaram)
-                            }
-                        }
-                    }
-                    
-                    if expandedAdhigaram == adhigaram {
-                        ForEach(allLines[adhigaram] ?? [], id: \.self) { linePair in
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text(linePair[0])
-                                    .fontWeight(.bold)
-                                if linePair.count > 1 {
-                                    Text(linePair[1])
-                                }
-                            }
-                            .padding(.vertical, 4)
-                            .contentShape(Rectangle())
-                            .onTapGesture {
-                                loadExplanation(for: adhigaram, lines: linePair)
-                            }
-                        }
-                    }
-                }
+                )
             }
         }
         .navigationTitle(iyal)
@@ -159,9 +128,76 @@ struct AdhigaramView: View {
         isPlaying.removeAll()
     }
     
-    private func loadExplanation(for adhigaram: String, lines: [String]) {
-        let explanation = DatabaseManager.shared.getExplanation(for: adhigaram, lines: lines)
+    private func loadExplanation(for adhigaram: String, lines: [String], kuralId: Int) {
+        let explanation = DatabaseManager.shared.getExplanation(for: kuralId)
         selectedLinePair = SelectedLinePair(adhigaram: adhigaram, lines: lines, explanation: explanation)
+    }
+    
+    private func toggleExpand(for adhigaram: String) {
+        withAnimation {
+            if expandedAdhigaram == adhigaram {
+                expandedAdhigaram = nil
+            } else {
+                expandedAdhigaram = adhigaram
+                loadAllLines(for: adhigaram)
+            }
+        }
+    }
+}
+
+struct AdhigaramRowView: View {
+    let adhigaram: String
+    let isExpanded: Bool
+    let lines: [[String]]
+    let isPlaying: Bool
+    let onToggleExpand: () -> Void
+    let onTogglePlayPause: () -> Void
+    let onSelectLinePair: ([String], Int) -> Void
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack {
+                Button(action: onTogglePlayPause) {
+                    Image(systemName: isPlaying ? "pause.circle" : "play.circle")
+                        .foregroundColor(.blue)
+                        .font(.title)
+                }
+                Text(adhigaram)
+                Spacer()
+                Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
+            }
+            .contentShape(Rectangle())
+            .onTapGesture(perform: onToggleExpand)
+            
+            if isExpanded {
+                ForEach(lines, id: \.self) { linePair in
+                    LinePairView(linePair: linePair, onTap: onSelectLinePair)
+                }
+            }
+        }
+    }
+}
+
+struct LinePairView: View {
+    let linePair: [String]
+    let onTap: ([String], Int) -> Void
+
+    var body: some View {
+        let parts = linePair[0].split(separator: " ", maxSplits: 1, omittingEmptySubsequences: true)
+        let kuralId = Int(parts[0]) ?? 0
+        let secondPart = String(parts[1])
+
+        VStack(alignment: .leading, spacing: 4) {
+            Text(secondPart)
+            if linePair.count > 1 {
+                Text(linePair[1])
+            }
+        }
+        .padding(.vertical, 4)
+        .contentShape(Rectangle())
+        .onTapGesture {
+            onTap([secondPart, linePair[1]], kuralId)
+        }
     }
 }
 
