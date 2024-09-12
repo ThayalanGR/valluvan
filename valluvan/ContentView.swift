@@ -17,6 +17,10 @@ struct Chapter: Identifiable {
 struct ContentView: View {
     @State private var selectedPal: String = "அறத்துப்பால்"
     @State private var iyals: [String] = []
+    @State private var showLanguageSettings = false
+    @State private var selectedLanguage = "Tamil"
+    
+    let languages = ["Tamil", "English", "Telugu", "Hindi", "Kannad", "French", "Arabic", "Chinese", "German", "Korean", "Malay", "Malayalam", "Polish", "Russian", "Singalam", "Swedish"]
     
     var body: some View {
         NavigationView {
@@ -33,6 +37,14 @@ struct ContentView: View {
                 } 
                 .padding(.vertical, 8)
                 .background(Color.gray.opacity(0.2))
+            }
+            .navigationBarItems(trailing: Button(action: {
+                showLanguageSettings = true
+            }) {
+                Image(systemName: "gearshape")
+            })
+            .sheet(isPresented: $showLanguageSettings) {
+                LanguageSettingsView(selectedLanguage: $selectedLanguage, languages: languages)
             }
         }
         .onAppear {
@@ -268,4 +280,35 @@ struct SelectedLinePair: Identifiable {
     let adhigaram: String
     let lines: [String]
     let explanation: String
+}
+
+struct LanguageSettingsView: View {
+    @Binding var selectedLanguage: String
+    let languages: [String]
+    @Environment(\.presentationMode) var presentationMode
+    
+    var body: some View {
+        NavigationView {
+            List {
+                ForEach(languages, id: \.self) { language in
+                    Button(action: {
+                        selectedLanguage = language
+                        presentationMode.wrappedValue.dismiss()
+                    }) {
+                        HStack {
+                            Text(language)
+                            Spacer()
+                            if language == selectedLanguage {
+                                Image(systemName: "checkmark")
+                            }
+                        }
+                    }
+                }
+            }
+            .navigationTitle("Select Language")
+            .navigationBarItems(trailing: Button("Close") {
+                presentationMode.wrappedValue.dismiss()
+            })
+        }
+    }
 }
