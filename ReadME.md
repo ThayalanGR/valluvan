@@ -18,3 +18,4 @@
 
 search
 copy
+bg play
