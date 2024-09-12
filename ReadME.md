@@ -20,3 +20,5 @@ search
 copy
 bg play
 English medium if not tamil
+gamification badges against user profile
+sounds from url
