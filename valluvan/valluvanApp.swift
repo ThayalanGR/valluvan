@@ -6,12 +6,20 @@
 //
 
 import SwiftUI
+import SQLite3
 
 @main
 struct valluvanApp: App {
+    init() {
+        insertChaptersIntoDB()
+    }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
         }
+    }
+    
+    private func insertChaptersIntoDB() { 
     }
 }
