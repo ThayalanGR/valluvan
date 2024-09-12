@@ -19,3 +19,4 @@
 search
 copy
 bg play
+English medium if not tamil
