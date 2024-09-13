@@ -146,6 +146,11 @@ public class DatabaseManager {
         let tirukkuralTable = Table("tirukkural")
         let kuralIdExpr = Expression<Int>("திருக்குறள்")
         let explanationExpr: Expression<String>
+        let manaExplanationExpr: Expression<String>
+        let pariExplanationExpr: Expression<String>
+        let varaExplanationExpr: Expression<String>
+        let popsExplanationExpr: Expression<String>
+        let muniExplanationExpr: Expression<String>
         
         switch language {
         case "Tamil":
@@ -160,7 +165,11 @@ public class DatabaseManager {
                 .filter(kuralIdExpr == kuralId)   
             
             if let row = try db!.pluck(query) {
-                explanation = row[explanationExpr]
+                if language == "Tamil" {
+                    explanation = "கலைஞர்: " + row[explanationExpr] + "\nமணக்குடவர்: " + row[manaExplanationExpr] + "\nபரிமேலழகர்: " + row[pariExplanationExpr] + "\nமு. வரதராசன்: " + row[varaExplanationExpr] + "\nசாலமன் பாப்பையா: " + row[popsExplanationExpr] + "\nவீ. முனிசாமி: " + row[muniExplanationExpr]
+                } else {
+                    explanation = row[explanationExpr]
+                }
             }
         } catch {
             print("Error fetching explanation: \(error)")

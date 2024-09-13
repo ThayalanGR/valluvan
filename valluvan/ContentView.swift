@@ -281,6 +281,7 @@ struct ExplanationView: View {
     let adhigaram: String
     let lines: [String]
     let explanation: String
+    let selectedLanguage: String // Add this line
     @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
@@ -296,10 +297,12 @@ struct ExplanationView: View {
                             .font(.headline)
                     }
                     
-                    Text("Explanation:")
-                        .font(.title2)
-                        .fontWeight(.bold)
-                        .padding(.top)
+                    if selectedLanguage != "Tamil" {
+                        Text("Explanation:")
+                            .font(.title2)
+                            .fontWeight(.bold)
+                            .padding(.top)
+                    }
                     
                     Text(explanation)
                         .font(.body)
