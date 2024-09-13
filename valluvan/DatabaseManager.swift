@@ -84,8 +84,24 @@ public class DatabaseManager {
         let tirukkuralTable = Table("tirukkural")
         let kuralId = Expression<Int>("திருக்குறள்") 
         let adhigaramExpr = language == "Tamil" ? Expression<String>("அதிகாரம்") : Expression<String>("English Chapter")
-        let firstLineExpr = language == "Tamil" ? Expression<String>("First Line") : Expression<String>("First Line English")
-        let secondLineExpr = language == "Tamil" ? Expression<String>("Second Line") : Expression<String>("Second Line English")
+        
+        let firstLineExpr: Expression<String>
+        let secondLineExpr: Expression<String>
+        
+        switch language {
+        case "Tamil":
+            firstLineExpr = Expression<String>("First Line")
+            secondLineExpr = Expression<String>("Second Line")
+        case "Telugu":
+            firstLineExpr = Expression<String>("Telugu 1")
+            secondLineExpr = Expression<String>("Telugu 2")
+        case "Hindi":
+            firstLineExpr = Expression<String>("Hindi 1")
+            secondLineExpr = Expression<String>("Hindi 2")
+        default:
+            firstLineExpr = Expression<String>("First Line English")
+            secondLineExpr = Expression<String>("Second Line English")
+        }
         
         var kurals: [String] = []
         do {
@@ -95,7 +111,7 @@ public class DatabaseManager {
                 .order(kuralId)  
 
             for row in try db!.prepare(query) {
-                kurals.append(String( row[kuralId]) + " " + row[firstLineExpr])
+                kurals.append(String(row[kuralId]) + " " + row[firstLineExpr])
                 kurals.append(row[secondLineExpr])
             }
         } catch {
