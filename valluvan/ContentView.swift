@@ -48,8 +48,7 @@ struct ContentView: View {
             })
             .sheet(isPresented: $showLanguageSettings) {
                 LanguageSettingsView(selectedLanguage: $selectedLanguage, languages: languages)
-            }
-            .navigationTitle("")
+            } 
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     Button(action: {
@@ -170,7 +169,7 @@ struct AdhigaramView: View {
     }
     
     private func loadExplanation(for adhigaram: String, lines: [String], kuralId: Int) {
-        let explanation = DatabaseManager.shared.getExplanation(for: kuralId)
+        let explanation = DatabaseManager.shared.getExplanation(for: kuralId, language: selectedLanguage)
         selectedLinePair = SelectedLinePair(adhigaram: adhigaram, lines: lines, explanation: explanation)
     }
     

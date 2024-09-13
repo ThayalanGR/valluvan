@@ -120,11 +120,17 @@ public class DatabaseManager {
         return kurals
     }
     
-    func getExplanation(for kuralId: Int) -> String {
+    func getExplanation(for kuralId: Int, language: String) -> String {
         let tirukkuralTable = Table("tirukkural")
         let kuralIdExpr = Expression<Int>("திருக்குறள்")
-        let explanationExpr = Expression<String>("கலைஞர்")
+        let explanationExpr: Expression<String>
         
+        switch language {
+        case "Tamil":
+            explanationExpr = Expression<String>("கலைஞர்") 
+        default:
+            explanationExpr = Expression<String>("Explanation") 
+        }
         var explanation: String?
         do {
             let query = tirukkuralTable
