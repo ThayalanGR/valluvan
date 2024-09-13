@@ -379,17 +379,17 @@ struct LinePairView: View {
         let parts = linePair[0].split(separator: " ", maxSplits: 1, omittingEmptySubsequences: true)
         let kuralId = Int(parts[0]) ?? 0
         let secondPart = String(parts[1])
-
+        let secondLine = linePair.count > 1 ? linePair[1] : ""
         VStack(alignment: .leading, spacing: 4) {
             Text(secondPart)
             if linePair.count > 1 {
-                Text(linePair[1] ?? "")
+                Text(secondLine)
             }
         }
         .padding(.vertical, 4)
         .contentShape(Rectangle())
         .onTapGesture {
-            onTap([secondPart, linePair.count > 1 ? (linePair[1] ?? "") : ""], kuralId)
+            onTap([secondPart, secondLine], kuralId)
         }
     }
 }
