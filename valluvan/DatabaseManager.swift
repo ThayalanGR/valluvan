@@ -1,5 +1,6 @@
 import Foundation
 import SQLite // Make sure this import is correct
+import UIKit // Add this import for NSAttributedString
 
 public class DatabaseManager {
     public static let shared = DatabaseManager()
@@ -142,7 +143,7 @@ public class DatabaseManager {
         return kurals
     }
     
-    func getExplanation(for kuralId: Int, language: String) -> String {
+    func getExplanation(for kuralId: Int, language: String) -> NSAttributedString {
         let tirukkuralTable = Table("tirukkural")
         let kuralIdExpr = Expression<Int>("திருக்குறள்")
         let explanationExpr: Expression<String>
@@ -152,7 +153,8 @@ public class DatabaseManager {
         let popsExplanationExpr: Expression<String>
         let muniExplanationExpr: Expression<String>
         var query: Table
-        var explanation: String?
+        var attributedExplanation = NSMutableAttributedString()
+
         switch language {
         case "Tamil":
             explanationExpr = Expression<String>("கலைஞர்")
@@ -166,7 +168,14 @@ public class DatabaseManager {
                 .filter(kuralIdExpr == kuralId) 
             do {                
                 if let row = try db!.pluck(query) {
-                    explanation = "கலைஞர்: " + row[explanationExpr] + "\n\nமணக்குடவர்: " + row[manaExplanationExpr] + "\n\nபரிமேலழகர்: " + row[pariExplanationExpr] + "\n\nமு. வரதராசன்: " + row[varaExplanationExpr] + "\n\nசாலமன் பாப்பையா: " + row[popsExplanationExpr] + "\n\nவீ. முனிசாமி: " + row[muniExplanationExpr]
+                    let boldAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.boldSystemFont(ofSize: UIFont.systemFontSize)]
+                    
+                    appendExplanation(to: &attributedExplanation, title: "கலைஞர்: ", content: row[explanationExpr], boldAttributes: boldAttributes)
+                    appendExplanation(to: &attributedExplanation, title: "மணக்குடவர்: ", content: row[manaExplanationExpr], boldAttributes: boldAttributes)
+                    appendExplanation(to: &attributedExplanation, title: "பரிமேலழகர்: ", content: row[pariExplanationExpr], boldAttributes: boldAttributes)
+                    appendExplanation(to: &attributedExplanation, title: "மு. வரதராசன்: ", content: row[varaExplanationExpr], boldAttributes: boldAttributes)
+                    appendExplanation(to: &attributedExplanation, title: "சாலமன் பாப்பையா: ", content: row[popsExplanationExpr], boldAttributes: boldAttributes)
+                    appendExplanation(to: &attributedExplanation, title: "வீ. முனிசாமி: ", content: row[muniExplanationExpr], boldAttributes: boldAttributes, isLast: true)
                 }
             } catch {
                 print("Error fetching Tamil explanation: \(error)")
@@ -179,14 +188,20 @@ public class DatabaseManager {
                     .filter(kuralIdExpr == kuralId) 
                 
                 if let row = try db!.pluck(query) {
-                    if language != "Tamil" { 
-                        explanation = row[explanationExpr]
-                    }
+                    attributedExplanation = NSMutableAttributedString(string: row[explanationExpr])
                 }
             } catch {
                 print("Error fetching explanation: \(error)")
             } 
         }
-        return explanation ?? "No explanation found"
+        return attributedExplanation
+    }
+
+    private func appendExplanation(to attributedString: inout NSMutableAttributedString, title: String, content: String, boldAttributes: [NSAttributedString.Key: Any], isLast: Bool = false) {
+        attributedString.append(NSAttributedString(string: title, attributes: boldAttributes))
+        attributedString.append(NSAttributedString(string: content))
+        if !isLast {
+            attributedString.append(NSAttributedString(string: "\n\n"))
+        }
     }
 }

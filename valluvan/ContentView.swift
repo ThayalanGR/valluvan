@@ -280,8 +280,8 @@ struct LinePairView: View {
 struct ExplanationView: View {
     let adhigaram: String
     let lines: [String]
-    let explanation: String
-    let selectedLanguage: String // Add this line
+    let explanation: NSAttributedString
+    let selectedLanguage: String
     @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
@@ -304,7 +304,7 @@ struct ExplanationView: View {
                             .padding(.top)
                     }
                     
-                    Text(explanation)
+                    Text(AttributedString(explanation))
                         .font(.body)
                 }
                 .padding()
@@ -315,7 +315,7 @@ struct ExplanationView: View {
                     \(adhigaram)
                     \(lines.joined(separator: "\n"))
                     Explanation:
-                    \(explanation)
+                    \(explanation.string)
                     """
                     UIPasteboard.general.string = content
                 }) {
@@ -356,7 +356,7 @@ struct SelectedLinePair: Identifiable {
     let id = UUID()
     let adhigaram: String
     let lines: [String]
-    let explanation: String
+    let explanation: NSAttributedString
 }
 
 struct LanguageSettingsView: View {
