@@ -29,11 +29,11 @@ public class DatabaseManager {
     }
 
     
-    public func getIyals(for pal: String) -> [String] {
+    public func getIyals(for pal: String, language: String) -> [String] {
         let tirukkuralTable = Table("tirukkural")
         let kuralId = Expression<Int>("திருக்குறள்")
-        let palExpr = Expression<String>("பால்")
-        let iyalExpr = Expression<String>("இயல்")
+        let palExpr = language == "Tamil" ? Expression<String>("பால்") : Expression<String>("English Title")
+        let iyalExpr = language == "Tamil" ? Expression<String>("இயல்") : Expression<String>("English Heading")
         
         var iyals: [String] = []
         
@@ -44,6 +44,7 @@ public class DatabaseManager {
                 .group(iyalExpr)
                 .order(kuralId)
             
+                print("Query iyals: \(query)")
             for row in try db!.prepare(query) {
                 iyals.append(row[iyalExpr])
             }
@@ -54,11 +55,11 @@ public class DatabaseManager {
         return iyals
     }
  
-    public func getAdhigarams(for iyal: String) -> [String] {
+    public func getAdhigarams(for iyal: String, language: String) -> [String] {
         let tirukkuralTable = Table("tirukkural")
         let kuralId = Expression<Int>("திருக்குறள்")
-        let iyalExpr = Expression<String>("இயல்")
-        let adhigaramExpr = Expression<String>("அதிகாரம்")
+        let iyalExpr = language == "Tamil" ? Expression<String>("இயல்") : Expression<String>("English Heading")
+        let adhigaramExpr = language == "Tamil" ? Expression<String>("அதிகாரம்") : Expression<String>("English Chapter")
         
         var adhigarams: [String] = []
         
@@ -79,12 +80,12 @@ public class DatabaseManager {
         return adhigarams
     } 
     
-    public func getFirstLine(for adhigaram: String) -> [String] {
+    public func getFirstLine(for adhigaram: String, language: String) -> [String] {
         let tirukkuralTable = Table("tirukkural")
         let kuralId = Expression<Int>("திருக்குறள்") 
-        let adhigaramExpr = Expression<String>("அதிகாரம்")
-        let firstLineExpr = Expression<String>("First Line")
-        let secondLineExpr = Expression<String>("Second Line")
+        let adhigaramExpr = language == "Tamil" ? Expression<String>("அதிகாரம்") : Expression<String>("English Chapter")
+        let firstLineExpr = language == "Tamil" ? Expression<String>("First Line") : Expression<String>("First Line English")
+        let secondLineExpr = language == "Tamil" ? Expression<String>("Second Line") : Expression<String>("Second Line English")
         
         var kurals: [String] = []
         do {

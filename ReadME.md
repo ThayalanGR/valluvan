@@ -17,8 +17,6 @@
 	"வீ. முனிசாமி"	
 
 search
-copy
-bg play
-English medium if not tamil
+bg play 
 gamification badges against user profile
 sounds from url

@@ -15,25 +15,26 @@ struct Chapter: Identifiable {
 }
 
 struct ContentView: View {
-    @State private var selectedPal: String = "அறத்துப்பால்"
+    @State private var selectedPal: String = "Virtue"
     @State private var iyals: [String] = []
     @State private var showLanguageSettings = false
-    @State private var selectedLanguage = "Tamil"
+    @State private var selectedLanguage = "English"
     @State private var isExpanded: Bool = false
     @State private var iyal: String = ""  // Add this line to declare iyal as a state variable
-
+    let tamilTitle = ["அறத்துப்பால்", "பொருட்பால்", "இன்பத்துப்பால்"]
+    let englishTitle = ["Virtue", "Wealth", "Nature of Love"] 
     let languages = ["Tamil", "English", "Telugu", "Hindi", "Kannad", "French", "Arabic", "Chinese", "German", "Korean", "Malay", "Malayalam", "Polish", "Russian", "Singalam", "Swedish"]
     
     var body: some View {
         NavigationView {
             VStack {
                 HStack {
-                    PalButton(title: "அறத்துப்பால்", selectedPal: $selectedPal)
-                    PalButton(title: "பொருட்பால்", selectedPal: $selectedPal)
-                    PalButton(title: "இன்பத்துப்பால்", selectedPal: $selectedPal)
+                    PalButton(title: getCurrentTitle(0), selectedPal: $selectedPal)
+                    PalButton(title: getCurrentTitle(1), selectedPal: $selectedPal)
+                    PalButton(title: getCurrentTitle(2), selectedPal: $selectedPal)
                 }
                 List(iyals, id: \.self) { iyal in
-                    NavigationLink(destination: AdhigaramView(iyal: iyal)) {
+                    NavigationLink(destination: AdhigaramView(iyal: iyal, selectedLanguage: selectedLanguage)) { // Pass selectedLanguage here
                         Text(iyal)
                     }
                 } 
@@ -67,15 +68,29 @@ struct ContentView: View {
         .onChange(of: selectedPal) { oldValue, newValue in
             loadIyals()
         }
+        .onChange(of: selectedLanguage) { oldValue, newValue in
+            updateSelectedPal()
+        }
+    }
+    
+    private func getCurrentTitle(_ index: Int) -> String {
+        return selectedLanguage == "Tamil" ? tamilTitle[index] : englishTitle[index]
+    }
+    
+    private func updateSelectedPal() {
+        if let index = tamilTitle.firstIndex(of: selectedPal) {
+            selectedPal = getCurrentTitle(index)
+        }
     }
     
     private func loadIyals() {  
-        iyals = DatabaseManager.shared.getIyals(for: selectedPal)
+        iyals = DatabaseManager.shared.getIyals(for: selectedPal, language: selectedLanguage)
     }
 }
 
 struct AdhigaramView: View {
     let iyal: String
+    let selectedLanguage: String // Add this line to accept selectedLanguage
     @State private var adhigarams: [String] = []
     @State private var expandedAdhigaram: String?
     @State private var allLines: [String: [[String]]] = [:]
@@ -112,11 +127,11 @@ struct AdhigaramView: View {
     }
     
     private func loadAdhigarams() {
-        adhigarams = DatabaseManager.shared.getAdhigarams(for: iyal)
+        adhigarams = DatabaseManager.shared.getAdhigarams(for: iyal, language: selectedLanguage)
     }
     
     private func loadAllLines(for adhigaram: String) {
-        let lines = DatabaseManager.shared.getFirstLine(for: adhigaram)
+        let lines = DatabaseManager.shared.getFirstLine(for: adhigaram, language: selectedLanguage)
         let linePairs = stride(from: 0, to: lines.count, by: 2).map {
             Array(lines[$0..<min($0+2, lines.count)])
         }
@@ -273,7 +288,7 @@ struct ExplanationView: View {
                 }) {
                     Image(systemName: "doc.on.doc")
                         .foregroundColor(.blue)
-                        .font(.title2) // Adjust the size here
+                        .font(.title)
                 }
                 Button("Close") {
                     presentationMode.wrappedValue.dismiss()
