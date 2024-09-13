@@ -34,7 +34,7 @@ struct ContentView: View {
                     PalButton(title: getCurrentTitle(2), selectedPal: $selectedPal)
                 }
                 List(iyals, id: \.self) { iyal in
-                    NavigationLink(destination: AdhigaramView(iyal: iyal, selectedLanguage: selectedLanguage)) { // Pass selectedLanguage here
+                    NavigationLink(destination: AdhigaramView(iyal: iyal, selectedLanguage: selectedLanguage)) { 
                         Text(iyal)
                     }
                 } 
@@ -47,7 +47,7 @@ struct ContentView: View {
                 Image(systemName: "gearshape")
             })
             .sheet(isPresented: $showLanguageSettings) {
-                LanguageSettingsView(selectedLanguage: $selectedLanguage, languages: languages)
+                LanguageSettingsView(selectedLanguage: $selectedLanguage, selectedPal: $selectedPal, languages: languages, tamilTitle: tamilTitle)
             } 
             .toolbar {
                 ToolbarItem(placement: .principal) {
@@ -109,7 +109,8 @@ struct AdhigaramView: View {
                     onTogglePlayPause: { togglePlayPause(for: adhigaram) },
                     onSelectLinePair: { lines, kuralId in
                         loadExplanation(for: adhigaram, lines: lines, kuralId: kuralId)
-                    }
+                    },
+                    selectedLanguage: selectedLanguage 
                 )
             }
         }
@@ -193,16 +194,20 @@ struct AdhigaramRowView: View {
     let onToggleExpand: () -> Void
     let onTogglePlayPause: () -> Void
     let onSelectLinePair: ([String], Int) -> Void
+    let selectedLanguage: String  
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack {
-                Button(action: onTogglePlayPause) {
-                    Image(systemName: isPlaying ? "pause.circle" : "play.circle")
-                        .foregroundColor(.blue)
-                        .font(.title)
+                // Show play/pause button only for Tamil
+                if selectedLanguage == "Tamil" {
+                    Button(action: onTogglePlayPause) {
+                        Image(systemName: isPlaying ? "pause.circle" : "play.circle")
+                            .foregroundColor(.blue)
+                            .font(.title2)
+                    }
+                    .buttonStyle(PlainButtonStyle())
                 }
-                .buttonStyle(PlainButtonStyle())
                 
                 Button(action: onToggleExpand) {
                     HStack {
@@ -215,9 +220,27 @@ struct AdhigaramRowView: View {
             }
             
             if isExpanded {
-                ForEach(lines, id: \.self) { linePair in
-                    LinePairView(linePair: linePair, onTap: onSelectLinePair)
-                }
+                ExpandedAdhigaramView(
+                    lines: lines,
+                    isPlaying: isPlaying,
+                    onTogglePlayPause: onTogglePlayPause,
+                    onSelectLinePair: onSelectLinePair
+                )
+            }
+        }
+    }
+}
+
+struct ExpandedAdhigaramView: View {
+    let lines: [[String]]
+    let isPlaying: Bool
+    let onTogglePlayPause: () -> Void
+    let onSelectLinePair: ([String], Int) -> Void
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 4) { 
+            ForEach(lines, id: \.self) { linePair in
+                LinePairView(linePair: linePair, onTap: onSelectLinePair)
             }
         }
     }
@@ -327,7 +350,9 @@ struct SelectedLinePair: Identifiable {
 
 struct LanguageSettingsView: View {
     @Binding var selectedLanguage: String
+    @Binding var selectedPal: String  // Add this line
     let languages: [String]
+    let tamilTitle: [String]  // Add this line
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
@@ -336,6 +361,9 @@ struct LanguageSettingsView: View {
                 ForEach(languages, id: \.self) { language in
                     Button(action: {
                         selectedLanguage = language
+                        if language == "Tamil" {
+                            selectedPal = tamilTitle[0]  // Set to "அறத்துப்பால்"
+                        }
                         presentationMode.wrappedValue.dismiss()
                     }) {
                         HStack {
