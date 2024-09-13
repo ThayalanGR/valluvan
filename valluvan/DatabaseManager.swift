@@ -231,7 +231,7 @@ public class DatabaseManager {
                     subheading: row[2] as? String ?? "",
                     content: "\(row[3] as? String ?? "")\n\(row[4] as? String ?? "")",
                     explanation: row[5] as? String ?? "",
-                    kuralId: row[0] as? Int ?? 0 // Added திருக்குறள் (Kural ID)
+                    kuralId: Int(row[0] as? Int64 ?? 0) // Modified this line
                 )
                 results.append(result)
             }
