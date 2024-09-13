@@ -2,12 +2,13 @@ import Foundation
 import SQLite // Make sure this import is correct
 import UIKit // Add this import for NSAttributedString
 
-public struct SearchResult { 
+// Rename this struct to avoid conflict with ContentView.swift
+public struct DatabaseSearchResult { 
     let heading: String
     let subheading: String
     let content: String
     let explanation: String
-    let kuralId: Int // Added திருக்குறள் (Kural ID)
+    let kuralId: Int
 }
 
 public class DatabaseManager {
@@ -167,7 +168,7 @@ public class DatabaseManager {
         case "Tamil":
             explanationExpr = Expression<String>("கலைஞர்")
             manaExplanationExpr = Expression<String>("மணக்குடவர்")
-            pariExplanationExpr = Expression<String>("பரிமேலழகர்")
+            pariExplanationExpr = Expression<String>("பரிமேலழகர��")
             varaExplanationExpr = Expression<String>("மு. வரதராசன்")
             popsExplanationExpr = Expression<String>("சாலமன் பாப்பையா")
             muniExplanationExpr = Expression<String>("வீ. முனிசாமி")
@@ -213,8 +214,8 @@ public class DatabaseManager {
         }
     }
 
-    func searchContent(query: String) -> [SearchResult] {
-        var results: [SearchResult] = []
+    func searchContent(query: String) -> [DatabaseSearchResult] {
+        var results: [DatabaseSearchResult] = []
         let searchQuery = """
             SELECT "திருக்குறள்", "English Heading", "English Chapter", "First Line English", "Second Line English", "Explanation"
             FROM tirukkural
@@ -226,15 +227,16 @@ public class DatabaseManager {
         do {
             let rows = try db!.prepare(searchQuery, searchPattern, searchPattern, searchPattern, searchPattern, searchPattern)
             for row in rows {
-                let result = SearchResult( 
+                let result = DatabaseSearchResult( 
                     heading: row[1] as? String ?? "",
                     subheading: row[2] as? String ?? "",
                     content: "\(row[3] as? String ?? "")\n\(row[4] as? String ?? "")",
                     explanation: row[5] as? String ?? "",
-                    kuralId: Int(row[0] as? Int64 ?? 0) // Modified this line
+                    kuralId: Int(row[0] as? Int64 ?? 0)
                 )
                 results.append(result)
             }
+
         } catch {
             print("Error searching content: \(error.localizedDescription)")
         }

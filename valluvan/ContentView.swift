@@ -8,6 +8,19 @@
 import SwiftUI
 import AVFoundation // Add this import at the top of the file
 
+// Move the SearchResult struct definition to the top of the file, outside of any other struct
+struct SearchResult: Identifiable, CustomStringConvertible {
+    let id = UUID()
+    let kuralId: Int
+    let adhigaram: String
+    let line: String
+    let explanation: NSAttributedString
+    
+    var description: String {
+        return "SearchResult(kuralId: \(kuralId), adhigaram: \(adhigaram), line: \(line), explanation: \(explanation.string))"
+    }
+}
+
 struct Chapter: Identifiable {
     let id: Int
     let title: String
@@ -21,11 +34,15 @@ struct ContentView: View {
     @State private var selectedLanguage = "English"
     @State private var isExpanded: Bool = false
     @State private var iyal: String = ""  // Add this line to declare iyal as a state variable
-    let tamilTitle = ["அறத்துப்பால்", "பொருட்பால்", "இன்பத்துப்பால்"]
+    
+    let tamilTitle = ["அறத்துப்ால்", "பொருட்பால்", "இன்பத்துப்பால்"]
     let englishTitle = ["Virtue", "Wealth", "Nature of Love"] 
     let languages = ["Tamil", "English", "Telugu", "Hindi", "Kannad", "French", "Arabic", "Chinese", "German", "Korean", "Malay", "Malayalam", "Polish", "Russian", "Singalam", "Swedish"]
     
     @State private var searchText = ""
+    @State private var searchResults: [SearchResult] = []
+    @State private var showSearchResults = false
+    @State private var selectedSearchResult: SearchResult?
     
     var body: some View {
         NavigationView {
@@ -42,12 +59,14 @@ struct ContentView: View {
                 } 
                 .padding(.vertical, 8)
                 .background(Color.gray.opacity(0.2))
+                
+                Text("Search Results Count: \(searchResults.count)")
+                    .padding()
             }
             .navigationBarItems(
                 leading: SearchBar(text: $searchText),
                 trailing: HStack {
                     Button(action: {
-                        print("Search: \(searchText)")
                         searchContent()
                     }) {
                         Image(systemName: "magnifyingglass")
@@ -83,6 +102,20 @@ struct ContentView: View {
         .onChange(of: selectedLanguage) { oldValue, newValue in
             updateSelectedPal()
         }
+        .sheet(isPresented: $showSearchResults) {
+            SearchResultsView(results: searchResults, onSelectResult: { result in
+                selectedSearchResult = result
+                showSearchResults = false
+            })
+        }
+        .sheet(item: $selectedSearchResult) { result in
+            ExplanationView(
+                adhigaram: result.adhigaram,
+                lines: [result.line],
+                explanation: result.explanation,
+                selectedLanguage: selectedLanguage
+            )
+        }
     }
     
     private func getCurrentTitle(_ index: Int) -> String {
@@ -100,9 +133,19 @@ struct ContentView: View {
     }
     
     func searchContent() {
-        let results = DatabaseManager.shared.searchContent(query: searchText)
-        // Implement your search logic here
-        print("Performing search for: \(results)")
+        let databaseResults = DatabaseManager.shared.searchContent(query: searchText) 
+        searchResults = databaseResults.map { dbResult in
+            let searchResult = SearchResult(
+                kuralId: dbResult.kuralId,
+                adhigaram: dbResult.subheading,
+                line: dbResult.content,
+                explanation: NSAttributedString(string: dbResult.explanation)
+            )
+            return searchResult
+        }
+        DispatchQueue.main.async {
+            self.showSearchResults = true
+        }
     }
 }
 
@@ -375,6 +418,31 @@ struct SearchBar: View {
             TextField("Search", text: $text)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .frame(width: 150)
+        }
+    }
+}
+
+struct SearchResultsView: View {
+    let results: [SearchResult]
+    let onSelectResult: (SearchResult) -> Void
+    
+    var body: some View {
+        NavigationView {
+            List {
+                ForEach(results.indices, id: \.self) { index in
+                    let result = results[index]
+                    VStack(alignment: .leading) {
+                        Text("Result \(index + 1):")
+                            .font(.headline)
+                        Text("Adhigaram: \(result.adhigaram)")
+                        Text("Line: \(result.line)")
+                    }
+                    .onTapGesture {
+                        onSelectResult(result)
+                    }
+                }
+            }
+            .navigationTitle("Search Results (\(results.count))")
         }
     }
 }
