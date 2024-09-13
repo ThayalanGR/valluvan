@@ -19,7 +19,9 @@ struct ContentView: View {
     @State private var iyals: [String] = []
     @State private var showLanguageSettings = false
     @State private var selectedLanguage = "Tamil"
-    
+    @State private var isExpanded: Bool = false
+    @State private var iyal: String = ""  // Add this line to declare iyal as a state variable
+
     let languages = ["Tamil", "English", "Telugu", "Hindi", "Kannad", "French", "Arabic", "Chinese", "German", "Korean", "Malay", "Malayalam", "Polish", "Russian", "Singalam", "Swedish"]
     
     var body: some View {
@@ -45,6 +47,18 @@ struct ContentView: View {
             })
             .sheet(isPresented: $showLanguageSettings) {
                 LanguageSettingsView(selectedLanguage: $selectedLanguage, languages: languages)
+            }
+            .navigationTitle("")
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Button(action: {
+                        isExpanded.toggle()
+                    }) {
+                        Text(iyal)
+                            .font(.headline)
+                            .foregroundColor(.primary)
+                    }
+                }
             }
         }
         .onAppear {
@@ -247,8 +261,23 @@ struct ExplanationView: View {
                 }
                 .padding()
             }
-            .navigationBarItems(trailing: Button("Close") {
-                presentationMode.wrappedValue.dismiss()
+            .navigationBarItems(trailing: HStack {
+                Button(action: {
+                    let content = """
+                    \(adhigaram)
+                    \(lines.joined(separator: "\n"))
+                    Explanation:
+                    \(explanation)
+                    """
+                    UIPasteboard.general.string = content
+                }) {
+                    Image(systemName: "doc.on.doc")
+                        .foregroundColor(.blue)
+                        .font(.title2) // Adjust the size here
+                }
+                Button("Close") {
+                    presentationMode.wrappedValue.dismiss()
+                }
             })
         }
     }
