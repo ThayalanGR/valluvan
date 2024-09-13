@@ -35,7 +35,7 @@ struct ContentView: View {
     @State private var isExpanded: Bool = false
     @State private var iyal: String = ""  // Add this line to declare iyal as a state variable
     
-    let tamilTitle = ["அறத்துப்ால்", "பொருட்பால்", "இன்பத்துப்பால்"]
+    let tamilTitle = ["அறத்துப்பால்", "பொருட்பால்", "இன்பத்துப்பால்"]
     let englishTitle = ["Virtue", "Wealth", "Nature of Love"] 
     let languages = ["Tamil", "English", "Telugu", "Hindi", "Kannad", "French", "Arabic", "Chinese", "German", "Korean", "Malay", "Malayalam", "Polish", "Russian", "Singalam", "Swedish"]
     
@@ -432,7 +432,7 @@ struct SearchResultsView: View {
                 ForEach(results.indices, id: \.self) { index in
                     let result = results[index]
                     VStack(alignment: .leading) {
-                        Text("Result \(index + 1):")
+                        Text("(index + 1):")
                             .font(.headline)
                         Text("Adhigaram: \(result.adhigaram)")
                         Text("Line: \(result.line)")
