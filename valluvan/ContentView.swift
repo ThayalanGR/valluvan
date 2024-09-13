@@ -122,7 +122,7 @@ struct AdhigaramView: View {
             stopAllAudio()
         }
         .sheet(item: $selectedLinePair) { pair in
-            ExplanationView(adhigaram: pair.adhigaram, lines: pair.lines, explanation: pair.explanation)
+            ExplanationView(adhigaram: pair.adhigaram, lines: pair.lines, explanation: pair.explanation, selectedLanguage: selectedLanguage)
         }
     }
     

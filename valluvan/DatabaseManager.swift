@@ -151,29 +151,42 @@ public class DatabaseManager {
         let varaExplanationExpr: Expression<String>
         let popsExplanationExpr: Expression<String>
         let muniExplanationExpr: Expression<String>
-        
+        var query: Table
+        var explanation: String?
         switch language {
         case "Tamil":
-            explanationExpr = Expression<String>("கலைஞர்") 
+            explanationExpr = Expression<String>("கலைஞர்")
+            manaExplanationExpr = Expression<String>("மணக்குடவர்")
+            pariExplanationExpr = Expression<String>("பரிமேலழகர்")
+            varaExplanationExpr = Expression<String>("மு. வரதராசன்")
+            popsExplanationExpr = Expression<String>("சாலமன் பாப்பையா")
+            muniExplanationExpr = Expression<String>("வீ. முனிசாமி")
+            query = tirukkuralTable
+                .select(explanationExpr, manaExplanationExpr, pariExplanationExpr, varaExplanationExpr, popsExplanationExpr, muniExplanationExpr)
+                .filter(kuralIdExpr == kuralId) 
+            do {                
+                if let row = try db!.pluck(query) {
+                    explanation = "கலைஞர்: " + row[explanationExpr] + "\n\nமணக்குடவர்: " + row[manaExplanationExpr] + "\n\nபரிமேலழகர்: " + row[pariExplanationExpr] + "\n\nமு. வரதராசன்: " + row[varaExplanationExpr] + "\n\nசாலமன் பாப்பையா: " + row[popsExplanationExpr] + "\n\nவீ. முனிசாமி: " + row[muniExplanationExpr]
+                }
+            } catch {
+                print("Error fetching Tamil explanation: \(error)")
+            }   
         default:
             explanationExpr = Expression<String>("Explanation") 
-        }
-        var explanation: String?
-        do {
-            let query = tirukkuralTable
-                .select(explanationExpr)
-                .filter(kuralIdExpr == kuralId)   
-            
-            if let row = try db!.pluck(query) {
-                if language == "Tamil" {
-                    explanation = "கலைஞர்: " + row[explanationExpr] + "\nமணக்குடவர்: " + row[manaExplanationExpr] + "\nபரிமேலழகர்: " + row[pariExplanationExpr] + "\nமு. வரதராசன்: " + row[varaExplanationExpr] + "\nசாலமன் பாப்பையா: " + row[popsExplanationExpr] + "\nவீ. முனிசாமி: " + row[muniExplanationExpr]
-                } else {
-                    explanation = row[explanationExpr]
+            do {                 
+                query = tirukkuralTable
+                    .select(explanationExpr)
+                    .filter(kuralIdExpr == kuralId) 
+                
+                if let row = try db!.pluck(query) {
+                    if language != "Tamil" { 
+                        explanation = row[explanationExpr]
+                    }
                 }
-            }
-        } catch {
-            print("Error fetching explanation: \(error)")
-        } 
+            } catch {
+                print("Error fetching explanation: \(error)")
+            } 
+        }
         return explanation ?? "No explanation found"
     }
 }
