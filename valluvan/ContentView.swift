@@ -6,8 +6,8 @@
 //
 
 import SwiftUI
-import AVFoundation // Add this import at the top of the file
-import MediaPlayer // Add this import for remote control events
+import AVFoundation
+import MediaPlayer
 
 // Move the SearchResult struct definition to the top of the file, outside of any other struct
 struct SearchResult: Identifiable, CustomStringConvertible {
@@ -44,6 +44,7 @@ struct ContentView: View {
     @State private var searchResults: [SearchResult] = []
     @State private var showSearchResults = false
     @State private var selectedSearchResult: SearchResult?
+    @State private var hasSearched = false
     
     @State private var audioPlayers: [String: AVAudioPlayer] = [:]
 
@@ -75,23 +76,26 @@ struct ContentView: View {
                 } 
                 .background(Color.gray.opacity(0.2))
                 
-                Text("Search Results Count: \(searchResults.count)")
-                    .padding()
+                if hasSearched {
+                    Text("Search Results Count: \(searchResults.count)")
+                        .padding()
+                }
             }
             .navigationBarItems(
-                leading: SearchBar(text: $searchText),
+                leading: SearchBar(text: $searchText)
+                    .frame(width: 250),
                 trailing: HStack {
                     Button(action: {
                         searchContent()
                     }) {
                         Image(systemName: "magnifyingglass")
-                            .font(.system(size: 16)) // Reduced from a larger value, e.g. 24
+                            .font(.system(size: 16)) 
                     }
                     Button(action: {
                         showLanguageSettings = true
                     }) {
                         Image(systemName: "gearshape")
-                            .font(.system(size: 16)) // Reduced from a larger value, e.g. 24
+                            .font(.system(size: 16)) 
                     }
                 }
             )
@@ -162,6 +166,7 @@ struct ContentView: View {
         }
         DispatchQueue.main.async {
             self.showSearchResults = true
+            self.hasSearched = true
         }
     }
 }
@@ -323,7 +328,7 @@ struct AdhigaramRowView: View {
                     Button(action: onTogglePlayPause) {
                         Image(systemName: isPlaying ? "pause.circle" : "play.circle")
                             .foregroundColor(.blue)
-                            .font(.system(size: 16)) // Reduced from a larger value, e.g. 24
+                            .font(.system(size: 16)) 
                     }
                     .buttonStyle(PlainButtonStyle())
                 }
@@ -333,7 +338,7 @@ struct AdhigaramRowView: View {
                         Text(adhigaram)
                         Spacer()
                         Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
-                            .font(.system(size: 16)) // Reduced from a larger value, e.g. 24
+                            .font(.system(size: 16)) 
                     }
                 }
                 .buttonStyle(PlainButtonStyle())
@@ -395,6 +400,7 @@ struct ExplanationView: View {
     let explanation: NSAttributedString
     let selectedLanguage: String
     @Environment(\.presentationMode) var presentationMode
+    @State private var isSpeaking = false
 
     var body: some View {
         NavigationView {
@@ -433,18 +439,18 @@ struct ExplanationView: View {
                 }) {
                     Image(systemName: "doc.on.doc")
                         .foregroundColor(.blue)
-                        .font(.system(size: 16)) // Reduced from a larger value, e.g. 24
+                        .font(.system(size: 16))
                 }
                 Button(action: {
                     presentationMode.wrappedValue.dismiss()
                 }) {
                     Image(systemName: "xmark.circle")
                         .foregroundColor(.blue)
-                        .font(.system(size: 16)) // Reduced from a larger value, e.g. 24
+                        .font(.system(size: 16))
                 }
             })
         }
-    }
+    } 
 }
 
 struct PalButton: View {
@@ -471,7 +477,7 @@ struct SearchBar: View {
         HStack {
             TextField("Search", text: $text)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-                .frame(width: 150)
+                .frame(width: 250)
         }
     }
 }
@@ -535,7 +541,7 @@ struct LanguageSettingsView: View {
                             Spacer()
                             if language == selectedLanguage {
                                 Image(systemName: "checkmark")
-                                    .font(.system(size: 16)) // Reduced from a larger value, e.g. 24
+                                    .font(.system(size: 16)) 
                             }
                         }
                     }
@@ -547,7 +553,7 @@ struct LanguageSettingsView: View {
             }) {
                 Image(systemName: "xmark.circle")
                     .foregroundColor(.blue)
-                    .font(.system(size: 16)) // Reduced from a larger value, e.g. 24
+                    .font(.system(size: 16)) 
             })
         }
     }
