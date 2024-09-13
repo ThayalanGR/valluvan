@@ -2,6 +2,14 @@ import Foundation
 import SQLite // Make sure this import is correct
 import UIKit // Add this import for NSAttributedString
 
+public struct SearchResult { 
+    let heading: String
+    let subheading: String
+    let content: String
+    let explanation: String
+    let kuralId: Int // Added திருக்குறள் (Kural ID)
+}
+
 public class DatabaseManager {
     public static let shared = DatabaseManager()
     private var db: Connection?
@@ -203,5 +211,34 @@ public class DatabaseManager {
         if !isLast {
             attributedString.append(NSAttributedString(string: "\n\n"))
         }
+    }
+
+    func searchContent(query: String) -> [SearchResult] {
+        var results: [SearchResult] = []
+        let searchQuery = """
+            SELECT "திருக்குறள்", "English Heading", "English Chapter", "First Line English", "Second Line English", "Explanation"
+            FROM tirukkural
+            WHERE "English Heading" LIKE ? OR "English Chapter" LIKE ? OR "First Line English" LIKE ? OR "Second Line English" LIKE ? OR "Explanation" LIKE ?
+            LIMIT 20
+        """
+        let searchPattern = "%\(query)%"
+
+        do {
+            let rows = try db!.prepare(searchQuery, searchPattern, searchPattern, searchPattern, searchPattern, searchPattern)
+            for row in rows {
+                let result = SearchResult( 
+                    heading: row[1] as? String ?? "",
+                    subheading: row[2] as? String ?? "",
+                    content: "\(row[3] as? String ?? "")\n\(row[4] as? String ?? "")",
+                    explanation: row[5] as? String ?? "",
+                    kuralId: row[0] as? Int ?? 0 // Added திருக்குறள் (Kural ID)
+                )
+                results.append(result)
+            }
+        } catch {
+            print("Error searching content: \(error.localizedDescription)")
+        }
+
+        return results
     }
 }

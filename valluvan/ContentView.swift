@@ -25,6 +25,8 @@ struct ContentView: View {
     let englishTitle = ["Virtue", "Wealth", "Nature of Love"] 
     let languages = ["Tamil", "English", "Telugu", "Hindi", "Kannad", "French", "Arabic", "Chinese", "German", "Korean", "Malay", "Malayalam", "Polish", "Russian", "Singalam", "Swedish"]
     
+    @State private var searchText = ""
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -41,11 +43,22 @@ struct ContentView: View {
                 .padding(.vertical, 8)
                 .background(Color.gray.opacity(0.2))
             }
-            .navigationBarItems(trailing: Button(action: {
-                showLanguageSettings = true
-            }) {
-                Image(systemName: "gearshape")
-            })
+            .navigationBarItems(
+                leading: SearchBar(text: $searchText),
+                trailing: HStack {
+                    Button(action: {
+                        print("Search: \(searchText)")
+                        searchContent()
+                    }) {
+                        Image(systemName: "magnifyingglass")
+                    }
+                    Button(action: {
+                        showLanguageSettings = true
+                    }) {
+                        Image(systemName: "gearshape")
+                    }
+                }
+            )
             .sheet(isPresented: $showLanguageSettings) {
                 LanguageSettingsView(selectedLanguage: $selectedLanguage, selectedPal: $selectedPal, languages: languages, tamilTitle: tamilTitle)
             } 
@@ -84,6 +97,12 @@ struct ContentView: View {
     
     private func loadIyals() {  
         iyals = DatabaseManager.shared.getIyals(for: selectedPal, language: selectedLanguage)
+    }
+    
+    func searchContent() {
+        let results = DatabaseManager.shared.searchContent(query: searchText)
+        // Implement your search logic here
+        print("Performing search for: \(results)")
     }
 }
 
@@ -344,6 +363,18 @@ struct PalButton: View {
                 .background(selectedPal == title ? Color.blue : Color.clear)
                 .foregroundColor(selectedPal == title ? .white : .blue)
                 .cornerRadius(8)
+        }
+    }
+}
+
+struct SearchBar: View {
+    @Binding var text: String
+
+    var body: some View {
+        HStack {
+            TextField("Search", text: $text)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .frame(width: 150)
         }
     }
 }
