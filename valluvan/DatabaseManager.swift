@@ -43,8 +43,7 @@ public class DatabaseManager {
                 .filter(palExpr == pal)
                 .group(iyalExpr)
                 .order(kuralId)
-            
-                print("Query iyals: \(query)")
+             
             for row in try db!.prepare(query) {
                 iyals.append(row[iyalExpr])
             }
@@ -79,7 +78,30 @@ public class DatabaseManager {
         
         return adhigarams
     } 
-    
+
+    public func getSingleLine(for adhigaram: String, language: String) -> [String] {
+        let tirukkuralTable = Table("tirukkural")
+        let kuralId = Expression<Int>("திருக்குறள்") 
+        let adhigaramExpr = Expression<String>("English Chapter")
+        
+        let firstLineExpr = Expression<String>(language) 
+         
+        var kurals: [String] = []
+        do {
+            let query = tirukkuralTable
+                .select(kuralId, firstLineExpr)   
+                .filter(adhigaramExpr == adhigaram)
+                .order(kuralId)  
+
+            for row in try db!.prepare(query) {
+                kurals.append(String(row[kuralId]) + " " + row[firstLineExpr]) 
+            }
+        } catch {
+            print("Error fetching first line: \(error)")
+        }
+        return kurals
+    }
+
     public func getFirstLine(for adhigaram: String, language: String) -> [String] {
         let tirukkuralTable = Table("tirukkural")
         let kuralId = Expression<Int>("திருக்குறள்") 

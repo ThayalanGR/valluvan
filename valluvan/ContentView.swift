@@ -131,11 +131,19 @@ struct AdhigaramView: View {
     }
     
     private func loadAllLines(for adhigaram: String) {
-        let lines = DatabaseManager.shared.getFirstLine(for: adhigaram, language: selectedLanguage)
-        let linePairs = stride(from: 0, to: lines.count, by: 2).map {
-            Array(lines[$0..<min($0+2, lines.count)])
+        let supportedLanguages = ["English", "Tamil", "Hindi", "Telugu"]
+        
+        if supportedLanguages.contains(selectedLanguage) {
+            let lines = DatabaseManager.shared.getFirstLine(for: adhigaram, language: selectedLanguage)
+            let linePairs = stride(from: 0, to: lines.count, by: 2).map {
+                Array(lines[$0..<min($0+2, lines.count)])
+            }
+            allLines[adhigaram] = linePairs
+        } else {
+            let lines = DatabaseManager.shared.getSingleLine(for: adhigaram, language: selectedLanguage)
+            // Wrap each line in an array to make it a 2D array
+            allLines[adhigaram] = lines.map { [$0] }
         }
-        allLines[adhigaram] = linePairs
     }
     
     private func togglePlayPause(for adhigaram: String) {
@@ -258,13 +266,13 @@ struct LinePairView: View {
         VStack(alignment: .leading, spacing: 4) {
             Text(secondPart)
             if linePair.count > 1 {
-                Text(linePair[1])
+                Text(linePair[1] ?? "")
             }
         }
         .padding(.vertical, 4)
         .contentShape(Rectangle())
         .onTapGesture {
-            onTap([secondPart, linePair[1]], kuralId)
+            onTap([secondPart, linePair.count > 1 ? (linePair[1] ?? "") : ""], kuralId)
         }
     }
 }
