@@ -7,6 +7,7 @@
 
 import SwiftUI
 import AVFoundation // Add this import at the top of the file
+import MediaPlayer // Add this import for remote control events
 
 // Move the SearchResult struct definition to the top of the file, outside of any other struct
 struct SearchResult: Identifiable, CustomStringConvertible {
@@ -44,6 +45,21 @@ struct ContentView: View {
     @State private var showSearchResults = false
     @State private var selectedSearchResult: SearchResult?
     
+    @State private var audioPlayers: [String: AVAudioPlayer] = [:]
+
+    init() {
+        setupAudioSession()
+    }
+
+    private func setupAudioSession() {
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.mixWithOthers, .defaultToSpeaker])
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            print("Failed to set up audio session: \(error)")
+        }
+    }
+
     var body: some View {
         NavigationView {
             VStack {
@@ -57,7 +73,6 @@ struct ContentView: View {
                         Text(iyal)
                     }
                 } 
-                .padding(.vertical, 8)
                 .background(Color.gray.opacity(0.2))
                 
                 Text("Search Results Count: \(searchResults.count)")
@@ -70,11 +85,13 @@ struct ContentView: View {
                         searchContent()
                     }) {
                         Image(systemName: "magnifyingglass")
+                            .font(.system(size: 16)) // Reduced from a larger value, e.g. 24
                     }
                     Button(action: {
                         showLanguageSettings = true
                     }) {
                         Image(systemName: "gearshape")
+                            .font(.system(size: 16)) // Reduced from a larger value, e.g. 24
                     }
                 }
             )
@@ -221,13 +238,45 @@ struct AdhigaramView: View {
             if let url = Bundle.main.url(forResource:adhigaram, withExtension: "mp3") {
                 do {
                     let player = try AVAudioPlayer(contentsOf: url)
+                    player.numberOfLoops = -1 // Loop indefinitely
                     audioPlayers[adhigaram] = player
                     player.play()
                     isPlaying[adhigaram] = true
+                    
+                    // Set up remote control events
+                    setupRemoteTransportControls()
                 } catch {
                     print("Error loading audio file: \(error.localizedDescription)")
                 }
             }
+        }
+    }
+
+    private func setupRemoteTransportControls() {
+        let commandCenter = MPRemoteCommandCenter.shared()
+        
+        commandCenter.playCommand.addTarget { event in
+            self.resumePlayback()
+            return .success
+        }
+        
+        commandCenter.pauseCommand.addTarget { event in
+            self.pausePlayback()
+            return .success
+        }
+    }
+
+    private func resumePlayback() {
+        for (adhigaram, player) in audioPlayers {
+            player.play()
+            isPlaying[adhigaram] = true
+        }
+    }
+
+    private func pausePlayback() {
+        for (adhigaram, player) in audioPlayers {
+            player.pause()
+            isPlaying[adhigaram] = false
         }
     }
     
@@ -274,7 +323,7 @@ struct AdhigaramRowView: View {
                     Button(action: onTogglePlayPause) {
                         Image(systemName: isPlaying ? "pause.circle" : "play.circle")
                             .foregroundColor(.blue)
-                            .font(.title2)
+                            .font(.system(size: 16)) // Reduced from a larger value, e.g. 24
                     }
                     .buttonStyle(PlainButtonStyle())
                 }
@@ -284,6 +333,7 @@ struct AdhigaramRowView: View {
                         Text(adhigaram)
                         Spacer()
                         Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
+                            .font(.system(size: 16)) // Reduced from a larger value, e.g. 24
                     }
                 }
                 .buttonStyle(PlainButtonStyle())
@@ -383,10 +433,14 @@ struct ExplanationView: View {
                 }) {
                     Image(systemName: "doc.on.doc")
                         .foregroundColor(.blue)
-                        .font(.title)
+                        .font(.system(size: 16)) // Reduced from a larger value, e.g. 24
                 }
-                Button("Close") {
+                Button(action: {
                     presentationMode.wrappedValue.dismiss()
+                }) {
+                    Image(systemName: "xmark.circle")
+                        .foregroundColor(.blue)
+                        .font(.system(size: 16)) // Reduced from a larger value, e.g. 24
                 }
             })
         }
@@ -432,7 +486,7 @@ struct SearchResultsView: View {
                 ForEach(results.indices, id: \.self) { index in
                     let result = results[index]
                     VStack(alignment: .leading) {
-                        Text("(index + 1):")
+                        Text("\(index + 1):")
                             .font(.headline)
                         Text("Adhigaram: \(result.adhigaram)")
                         Text("Line: \(result.line)")
@@ -481,14 +535,19 @@ struct LanguageSettingsView: View {
                             Spacer()
                             if language == selectedLanguage {
                                 Image(systemName: "checkmark")
+                                    .font(.system(size: 16)) // Reduced from a larger value, e.g. 24
                             }
                         }
                     }
                 }
             }
             .navigationTitle("Select Language")
-            .navigationBarItems(trailing: Button("Close") {
+            .navigationBarItems(trailing: Button(action: {
                 presentationMode.wrappedValue.dismiss()
+            }) {
+                Image(systemName: "xmark.circle")
+                    .foregroundColor(.blue)
+                    .font(.system(size: 16)) // Reduced from a larger value, e.g. 24
             })
         }
     }
