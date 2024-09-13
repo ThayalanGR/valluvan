@@ -494,7 +494,7 @@ struct SearchResultsView: View {
                     VStack(alignment: .leading) {
                         Text("\(index + 1):")
                             .font(.headline)
-                        Text("Adhigaram: \(result.adhigaram)")
+                        Text("Chapter: \(result.adhigaram)")
                         Text("Line: \(result.line)")
                     }
                     .onTapGesture {
