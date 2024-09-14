@@ -87,7 +87,7 @@ struct ContentView: View {
                         LazyVStack(spacing: 16) {
                             ForEach(iyals, id: \.self) { iyal in
                                 NavigationLink(destination: AdhigaramView(iyal: iyal, selectedLanguage: selectedLanguage).environmentObject(appState)) {
-                                    IyalCard(iyal: iyal)
+                                    IyalCard(iyal: iyal, selectedLanguage: selectedLanguage)
                                 }
                             }
                         }
@@ -168,13 +168,15 @@ struct ContentView: View {
     }
     struct IyalCard: View {
     let iyal: String
+    let selectedLanguage: String
     @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var appState: AppState
+    @State private var translatedIyal: String = ""
 
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 8) {
-                Text(iyal)
+                Text(translatedIyal)
                     .font(.headline)
                     .foregroundColor(.primary)
                     .lineLimit(2)
@@ -194,6 +196,11 @@ struct ContentView: View {
         .cornerRadius(10)
         .shadow(color: shadowColor, radius: 3, x: 0, y: 2)
         .environment(\.sizeCategory, appState.fontSize.textSizeCategory)
+        .onAppear {
+            Task {
+                await translateIyal()
+            }
+        }
     }
     
     private var backgroundColor: Color {
@@ -202,6 +209,20 @@ struct ContentView: View {
     
     private var shadowColor: Color {
         colorScheme == .dark ? Color.white.opacity(0.1) : Color.black.opacity(0.1)
+    }
+    
+    private func translateIyal() async {
+        if selectedLanguage == "Tamil" {
+            translatedIyal = iyal
+        } else {
+            do {
+                let translated = try await TranslationUtil.getTranslation(for: iyal, to: selectedLanguage)
+                translatedIyal = translated
+            } catch {
+                print("Error translating iyal: \(error)")
+                translatedIyal = iyal // Fallback to original text if translation fails
+            }
+        }
     }
 }
     
@@ -1071,12 +1092,6 @@ struct LanguageSettingsView: View {
             .navigationBarTitle("Settings", displayMode: .inline)
             .navigationBarItems(
                 trailing: HStack {
-                    Button(action: {
-                        toggleLanguage()
-                    }) {
-                        Image(systemName: selectedLanguage == "Tamil" ? "t.circle.fill" : "e.circle.fill")
-                            .foregroundColor(.blue)
-                    }
                     Button(action: {
                         isDarkMode.toggle()
                     }) {
