@@ -99,10 +99,8 @@ struct ContentView: View {
                     bottomBar
                 }
             }
-
             .navigationBarTitle("Valluvan", displayMode: .inline)
             .navigationBarItems(leading: leadingBarItems, trailing: trailingBarItems)
-            .navigationBarTitle(iyal, displayMode: .inline)
         }
         .preferredColorScheme(isDarkMode ? .dark : .light)
         .environment(\.sizeCategory, appState.fontSize.textSizeCategory)
@@ -251,8 +249,14 @@ struct ContentView: View {
     }
     
     private var leadingBarItems: some View {
-        Button(action: { showGoToKural = true }) {
-            Image(systemName: "arrow.right.circle")
+        HStack {
+            Button(action: { showGoToKural = true }) {
+                Image(systemName: "arrow.right.circle")
+            }
+            Button(action: toggleLanguage) {
+                Image(systemName: selectedLanguage == "Tamil" ? "pencil.circle.fill" : "a.circle.fill")
+                    .foregroundColor(.blue)
+            }
         }
     }
     
@@ -406,6 +410,17 @@ struct ContentView: View {
         default:
             return "\(index + 1).circle"
         }
+    }
+    
+    // Add this function to toggle between Tamil and English
+    private func toggleLanguage() {
+        if selectedLanguage == "Tamil" {
+            selectedLanguage = "English"
+        } else {
+            selectedLanguage = "Tamil"
+            selectedPal = tamilTitle[0]
+        }
+        updateSelectedPal()
     }
 }
 
@@ -1057,6 +1072,12 @@ struct LanguageSettingsView: View {
             .navigationBarItems(
                 trailing: HStack {
                     Button(action: {
+                        toggleLanguage()
+                    }) {
+                        Image(systemName: selectedLanguage == "Tamil" ? "t.circle.fill" : "e.circle.fill")
+                            .foregroundColor(.blue)
+                    }
+                    Button(action: {
                         isDarkMode.toggle()
                     }) {
                         Image(systemName: isDarkMode ? "sun.max.fill" : "moon.fill")
@@ -1074,6 +1095,15 @@ struct LanguageSettingsView: View {
         }
         .preferredColorScheme(isDarkMode ? .dark : .light)
         .environment(\.sizeCategory, appState.fontSize.textSizeCategory)
+    }
+
+    private func toggleLanguage() {
+        if selectedLanguage == "Tamil" {
+            selectedLanguage = "English"
+        } else {
+            selectedLanguage = "Tamil"
+            selectedPal = tamilTitle[0]
+        }
     }
 }
 
