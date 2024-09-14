@@ -174,7 +174,7 @@ struct ContentView: View {
                 .environmentObject(appState)
         }
         .sheet(isPresented: $showLanguageSettings) {
-            LanguageSettingsView(selectedLanguage: $selectedLanguage, selectedPal: $selectedPal, languages: languages, tamilTitle: tamilTitle)
+            LanguageSettingsView(selectedLanguage: $selectedLanguage, selectedPal: $selectedPal, languages: languages, getCurrentTitle: getCurrentTitle)
                 .environmentObject(appState)
         }
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
@@ -1086,8 +1086,9 @@ struct SelectedLinePair: Identifiable {
 struct LanguageSettingsView: View {
     @Binding var selectedLanguage: String
     @Binding var selectedPal: String
-    let languages: [String]
-    let tamilTitle: [String]
+    let languages: [String] 
+
+    let getCurrentTitle: (Int) -> String
     @Environment(\.presentationMode) var presentationMode
     @AppStorage("isDarkMode") private var isDarkMode = true
     @EnvironmentObject var appState: AppState
@@ -1113,10 +1114,9 @@ struct LanguageSettingsView: View {
                 Section(header: Text("Language")) {
                     ForEach(languages, id: \.self) { language in
                         Button(action: {
-                            selectedLanguage = language
-                            if language == "Tamil" {
-                                selectedPal = tamilTitle[0]
-                            }
+                            selectedLanguage = language 
+                            selectedPal = getCurrentTitle(0)
+ 
                             presentationMode.wrappedValue.dismiss()
                         }) {
                             HStack {
