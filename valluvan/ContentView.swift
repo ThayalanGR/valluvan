@@ -39,6 +39,9 @@ struct ContentView: View {
     @State private var goToKuralId = ""
     @State private var showInvalidKuralAlert = false
     @EnvironmentObject var appState: AppState
+    @State private var selectedNotificationKuralId: Int?
+    @State private var showExplanationView = false
+    @Environment(\.notificationKuralId) var notificationKuralId: Binding<Int?>
 
     init() {
         setupAudioSession()
@@ -163,6 +166,28 @@ struct ContentView: View {
             Alert(title: Text("Invalid Kural ID"), message: Text("Please enter a valid Kural ID between 1 and 1330."), dismissButton: .default(Text("OK")))
         }
         .environment(\.sizeCategory, appState.fontSize.textSizeCategory)
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
+            if let kuralId = notificationKuralId.wrappedValue {
+                if let result = DatabaseManager.shared.getKuralById(kuralId, language: selectedLanguage) {
+                    selectedSearchResult = result
+                    showExplanationView = true
+                }
+                notificationKuralId.wrappedValue = nil
+            }
+        }
+        .sheet(isPresented: $showExplanationView) {
+            if let result = selectedSearchResult {
+                ExplanationView(
+                    adhigaram: result.subheading,
+                    adhigaramId: String((result.kuralId + 9) / 10),
+                    lines: [result.content],
+                    explanation: NSAttributedString(string: result.explanation),
+                    selectedLanguage: selectedLanguage,
+                    kuralId: result.kuralId
+                )
+                .environmentObject(appState)
+            }
+        }
     }
     
     private func getCurrentTitle(_ index: Int) -> String {

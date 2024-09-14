@@ -141,6 +141,8 @@
 		FE6DD0D42C930E5D00736D71 /* புலவி நுணுக்கம்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0502C930E5D00736D71 /* புலவி நுணுக்கம்.mp3 */; };
 		FE6DD0D52C930E5D00736D71 /* நன்றியில்செல்வம்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0512C930E5D00736D71 /* நன்றியில்செல்வம்.mp3 */; };
 		FEC911FD2C956E7C00E6AE94 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC911FC2C956E7C00E6AE94 /* AppState.swift */; };
+		FEC912002C95719400E6AE94 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC911FE2C95719400E6AE94 /* AppDelegate.swift */; };
+		FEC912012C95719400E6AE94 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC911FF2C95719400E6AE94 /* NotificationManager.swift */; };
 		FECB70042C92F33E00989E70 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FECB6F762C92F33E00989E70 /* Preview Assets.xcassets */; };
 		FECB708A2C92F33E00989E70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FECB6FFE2C92F33E00989E70 /* Assets.xcassets */; };
 		FECB708B2C92F33E00989E70 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECB6FFF2C92F33E00989E70 /* ContentView.swift */; };
@@ -284,6 +286,8 @@
 		FE6DD0502C930E5D00736D71 /* புலவி நுணுக்கம்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "புலவி நுணுக்கம்.mp3"; sourceTree = "<group>"; };
 		FE6DD0512C930E5D00736D71 /* நன்றியில்செல்வம்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "நன்றியில்செல்வம்.mp3"; sourceTree = "<group>"; };
 		FEC911FC2C956E7C00E6AE94 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppState.swift; path = valluvan/AppState.swift; sourceTree = SOURCE_ROOT; };
+		FEC911FE2C95719400E6AE94 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FEC911FF2C95719400E6AE94 /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		FECB6F762C92F33E00989E70 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FECB6FFE2C92F33E00989E70 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FECB6FFF2C92F33E00989E70 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -476,6 +480,8 @@
 				FECB6FFF2C92F33E00989E70 /* ContentView.swift */,
 				FEC911FC2C956E7C00E6AE94 /* AppState.swift */,
 				FECB70002C92F33E00989E70 /* data.sqlite */,
+				FEC911FE2C95719400E6AE94 /* AppDelegate.swift */,
+				FEC911FF2C95719400E6AE94 /* NotificationManager.swift */,
 				FECB70012C92F33E00989E70 /* DatabaseManager.swift */,
 				FECB70022C92F33E00989E70 /* valluvanApp.swift */,
 			);
@@ -691,9 +697,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEC912012C95719400E6AE94 /* NotificationManager.swift in Sources */,
 				FECB708E2C92F33E00989E70 /* valluvanApp.swift in Sources */,
 				FECB708D2C92F33E00989E70 /* DatabaseManager.swift in Sources */,
 				FECB708B2C92F33E00989E70 /* ContentView.swift in Sources */,
+				FEC912002C95719400E6AE94 /* AppDelegate.swift in Sources */,
 				FEC911FD2C956E7C00E6AE94 /* AppState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
