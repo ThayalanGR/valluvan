@@ -227,11 +227,12 @@ struct AdhigaramView: View {
             ForEach(adhigarams.indices, id: \.self) { index in
                 let adhigaram = adhigarams[index]
                 let kuralId = kuralIds[index]
+                let adhigaramId = String((kuralId + 9)/10)
                 let adhigaramSong = adhigaramSongs[index]
                 VStack(alignment: .leading, spacing: 5) {
                     HStack(alignment: .top, spacing: 15) {
-                        Text("\(index + 1)")
-                            .font(.system(size: 14, weight: .bold))
+                        Text(adhigaramId)
+                            .font(.system(size: 12, weight: .bold))
                             .foregroundColor(.white)
                             .frame(width: 24, height: 24)
                             .background(Color.blue)
@@ -262,7 +263,11 @@ struct AdhigaramView: View {
                     
                     if expandedAdhigaram == adhigaram { 
                         HStack {
-                            Text(adhigaramSong + " Audio :")
+                            HStack {
+                                Image(systemName: "music.note")
+                                    .foregroundColor(.blue)
+                                Text(adhigaramSong)
+                            }
                                 .font(.subheadline)
                             Spacer()
                             Button(action: {
@@ -674,26 +679,44 @@ struct Favorite: Codable, Identifiable {
 }
 
 struct FavoritesView: View {
-    let favorites: [Favorite]
+    @State private var favorites: [Favorite]
     let selectedLanguage: String
     @Environment(\.presentationMode) var presentationMode
     @State private var selectedFavorite: Favorite?
     @State private var showExplanation = false
     @State private var explanationText: NSAttributedString = NSAttributedString()
 
+    init(favorites: [Favorite], selectedLanguage: String) {
+        _favorites = State(initialValue: favorites)
+        self.selectedLanguage = selectedLanguage
+    }
+
     var body: some View {
         NavigationView {
-            List(favorites) { favorite in
-                VStack(alignment: .leading) {
-                    Text(favorite.adhigaram)
-                        .font(.headline)
-                    ForEach(favorite.lines, id: \.self) { line in
-                        Text(line)
+            List {
+                ForEach(favorites) { favorite in
+                    VStack(alignment: .leading) {
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text(favorite.adhigaram)
+                                    .font(.headline)
+                                ForEach(favorite.lines, id: \.self) { line in
+                                    Text(line)
+                                }
+                            }
+                            Spacer()
+                            Button(action: {
+                                removeFavorite(favorite)
+                            }) {
+                                Image(systemName: "trash")
+                                    .foregroundColor(.red)
+                            }
+                        }
                     }
-                }
-                .onTapGesture {
-                    selectedFavorite = favorite
-                    loadExplanation(for: favorite.id)
+                    .onTapGesture {
+                        selectedFavorite = favorite
+                        loadExplanation(for: favorite.id)
+                    }
                 }
             }
             .navigationTitle("Favorites")
@@ -719,5 +742,16 @@ struct FavoritesView: View {
     private func loadExplanation(for kuralId: Int) {
         explanationText = DatabaseManager.shared.getExplanation(for: kuralId, language: selectedLanguage)
         showExplanation = true
+    }
+
+    private func removeFavorite(_ favorite: Favorite) {
+        favorites.removeAll { $0.id == favorite.id }
+        saveFavorites()
+    }
+
+    private func saveFavorites() {
+        if let encoded = try? JSONEncoder().encode(favorites) {
+            UserDefaults.standard.set(encoded, forKey: "favorites")
+        }
     }
 }
