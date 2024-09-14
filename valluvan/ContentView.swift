@@ -64,7 +64,7 @@ struct ContentView: View {
                     PalButton(title: getCurrentTitle(2), selectedPal: $selectedPal)
                 }
                 List(iyals, id: \.self) { iyal in
-                    NavigationLink(destination: AdhigaramView(iyal: iyal, selectedLanguage: selectedLanguage)) { 
+                    NavigationLink(destination: AdhigaramView(iyal: iyal, selectedLanguage: selectedLanguage).environmentObject(appState)) { 
                         Text(iyal)
                     }
                 } 
@@ -108,6 +108,7 @@ struct ContentView: View {
             )
             .sheet(isPresented: $showLanguageSettings) {
                 LanguageSettingsView(selectedLanguage: $selectedLanguage, selectedPal: $selectedPal, languages: languages, tamilTitle: tamilTitle)
+                    .environmentObject(appState)
             } 
             .toolbar {
                 ToolbarItem(placement: .principal) {
@@ -137,6 +138,7 @@ struct ContentView: View {
                 selectedSearchResult = result
                 showSearchResults = false
             })
+            .environmentObject(appState)
         }
         .sheet(item: $selectedSearchResult) { result in
             ExplanationView(
@@ -147,16 +149,20 @@ struct ContentView: View {
                 selectedLanguage: selectedLanguage,
                 kuralId: result.kuralId
             )
+            .environmentObject(appState)
         }
         .sheet(isPresented: $showFavorites) {
             FavoritesView(favorites: loadFavorites(), selectedLanguage: selectedLanguage)
+                .environmentObject(appState)
         }
         .sheet(isPresented: $showGoToKural) {
             GoToKuralView(isPresented: $showGoToKural, kuralId: $goToKuralId, onSubmit: goToKural)
+                .environmentObject(appState)
         }
         .alert(isPresented: $showInvalidKuralAlert) {
             Alert(title: Text("Invalid Kural ID"), message: Text("Please enter a valid Kural ID between 1 and 1330."), dismissButton: .default(Text("OK")))
         }
+        .environment(\.sizeCategory, appState.fontSize.textSizeCategory)
     }
     
     private func getCurrentTitle(_ index: Int) -> String {
@@ -247,6 +253,7 @@ struct ContentView: View {
 }
 
 struct GoToKuralView: View {
+    @EnvironmentObject var appState: AppState
     @Binding var isPresented: Bool
     @Binding var kuralId: String
     var onSubmit: () -> Void
@@ -267,8 +274,9 @@ struct GoToKuralView: View {
             .navigationBarTitle("Go to Kural", displayMode: .inline)
             .navigationBarItems(trailing: Button("Cancel") {
                 isPresented = false
-            })
+            }) 
         }
+        .environment(\.sizeCategory, appState.fontSize.textSizeCategory)
     }
 }
 struct AdhigaramView: View {
@@ -282,6 +290,7 @@ struct AdhigaramView: View {
     @State private var audioPlayers: [String: AVAudioPlayer] = [:]
     @State private var isPlaying: [String: Bool] = [:]
     @State private var selectedLinePair: SelectedLinePair?
+    @EnvironmentObject var appState: AppState
 
     var body: some View {
         List {
@@ -350,6 +359,7 @@ struct AdhigaramView: View {
                                         loadExplanation(for: adhigaram, lines: lines, kuralId: kuralId)
                                     }
                                 )
+                                .environmentObject(appState)
                             }
                         }
                         .padding(.leading, 43)
@@ -368,7 +378,9 @@ struct AdhigaramView: View {
         }
         .sheet(item: $selectedLinePair) { pair in
             ExplanationView(adhigaram: pair.adhigaram, adhigaramId: String((pair.kuralId + 9) / 10), lines: pair.lines, explanation: pair.explanation, selectedLanguage: selectedLanguage, kuralId: pair.kuralId)
+                .environmentObject(appState)
         }
+        .environment(\.sizeCategory, appState.fontSize.textSizeCategory)
     }
     
     private func loadAdhigarams() {
@@ -470,6 +482,7 @@ struct LinePairView: View {
     let linePair: [String]
     let onTap: ([String], Int) -> Void
     @Environment(\.colorScheme) var colorScheme
+    @EnvironmentObject var appState: AppState
 
     var body: some View {
         let parts = linePair[0].split(separator: " ", maxSplits: 1, omittingEmptySubsequences: true)
@@ -507,6 +520,7 @@ struct LinePairView: View {
         .onTapGesture {
             onTap([firstLine, secondLine], kuralId)
         }
+        .environment(\.sizeCategory, appState.fontSize.textSizeCategory)
     }
     
     private var shadowColor: Color {
@@ -525,6 +539,7 @@ struct ExplanationView: View {
     @State private var isSpeaking = false
     @State private var isFavorite = false
     @State private var showShareSheet = false
+    @EnvironmentObject var appState: AppState
 
     var body: some View {
         NavigationView {
@@ -622,6 +637,7 @@ struct ExplanationView: View {
             """
             ShareSheet(activityItems: [content])
         }
+        .environment(\.sizeCategory, appState.fontSize.textSizeCategory)
     }
 
     private func toggleFavorite() {
@@ -711,6 +727,7 @@ struct SearchBar: View {
 struct SearchResultsView: View {
     let results: [DatabaseSearchResult]
     let onSelectResult: (DatabaseSearchResult) -> Void
+    @EnvironmentObject var appState: AppState
     
     var body: some View {
         NavigationView {
@@ -730,6 +747,8 @@ struct SearchResultsView: View {
             }
             .navigationTitle("Search Results (\(results.count))")
         }
+
+        .environment(\.sizeCategory, appState.fontSize.textSizeCategory)
     }
 }
 
@@ -806,6 +825,7 @@ struct LanguageSettingsView: View {
             })
         }
         .preferredColorScheme(isDarkMode ? .dark : .light)
+        .environment(\.sizeCategory, appState.fontSize.textSizeCategory)
     }
 }
 
@@ -823,6 +843,7 @@ struct FavoritesView: View {
     @State private var selectedFavorite: Favorite?
     @State private var showExplanation = false
     @State private var explanationText: NSAttributedString = NSAttributedString()
+    @EnvironmentObject var appState: AppState
 
     init(favorites: [Favorite], selectedLanguage: String) {
         _favorites = State(initialValue: favorites)
@@ -873,9 +894,10 @@ struct FavoritesView: View {
                     explanation: explanationText,
                     selectedLanguage: selectedLanguage,
                     kuralId: favorite.id
-                )
+                ).environmentObject(appState)
             }
         }
+        .environment(\.sizeCategory, appState.fontSize.textSizeCategory)
     }
 
     private func loadExplanation(for kuralId: Int) {
