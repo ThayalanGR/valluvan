@@ -43,6 +43,8 @@ struct ContentView: View {
     @State private var showExplanationView = false
     @Environment(\.notificationKuralId) var notificationKuralId: Binding<Int?>
 
+    @State private var isSearching = false
+
     init() {
         setupAudioSession()
     }
@@ -60,75 +62,32 @@ struct ContentView: View {
 
     var body: some View {
         NavigationView {
-            VStack {
-                List(iyals, id: \.self) { iyal in
-                    NavigationLink(destination: AdhigaramView(iyal: iyal, selectedLanguage: selectedLanguage).environmentObject(appState)) { 
-                        Text(iyal)
+            ZStack {
+                Color(UIColor.systemBackground).edgesIgnoringSafeArea(.all)
+                
+                VStack(spacing: 0) {
+                    searchBar
+                    
+                    Divider()
+                    
+                    ScrollView {
+                        LazyVStack(spacing: 16) {
+                            ForEach(iyals, id: \.self) { iyal in
+                                NavigationLink(destination: AdhigaramView(iyal: iyal, selectedLanguage: selectedLanguage).environmentObject(appState)) {
+                                    IyalCard(iyal: iyal)
+                                }
+                            }
+                        }
+                        .padding()
                     }
-                } 
-                .background(Color.gray.opacity(0.2))                
-                if hasSearched {
-                    Text("") 
-                }
-                Spacer() 
-                HStack {
-                    PalButton(title: getCurrentTitle(0), systemImage: "1.circle", selectedPal: $selectedPal)
-                    PalButton(title: getCurrentTitle(1), systemImage: "2.circle", selectedPal: $selectedPal)
-                    PalButton(title: getCurrentTitle(2), systemImage: "3.circle", selectedPal: $selectedPal)
-                }
-                .padding()
-                .background(Color(.systemBackground))
-                .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: -5)
-            }
-            .navigationBarItems(
-                leading: HStack {
-                    Button(action: {
-                        showGoToKural = true
-                    }) {
-                        Image(systemName: "arrow.right.circle")
-                            .font(.system(size: 16))
-                    }
-                    SearchBar(text: $searchText, onSubmit: {
-                        searchContent()
-                    })
-                        .frame(width: 200)
-                }, 
-                trailing: HStack {
-                    Button(action: {
-                        searchContent()
-                    }) {
-                        Image(systemName: "magnifyingglass")
-                            .font(.system(size: 16))
-                    }
-                    Button(action: {
-                        showFavorites = true
-                    }) {
-                        Image(systemName: "star.fill")
-                            .font(.system(size: 16))
-                    }
-                    Button(action: {
-                        showLanguageSettings = true
-                    }) {
-                        Image(systemName: "gearshape")
-                            .font(.system(size: 16)) 
-                    }
-                }
-            )
-            .sheet(isPresented: $showLanguageSettings) {
-                LanguageSettingsView(selectedLanguage: $selectedLanguage, selectedPal: $selectedPal, languages: languages, tamilTitle: tamilTitle)
-                    .environmentObject(appState)
-            } 
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    Button(action: {
-                        isExpanded.toggle()
-                    }) {
-                        Text(iyal)
-                            .font(.headline)
-                            .foregroundColor(.primary)
-                    }
+                    
+                    Divider()
+                    
+                    bottomBar
                 }
             }
+            .navigationBarItems(leading: leadingBarItems, trailing: trailingBarItems)
+            .navigationBarTitle(iyal, displayMode: .inline)
         }
         .preferredColorScheme(isDarkMode ? .dark : .light)
         .environment(\.sizeCategory, appState.fontSize.textSizeCategory)
@@ -170,7 +129,10 @@ struct ContentView: View {
         .alert(isPresented: $showInvalidKuralAlert) {
             Alert(title: Text("Invalid Kural ID"), message: Text("Please enter a valid Kural ID between 1 and 1330."), dismissButton: .default(Text("OK")))
         }
-        .environment(\.sizeCategory, appState.fontSize.textSizeCategory)
+        .sheet(isPresented: $showLanguageSettings) {
+            LanguageSettingsView(selectedLanguage: $selectedLanguage, selectedPal: $selectedPal, languages: languages, tamilTitle: tamilTitle)
+                .environmentObject(appState)
+        }
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
             if let kuralId = notificationKuralId.wrappedValue {
                 if let result = DatabaseManager.shared.getKuralById(kuralId, language: selectedLanguage) {
@@ -194,6 +156,98 @@ struct ContentView: View {
             }
         }
     }
+    struct IyalCard: View {
+    let iyal: String
+    @Environment(\.colorScheme) var colorScheme
+    @EnvironmentObject var appState: AppState
+
+    var body: some View {
+        HStack {
+            VStack(alignment: .leading, spacing: 8) {
+                Text(iyal)
+                    .font(.headline)
+                    .foregroundColor(.primary)
+                    .lineLimit(2)
+                    .multilineTextAlignment(.leading)
+            }
+            .padding(.vertical, 12)
+            .padding(.horizontal, 16)
+            
+            Spacer()
+            
+            Image(systemName: "chevron.right")
+                .foregroundColor(.secondary)
+                .padding(.trailing, 16)
+        }
+        .frame(maxWidth: .infinity)
+        .background(backgroundColor)
+        .cornerRadius(10)
+        .shadow(color: shadowColor, radius: 3, x: 0, y: 2)
+        .environment(\.sizeCategory, appState.fontSize.textSizeCategory)
+    }
+    
+    private var backgroundColor: Color {
+        colorScheme == .dark ? Color(.systemGray6) : Color(.systemBackground)
+    }
+    
+    private var shadowColor: Color {
+        colorScheme == .dark ? Color.white.opacity(0.1) : Color.black.opacity(0.1)
+    }
+}
+    
+    private var searchBar: some View {
+        HStack {
+            Image(systemName: "magnifyingglass")
+                .foregroundColor(.gray)
+            TextField("Search", text: $searchText, onCommit: performSearch)
+                .textFieldStyle(PlainTextFieldStyle())
+            if !searchText.isEmpty {
+                Button(action: { 
+                    searchText = ""
+                    searchResults = []
+                    showSearchResults = false
+                }) {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundColor(.gray)
+                }
+            }
+            if isSearching {
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle())
+            }
+        }
+        .padding()
+        .background(Color(UIColor.secondarySystemBackground))
+        .cornerRadius(10)
+        .padding()
+    }
+    
+    private var bottomBar: some View {
+        HStack {
+            ForEach(0..<3) { index in
+                PalButton(title: getCurrentTitle(index), systemImage: "\(index + 1).circle", selectedPal: $selectedPal)
+            }
+        }
+        .padding()
+        .background(Color(UIColor.secondarySystemBackground))
+    }
+    
+    private var leadingBarItems: some View {
+        Button(action: { showGoToKural = true }) {
+            Image(systemName: "arrow.right.circle")
+        }
+    }
+    
+    private var trailingBarItems: some View {
+        HStack {
+            Button(action: { showFavorites = true }) {
+                Image(systemName: "star.fill")
+            }
+            Button(action: { showLanguageSettings = true }) {
+                Image(systemName: "gearshape")
+            }
+        }
+    }
     
     private func getCurrentTitle(_ index: Int) -> String {
         return selectedLanguage == "Tamil" ? tamilTitle[index] : englishTitle[index]
@@ -209,31 +263,34 @@ struct ContentView: View {
         iyals = DatabaseManager.shared.getIyals(for: selectedPal, language: selectedLanguage)
     }
     
-    func searchContent() {
-        switch selectedLanguage {
-        case "Tamil":
-            searchTamilContent()
-        default:
-            let databaseResults = DatabaseManager.shared.searchContent(query: searchText, language: selectedLanguage)
-            searchResults = databaseResults.map { dbResult in
-                DatabaseSearchResult(
-                    heading: dbResult.heading,
-                    subheading: dbResult.subheading,
-                    content: dbResult.content,
-                    explanation: dbResult.explanation,
-                    kuralId: dbResult.kuralId
-                )
+    func performSearch() {
+        guard !searchText.isEmpty else {
+            searchResults = []
+            showSearchResults = false
+            return
+        }
+        
+        isSearching = true
+        DispatchQueue.global(qos: .userInitiated).async {
+            let results: [DatabaseSearchResult]
+            if self.selectedLanguage == "Tamil" {
+                results = self.searchTamilContent()
+            } else {
+                results = self.searchContent()
             }
+            
             DispatchQueue.main.async {
+                self.searchResults = results
                 self.showSearchResults = true
                 self.hasSearched = true
+                self.isSearching = false
             }
         }
     }
- 
-    func searchTamilContent() {
-        let databaseResults = DatabaseManager.shared.searchTamilContent(query: searchText)
-        searchResults = databaseResults.map { dbResult in
+
+    func searchContent() -> [DatabaseSearchResult] {
+        let databaseResults = DatabaseManager.shared.searchContent(query: searchText, language: selectedLanguage)
+        return databaseResults.map { dbResult in
             DatabaseSearchResult(
                 heading: dbResult.heading,
                 subheading: dbResult.subheading,
@@ -242,15 +299,19 @@ struct ContentView: View {
                 kuralId: dbResult.kuralId
             )
         }
-        DispatchQueue.main.async {
-            self.showSearchResults = true
-            self.hasSearched = true
-        }
     }
 
-    func performSearch() {
-        // Implement your search logic here
-        print("Performing search for: \(searchText)")
+    func searchTamilContent() -> [DatabaseSearchResult] {
+        let databaseResults = DatabaseManager.shared.searchTamilContent(query: searchText)
+        return databaseResults.map { dbResult in
+            DatabaseSearchResult(
+                heading: dbResult.heading,
+                subheading: dbResult.subheading,
+                content: dbResult.content,
+                explanation: dbResult.explanation,
+                kuralId: dbResult.kuralId
+            )
+        }
     }
 
     // Add this function to load favorites
@@ -549,7 +610,7 @@ struct AdhigaramView: View {
      
     private func startTimer(for adhigaramSong: String) {
         timer?.invalidate()
-        timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
+        timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
             if let player = audioPlayers[adhigaramSong] {
                 currentTime[adhigaramSong] = player.currentTime
             }
@@ -873,14 +934,6 @@ struct LanguageSettingsView: View {
     var body: some View {
         NavigationView {
             List {
-                Section(header: Text("Theme")) {
-                    HStack {
-                        Image(systemName: isDarkMode ? "moon.fill" : "sun.max.fill")
-                            .foregroundColor(isDarkMode ? .yellow : .orange)
-                        Toggle("Dark Mode", isOn: $isDarkMode)
-                    }
-                }
-
                 Section(header: Text("Font Size")) {
                     Picker("Font Size", selection: $appState.fontSize) {
                         ForEach(FontSize.allCases) { size in
@@ -890,6 +943,11 @@ struct LanguageSettingsView: View {
                     .pickerStyle(SegmentedPickerStyle())
                 }
 
+
+                Section(header: Text("Notifications")) {
+                    Toggle("Daily Thirukkural (9 AM)", isOn: $appState.isDailyKuralEnabled)
+                }
+                
                 Section(header: Text("Language")) {
                     ForEach(languages, id: \.self) { language in
                         Button(action: {
@@ -910,19 +968,25 @@ struct LanguageSettingsView: View {
                         }
                     }
                 }
-
-                Section(header: Text("Notifications")) {
-                    Toggle("Daily Thirukkural (9 AM)", isOn: $appState.isDailyKuralEnabled)
-                }
             }
             .navigationTitle("Settings")
-            .navigationBarItems(trailing: Button(action: {
-                presentationMode.wrappedValue.dismiss()
-            }) {
-                Image(systemName: "xmark.circle")
-                    .foregroundColor(.blue)
-                    .font(.system(size: 16))
-            })
+            .navigationBarItems(
+                trailing: HStack {
+                    Button(action: {
+                        isDarkMode.toggle()
+                    }) {
+                        Image(systemName: isDarkMode ? "sun.max.fill" : "moon.fill")
+                            .foregroundColor(isDarkMode ? .yellow : .primary)
+                    }
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+                    }) {
+                        Image(systemName: "xmark.circle")
+                            .foregroundColor(.blue)
+                            .font(.system(size: 16))
+                    }
+                }
+            )
         }
         .preferredColorScheme(isDarkMode ? .dark : .light)
         .environment(\.sizeCategory, appState.fontSize.textSizeCategory)
