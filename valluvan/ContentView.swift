@@ -38,7 +38,7 @@ struct ContentView: View {
     @State private var showGoToKural = false
     @State private var goToKuralId = ""
     @State private var showInvalidKuralAlert = false
-    @AppStorage("fontSize") private var fontSize: FontSize = .medium
+    @EnvironmentObject var appState: AppState
 
     init() {
         setupAudioSession()
@@ -122,7 +122,7 @@ struct ContentView: View {
             }
         }
         .preferredColorScheme(isDarkMode ? .dark : .light)
-        .environment(\.sizeCategory, fontSize.textSizeCategory)
+        .environment(\.sizeCategory, appState.fontSize.textSizeCategory)
         .onAppear {
             loadIyals()
         }
@@ -752,7 +752,7 @@ struct LanguageSettingsView: View {
     let tamilTitle: [String]
     @Environment(\.presentationMode) var presentationMode
     @AppStorage("isDarkMode") private var isDarkMode = false
-    @AppStorage("fontSize") private var fontSize: FontSize = .medium
+    @EnvironmentObject var appState: AppState
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
@@ -767,7 +767,7 @@ struct LanguageSettingsView: View {
                 }
 
                 Section(header: Text("Font Size")) {
-                    Picker("Font Size", selection: $fontSize) {
+                    Picker("Font Size", selection: $appState.fontSize) {
                         ForEach(FontSize.allCases) { size in
                             Text(size.rawValue).tag(size)
                         }
@@ -806,23 +806,6 @@ struct LanguageSettingsView: View {
             })
         }
         .preferredColorScheme(isDarkMode ? .dark : .light)
-    }
-}
-
-// Add this enum at the bottom of the file
-enum FontSize: String, CaseIterable, Identifiable {
-    case small = "Small"
-    case medium = "Medium"
-    case large = "Large"
-
-    var id: String { self.rawValue }
-
-    var textSizeCategory: ContentSizeCategory {
-        switch self {
-        case .small: return .small
-        case .medium: return .medium
-        case .large: return .large
-        }
     }
 }
 
@@ -912,7 +895,6 @@ struct FavoritesView: View {
     }
 }
 
-// Add this struct at the bottom of the file
 struct ShareSheet: UIViewControllerRepresentable {
     let activityItems: [Any]
     let applicationActivities: [UIActivity]? = nil

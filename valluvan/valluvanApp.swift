@@ -9,17 +9,13 @@ import SwiftUI
 import SQLite3
 
 @main
-struct valluvanApp: App {
-    init() {
-        insertChaptersIntoDB()
-    }
-    
+struct ValluvanApp: App {
+    @StateObject private var appState = AppState()
+
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(appState)
         }
-    }
-    
-    private func insertChaptersIntoDB() { 
     }
 }
