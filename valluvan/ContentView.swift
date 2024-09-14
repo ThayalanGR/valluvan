@@ -51,7 +51,6 @@ struct ContentView: View {
     @AppStorage("isDarkMode") private var isDarkMode = true
     @State private var showGoToKural = false
     @State private var goToKuralId = ""
-    @State private var showInvalidKuralAlert = false
     @EnvironmentObject var appState: AppState
     @State private var selectedNotificationKuralId: Int?
     @State private var showExplanationView = false
@@ -139,9 +138,6 @@ struct ContentView: View {
         .sheet(isPresented: $showGoToKural) {
             GoToKuralView(isPresented: $showGoToKural, kuralId: $goToKuralId, onSubmit: goToKural)
                 .environmentObject(appState)
-        }
-        .alert(isPresented: $showInvalidKuralAlert) {
-            Alert(title: Text("Invalid Kural ID"), message: Text("Please enter a valid Kural ID between 1 and 1330."), dismissButton: .default(Text("OK")))
         }
         .sheet(isPresented: $showLanguageSettings) {
             LanguageSettingsView(selectedLanguage: $selectedLanguage, selectedPal: $selectedPal, languages: languages, tamilTitle: tamilTitle)
@@ -376,25 +372,17 @@ struct ContentView: View {
     }
 
     private func goToKural() {
-        guard let kuralId = Int(goToKuralId) else {
-            showInvalidKuralAlert = true
-            return
-        }
-
-        if kuralId < 1 || kuralId > 1330 {
-            showInvalidKuralAlert = true
-            return
-        }
-
-        let result = DatabaseManager.shared.getKuralById(kuralId, language: selectedLanguage)
-        if let result = result {
-            selectedSearchResult = DatabaseSearchResult(
-                heading: result.heading,
-                subheading: result.subheading,
-                content: result.content,
-                explanation: result.explanation,
-                kuralId: result.kuralId
-            )
+        if let kuralId = Int(goToKuralId), (1...1330).contains(kuralId) {
+            let result = DatabaseManager.shared.getKuralById(kuralId, language: selectedLanguage)
+            if let result = result {
+                selectedSearchResult = DatabaseSearchResult(
+                    heading: result.heading,
+                    subheading: result.subheading,
+                    content: result.content,
+                    explanation: result.explanation,
+                    kuralId: result.kuralId
+                )
+            }
         }
         showGoToKural = false
     }
@@ -406,32 +394,48 @@ struct GoToKuralView: View {
     @Binding var kuralId: String
     var onSubmit: () -> Void
     @FocusState private var isTextFieldFocused: Bool
+    @State private var showInvalidKuralAlert = false
 
     var body: some View {
         NavigationView {
             VStack {
                 TextField("Enter Kural ID (1-1330)", text: $kuralId, onCommit: {
-                    onSubmit()
+                    validateAndSubmit()
                 })
-                    .keyboardType(.numberPad)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
-                    .focused($isTextFieldFocused)
+                .keyboardType(.numberPad)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding()
+                .focused($isTextFieldFocused)
 
                 Button("Go to Kural") {
-                    onSubmit()
+                    validateAndSubmit()
                 }
                 .padding()
             }
             .navigationBarTitle("Go to Kural", displayMode: .inline)
             .navigationBarItems(trailing: Button("Cancel") {
                 isPresented = false
-            }) 
+            })
+            .alert(isPresented: $showInvalidKuralAlert) {
+                Alert(
+                    title: Text("Invalid Kural ID"),
+                    message: Text("Please enter a valid Kural ID between 1 and 1330."),
+                    dismissButton: .default(Text("OK"))
+                )
+            }
         }
         .environment(\.sizeCategory, appState.fontSize.textSizeCategory)
         .onAppear {
             isTextFieldFocused = true
         }
+    }
+
+    private func validateAndSubmit() {
+        guard let id = Int(kuralId), (1...1330).contains(id) else {
+            showInvalidKuralAlert = true
+            return
+        }
+        onSubmit()
     }
 }
 struct AdhigaramView: View {

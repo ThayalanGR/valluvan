@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FE42A35C2C959D5300C30205 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE42A35B2C959D5300C30205 /* Launch Screen.storyboard */; };
 		FE624C112C92CCEC005195EC /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = FE624C102C92CCEC005195EC /* SQLite */; };
 		FE6DD0522C930E5D00736D71 /* அரண்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFCE2C930E5B00736D71 /* அரண்.mp3 */; };
 		FE6DD0532C930E5D00736D71 /* இல்வாழ்க்கை.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DCFCF2C930E5B00736D71 /* இல்வாழ்க்கை.mp3 */; };
@@ -153,6 +154,7 @@
 
 /* Begin PBXFileReference section */
 		FE1B2D832C92C133006DBC55 /* valluvan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = valluvan.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE42A35B2C959D5300C30205 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		FE6DCFCE2C930E5B00736D71 /* அரண்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "அரண்.mp3"; sourceTree = "<group>"; };
 		FE6DCFCF2C930E5B00736D71 /* இல்வாழ்க்கை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "இல்வாழ்க்கை.mp3"; sourceTree = "<group>"; };
 		FE6DCFD02C930E5B00736D71 /* வலியறிதல்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "வலியறிதல்.mp3"; sourceTree = "<group>"; };
@@ -477,6 +479,7 @@
 				FECB6F772C92F33E00989E70 /* Preview Content */,
 				FECB6FFD2C92F33E00989E70 /* Sounds */,
 				FECB6FFE2C92F33E00989E70 /* Assets.xcassets */,
+				FE42A35B2C959D5300C30205 /* Launch Screen.storyboard */,
 				FECB6FFF2C92F33E00989E70 /* ContentView.swift */,
 				FEC911FC2C956E7C00E6AE94 /* AppState.swift */,
 				FECB70002C92F33E00989E70 /* data.sqlite */,
@@ -554,6 +557,7 @@
 			files = (
 				FE6DD0BF2C930E5D00736D71 /* உட்பகை.mp3 in Resources */,
 				FE6DD0602C930E5D00736D71 /* கூடாவொழுக்கம்.mp3 in Resources */,
+				FE42A35C2C959D5300C30205 /* Launch Screen.storyboard in Resources */,
 				FE6DD0CE2C930E5D00736D71 /* வெகுளாமை.mp3 in Resources */,
 				FE6DD0612C930E5D00736D71 /* நினைந்தவர்புலம்பல்.mp3 in Resources */,
 				FE6DD07B2C930E5D00736D71 /* ஒற்றாடல்.mp3 in Resources */,
@@ -841,7 +845,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = NO;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
