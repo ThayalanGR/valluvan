@@ -1031,6 +1031,7 @@ struct LanguageSettingsView: View {
                     }
                 }
             }
+            .navigationBarTitle("Settings", displayMode: .inline)
             .navigationBarItems(
                 trailing: HStack {
                     Button(action: {
@@ -1117,7 +1118,7 @@ struct FavoritesView: View {
                     }
                 }
             }
-            .navigationTitle("Favorites List")
+            .navigationBarTitle("Favorites List", displayMode: .inline)
             .navigationBarItems(trailing: Button(action: {
                 presentationMode.wrappedValue.dismiss()
             }) {
