@@ -328,6 +328,9 @@ struct AdhigaramView: View {
     @State private var isPlaying: [String: Bool] = [:]
     @State private var selectedLinePair: SelectedLinePair?
     @EnvironmentObject var appState: AppState
+    @State private var currentTime: [String: TimeInterval] = [:]
+    @State private var duration: [String: TimeInterval] = [:]
+    @State private var timer: Timer?
 
     var body: some View {
         List {
@@ -365,9 +368,32 @@ struct AdhigaramView: View {
                                             .foregroundColor(.blue)
                                             .font(.system(size: 20))
                                     }
-                                    .buttonStyle(PlainButtonStyle()) // Add this line
+                                    .buttonStyle(PlainButtonStyle())
                                 }
                                 .padding(.vertical, 4)
+                                
+                                if isPlaying[adhigaramSong] ?? false {
+                                    VStack(spacing: 5) {
+                                        Slider(value: Binding(
+                                            get: { self.currentTime[adhigaramSong] ?? 0 },
+                                            set: { newValue in
+                                                self.currentTime[adhigaramSong] = newValue
+                                                if let player = self.audioPlayers[adhigaramSong] {
+                                                    player.currentTime = newValue
+                                                }
+                                            }
+                                        ), in: 0...(duration[adhigaramSong] ?? 0))
+                                        .accentColor(.blue)
+                                        
+                                        HStack {
+                                            Text(timeString(from: currentTime[adhigaramSong] ?? 0))
+                                            Spacer()
+                                            Text(timeString(from: duration[adhigaramSong] ?? 0))
+                                        }
+                                        .font(.caption)
+                                        .foregroundColor(.secondary)
+                                    }
+                                }
                             }
                         }
                         
@@ -443,16 +469,18 @@ struct AdhigaramView: View {
         }
     }
     
-    private func togglePlayPause(for adhigaramSong: String) {  
+    private func togglePlayPause(for adhigaramSong: String) {
         if let player = audioPlayers[adhigaramSong] {
             if player.isPlaying {
                 player.pause()
                 isPlaying[adhigaramSong] = false
+                timer?.invalidate()
             } else {
                 player.play()
                 isPlaying[adhigaramSong] = true
+                startTimer(for: adhigaramSong)
             }
-        } else { 
+        } else {
             if let url = Bundle.main.url(forResource: adhigaramSong, withExtension: "mp3") {
                 do {
                     let player = try AVAudioPlayer(contentsOf: url)
@@ -460,6 +488,9 @@ struct AdhigaramView: View {
                     audioPlayers[adhigaramSong] = player
                     player.play()
                     isPlaying[adhigaramSong] = true
+                    duration[adhigaramSong] = player.duration
+                    currentTime[adhigaramSong] = 0
+                    startTimer(for: adhigaramSong)
                     
                     // Set up remote control events
                     setupRemoteTransportControls()
@@ -467,7 +498,7 @@ struct AdhigaramView: View {
                     print("Error loading audio file: \(error.localizedDescription)")
                 }
             } else {
-                print("Audio file not found: \(adhigaramSong).mp3") // Add this line for debugging
+                print("Audio file not found: \(adhigaramSong).mp3")
             }
         }
     }
@@ -506,6 +537,9 @@ struct AdhigaramView: View {
         }
         audioPlayers.removeAll()
         isPlaying.removeAll()
+        currentTime.removeAll()
+        duration.removeAll()
+        timer?.invalidate()
     }
     
     private func loadExplanation(for adhigaram: String, lines: [String], kuralId: Int) {
@@ -513,6 +547,20 @@ struct AdhigaramView: View {
         selectedLinePair = SelectedLinePair(adhigaram: adhigaram, lines: lines, explanation: explanation, kuralId: kuralId)
     }
      
+    private func startTimer(for adhigaramSong: String) {
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
+            if let player = audioPlayers[adhigaramSong] {
+                currentTime[adhigaramSong] = player.currentTime
+            }
+        }
+    }
+    
+    private func timeString(from timeInterval: TimeInterval) -> String {
+        let minutes = Int(timeInterval / 60)
+        let seconds = Int(timeInterval.truncatingRemainder(dividingBy: 60))
+        return String(format: "%02d:%02d", minutes, seconds)
+    }
 }
 
 struct LinePairView: View {
