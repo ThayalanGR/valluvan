@@ -434,9 +434,11 @@ struct LinePairView: View {
                         .fontWeight(.medium)
                 }
             }
+            Spacer() // Add this to push content to the left
         }
         .padding(.vertical, 8)
         .padding(.horizontal, 12)
+        .frame(maxWidth: .infinity) // Add this line to make it full width
         .background(colorScheme == .dark ? Color(.systemGray6) : Color(.systemBackground))
         .cornerRadius(10)
         .shadow(color: shadowColor, radius: 5, x: 0, y: 2)
