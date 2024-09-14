@@ -35,6 +35,7 @@ struct ContentView: View {
     
     @State private var audioPlayers: [String: AVAudioPlayer] = [:]
     @State private var showFavorites = false // Add this line
+    @AppStorage("isDarkMode") private var isDarkMode = false
 
     init() {
         setupAudioSession()
@@ -109,6 +110,7 @@ struct ContentView: View {
                 }
             }
         }
+        .preferredColorScheme(isDarkMode ? .dark : .light)
         .onAppear {
             loadIyals()
         }
@@ -622,42 +624,55 @@ struct SelectedLinePair: Identifiable {
 
 struct LanguageSettingsView: View {
     @Binding var selectedLanguage: String
-    @Binding var selectedPal: String  // Add this line
+    @Binding var selectedPal: String
     let languages: [String]
-    let tamilTitle: [String]  // Add this line
+    let tamilTitle: [String]
     @Environment(\.presentationMode) var presentationMode
-    
+    @AppStorage("isDarkMode") private var isDarkMode = false
+    @Environment(\.colorScheme) var colorScheme
+
     var body: some View {
         NavigationView {
             List {
-                ForEach(languages, id: \.self) { language in
-                    Button(action: {
-                        selectedLanguage = language
-                        if language == "Tamil" {
-                            selectedPal = tamilTitle[0]  // Set to "அறத்துப்பால்"
-                        }
-                        presentationMode.wrappedValue.dismiss()
-                    }) {
-                        HStack {
-                            Text(language)
-                            Spacer()
-                            if language == selectedLanguage {
-                                Image(systemName: "checkmark")
-                                    .font(.system(size: 16)) 
+                Section(header: Text("Theme")) {
+                    HStack {
+                        Image(systemName: isDarkMode ? "moon.fill" : "sun.max.fill")
+                            .foregroundColor(isDarkMode ? .yellow : .orange)
+                        Toggle("Dark Mode", isOn: $isDarkMode)
+                    }
+                }
+
+                Section(header: Text("Language")) {
+                    ForEach(languages, id: \.self) { language in
+                        Button(action: {
+                            selectedLanguage = language
+                            if language == "Tamil" {
+                                selectedPal = tamilTitle[0]
+                            }
+                            presentationMode.wrappedValue.dismiss()
+                        }) {
+                            HStack {
+                                Text(language)
+                                Spacer()
+                                if language == selectedLanguage {
+                                    Image(systemName: "checkmark")
+                                        .font(.system(size: 16))
+                                }
                             }
                         }
                     }
                 }
             }
-            .navigationTitle("Select Language")
+            .navigationTitle("Settings")
             .navigationBarItems(trailing: Button(action: {
                 presentationMode.wrappedValue.dismiss()
             }) {
                 Image(systemName: "xmark.circle")
                     .foregroundColor(.blue)
-                    .font(.system(size: 16)) 
+                    .font(.system(size: 16))
             })
         }
+        .preferredColorScheme(isDarkMode ? .dark : .light)
     }
 }
 
