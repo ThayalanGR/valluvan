@@ -15,12 +15,12 @@ struct Chapter: Identifiable {
     let audioPath: String
 }
 struct ContentView: View {
-    @State private var selectedPal: String = "Virtue"
+    @State private var selectedPal: String = "அறத்துப்பால்"
     @State private var iyals: [String] = []
     @State private var showLanguageSettings = false
     @State private var selectedLanguage = "Tamil"
     @State private var isExpanded: Bool = false
-    @State private var iyal: String = ""  // Add this line to declare iyal as a state variable
+    @State private var iyal: String = ""  
     
     let tamilTitle = ["அறத்துப்பால்", "பொருட்பால்", "இன்பத்துப்பால்"]
     let englishTitle = ["Virtue", "Wealth", "Nature of Love"] 
@@ -237,7 +237,13 @@ struct ContentView: View {
     private var bottomBar: some View {
         HStack {
             ForEach(0..<3) { index in
-                PalButton(title: getCurrentTitle(index), query: getCurrentEnglishTitle(index), systemImage: getSystemImage(for: index), selectedPal: $selectedPal)
+                PalButton(
+                    title: getCurrentTitle(index),
+                    query: getCurrentEnglishTitle(index),
+                    systemImage: getSystemImage(for: index),
+                    selectedLanguage: selectedLanguage,
+                    selectedPal: $selectedPal
+                )
             }
         }
         .padding()
@@ -392,11 +398,11 @@ struct ContentView: View {
     private func getSystemImage(for index: Int) -> String {
         switch index {
         case 0:
-            return "leaf.circle"
+            return "heart.circle"
         case 1:
             return "dollarsign.circle"
         case 2:
-            return "heart.circle"
+            return "person.2.circle"
         default:
             return "\(index + 1).circle"
         }
@@ -909,11 +915,12 @@ struct PalButton: View {
     let title: String
     let query: String
     let systemImage: String
+    let selectedLanguage: String
     @Binding var selectedPal: String
     
     var body: some View {
         Button(action: {
-            selectedPal = query
+            selectedPal = selectedLanguage == "Tamil" ? title : query
         }) {
             VStack {
                 Image(systemName: systemImage)
@@ -922,7 +929,7 @@ struct PalButton: View {
                     .font(.caption)
             }
             .frame(maxWidth: .infinity)
-            .foregroundColor(selectedPal == title ? .blue : .gray)
+            .foregroundColor(selectedPal == (selectedLanguage == "Tamil" ? title : query) ? .blue : .gray)
         }
     }
 }
