@@ -1087,7 +1087,6 @@ struct LanguageSettingsView: View {
     @Binding var selectedLanguage: String
     @Binding var selectedPal: String
     let languages: [String] 
-
     let getCurrentTitle: (Int) -> String
     @Environment(\.presentationMode) var presentationMode
     @AppStorage("isDarkMode") private var isDarkMode = true
@@ -1116,7 +1115,6 @@ struct LanguageSettingsView: View {
                         Button(action: {
                             selectedLanguage = language 
                             selectedPal = getCurrentTitle(0)
- 
                             presentationMode.wrappedValue.dismiss()
                         }) {
                             HStack {
