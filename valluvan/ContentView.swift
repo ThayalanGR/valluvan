@@ -295,44 +295,6 @@ struct ContentView: View {
     private func getCurrentEnglishTitle(_ index: Int) -> String {
         return englishTitle[index]
     }
-    private func getCurrentTitle(_ index: Int) -> String {
-        switch selectedLanguage {
-        case "Tamil":
-            return tamilTitle[index]
-        case "English":
-            return englishTitle[index]
-        case "Telugu":
-            return teluguTitle[index]
-        case "Hindi":
-            return hindiTitle[index]
-        case "Kannad":
-            return kannadaTitle[index]
-        case "French":
-            return frenchTitle[index]
-        case "Arabic":
-            return arabicTitle[index]
-        case "Chinese":
-            return chineseTitle[index]
-        case "German":
-            return germanTitle[index]
-        case "Korean":
-            return koreanTitle[index]
-        case "Malay":
-            return malayTitle[index]
-        case "Malayalam":
-            return malayalamTitle[index]
-        case "Polish":
-            return polishTitle[index]
-        case "Russian":
-            return russianTitle[index]
-        case "Singalam":
-            return singalamTitle[index]
-        case "Swedish":
-            return swedishTitle[index]
-        default:
-            return englishTitle[index] // Fallback to English if language is not found
-        }
-    }
     
     private func updateSelectedPal() {
         if let index = tamilTitle.firstIndex(of: selectedPal) {
@@ -395,7 +357,6 @@ struct ContentView: View {
         }
     }
 
-    // Add this function to load favorites
     private func loadFavorites() -> [Favorite] {
         if let data = UserDefaults.standard.data(forKey: "favorites"),
            let favorites = try? JSONDecoder().decode([Favorite].self, from: data) {
@@ -433,14 +394,58 @@ struct ContentView: View {
         }
     }
     
-    // Add this function to toggle between Tamil and English
+    
+    private func getCurrentTitle(_ index: Int) -> String {
+        switch selectedLanguage {
+        case "Tamil":
+            return tamilTitle[index]
+        case "English":
+            return englishTitle[index]
+        case "Telugu":
+            return teluguTitle[index]
+        case "Hindi":
+            return hindiTitle[index]
+        case "Kannad":
+            return kannadaTitle[index]
+        case "French":
+            return frenchTitle[index]
+        case "Arabic":
+            return arabicTitle[index]
+        case "Chinese":
+            return chineseTitle[index]
+        case "German":
+            return germanTitle[index]
+        case "Korean":
+            return koreanTitle[index]
+        case "Malay":
+            return malayTitle[index]
+        case "Malayalam":
+            return malayalamTitle[index]
+        case "Polish":
+            return polishTitle[index]
+        case "Russian":
+            return russianTitle[index]
+        case "Singalam":
+            return singalamTitle[index]
+        case "Swedish":
+            return swedishTitle[index]
+        default:
+            return englishTitle[index] // Fallback to English if language is not found
+        }
+    }
+
     private func toggleLanguage() {
-        if selectedLanguage == "Tamil" {
+        switch selectedLanguage {
+        case "Tamil":
             selectedLanguage = "English"
-        } else {
+            selectedPal = englishTitle[0]
+        case "English":
             selectedLanguage = "Tamil"
             selectedPal = tamilTitle[0]
-        }
+        default:
+            selectedLanguage = "Tamil"
+            selectedPal = englishTitle[0]
+        } 
         updateSelectedPal()
     }
 }
@@ -1110,16 +1115,7 @@ struct LanguageSettingsView: View {
         }
         .preferredColorScheme(isDarkMode ? .dark : .light)
         .environment(\.sizeCategory, appState.fontSize.textSizeCategory)
-    }
-
-    private func toggleLanguage() {
-        if selectedLanguage == "Tamil" {
-            selectedLanguage = "English"
-        } else {
-            selectedLanguage = "Tamil"
-            selectedPal = tamilTitle[0]
-        }
-    }
+    } 
 }
 
 struct Favorite: Codable, Identifiable {

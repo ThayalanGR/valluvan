@@ -4,29 +4,8 @@ class TranslationUtil {
     static func getTranslation(for word: String, to targetLanguage: String) async throws -> String {
       
         let translations: [String: [String: String]] = [
-            "Tamil": [
-                "Preface": "பாயிரவியல்",
-                "Domestic Virtue": "இல்லறவியல்",
-                "Ascetic Virtue": "துறவறவியல்",
-                "Royalty": "அரசியல்",
-                "Ministry": "அமைச்சியல்",
-                "Politics": "அரணியல்",
-                "Friendship": "நட்பியல்",
-                "Miscellaneous": "பலவியல்",
-                "Pre marital love": "களவியல்",
-                "Post marital love": "கற்பியல்"
-            ],
             "English": [
-                "Preface": "Preface",
-                "Domestic Virtue": "Domestic Virtue",
-                "Ascetic Virtue": "Ascetic Virtue",
-                "Royalty": "Royalty",
-                "Ministry": "Ministry",
-                "Politics": "Politics",
-                "Friendship": "Friendship",
-                "Miscellaneous": "Miscellaneous",
-                "Pre marital love": "Pre marital love",
-                "Post marital love": "Post marital love"
+                "Miscelleanous": "Misc"
             ],
             "Telugu": [
                 "Preface": "ముందుమాట",
@@ -36,9 +15,9 @@ class TranslationUtil {
                 "Ministry": "మంత్రిత్వశాఖ",
                 "Politics": "రాజకీయాలు",
                 "Friendship": "స్నేహం",
-                "Miscellaneous": "వివిధ విషయాలు",
-                "Pre marital love": "వివాహపూర్వ ప్రేమ",
-                "Post marital love": "వివాహానంతర ప్రేమ"
+                "Miscelleanous": "వివిధ విషయాలు",
+                "Pre-marital love": "వివాహపూర్వ ప్రేమ",
+                "Post-marital love": "వివాహానంతర ప్రేమ"
             ],
             "Hindi": [
                 "Preface": "प्रस्तावना",
@@ -48,9 +27,9 @@ class TranslationUtil {
                 "Ministry": "मंत्रालय",
                 "Politics": "राजनीति",
                 "Friendship": "मित्रता",
-                "Miscellaneous": "विविध",
-                "Pre marital love": "विवाह पूर्व प्रेम",
-                "Post marital love": "विवाह के बाद का प्रेम"
+                "Miscelleanous": "विविध",
+                "Pre-marital love": "विवाह पूर्व प्रेम",
+                "Post-marital love": "विवाह के बाद का प्रेम"
             ],
             "Kannad": [
                 "Preface": "ಮುನ್ನುಡಿ",
@@ -60,9 +39,9 @@ class TranslationUtil {
                 "Ministry": "ಸಚಿವಾಲಯ",
                 "Politics": "ರಾಜಕೀಯ",
                 "Friendship": "ಸ್ನೇಹ",
-                "Miscellaneous": "ವಿವಿಧ",
-                "Pre marital love": "ವಿವಾಹಪೂರ್ವ ಪ್ರೀತಿ",
-                "Post marital love": "ವಿವಾಹಾನಂತರ ಪ್ರೀತಿ"
+                "Miscelleanous": "ವಿವಿಧ",
+                "Pre-marital love": "ವಿವಾಹಪೂರ್ವ ಪ್ರೀತಿ",
+                "Post-marital love": "ವಿವಾಹಾನಂತರ ಪ್ರೀತಿ"
             ],
             "French": [
                 "Preface": "Préface",
@@ -72,9 +51,9 @@ class TranslationUtil {
                 "Ministry": "Ministère",
                 "Politics": "Politique",
                 "Friendship": "Amitié",
-                "Miscellaneous": "Divers",
-                "Pre marital love": "Amour prénuptial",
-                "Post marital love": "Amour post-marital"
+                "Miscelleanous": "Divers",
+                "Pre-marital love": "Amour prénuptial",
+                "Post-marital love": "Amour post-marital"
             ],
             "Arabic": [
                 "Preface": "مقدمة",
@@ -84,9 +63,9 @@ class TranslationUtil {
                 "Ministry": "الوزارة",
                 "Politics": "السياسة",
                 "Friendship": "الصداقة",
-                "Miscellaneous": "متنوع",
-                "Pre marital love": "الحب قبل الزواج",
-                "Post marital love": "الحب بعد الزواج"
+                "Miscelleanous": "متنوع",
+                "Pre-marital love": "الحب قبل الزواج",
+                "Post-marital love": "الحب بعد الزواج"
             ],
             "Chinese": [
                 "Preface": "序言",
@@ -96,9 +75,9 @@ class TranslationUtil {
                 "Ministry": "部门",
                 "Politics": "政治",
                 "Friendship": "友谊",
-                "Miscellaneous": "杂项",
-                "Pre marital love": "婚前恋爱",
-                "Post marital love": "婚后恋爱"
+                "Miscelleanous": "杂项",
+                "Pre-marital love": "婚前恋爱",
+                "Post-marital love": "婚后恋爱"
             ],
             "German": [
                 "Preface": "Vorwort",
@@ -108,9 +87,9 @@ class TranslationUtil {
                 "Ministry": "Ministerium",
                 "Politics": "Politik",
                 "Friendship": "Freundschaft",
-                "Miscellaneous": "Verschiedenes",
-                "Pre marital love": "Voreheliche Liebe",
-                "Post marital love": "Nacheheliche Liebe"
+                "Miscelleanous": "Verschiedenes",
+                "Pre-marital love": "Voreheliche Liebe",
+                "Post-marital love": "Nacheheliche Liebe"
             ],
             "Korean": [
                 "Preface": "서문",
@@ -120,9 +99,9 @@ class TranslationUtil {
                 "Ministry": "부처",
                 "Politics": "정치",
                 "Friendship": "우정",
-                "Miscellaneous": "기타",
-                "Pre marital love": "혼전 사랑",
-                "Post marital love": "혼후 사랑"
+                "Miscelleanous": "기타",
+                "Pre-marital love": "혼전 사랑",
+                "Post-marital love": "혼후 사랑"
             ],
             "Malay": [
                 "Preface": "Prakata",
@@ -132,9 +111,9 @@ class TranslationUtil {
                 "Ministry": "Kementerian",
                 "Politics": "Politik",
                 "Friendship": "Persahabatan",
-                "Miscellaneous": "Pelbagai",
-                "Pre marital love": "Cinta Pra Perkahwinan",
-                "Post marital love": "Cinta Pasca Perkahwinan"
+                "Miscelleanous": "Pelbagai",
+                "Pre-marital love": "Cinta Pra Perkahwinan",
+                "Post-marital love": "Cinta Pasca Perkahwinan"
             ],
             "Malayalam": [
                 "Preface": "ആമുഖം",
@@ -144,9 +123,9 @@ class TranslationUtil {
                 "Ministry": "മന്ത്രാലയം",
                 "Politics": "രാഷ്ട്രീയം",
                 "Friendship": "സൗഹൃദം",
-                "Miscellaneous": "പലവക",
-                "Pre marital love": "വിവാഹപൂർവ്വ പ്രണയം",
-                "Post marital love": "വിവാഹാനന്തര പ്രണയം"
+                "Miscelleanous": "പലവക",
+                "Pre-marital love": "വിവാഹപൂർവ്വ പ്രണയം",
+                "Post-marital love": "വിവാഹാനന്തര പ്രണയം"
             ],
             "Polish": [
                 "Preface": "Przedmowa",
@@ -156,9 +135,9 @@ class TranslationUtil {
                 "Ministry": "Ministerstwo",
                 "Politics": "Polityka",
                 "Friendship": "Przyjaźń",
-                "Miscellaneous": "Różne",
-                "Pre marital love": "Miłość przedmałżeńska",
-                "Post marital love": "Miłość pomałżeńska"
+                "Miscelleanous": "Różne",
+                "Pre-marital love": "Miłość przedmałżeńska",
+                "Post-marital love": "Miłość pomałżeńska"
             ],
             "Russian": [
                 "Preface": "Предисловие",
@@ -168,9 +147,9 @@ class TranslationUtil {
                 "Ministry": "Министерство",
                 "Politics": "Политика",
                 "Friendship": "Дружба",
-                "Miscellaneous": "Разное",
-                "Pre marital love": "Добрачная любовь",
-                "Post marital love": "Послебрачная любовь"
+                "Miscelleanous": "Разное",
+                "Pre-marital love": "Добрачная любовь",
+                "Post-marital love": "Послебрачная любовь"
             ],
             "Singalam": [
                 "Preface": "පෙරවදන",
@@ -180,9 +159,9 @@ class TranslationUtil {
                 "Ministry": "අමාත්යාංශය",
                 "Politics": "දේශපාලනය",
                 "Friendship": "මිත්රත්වය",
-                "Miscellaneous": "විවිධ",
-                "Pre marital love": "විවාහයට පෙර ආදරය",
-                "Post marital love": "විවාහයෙන් පසු ආදරය"
+                "Miscelleanous": "විවිධ",
+                "Pre-marital love": "විවාහයට පෙර ආදරය",
+                "Post-marital love": "විවාහයෙන් පසු ආදරය"
             ],
             "Swedish": [
                 "Preface": "Förord",
@@ -192,9 +171,9 @@ class TranslationUtil {
                 "Ministry": "Ministerium",
                 "Politics": "Politik",
                 "Friendship": "Vänskap",
-                "Miscellaneous": "Diverse",
-                "Pre marital love": "Kärlek före äktenskapet",
-                "Post marital love": "Kärlek efter äktenskapet"
+                "Miscelleanous": "Diverse",
+                "Pre-marital love": "Kärlek före äktenskapet",
+                "Post-marital love": "Kärlek efter äktenskapet"
             ]
         ]
         
