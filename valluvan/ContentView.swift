@@ -35,6 +35,9 @@ struct ContentView: View {
     @State private var audioPlayers: [String: AVAudioPlayer] = [:]
     @State private var showFavorites = false // Add this line
     @AppStorage("isDarkMode") private var isDarkMode = false
+    @State private var showGoToKural = false
+    @State private var goToKuralId = ""
+    @State private var showInvalidKuralAlert = false
 
     init() {
         setupAudioSession()
@@ -83,9 +86,15 @@ struct ContentView: View {
                             .font(.system(size: 16))
                     }
                     Button(action: {
-                        showFavorites = true // Add this line
+                        showFavorites = true
                     }) {
                         Image(systemName: "star.fill")
+                            .font(.system(size: 16))
+                    }
+                    Button(action: {
+                        showGoToKural = true
+                    }) {
+                        Image(systemName: "arrow.right.circle")
                             .font(.system(size: 16))
                     }
                     Button(action: {
@@ -139,6 +148,12 @@ struct ContentView: View {
         }
         .sheet(isPresented: $showFavorites) {
             FavoritesView(favorites: loadFavorites(), selectedLanguage: selectedLanguage)
+        }
+        .sheet(isPresented: $showGoToKural) {
+            GoToKuralView(isPresented: $showGoToKural, kuralId: $goToKuralId, onSubmit: goToKural)
+        }
+        .alert(isPresented: $showInvalidKuralAlert) {
+            Alert(title: Text("Invalid Kural ID"), message: Text("Please enter a valid Kural ID between 1 and 1330."), dismissButton: .default(Text("OK")))
         }
     }
     
@@ -208,8 +223,52 @@ struct ContentView: View {
         }
         return []
     }
+
+    private func goToKural() {
+        guard let kuralId = Int(goToKuralId), kuralId >= 1, kuralId <= 1330 else {
+            showInvalidKuralAlert = true
+            return
+        }
+
+        let result = DatabaseManager.shared.getKuralById(kuralId, language: selectedLanguage)
+        if let result = result {
+            selectedSearchResult = DatabaseSearchResult(
+                heading: result.heading,
+                subheading: result.subheading,
+                content: result.content,
+                explanation: result.explanation,
+                kuralId: result.kuralId
+            )
+        }
+        showGoToKural = false
+    }
 }
 
+struct GoToKuralView: View {
+    @Binding var isPresented: Bool
+    @Binding var kuralId: String
+    var onSubmit: () -> Void
+
+    var body: some View {
+        NavigationView {
+            VStack {
+                TextField("Enter Kural ID (1-1330)", text: $kuralId)
+                    .keyboardType(.numberPad)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
+
+                Button("Go to Kural") {
+                    onSubmit()
+                }
+                .padding()
+            }
+            .navigationBarTitle("Go to Kural", displayMode: .inline)
+            .navigationBarItems(trailing: Button("Cancel") {
+                isPresented = false
+            })
+        }
+    }
+}
 struct AdhigaramView: View {
     let iyal: String
     let selectedLanguage: String
@@ -333,7 +392,7 @@ struct AdhigaramView: View {
         }
     }
     
-    private func togglePlayPause(for adhigaramSong: String) { 
+    private func togglePlayPause(for adhigaramSong: String) {  
         if let player = audioPlayers[adhigaramSong] {
             if player.isPlaying {
                 player.pause()
@@ -463,6 +522,7 @@ struct ExplanationView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var isSpeaking = false
     @State private var isFavorite = false
+    @State private var showShareSheet = false
 
     var body: some View {
         NavigationView {
@@ -479,6 +539,12 @@ struct ExplanationView: View {
                         Text(adhigaram)
                             .font(.title)
                             .fontWeight(.bold)
+                        
+                        Spacer()
+                        
+                        Text("Kural \(kuralId)")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
                     }
                     
                     ForEach(lines, id: \.self) { line in
@@ -508,6 +574,7 @@ struct ExplanationView: View {
                 }
                 Button(action: {
                     let content = """
+                    Kural \(kuralId)
                     \(adhigaramId) \(adhigaram)
                     \(lines.joined(separator: "\n"))
                     Explanation:
@@ -525,6 +592,13 @@ struct ExplanationView: View {
                         .font(.system(size: 16))
                 }
                 Button(action: {
+                    showShareSheet = true
+                }) {
+                    Image(systemName: "square.and.arrow.up")
+                        .foregroundColor(.blue)
+                        .font(.system(size: 16))
+                }
+                Button(action: {
                     presentationMode.wrappedValue.dismiss()
                 }) {
                     Image(systemName: "xmark.circle")
@@ -535,6 +609,16 @@ struct ExplanationView: View {
         }
         .onAppear {
             checkIfFavorite()
+        }
+        .sheet(isPresented: $showShareSheet) {
+            let content = """
+            Kural \(kuralId)
+            \(adhigaramId) \(adhigaram)
+            \(lines.joined(separator: "\n"))
+            Explanation:
+            \(explanation.string)
+            """
+            ShareSheet(activityItems: [content])
         }
     }
 
@@ -797,4 +881,17 @@ struct FavoritesView: View {
             UserDefaults.standard.set(encoded, forKey: "favorites")
         }
     }
+}
+
+// Add this struct at the bottom of the file
+struct ShareSheet: UIViewControllerRepresentable {
+    let activityItems: [Any]
+    let applicationActivities: [UIActivity]? = nil
+
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: applicationActivities)
+        return controller
+    }
+
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
 }

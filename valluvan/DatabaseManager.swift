@@ -319,4 +319,47 @@ public class DatabaseManager {
 
         return results
     }
+
+    func getKuralById(_ kuralId: Int, language: String) -> DatabaseSearchResult? {
+        let tirukkuralTable = Table("tirukkural")
+        let kuralIdExpr = Expression<Int>("திருக்குறள்")
+        let headingExpr = Expression<String>("English Heading")
+        let subheadingExpr = Expression<String>("English Chapter")
+        let contentExpr1 = Expression<String>("First Line")
+        let contentExpr2 = Expression<String>("Second Line")
+        let tfirstLineExpr = Expression<String>("Telugu 1")
+        let tsecondLineExpr = Expression<String>("Telugu 2")
+        let hfirstLineExpr = Expression<String>("Hindi 1")
+        let hsecondLineExpr = Expression<String>("Hindi 2")
+        let explanationExpr: Expression<String>
+        
+        switch language {
+        case "Tamil":
+            explanationExpr = Expression<String>("கலைஞர்")
+        case "English", "Hindi", "Telugu":
+            explanationExpr = Expression<String>("Explanation")
+        default:
+            explanationExpr = Expression<String>(language)
+        }
+
+        do {
+            let query = tirukkuralTable
+                .select(headingExpr, subheadingExpr, contentExpr1, contentExpr2, tfirstLineExpr, tsecondLineExpr, hfirstLineExpr, hsecondLineExpr, explanationExpr)
+                .filter(kuralIdExpr == kuralId)
+
+            if let row = try db!.pluck(query) {
+                return DatabaseSearchResult(
+                    heading: row[headingExpr],
+                    subheading: row[subheadingExpr],
+                    content: language == "Telugu" ? "\(row[tfirstLineExpr])\n\(row[tsecondLineExpr])" : language == "Hindi" ? "\(row[hfirstLineExpr])\n\(row[hsecondLineExpr])" : "\(row[contentExpr1])\n\(row[contentExpr2])",
+                    explanation: row[explanationExpr],
+                    kuralId: kuralId
+                )
+            }
+        } catch {
+            print("Error fetching Kural by ID: \(error)")
+        }
+
+        return nil
+    }
 }
