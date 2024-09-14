@@ -153,7 +153,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		FE1B2D832C92C133006DBC55 /* valluvan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = valluvan.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE1B2D832C92C133006DBC55 /* Valluvan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Valluvan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE42A35B2C959D5300C30205 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		FE6DCFCE2C930E5B00736D71 /* அரண்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "அரண்.mp3"; sourceTree = "<group>"; };
 		FE6DCFCF2C930E5B00736D71 /* இல்வாழ்க்கை.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "இல்வாழ்க்கை.mp3"; sourceTree = "<group>"; };
@@ -321,7 +321,7 @@
 		FE1B2D842C92C133006DBC55 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FE1B2D832C92C133006DBC55 /* valluvan.app */,
+				FE1B2D832C92C133006DBC55 /* Valluvan.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -494,9 +494,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		FE1B2D822C92C133006DBC55 /* valluvan */ = {
+		FE1B2D822C92C133006DBC55 /* Valluvan */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FE1B2D912C92C136006DBC55 /* Build configuration list for PBXNativeTarget "valluvan" */;
+			buildConfigurationList = FE1B2D912C92C136006DBC55 /* Build configuration list for PBXNativeTarget "Valluvan" */;
 			buildPhases = (
 				FE1B2D7F2C92C133006DBC55 /* Sources */,
 				FE1B2D802C92C133006DBC55 /* Frameworks */,
@@ -506,12 +506,12 @@
 			);
 			dependencies = (
 			);
-			name = valluvan;
+			name = Valluvan;
 			packageProductDependencies = (
 				FE624C102C92CCEC005195EC /* SQLite */,
 			);
 			productName = valluvan;
-			productReference = FE1B2D832C92C133006DBC55 /* valluvan.app */;
+			productReference = FE1B2D832C92C133006DBC55 /* Valluvan.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -545,7 +545,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FE1B2D822C92C133006DBC55 /* valluvan */,
+				FE1B2D822C92C133006DBC55 /* Valluvan */,
 			);
 		};
 /* End PBXProject section */
@@ -903,7 +903,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FE1B2D912C92C136006DBC55 /* Build configuration list for PBXNativeTarget "valluvan" */ = {
+		FE1B2D912C92C136006DBC55 /* Build configuration list for PBXNativeTarget "Valluvan" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FE1B2D922C92C136006DBC55 /* Debug */,
