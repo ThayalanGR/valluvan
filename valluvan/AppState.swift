@@ -2,6 +2,7 @@ import SwiftUI
 
 class AppState: ObservableObject {
     @AppStorage("fontSize") var fontSize: FontSize = .medium
+    @AppStorage("isDailyKuralEnabled") var isDailyKuralEnabled: Bool = true
 }
 
 enum FontSize: String, CaseIterable, Identifiable {

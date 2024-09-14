@@ -839,6 +839,10 @@ struct LanguageSettingsView: View {
                         }
                     }
                 }
+
+                Section(header: Text("Notifications")) {
+                    Toggle("Daily Thirukkural (9 AM)", isOn: $appState.isDailyKuralEnabled)
+                }
             }
             .navigationTitle("Settings")
             .navigationBarItems(trailing: Button(action: {

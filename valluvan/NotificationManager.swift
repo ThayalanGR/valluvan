@@ -16,13 +16,18 @@ class NotificationManager {
         }
     }
     
-    private func scheduleNotification() {
+    func scheduleNotification() {
+        guard AppState().isDailyKuralEnabled else {
+            print("Daily Kural notifications are disabled")
+            return
+        }
+
         let content = UNMutableNotificationContent()
         content.title = "Daily Thirukkural"
         
         let randomKuralId = Int.random(in: 1...1330)
         if let kural = DatabaseManager.shared.getKuralById(randomKuralId, language: "English") {
-            content.body = "\(kural.content)\n\nTap to read more..."
+            content.body = "\(randomKuralId). \(kural.content)\n\nTap to read more..."
             content.userInfo = ["kuralId": randomKuralId]
         } else {
             content.body = "Discover today's wisdom from Thirukkural"
@@ -31,7 +36,7 @@ class NotificationManager {
         content.sound = UNNotificationSound.default
         
         var dateComponents = DateComponents()
-        dateComponents.hour = 9 // Set the hour you want the notification to be sent (e.g., 9 AM)
+        dateComponents.hour = 9 
         dateComponents.minute = 0
         
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
@@ -43,5 +48,9 @@ class NotificationManager {
                 print("Error scheduling notification: \(error)")
             }
         }
+    }
+    
+    func cancelAllNotifications() {
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
 }
