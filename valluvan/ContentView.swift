@@ -47,8 +47,8 @@ struct ContentView: View {
     @State private var hasSearched = false
     
     @State private var audioPlayers: [String: AVAudioPlayer] = [:]
-    @State private var showFavorites = false // Add this line
-    @AppStorage("isDarkMode") private var isDarkMode = false
+    @State private var showFavorites = false
+    @AppStorage("isDarkMode") private var isDarkMode = true
     @State private var showGoToKural = false
     @State private var goToKuralId = ""
     @State private var showInvalidKuralAlert = false
@@ -985,7 +985,7 @@ struct LanguageSettingsView: View {
     let languages: [String]
     let tamilTitle: [String]
     @Environment(\.presentationMode) var presentationMode
-    @AppStorage("isDarkMode") private var isDarkMode = false
+    @AppStorage("isDarkMode") private var isDarkMode = true
     @EnvironmentObject var appState: AppState
     @Environment(\.colorScheme) var colorScheme
 
