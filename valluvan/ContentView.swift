@@ -61,27 +61,38 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                HStack {
-                    PalButton(title: getCurrentTitle(0), selectedPal: $selectedPal)
-                    PalButton(title: getCurrentTitle(1), selectedPal: $selectedPal)
-                    PalButton(title: getCurrentTitle(2), selectedPal: $selectedPal)
-                }
                 List(iyals, id: \.self) { iyal in
                     NavigationLink(destination: AdhigaramView(iyal: iyal, selectedLanguage: selectedLanguage).environmentObject(appState)) { 
                         Text(iyal)
                     }
                 } 
-                .background(Color.gray.opacity(0.2))
-                
+                .background(Color.gray.opacity(0.2))                
                 if hasSearched {
                     Text("") 
                 }
+                Spacer() 
+                HStack {
+                    PalButton(title: getCurrentTitle(0), systemImage: "1.circle", selectedPal: $selectedPal)
+                    PalButton(title: getCurrentTitle(1), systemImage: "2.circle", selectedPal: $selectedPal)
+                    PalButton(title: getCurrentTitle(2), systemImage: "3.circle", selectedPal: $selectedPal)
+                }
+                .padding()
+                .background(Color(.systemBackground))
+                .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: -5)
             }
             .navigationBarItems(
-                leading: SearchBar(text: $searchText, onSubmit: {
-                    searchContent()
-                })
-                    .frame(width: 200), 
+                leading: HStack {
+                    Button(action: {
+                        showGoToKural = true
+                    }) {
+                        Image(systemName: "arrow.right.circle")
+                            .font(.system(size: 16))
+                    }
+                    SearchBar(text: $searchText, onSubmit: {
+                        searchContent()
+                    })
+                        .frame(width: 200)
+                }, 
                 trailing: HStack {
                     Button(action: {
                         searchContent()
@@ -93,12 +104,6 @@ struct ContentView: View {
                         showFavorites = true
                     }) {
                         Image(systemName: "star.fill")
-                            .font(.system(size: 16))
-                    }
-                    Button(action: {
-                        showGoToKural = true
-                    }) {
-                        Image(systemName: "arrow.right.circle")
                             .font(.system(size: 16))
                     }
                     Button(action: {
@@ -282,14 +287,18 @@ struct GoToKuralView: View {
     @Binding var isPresented: Bool
     @Binding var kuralId: String
     var onSubmit: () -> Void
+    @FocusState private var isTextFieldFocused: Bool
 
     var body: some View {
         NavigationView {
             VStack {
-                TextField("Enter Kural ID (1-1330)", text: $kuralId)
+                TextField("Enter Kural ID (1-1330)", text: $kuralId, onCommit: {
+                    onSubmit()
+                })
                     .keyboardType(.numberPad)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
+                    .focused($isTextFieldFocused)
 
                 Button("Go to Kural") {
                     onSubmit()
@@ -302,6 +311,9 @@ struct GoToKuralView: View {
             }) 
         }
         .environment(\.sizeCategory, appState.fontSize.textSizeCategory)
+        .onAppear {
+            isTextFieldFocused = true
+        }
     }
 }
 struct AdhigaramView: View {
@@ -710,17 +722,21 @@ struct ExplanationView: View {
 
 struct PalButton: View {
     let title: String
+    let systemImage: String
     @Binding var selectedPal: String
     
     var body: some View {
         Button(action: {
             selectedPal = title
         }) {
-            Text(title)
-                .padding()
-                .background(selectedPal == title ? Color.blue : Color.clear)
-                .foregroundColor(selectedPal == title ? .white : .blue)
-                .cornerRadius(8)
+            VStack {
+                Image(systemName: systemImage)
+                    .font(.system(size: 24))
+                Text(title)
+                    .font(.caption)
+            }
+            .frame(maxWidth: .infinity)
+            .foregroundColor(selectedPal == title ? .blue : .gray)
         }
     }
 }
@@ -753,6 +769,7 @@ struct SearchResultsView: View {
     let results: [DatabaseSearchResult]
     let onSelectResult: (DatabaseSearchResult) -> Void
     @EnvironmentObject var appState: AppState
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         NavigationView {
@@ -771,8 +788,14 @@ struct SearchResultsView: View {
                 }
             }
             .navigationTitle("Search Results (\(results.count))")
+            .navigationBarItems(trailing: Button(action: {
+                presentationMode.wrappedValue.dismiss()
+            }) {
+                Image(systemName: "xmark.circle")
+                    .foregroundColor(.blue)
+                    .font(.system(size: 16))
+            })
         }
-
         .environment(\.sizeCategory, appState.fontSize.textSizeCategory)
     }
 }
