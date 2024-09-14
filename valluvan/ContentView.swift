@@ -9,19 +9,6 @@ import SwiftUI
 import AVFoundation
 import MediaPlayer
 
-// Move the SearchResult struct definition to the top of the file, outside of any other struct
-struct SearchResult: Identifiable, CustomStringConvertible {
-    let id = UUID()
-    let kuralId: Int
-    let adhigaram: String
-    let line: String
-    let explanation: NSAttributedString
-    
-    var description: String {
-        return "SearchResult(kuralId: \(kuralId), adhigaram: \(adhigaram), line: \(line), explanation: \(explanation.string))"
-    }
-}
-
 struct Chapter: Identifiable {
     let id: Int
     let title: String
@@ -41,12 +28,13 @@ struct ContentView: View {
     let languages = ["Tamil", "English", "Telugu", "Hindi", "Kannad", "French", "Arabic", "Chinese", "German", "Korean", "Malay", "Malayalam", "Polish", "Russian", "Singalam", "Swedish"]
     
     @State private var searchText = ""
-    @State private var searchResults: [SearchResult] = []
+    @State private var searchResults: [DatabaseSearchResult] = []
     @State private var showSearchResults = false
-    @State private var selectedSearchResult: SearchResult?
+    @State private var selectedSearchResult: DatabaseSearchResult? 
     @State private var hasSearched = false
     
     @State private var audioPlayers: [String: AVAudioPlayer] = [:]
+    @State private var showFavorites = false // Add this line
 
     init() {
         setupAudioSession()
@@ -77,19 +65,26 @@ struct ContentView: View {
                 .background(Color.gray.opacity(0.2))
                 
                 if hasSearched {
-                    Text("Search Results Count: \(searchResults.count)")
-                        .padding()
+                    Text("") 
                 }
             }
             .navigationBarItems(
-                leading: SearchBar(text: $searchText)
-                    .frame(width: 250),
+                leading: SearchBar(text: $searchText, onSubmit: {
+                    searchContent()
+                })
+                    .frame(width: 200), 
                 trailing: HStack {
                     Button(action: {
                         searchContent()
                     }) {
                         Image(systemName: "magnifyingglass")
-                            .font(.system(size: 16)) 
+                            .font(.system(size: 16))
+                    }
+                    Button(action: {
+                        showFavorites = true // Add this line
+                    }) {
+                        Image(systemName: "star.fill")
+                            .font(.system(size: 16))
                     }
                     Button(action: {
                         showLanguageSettings = true
@@ -131,11 +126,15 @@ struct ContentView: View {
         }
         .sheet(item: $selectedSearchResult) { result in
             ExplanationView(
-                adhigaram: result.adhigaram,
-                lines: [result.line],
-                explanation: result.explanation,
-                selectedLanguage: selectedLanguage
+                adhigaram: result.subheading,
+                lines: [result.content],
+                explanation: NSAttributedString(string: result.explanation),
+                selectedLanguage: selectedLanguage,
+                kuralId: result.kuralId
             )
+        }
+        .sheet(isPresented: $showFavorites) {
+            FavoritesView(favorites: loadFavorites())
         }
     }
     
@@ -160,11 +159,12 @@ struct ContentView: View {
         default:
             let databaseResults = DatabaseManager.shared.searchContent(query: searchText, language: selectedLanguage)
             searchResults = databaseResults.map { dbResult in
-                SearchResult(
-                    kuralId: dbResult.kuralId,
-                    adhigaram: dbResult.subheading,
-                    line: dbResult.content,
-                    explanation: NSAttributedString(string: dbResult.explanation)
+                DatabaseSearchResult(
+                    heading: dbResult.heading,
+                    subheading: dbResult.subheading,
+                    content: dbResult.content,
+                    explanation: dbResult.explanation,
+                    kuralId: dbResult.kuralId
                 )
             }
             DispatchQueue.main.async {
@@ -177,17 +177,32 @@ struct ContentView: View {
     func searchTamilContent() {
         let databaseResults = DatabaseManager.shared.searchTamilContent(query: searchText)
         searchResults = databaseResults.map { dbResult in
-            SearchResult(
-                kuralId: dbResult.kuralId,
-                adhigaram: dbResult.subheading,
-                line: dbResult.content,
-                explanation: NSAttributedString(string: dbResult.explanation)
+            DatabaseSearchResult(
+                heading: dbResult.heading,
+                subheading: dbResult.subheading,
+                content: dbResult.content,
+                explanation: dbResult.explanation,
+                kuralId: dbResult.kuralId
             )
         }
         DispatchQueue.main.async {
             self.showSearchResults = true
             self.hasSearched = true
         }
+    }
+
+    func performSearch() {
+        // Implement your search logic here
+        print("Performing search for: \(searchText)")
+    }
+
+    // Add this function to load favorites
+    private func loadFavorites() -> [Favorite] {
+        if let data = UserDefaults.standard.data(forKey: "favorites"),
+           let favorites = try? JSONDecoder().decode([Favorite].self, from: data) {
+            return favorites
+        }
+        return []
     }
 }
 
@@ -226,7 +241,7 @@ struct AdhigaramView: View {
             stopAllAudio()
         }
         .sheet(item: $selectedLinePair) { pair in
-            ExplanationView(adhigaram: pair.adhigaram, lines: pair.lines, explanation: pair.explanation, selectedLanguage: selectedLanguage)
+            ExplanationView(adhigaram: pair.adhigaram, lines: pair.lines, explanation: pair.explanation, selectedLanguage: selectedLanguage, kuralId: pair.kuralId)
         }
     }
     
@@ -315,7 +330,7 @@ struct AdhigaramView: View {
     
     private func loadExplanation(for adhigaram: String, lines: [String], kuralId: Int) {
         let explanation = DatabaseManager.shared.getExplanation(for: kuralId, language: selectedLanguage)
-        selectedLinePair = SelectedLinePair(adhigaram: adhigaram, lines: lines, explanation: explanation)
+        selectedLinePair = SelectedLinePair(adhigaram: adhigaram, lines: lines, explanation: explanation, kuralId: kuralId)
     }
     
     private func toggleExpand(for adhigaram: String) {
@@ -419,8 +434,10 @@ struct ExplanationView: View {
     let lines: [String]
     let explanation: NSAttributedString
     let selectedLanguage: String
+    let kuralId: Int
     @Environment(\.presentationMode) var presentationMode
     @State private var isSpeaking = false
+    @State private var isFavorite = false
 
     var body: some View {
         NavigationView {
@@ -449,6 +466,13 @@ struct ExplanationView: View {
             }
             .navigationBarItems(trailing: HStack {
                 Button(action: {
+                    toggleFavorite()
+                }) {
+                    Image(systemName: isFavorite ? "star.fill" : "star")
+                        .foregroundColor(.blue)
+                        .font(.system(size: 16))
+                }
+                Button(action: {
                     let content = """
                     \(adhigaram)
                     \(lines.joined(separator: "\n"))
@@ -470,7 +494,52 @@ struct ExplanationView: View {
                 }
             })
         }
-    } 
+        .onAppear {
+            checkIfFavorite()
+        }
+    }
+
+    private func toggleFavorite() {
+        if isFavorite {
+            removeFavorite()
+        } else {
+            addFavorite()
+        }
+        isFavorite.toggle()
+    }
+
+    private func checkIfFavorite() {
+        if let data = UserDefaults.standard.data(forKey: "favorites") {
+            if let favorites = try? JSONDecoder().decode([Favorite].self, from: data) {
+                isFavorite = favorites.contains { $0.id == kuralId }
+            }
+        }
+    }
+
+    private func addFavorite() {
+        let favorite = Favorite(id: kuralId, adhigaram: adhigaram, lines: lines)
+        var favorites: [Favorite] = []
+        if let data = UserDefaults.standard.data(forKey: "favorites") {
+            if let decoded = try? JSONDecoder().decode([Favorite].self, from: data) {
+                favorites = decoded
+            }
+        }
+        favorites.append(favorite)
+        if let encoded = try? JSONEncoder().encode(favorites) {
+            UserDefaults.standard.set(encoded, forKey: "favorites")
+        }
+    }
+
+    private func removeFavorite() {
+        if let data = UserDefaults.standard.data(forKey: "favorites") {
+            if var favorites = try? JSONDecoder().decode([Favorite].self, from: data) {
+                favorites.removeAll { $0.id == kuralId }
+                if let encoded = try? JSONEncoder().encode(favorites) {
+                    UserDefaults.standard.set(encoded, forKey: "favorites")
+                }
+            }
+        }
+    }
 }
 
 struct PalButton: View {
@@ -492,19 +561,31 @@ struct PalButton: View {
 
 struct SearchBar: View {
     @Binding var text: String
-
+    var onSubmit: () -> Void
+    
     var body: some View {
         HStack {
             TextField("Search", text: $text)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-                .frame(width: 250)
+                .frame(width: 200)
+                .onSubmit(onSubmit)
+            
+            if !text.isEmpty {
+                Button(action: {
+                    text = ""
+                }) {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundColor(.gray)
+                        .font(.system(size: 16))
+                }
+            }
         }
     }
 }
 
 struct SearchResultsView: View {
-    let results: [SearchResult]
-    let onSelectResult: (SearchResult) -> Void
+    let results: [DatabaseSearchResult]
+    let onSelectResult: (DatabaseSearchResult) -> Void
     
     var body: some View {
         NavigationView {
@@ -514,8 +595,8 @@ struct SearchResultsView: View {
                     VStack(alignment: .leading) {
                         Text("\(index + 1):")
                             .font(.headline)
-                        Text("Chapter: \(result.adhigaram)")
-                        Text("Line: \(result.line)")
+                        Text("Chapter: \(result.subheading)")
+                        Text("Line: \(result.content)")
                     }
                     .onTapGesture {
                         onSelectResult(result)
@@ -536,6 +617,7 @@ struct SelectedLinePair: Identifiable {
     let adhigaram: String
     let lines: [String]
     let explanation: NSAttributedString
+    let kuralId: Int
 }
 
 struct LanguageSettingsView: View {
@@ -575,6 +657,56 @@ struct LanguageSettingsView: View {
                     .foregroundColor(.blue)
                     .font(.system(size: 16)) 
             })
+        }
+    }
+}
+
+struct Favorite: Codable, Identifiable {
+    let id: Int
+    let adhigaram: String
+    let lines: [String]
+}
+
+struct FavoritesView: View {
+    let favorites: [Favorite]
+    @Environment(\.presentationMode) var presentationMode
+    @State private var selectedFavorite: Favorite?
+    @State private var showExplanation = false
+
+    var body: some View {
+        NavigationView {
+            List(favorites) { favorite in
+                VStack(alignment: .leading) {
+                    Text(favorite.adhigaram)
+                        .font(.headline)
+                    ForEach(favorite.lines, id: \.self) { line in
+                        Text(line)
+                    }
+                }
+                .onTapGesture {
+                    selectedFavorite = favorite
+                    showExplanation = true
+                }
+            }
+            .navigationTitle("Favorites")
+            .navigationBarItems(trailing: Button(action: {
+                presentationMode.wrappedValue.dismiss()
+            }) {
+                Image(systemName: "xmark.circle")
+                    .foregroundColor(.blue)
+                    .font(.system(size: 16))
+            })
+            .sheet(isPresented: $showExplanation) {
+                if let favorite = selectedFavorite {
+                    ExplanationView(
+                        adhigaram: favorite.adhigaram,
+                        lines: favorite.lines,
+                        explanation: NSAttributedString(string: "Loading explanation..."),
+                        selectedLanguage: "English", // You may need to pass this from the parent view
+                        kuralId: favorite.id
+                    )
+                }
+            }
         }
     }
 }

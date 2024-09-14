@@ -2,13 +2,22 @@ import Foundation
 import SQLite // Make sure this import is correct
 import UIKit // Add this import for NSAttributedString
 
-// Rename this struct to avoid conflict with ContentView.swift
-public struct DatabaseSearchResult { 
-    let heading: String
-    let subheading: String
-    let content: String
-    let explanation: String
-    let kuralId: Int
+public struct DatabaseSearchResult: Identifiable {
+    public let id: Int
+    public let heading: String
+    public let subheading: String
+    public let content: String
+    public let explanation: String
+    public let kuralId: Int
+    
+    public init(heading: String, subheading: String, content: String, explanation: String, kuralId: Int) {
+        self.id = kuralId // Use kuralId as the unique identifier
+        self.heading = heading
+        self.subheading = subheading
+        self.content = content
+        self.explanation = explanation
+        self.kuralId = kuralId
+    }
 }
 
 public class DatabaseManager {
