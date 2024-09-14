@@ -131,6 +131,7 @@ struct ContentView: View {
         .sheet(item: $selectedSearchResult) { result in
             ExplanationView(
                 adhigaram: result.subheading,
+        adhigaramId: String((result.kuralId + 9) / 10),
                 lines: [result.content],
                 explanation: NSAttributedString(string: result.explanation),
                 selectedLanguage: selectedLanguage,
@@ -299,7 +300,7 @@ struct AdhigaramView: View {
             stopAllAudio()
         }
         .sheet(item: $selectedLinePair) { pair in
-            ExplanationView(adhigaram: pair.adhigaram, lines: pair.lines, explanation: pair.explanation, selectedLanguage: selectedLanguage, kuralId: pair.kuralId)
+            ExplanationView(adhigaram: pair.adhigaram, adhigaramId: String((pair.kuralId + 9) / 10), lines: pair.lines, explanation: pair.explanation, selectedLanguage: selectedLanguage, kuralId: pair.kuralId)
         }
     }
     
@@ -424,6 +425,7 @@ struct LinePairView: View {
 
 struct ExplanationView: View {
     let adhigaram: String
+    let adhigaramId: String
     let lines: [String]
     let explanation: NSAttributedString
     let selectedLanguage: String
@@ -436,9 +438,18 @@ struct ExplanationView: View {
         NavigationView {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
-                    Text(adhigaram)
-                        .font(.title)
-                        .fontWeight(.bold)
+                    HStack {
+                        Text(adhigaramId)
+                            .font(.headline)
+                            .foregroundColor(.blue)
+                            .padding(8)
+                            .background(Color.blue.opacity(0.1))
+                            .clipShape(Circle())
+                        
+                        Text(adhigaram)
+                            .font(.title)
+                            .fontWeight(.bold)
+                    }
                     
                     ForEach(lines, id: \.self) { line in
                         Text(line)
@@ -467,7 +478,7 @@ struct ExplanationView: View {
                 }
                 Button(action: {
                     let content = """
-                    \(adhigaram)
+                    \(adhigaramId) \(adhigaram)
                     \(lines.joined(separator: "\n"))
                     Explanation:
                     \(explanation.string)
@@ -515,7 +526,7 @@ struct ExplanationView: View {
     }
 
     private func addFavorite() {
-        let favorite = Favorite(id: kuralId, adhigaram: adhigaram, lines: lines)
+        let favorite = Favorite(id: kuralId, adhigaram: adhigaram, adhigaramId: adhigaramId, lines: lines)
         var favorites: [Favorite] = []
         if let data = UserDefaults.standard.data(forKey: "favorites") {
             if let decoded = try? JSONDecoder().decode([Favorite].self, from: data) {
@@ -675,6 +686,7 @@ struct LanguageSettingsView: View {
 struct Favorite: Codable, Identifiable {
     let id: Int
     let adhigaram: String
+    let adhigaramId: String
     let lines: [String]
 }
 
@@ -730,6 +742,7 @@ struct FavoritesView: View {
             .sheet(item: $selectedFavorite) { favorite in
                 ExplanationView(
                     adhigaram: favorite.adhigaram,
+                    adhigaramId: String((favorite.id + 9) / 10),
                     lines: favorite.lines,
                     explanation: explanationText,
                     selectedLanguage: selectedLanguage,
