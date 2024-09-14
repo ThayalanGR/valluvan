@@ -218,13 +218,14 @@ public class DatabaseManager {
         var results: [DatabaseSearchResult] = []
         let searchQuery: String
         let searchPattern = "%\(query)%"
-        if language != "English" || language != "Telugu" || language != "Hindi" {
+
+        if language != "English" && language != "Telugu" && language != "Hindi" {
             searchQuery = """
-                    SELECT "திருக்குறள்", "English Heading", "English Chapter", "First Line English", "Second Line English", "Explanation", "\(language)",
-                    FROM tirukkural
-                    WHERE "English Heading" LIKE ? OR "English Chapter" LIKE ? OR "First Line English" LIKE ? OR "Second Line English" LIKE ? OR "Explanation" LIKE ? OR "\(language)" LIKE ?
-                    LIMIT 20
-                """
+                SELECT "திருக்குறள்", "English Heading", "English Chapter", "First Line English", "Second Line English", "Explanation", "\(language)"
+                FROM tirukkural
+                WHERE "English Heading" LIKE ? OR "English Chapter" LIKE ? OR "First Line English" LIKE ? OR "Second Line English" LIKE ? OR "Explanation" LIKE ? OR "\(language)" LIKE ?
+                LIMIT 20
+            """
             
             do {
                 let rows = try db!.prepare(searchQuery, searchPattern, searchPattern, searchPattern, searchPattern, searchPattern, searchPattern)
