@@ -9,12 +9,118 @@ import SwiftUI
 import AVFoundation
 import MediaPlayer
 
-struct Chapter: Identifiable {
-    let id: Int
-    let title: String
-    let audioPath: String
+// MARK: - Main Content View
+struct ContentView: View {
+    @StateObject private var viewModel = ContentViewModel()
+    @AppStorage("isDarkMode") private var isDarkMode = false
+
+    var body: some View {
+        NavigationView {
+            VStack {
+                PalSelectionView(selectedPal: $viewModel.selectedPal, titles: viewModel.getCurrentTitles())
+                IyalListView(iyals: viewModel.iyals, selectedLanguage: viewModel.selectedLanguage)
+            }
+            .navigationBarItems(leading: SearchBarView(viewModel: viewModel),
+                                trailing: ToolbarButtonsView(viewModel: viewModel))
+            .sheet(isPresented: $viewModel.showLanguageSettings) {
+                LanguageSettingsView(viewModel: viewModel)
+            }
+            .sheet(isPresented: $viewModel.showSearchResults) {
+                SearchResultsView(results: viewModel.searchResults, onSelectResult: viewModel.selectSearchResult)
+            }
+            .sheet(item: $viewModel.selectedSearchResult) { result in
+                ExplanationView(result: result, selectedLanguage: viewModel.selectedLanguage)
+            }
+            .sheet(isPresented: $viewModel.showFavorites) {
+                FavoritesView(favorites: viewModel.loadFavorites(), selectedLanguage: viewModel.selectedLanguage)
+            }
+        }
+        .preferredColorScheme(isDarkMode ? .dark : .light)
+        .onAppear(perform: viewModel.loadIyals)
+    }
 }
 
+// MARK: - View Components
+struct PalSelectionView: View {
+    @Binding var selectedPal: String
+    let titles: [String]
+
+    var body: some View {
+        HStack {
+            ForEach(titles.indices, id: \.self) { index in
+                PalButton(title: titles[index], selectedPal: $selectedPal)
+            }
+        }
+    }
+}
+
+struct IyalListView: View {
+    let iyals: [String]
+    let selectedLanguage: String
+
+    var body: some View {
+        List(iyals, id: \.self) { iyal in
+            NavigationLink(destination: AdhigaramView(iyal: iyal, selectedLanguage: selectedLanguage)) {
+                Text(iyal)
+            }
+        }
+        .background(Color.gray.opacity(0.2))
+    }
+}
+
+struct SearchBarView: View {
+    @ObservedObject var viewModel: ContentViewModel
+
+    var body: some View {
+        HStack {
+            TextField("Search", text: $viewModel.searchText)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .frame(width: 200)
+                .onSubmit(viewModel.searchContent)
+            
+            if !viewModel.searchText.isEmpty {
+                Button(action: {
+                    viewModel.searchText = ""
+                }) {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundColor(.gray)
+                        .font(.system(size: 16))
+                }
+            }
+        }
+    }
+}
+
+struct ToolbarButtonsView: View {
+    @ObservedObject var viewModel: ContentViewModel
+
+    var body: some View {
+        HStack {
+            Button(action: viewModel.searchContent) {
+                Image(systemName: "magnifyingglass")
+                    .font(.system(size: 16))
+            }
+            Button(action: {
+                viewModel.showFavorites = true
+            }) {
+                Image(systemName: "star.fill")
+                    .font(.system(size: 16))
+            }
+            Button(action: {
+                viewModel.showLanguageSettings = true
+            }) {
+                Image(systemName: "gearshape")
+                    .font(.system(size: 16))
+            }
+        }
+    }
+}
+
+struct LanguageSettingsView: View {
+    @ObservedObject var viewModel: ContentViewModel
+    @Environment(\.presentationMode) var presentationMode
+    @AppStorage("isDarkMode") private var isDarkMode = false
+    @Environment(\.colorScheme) var colorScheme
 struct ContentView: View {
     @State private var selectedPal: String = "Virtue"
     @State private var iyals: [String] = []
@@ -230,27 +336,45 @@ struct AdhigaramView: View {
                 let kuralId = kuralIds[index]
                 let adhigaramId = String((kuralId + 9)/10)
                 let adhigaramSong = adhigaramSongs[index]
-                VStack(alignment: .leading, spacing: 5) {
+                VStack(alignment: .leading, spacing: 10) {
                     HStack(alignment: .top, spacing: 15) {
                         Text(adhigaramId)
-                            .font(.system(size: 12, weight: .bold))
+                            .font(.system(size: 14, weight: .bold))
                             .foregroundColor(.white)
-                            .frame(width: 24, height: 24)
+                            .frame(width: 28, height: 28)
                             .background(Color.blue)
                             .clipShape(Circle())
                         
                         VStack(alignment: .leading, spacing: 5) {
-                            HStack {
-                                Text(adhigaram)
-                                    .font(.headline)
-                                
-                                Spacer()
-                                
-                                Image(systemName: expandedAdhigaram == adhigaram ? "chevron.up" : "chevron.down")
-                                    .foregroundColor(.blue)
-                                    .font(.system(size: 16))
+                            Text(adhigaram)
+                                .font(.headline)
+                            
+                            if expandedAdhigaram == adhigaram {
+                                HStack {
+                                    HStack {
+                                        Image(systemName: "music.note")
+                                            .foregroundColor(.blue)
+                                        Text(adhigaramSong)
+                                    }
+                                    .font(.subheadline)
+                                    Spacer()
+                                    Button(action: {
+                                        togglePlayPause(for: adhigaramSong)
+                                    }) {
+                                        Image(systemName: isPlaying[adhigaramSong] ?? false ? "pause.circle" : "play.circle")
+                                            .foregroundColor(.blue)
+                                            .font(.system(size: 20))
+                                    }
+                                }
+                                .padding(.vertical, 4)
                             }
                         }
+                        
+                        Spacer()
+                        
+                        Image(systemName: expandedAdhigaram == adhigaram ? "chevron.up" : "chevron.down")
+                            .foregroundColor(.blue)
+                            .font(.system(size: 16))
                     }
                     .contentShape(Rectangle())
                     .onTapGesture {
@@ -262,36 +386,24 @@ struct AdhigaramView: View {
                         }
                     }
                     
-                    if expandedAdhigaram == adhigaram { 
-                        HStack {
-                            HStack {
-                                Image(systemName: "music.note")
-                                    .foregroundColor(.blue)
-                                Text(adhigaramSong)
-                            }
-                                .font(.subheadline)
-                            Spacer()
-                            Button(action: {
-                                togglePlayPause(for: adhigaramSong)
-                            }) {
-                                Image(systemName: isPlaying[adhigaramSong] ?? false ? "pause.circle" : "play.circle")
-                                    .foregroundColor(.blue)
-                                    .font(.system(size: 20))
+                    if expandedAdhigaram == adhigaram {
+                        VStack(spacing: 10) {
+                            ForEach(allLines[adhigaram] ?? [], id: \.self) { linePair in
+                                LinePairView(
+                                    linePair: linePair,
+                                    onTap: { lines, kuralId in
+                                        loadExplanation(for: adhigaram, lines: lines, kuralId: kuralId)
+                                    }
+                                )
                             }
                         }
-                        .padding(.vertical, 4) 
-                        ForEach(allLines[adhigaram] ?? [], id: \.self) { linePair in
-                            LinePairView(
-                                linePair: linePair,
-                                onTap: { lines, kuralId in
-                                    loadExplanation(for: adhigaram, lines: lines, kuralId: kuralId)
-                                }
-                            )
-                        }
+                        .padding(.leading, 43)
                     }
                 }
+                .padding(.vertical, 8)
             }
         }
+        .listStyle(PlainListStyle())
         .navigationTitle(iyal)
         .onAppear {
             loadAdhigarams()
@@ -400,6 +512,7 @@ struct AdhigaramView: View {
 struct LinePairView: View {
     let linePair: [String]
     let onTap: ([String], Int) -> Void
+    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         let parts = linePair[0].split(separator: " ", maxSplits: 1, omittingEmptySubsequences: true)
@@ -407,19 +520,38 @@ struct LinePairView: View {
         let firstLine = String(parts[1])
         let secondLine = linePair.count > 1 ? linePair[1] : ""
         
-        VStack(alignment: .leading, spacing: 4) {
-            Text(firstLine)
-                .font(.subheadline)
-            if !secondLine.isEmpty {
-                Text(secondLine)
+        HStack(alignment: .top, spacing: 15) {
+            Text("\(kuralId)")
+                .font(.system(size: 12))
+                .foregroundColor(.white)
+                .frame(width: 28, height: 28)
+                .background(Color.blue)
+                .clipShape(Rectangle())
+            
+            VStack(alignment: .leading, spacing: 4) {
+                Text(firstLine)
                     .font(.subheadline)
+                    .fontWeight(.medium)
+                if !secondLine.isEmpty {
+                    Text(secondLine)
+                        .font(.subheadline)
+                        .fontWeight(.medium)
+                }
             }
         }
-        .padding(.vertical, 4)
+        .padding(.vertical, 8)
+        .padding(.horizontal, 12)
+        .background(colorScheme == .dark ? Color(.systemGray6) : Color(.systemBackground))
+        .cornerRadius(10)
+        .shadow(color: shadowColor, radius: 5, x: 0, y: 2)
         .contentShape(Rectangle())
         .onTapGesture {
             onTap([firstLine, secondLine], kuralId)
         }
+    }
+    
+    private var shadowColor: Color {
+        colorScheme == .dark ? Color.white.opacity(0.1) : Color.black.opacity(0.1)
     }
 }
 
