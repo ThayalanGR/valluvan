@@ -214,31 +214,94 @@ public class DatabaseManager {
         }
     }
 
-    func searchContent(query: String) -> [DatabaseSearchResult] {
+    func searchContent(query: String, language: String) -> [DatabaseSearchResult] {
+        var results: [DatabaseSearchResult] = []
+        let searchQuery: String
+        let searchPattern = "%\(query)%"
+        if language != "English" || language != "Telugu" || language != "Hindi" {
+            searchQuery = """
+                    SELECT "திருக்குறள்", "English Heading", "English Chapter", "First Line English", "Second Line English", "Explanation", "\(language)",
+                    FROM tirukkural
+                    WHERE "English Heading" LIKE ? OR "English Chapter" LIKE ? OR "First Line English" LIKE ? OR "Second Line English" LIKE ? OR "Explanation" LIKE ? OR "\(language)" LIKE ?
+                    LIMIT 20
+                """
+            
+            do {
+                let rows = try db!.prepare(searchQuery, searchPattern, searchPattern, searchPattern, searchPattern, searchPattern, searchPattern)
+                for row in rows {
+                    let result = DatabaseSearchResult(
+                        heading: row[1] as? String ?? "",
+                        subheading: row[2] as? String ?? "",
+                        content: "\(row[6] as? String ?? "")\n\(row[3] as? String ?? "")\n\(row[4] as? String ?? "")",
+                        explanation: row[5] as? String ?? "",
+                        kuralId: Int(row[0] as? Int64 ?? 0)
+                    )
+                    results.append(result)
+                }
+            } catch {
+                print("Error searching content: \(error.localizedDescription)")
+            }    
+        } else {
+            if language == "English" {
+                searchQuery = """
+                    SELECT "திருக்குறள்", "English Heading", "English Chapter", "First Line English", "Second Line English", "Explanation"
+                    FROM tirukkural
+                    WHERE "English Heading" LIKE ? OR "English Chapter" LIKE ? OR "First Line English" LIKE ? OR "Second Line English" LIKE ? OR "Explanation" LIKE ?
+                    LIMIT 20
+                """
+            } else {
+                searchQuery = """
+                    SELECT "திருக்குறள்", "English Heading", "English Chapter", "\(language) 1", "\(language) 2", "Explanation"
+                    FROM tirukkural
+                    WHERE "English Heading" LIKE ? OR "English Chapter" LIKE ? OR "\(language) 1" LIKE ? OR "\(language) 2" LIKE ? OR "Explanation" LIKE ?
+                    LIMIT 20
+                """
+            }
+            do {
+                let rows = try db!.prepare(searchQuery, searchPattern, searchPattern, searchPattern, searchPattern, searchPattern)
+                for row in rows {
+                    let result = DatabaseSearchResult(
+                        heading: row[1] as? String ?? "",
+                        subheading: row[2] as? String ?? "",
+                        content: "\(row[3] as? String ?? "")\n\(row[4] as? String ?? "")",
+                        explanation: row[5] as? String ?? "",
+                        kuralId: Int(row[0] as? Int64 ?? 0)
+                    )
+                    results.append(result)
+                }
+            } catch {
+                print("Error searching content: \(error.localizedDescription)")
+            }
+        }
+
+        return results
+    }
+
+
+    func searchTamilContent(query: String) -> [DatabaseSearchResult] {
         var results: [DatabaseSearchResult] = []
         let searchQuery = """
-            SELECT "திருக்குறள்", "English Heading", "English Chapter", "First Line English", "Second Line English", "Explanation"
+            SELECT "திருக்குறள்", "இயல்", "அதிகாரம்", "First Line", "Second Line", "மணக்குடவர்", "பரிமேலழகர்", "மு. வரதராசன்", "கலைஞர்", "சாலமன் பாப்பையா", "வீ. முனிசாமி"
             FROM tirukkural
-            WHERE "English Heading" LIKE ? OR "English Chapter" LIKE ? OR "First Line English" LIKE ? OR "Second Line English" LIKE ? OR "Explanation" LIKE ?
+            WHERE "இயல்" LIKE ? OR "அதிகாரம்" LIKE ? OR "First Line" LIKE ? OR "Second Line" LIKE ? OR "மணக்குடவர்" LIKE ? OR "பரிமேலழகர்" LIKE ? OR "மு. வரதராசன்" LIKE ? OR "கலைஞர்" LIKE ? OR "சாலமன் பாப்பையா" LIKE ? OR "வீ. முனிசாமி" LIKE ?
             LIMIT 20
         """
         let searchPattern = "%\(query)%"
 
         do {
-            let rows = try db!.prepare(searchQuery, searchPattern, searchPattern, searchPattern, searchPattern, searchPattern)
+            let rows = try db!.prepare(searchQuery, searchPattern, searchPattern, searchPattern, searchPattern, searchPattern, searchPattern, searchPattern, searchPattern, searchPattern, searchPattern)
             for row in rows {
-                let result = DatabaseSearchResult( 
+                let result = DatabaseSearchResult(
                     heading: row[1] as? String ?? "",
                     subheading: row[2] as? String ?? "",
                     content: "\(row[3] as? String ?? "")\n\(row[4] as? String ?? "")",
-                    explanation: row[5] as? String ?? "",
+                    explanation: row[8] as? String ?? "",
                     kuralId: Int(row[0] as? Int64 ?? 0)
                 )
                 results.append(result)
             }
-
         } catch {
-            print("Error searching content: \(error.localizedDescription)")
+            print("Error searching Tamil content: \(error.localizedDescription)")
         }
 
         return results

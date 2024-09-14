@@ -154,15 +154,35 @@ struct ContentView: View {
     }
     
     func searchContent() {
-        let databaseResults = DatabaseManager.shared.searchContent(query: searchText) 
+        switch selectedLanguage {
+        case "Tamil":
+            searchTamilContent()
+        default:
+            let databaseResults = DatabaseManager.shared.searchContent(query: searchText, language: selectedLanguage)
+            searchResults = databaseResults.map { dbResult in
+                SearchResult(
+                    kuralId: dbResult.kuralId,
+                    adhigaram: dbResult.subheading,
+                    line: dbResult.content,
+                    explanation: NSAttributedString(string: dbResult.explanation)
+                )
+            }
+            DispatchQueue.main.async {
+                self.showSearchResults = true
+                self.hasSearched = true
+            }
+        }
+    }
+ 
+    func searchTamilContent() {
+        let databaseResults = DatabaseManager.shared.searchTamilContent(query: searchText)
         searchResults = databaseResults.map { dbResult in
-            let searchResult = SearchResult(
+            SearchResult(
                 kuralId: dbResult.kuralId,
                 adhigaram: dbResult.subheading,
                 line: dbResult.content,
                 explanation: NSAttributedString(string: dbResult.explanation)
             )
-            return searchResult
         }
         DispatchQueue.main.async {
             self.showSearchResults = true
