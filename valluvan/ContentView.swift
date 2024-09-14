@@ -18,7 +18,7 @@ struct ContentView: View {
     @State private var selectedPal: String = "Virtue"
     @State private var iyals: [String] = []
     @State private var showLanguageSettings = false
-    @State private var selectedLanguage = "English"
+    @State private var selectedLanguage = "Tamil"
     @State private var isExpanded: Bool = false
     @State private var iyal: String = ""  // Add this line to declare iyal as a state variable
     
