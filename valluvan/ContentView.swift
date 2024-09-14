@@ -14,6 +14,34 @@ struct Chapter: Identifiable {
     let title: String
     let audioPath: String
 }
+
+func getSystemImageForIyal(_ iyal: String) -> String {
+    switch iyal {
+    case "Preface", "பாயிரவியல்":
+        return "book.fill"
+    case "Domestic Virtue", "இல்லறவியல்":
+        return "house.fill"
+    case "Ascetic Virtue", "துறவறவியல்":
+        return "leaf.fill"
+    case "Royalty":
+        return "crown.fill"
+    case "Ministry":
+        return "briefcase.fill"
+    case "Politics":
+        return "building.columns.fill"
+    case "Friendship":
+        return "person.2.fill"
+    case "Miscellaneous":
+        return "ellipsis.circle.fill"
+    case "Pre-marital love", "களவியல்":
+        return "heart.fill"
+    case "Post-marital love", "கற்பியல்":
+        return "heart.circle.fill"
+    default:
+        return "circle.fill"
+    }
+}
+
 struct ContentView: View {
     @State private var selectedPal: String = "அறத்துப்பால்"
     @State private var iyals: [String] = []
@@ -175,6 +203,9 @@ struct ContentView: View {
 
     var body: some View {
         HStack {
+            Image(systemName: getSystemImageForIyal(iyal))
+                .foregroundColor(.yellow)
+                .padding(.trailing, 8)
             VStack(alignment: .leading, spacing: 8) {
                 Text(translatedIyal)
                     .font(.headline)
@@ -184,7 +215,6 @@ struct ContentView: View {
             }
             .padding(.vertical, 12)
             .padding(.horizontal, 16)
-            
             Spacer()
             
             Image(systemName: "chevron.right")
@@ -393,7 +423,6 @@ struct ContentView: View {
             return "\(index + 1).circle"
         }
     }
-    
     
     private func getCurrentTitle(_ index: Int) -> String {
         switch selectedLanguage {
