@@ -42,12 +42,14 @@ struct ContentView: View {
     }
 
     private func setupAudioSession() {
+        #if os(iOS)
         do {
             try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.mixWithOthers, .defaultToSpeaker])
             try AVAudioSession.sharedInstance().setActive(true)
         } catch {
             print("Failed to set up audio session: \(error)")
         }
+        #endif
     }
 
     var body: some View {
@@ -210,8 +212,10 @@ struct ContentView: View {
 
 struct AdhigaramView: View {
     let iyal: String
-    let selectedLanguage: String // Add this line to accept selectedLanguage
+    let selectedLanguage: String
     @State private var adhigarams: [String] = []
+    @State private var kuralIds: [Int] = []
+    @State private var adhigaramSongs: [String] = []
     @State private var expandedAdhigaram: String?
     @State private var allLines: [String: [[String]]] = [:]
     @State private var audioPlayers: [String: AVAudioPlayer] = [:]
@@ -220,19 +224,66 @@ struct AdhigaramView: View {
 
     var body: some View {
         List {
-            ForEach(adhigarams, id: \.self) { adhigaram in
-                AdhigaramRowView(
-                    adhigaram: adhigaram,
-                    isExpanded: expandedAdhigaram == adhigaram,
-                    lines: allLines[adhigaram] ?? [],
-                    isPlaying: isPlaying[adhigaram] ?? false,
-                    onToggleExpand: { toggleExpand(for: adhigaram) },
-                    onTogglePlayPause: { togglePlayPause(for: adhigaram) },
-                    onSelectLinePair: { lines, kuralId in
-                        loadExplanation(for: adhigaram, lines: lines, kuralId: kuralId)
-                    },
-                    selectedLanguage: selectedLanguage 
-                )
+            ForEach(adhigarams.indices, id: \.self) { index in
+                let adhigaram = adhigarams[index]
+                let kuralId = kuralIds[index]
+                let adhigaramSong = adhigaramSongs[index]
+                VStack(alignment: .leading, spacing: 5) {
+                    HStack(alignment: .top, spacing: 15) {
+                        Text("\(index + 1)")
+                            .font(.system(size: 14, weight: .bold))
+                            .foregroundColor(.white)
+                            .frame(width: 24, height: 24)
+                            .background(Color.blue)
+                            .clipShape(Circle())
+                        
+                        VStack(alignment: .leading, spacing: 5) {
+                            HStack {
+                                Text(adhigaram)
+                                    .font(.headline)
+                                
+                                Spacer()
+                                
+                                Image(systemName: expandedAdhigaram == adhigaram ? "chevron.up" : "chevron.down")
+                                    .foregroundColor(.blue)
+                                    .font(.system(size: 16))
+                            }
+                        }
+                    }
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        if expandedAdhigaram == adhigaram {
+                            expandedAdhigaram = nil
+                        } else {
+                            expandedAdhigaram = adhigaram
+                            loadAllLines(for: adhigaram)
+                        }
+                    }
+                    
+                    if expandedAdhigaram == adhigaram { 
+                        HStack {
+                            Text(adhigaramSong + " Audio :")
+                                .font(.subheadline)
+                            Spacer()
+                            Button(action: {
+                                togglePlayPause(for: adhigaramSong)
+                            }) {
+                                Image(systemName: isPlaying[adhigaramSong] ?? false ? "pause.circle" : "play.circle")
+                                    .foregroundColor(.blue)
+                                    .font(.system(size: 20))
+                            }
+                        }
+                        .padding(.vertical, 4) 
+                        ForEach(allLines[adhigaram] ?? [], id: \.self) { linePair in
+                            LinePairView(
+                                linePair: linePair,
+                                onTap: { lines, kuralId in
+                                    loadExplanation(for: adhigaram, lines: lines, kuralId: kuralId)
+                                }
+                            )
+                        }
+                    }
+                }
             }
         }
         .navigationTitle(iyal)
@@ -248,7 +299,10 @@ struct AdhigaramView: View {
     }
     
     private func loadAdhigarams() {
-        adhigarams = DatabaseManager.shared.getAdhigarams(for: iyal, language: selectedLanguage)
+        let (adhigarams, kuralIds, adhigaramSongs) = DatabaseManager.shared.getAdhigarams(for: iyal, language: selectedLanguage)
+        self.adhigarams = adhigarams
+        self.kuralIds = kuralIds
+        self.adhigaramSongs = adhigaramSongs
     }
     
     private func loadAllLines(for adhigaram: String) {
@@ -267,23 +321,23 @@ struct AdhigaramView: View {
         }
     }
     
-    private func togglePlayPause(for adhigaram: String) {
-        if let player = audioPlayers[adhigaram] {
+    private func togglePlayPause(for adhigaramSong: String) {
+        if let player = audioPlayers[adhigaramSong] {
             if player.isPlaying {
                 player.pause()
-                isPlaying[adhigaram] = false
+                isPlaying[adhigaramSong] = false
             } else {
                 player.play()
-                isPlaying[adhigaram] = true
+                isPlaying[adhigaramSong] = true
             }
         } else { 
-            if let url = Bundle.main.url(forResource:adhigaram, withExtension: "mp3") {
+            if let url = Bundle.main.url(forResource: adhigaramSong, withExtension: "mp3") {
                 do {
                     let player = try AVAudioPlayer(contentsOf: url)
                     player.numberOfLoops = -1 // Loop indefinitely
-                    audioPlayers[adhigaram] = player
+                    audioPlayers[adhigaramSong] = player
                     player.play()
-                    isPlaying[adhigaram] = true
+                    isPlaying[adhigaramSong] = true
                     
                     // Set up remote control events
                     setupRemoteTransportControls()
@@ -334,78 +388,7 @@ struct AdhigaramView: View {
         let explanation = DatabaseManager.shared.getExplanation(for: kuralId, language: selectedLanguage)
         selectedLinePair = SelectedLinePair(adhigaram: adhigaram, lines: lines, explanation: explanation, kuralId: kuralId)
     }
-    
-    private func toggleExpand(for adhigaram: String) {
-        withAnimation {
-            if expandedAdhigaram == adhigaram {
-                expandedAdhigaram = nil
-            } else {
-                expandedAdhigaram = adhigaram
-                loadAllLines(for: adhigaram)
-            }
-        }
-    }
-}
-
-struct AdhigaramRowView: View {
-    let adhigaram: String
-    let isExpanded: Bool
-    let lines: [[String]]
-    let isPlaying: Bool
-    let onToggleExpand: () -> Void
-    let onTogglePlayPause: () -> Void
-    let onSelectLinePair: ([String], Int) -> Void
-    let selectedLanguage: String  
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            HStack {
-                // Show play/pause button only for Tamil
-                if selectedLanguage == "Tamil" {
-                    Button(action: onTogglePlayPause) {
-                        Image(systemName: isPlaying ? "pause.circle" : "play.circle")
-                            .foregroundColor(.blue)
-                            .font(.system(size: 16)) 
-                    }
-                    .buttonStyle(PlainButtonStyle())
-                }
-                
-                Button(action: onToggleExpand) {
-                    HStack {
-                        Text(adhigaram)
-                        Spacer()
-                        Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
-                            .font(.system(size: 16)) 
-                    }
-                }
-                .buttonStyle(PlainButtonStyle())
-            }
-            
-            if isExpanded {
-                ExpandedAdhigaramView(
-                    lines: lines,
-                    isPlaying: isPlaying,
-                    onTogglePlayPause: onTogglePlayPause,
-                    onSelectLinePair: onSelectLinePair
-                )
-            }
-        }
-    }
-}
-
-struct ExpandedAdhigaramView: View {
-    let lines: [[String]]
-    let isPlaying: Bool
-    let onTogglePlayPause: () -> Void
-    let onSelectLinePair: ([String], Int) -> Void
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 4) { 
-            ForEach(lines, id: \.self) { linePair in
-                LinePairView(linePair: linePair, onTap: onSelectLinePair)
-            }
-        }
-    }
+     
 }
 
 struct LinePairView: View {
@@ -415,18 +398,21 @@ struct LinePairView: View {
     var body: some View {
         let parts = linePair[0].split(separator: " ", maxSplits: 1, omittingEmptySubsequences: true)
         let kuralId = Int(parts[0]) ?? 0
-        let secondPart = String(parts[1])
+        let firstLine = String(parts[1])
         let secondLine = linePair.count > 1 ? linePair[1] : ""
+        
         VStack(alignment: .leading, spacing: 4) {
-            Text(secondPart)
-            if linePair.count > 1 {
+            Text(firstLine)
+                .font(.subheadline)
+            if !secondLine.isEmpty {
                 Text(secondLine)
+                    .font(.subheadline)
             }
         }
         .padding(.vertical, 4)
         .contentShape(Rectangle())
         .onTapGesture {
-            onTap([secondPart, secondLine], kuralId)
+            onTap([firstLine, secondLine], kuralId)
         }
     }
 }
@@ -481,7 +467,12 @@ struct ExplanationView: View {
                     Explanation:
                     \(explanation.string)
                     """
+                    #if os(iOS)
                     UIPasteboard.general.string = content
+                    #else
+                    NSPasteboard.general.clearContents()
+                    NSPasteboard.general.setString(content, forType: .string)
+                    #endif
                 }) {
                     Image(systemName: "doc.on.doc")
                         .foregroundColor(.blue)

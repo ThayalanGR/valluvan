@@ -73,29 +73,32 @@ public class DatabaseManager {
         return iyals
     }
  
-    public func getAdhigarams(for iyal: String, language: String) -> [String] {
+    public func getAdhigarams(for iyal: String, language: String) -> ([String], [Int], [String]) {
         let tirukkuralTable = Table("tirukkural")
         let kuralId = Expression<Int>("திருக்குறள்")
         let iyalExpr = language == "Tamil" ? Expression<String>("இயல்") : Expression<String>("English Heading")
         let adhigaramExpr = language == "Tamil" ? Expression<String>("அதிகாரம்") : Expression<String>("English Chapter")
-        
+        let adhigaramSongExpr = Expression<String>("அதிகாரம்") 
         var adhigarams: [String] = []
-        
+        var kuralIds: [Int] = []
+        var adhigaramSongs: [String] = []
         do {
             let query = tirukkuralTable
-                .select(adhigaramExpr)
+                .select(adhigaramExpr, kuralId, adhigaramSongExpr)
                 .filter(iyalExpr == iyal)
                 .group(adhigaramExpr)
                 .order(kuralId)
             
             for row in try db!.prepare(query) {
-                adhigarams.append(row[adhigaramExpr])
+                adhigarams.append(row[adhigaramExpr])   
+                kuralIds.append(row[kuralId])
+                adhigaramSongs.append(row[adhigaramSongExpr])
             }
         } catch {
             print("Error fetching adhigarams: \(error)")
         }
-        
-        return adhigarams
+
+        return (adhigarams, kuralIds, adhigaramSongs)
     } 
 
     public func getSingleLine(for adhigaram: String, language: String) -> [String] {
@@ -177,7 +180,7 @@ public class DatabaseManager {
         case "Tamil":
             explanationExpr = Expression<String>("கலைஞர்")
             manaExplanationExpr = Expression<String>("மணக்குடவர்")
-            pariExplanationExpr = Expression<String>("பரிமேலழகர��")
+            pariExplanationExpr = Expression<String>("பரிமேலழகர")
             varaExplanationExpr = Expression<String>("மு. வரதராசன்")
             popsExplanationExpr = Expression<String>("சாலமன் பாப்பையா")
             muniExplanationExpr = Expression<String>("வீ. முனிசாமி")
