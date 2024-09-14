@@ -134,7 +134,7 @@ struct ContentView: View {
             )
         }
         .sheet(isPresented: $showFavorites) {
-            FavoritesView(favorites: loadFavorites())
+            FavoritesView(favorites: loadFavorites(), selectedLanguage: selectedLanguage)
         }
     }
     
@@ -669,9 +669,11 @@ struct Favorite: Codable, Identifiable {
 
 struct FavoritesView: View {
     let favorites: [Favorite]
+    let selectedLanguage: String
     @Environment(\.presentationMode) var presentationMode
     @State private var selectedFavorite: Favorite?
     @State private var showExplanation = false
+    @State private var explanationText: NSAttributedString = NSAttributedString()
 
     var body: some View {
         NavigationView {
@@ -685,7 +687,7 @@ struct FavoritesView: View {
                 }
                 .onTapGesture {
                     selectedFavorite = favorite
-                    showExplanation = true
+                    loadExplanation(for: favorite.id)
                 }
             }
             .navigationTitle("Favorites")
@@ -696,17 +698,20 @@ struct FavoritesView: View {
                     .foregroundColor(.blue)
                     .font(.system(size: 16))
             })
-            .sheet(isPresented: $showExplanation) {
-                if let favorite = selectedFavorite {
-                    ExplanationView(
-                        adhigaram: favorite.adhigaram,
-                        lines: favorite.lines,
-                        explanation: NSAttributedString(string: "Loading explanation..."),
-                        selectedLanguage: "English", // You may need to pass this from the parent view
-                        kuralId: favorite.id
-                    )
-                }
+            .sheet(item: $selectedFavorite) { favorite in
+                ExplanationView(
+                    adhigaram: favorite.adhigaram,
+                    lines: favorite.lines,
+                    explanation: explanationText,
+                    selectedLanguage: selectedLanguage,
+                    kuralId: favorite.id
+                )
             }
         }
+    }
+
+    private func loadExplanation(for kuralId: Int) {
+        explanationText = DatabaseManager.shared.getExplanation(for: kuralId, language: selectedLanguage)
+        showExplanation = true
     }
 }
