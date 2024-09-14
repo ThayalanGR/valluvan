@@ -1105,8 +1105,10 @@ struct FavoritesView: View {
                                         Image(systemName: "trash")
                                             .foregroundColor(.red)
                                     }
+                                    .buttonStyle(BorderlessButtonStyle())
                                 }
                             }
+                            .contentShape(Rectangle())
                             .onTapGesture {
                                 selectedFavorite = favorite
                                 loadExplanation(for: favorite.id)
