@@ -38,6 +38,7 @@ struct ContentView: View {
     @State private var showGoToKural = false
     @State private var goToKuralId = ""
     @State private var showInvalidKuralAlert = false
+    @AppStorage("fontSize") private var fontSize: FontSize = .medium
 
     init() {
         setupAudioSession()
@@ -121,6 +122,7 @@ struct ContentView: View {
             }
         }
         .preferredColorScheme(isDarkMode ? .dark : .light)
+        .environment(\.sizeCategory, fontSize.textSizeCategory)
         .onAppear {
             loadIyals()
         }
@@ -750,6 +752,7 @@ struct LanguageSettingsView: View {
     let tamilTitle: [String]
     @Environment(\.presentationMode) var presentationMode
     @AppStorage("isDarkMode") private var isDarkMode = false
+    @AppStorage("fontSize") private var fontSize: FontSize = .medium
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
@@ -761,6 +764,15 @@ struct LanguageSettingsView: View {
                             .foregroundColor(isDarkMode ? .yellow : .orange)
                         Toggle("Dark Mode", isOn: $isDarkMode)
                     }
+                }
+
+                Section(header: Text("Font Size")) {
+                    Picker("Font Size", selection: $fontSize) {
+                        ForEach(FontSize.allCases) { size in
+                            Text(size.rawValue).tag(size)
+                        }
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
                 }
 
                 Section(header: Text("Language")) {
@@ -794,6 +806,23 @@ struct LanguageSettingsView: View {
             })
         }
         .preferredColorScheme(isDarkMode ? .dark : .light)
+    }
+}
+
+// Add this enum at the bottom of the file
+enum FontSize: String, CaseIterable, Identifiable {
+    case small = "Small"
+    case medium = "Medium"
+    case large = "Large"
+
+    var id: String { self.rawValue }
+
+    var textSizeCategory: ContentSizeCategory {
+        switch self {
+        case .small: return .small
+        case .medium: return .medium
+        case .large: return .large
+        }
     }
 }
 
