@@ -24,6 +24,20 @@ struct ContentView: View {
     
     let tamilTitle = ["அறத்துப்பால்", "பொருட்பால்", "இன்பத்துப்பால்"]
     let englishTitle = ["Virtue", "Wealth", "Nature of Love"] 
+    let teluguTitle = ["మన్నాలు", "పరిపాలన", "అంతరంగం ప్రేమ"]
+    let hindiTitle = ["धर्म", "धन", "प्रेम"]
+    let kannadaTitle = ["ಧರ್ಮ", "ಸಾಮಾನ್ಯ", "ಪ್ರೇಮ"]
+    let frenchTitle = ["Virtue", "Wealth", "Nature of Love"]
+    let arabicTitle = ["الفطرة", "الثروة", "طبيعة الحب"]
+    let chineseTitle = ["美德", "财富", "爱的本质"]
+    let germanTitle = ["Tugend", "Wealth", "Natur des Verliebens"]
+    let koreanTitle = ["미덕", "재물", "사랑의 본성"]
+    let malayTitle = ["Kesempurnaan", "Kekayaan", "Sifat Cinta"]
+    let malayalamTitle = ["മന്നാല്‍", "പരിപാലനം", "അന്തരാളികം പ്രിയം"]
+    let polishTitle = ["Dobroć", "Bogactwo", "Natura miłości"]
+    let russianTitle = ["Добродетель", "Богатство", "Суть любви"]
+    let singalamTitle = ["மன்னால்", "பரிபாலநம்", "அன்தராளிகம் ப்ரேமம்"]
+    let swedishTitle = ["Dygd", "Välst", "Kärlekens natur"]
     let languages = ["Tamil", "English", "Telugu", "Hindi", "Kannad", "French", "Arabic", "Chinese", "German", "Korean", "Malay", "Malayalam", "Polish", "Russian", "Singalam", "Swedish"]
     
     @State private var searchText = ""
@@ -225,7 +239,7 @@ struct ContentView: View {
     private var bottomBar: some View {
         HStack {
             ForEach(0..<3) { index in
-                PalButton(title: getCurrentTitle(index), systemImage: "\(index + 1).circle", selectedPal: $selectedPal)
+                PalButton(title: getCurrentTitle(index), query: getCurrentEnglishTitle(index), systemImage: "\(index + 1).circle", selectedPal: $selectedPal)
             }
         }
         .padding()
@@ -249,8 +263,46 @@ struct ContentView: View {
         }
     }
     
+    private func getCurrentEnglishTitle(_ index: Int) -> String {
+        return englishTitle[index]
+    }
     private func getCurrentTitle(_ index: Int) -> String {
-        return selectedLanguage == "Tamil" ? tamilTitle[index] : englishTitle[index]
+        switch selectedLanguage {
+        case "Tamil":
+            return tamilTitle[index]
+        case "English":
+            return englishTitle[index]
+        case "Telugu":
+            return teluguTitle[index]
+        case "Hindi":
+            return hindiTitle[index]
+        case "Kannad":
+            return kannadaTitle[index]
+        case "French":
+            return frenchTitle[index]
+        case "Arabic":
+            return arabicTitle[index]
+        case "Chinese":
+            return chineseTitle[index]
+        case "German":
+            return germanTitle[index]
+        case "Korean":
+            return koreanTitle[index]
+        case "Malay":
+            return malayTitle[index]
+        case "Malayalam":
+            return malayalamTitle[index]
+        case "Polish":
+            return polishTitle[index]
+        case "Russian":
+            return russianTitle[index]
+        case "Singalam":
+            return singalamTitle[index]
+        case "Swedish":
+            return swedishTitle[index]
+        default:
+            return englishTitle[index] // Fallback to English if language is not found
+        }
     }
     
     private func updateSelectedPal() {
@@ -831,12 +883,13 @@ struct ExplanationView: View {
 
 struct PalButton: View {
     let title: String
+    let query: String
     let systemImage: String
     @Binding var selectedPal: String
     
     var body: some View {
         Button(action: {
-            selectedPal = title
+            selectedPal = query
         }) {
             VStack {
                 Image(systemName: systemImage)
