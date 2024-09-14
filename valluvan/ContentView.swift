@@ -392,7 +392,7 @@ struct ContentView: View {
     private func getSystemImage(for index: Int) -> String {
         switch index {
         case 0:
-            return "person.2.circle"
+            return "leaf.circle"
         case 1:
             return "dollarsign.circle"
         case 2:
