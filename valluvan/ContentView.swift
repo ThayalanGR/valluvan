@@ -237,7 +237,7 @@ struct ContentView: View {
     private var bottomBar: some View {
         HStack {
             ForEach(0..<3) { index in
-                PalButton(title: getCurrentTitle(index), query: getCurrentEnglishTitle(index), systemImage: "\(index + 1).circle", selectedPal: $selectedPal)
+                PalButton(title: getCurrentTitle(index), query: getCurrentEnglishTitle(index), systemImage: getSystemImage(for: index), selectedPal: $selectedPal)
             }
         }
         .padding()
@@ -387,6 +387,19 @@ struct ContentView: View {
             }
         }
         showGoToKural = false
+    }
+
+    private func getSystemImage(for index: Int) -> String {
+        switch index {
+        case 0:
+            return "person.2.circle"
+        case 1:
+            return "dollarsign.circle"
+        case 2:
+            return "heart.circle"
+        default:
+            return "\(index + 1).circle"
+        }
     }
 }
 
