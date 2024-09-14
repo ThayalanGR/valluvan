@@ -376,7 +376,12 @@ struct ContentView: View {
     }
 
     private func goToKural() {
-        guard let kuralId = Int(goToKuralId), kuralId >= 1, kuralId <= 1330 else {
+        guard let kuralId = Int(goToKuralId) else {
+            showInvalidKuralAlert = true
+            return
+        }
+
+        if kuralId < 1 || kuralId > 1330 {
             showInvalidKuralAlert = true
             return
         }
@@ -692,7 +697,7 @@ struct LinePairView: View {
             Text("\(kuralId)")
                 .font(.system(size: 12))
                 .foregroundColor(.white)
-                .frame(width: 28, height: 28)
+                .frame(width: 32, height: 32)
                 .background(Color.blue)
                 .clipShape(Rectangle())
             
@@ -706,11 +711,11 @@ struct LinePairView: View {
                         .fontWeight(.medium)
                 }
             }
-            Spacer() // Add this to push content to the left
+            Spacer()
         }
         .padding(.vertical, 8)
         .padding(.horizontal, 12)
-        .frame(maxWidth: .infinity) // Add this line to make it full width
+        .frame(maxWidth: .infinity)
         .background(colorScheme == .dark ? Color(.systemGray6) : Color(.systemBackground))
         .cornerRadius(10)
         .shadow(color: shadowColor, radius: 5, x: 0, y: 2)
@@ -1068,29 +1073,41 @@ struct FavoritesView: View {
 
     var body: some View {
         NavigationView {
-            List {
-                ForEach(favorites) { favorite in
-                    VStack(alignment: .leading) {
-                        HStack {
+            Group {
+                if favorites.isEmpty {
+                    VStack {
+                        Spacer()
+                        Text("Favorites yet to be added")
+                            .font(.headline)
+                            .foregroundColor(.secondary)
+                        Spacer()
+                    }
+                } else {
+                    List {
+                        ForEach(favorites) { favorite in
                             VStack(alignment: .leading) {
-                                Text(favorite.adhigaram)
-                                    .font(.headline)
-                                ForEach(favorite.lines, id: \.self) { line in
-                                    Text(line)
+                                HStack {
+                                    VStack(alignment: .leading) {
+                                        Text(favorite.adhigaram)
+                                            .font(.headline)
+                                        ForEach(favorite.lines, id: \.self) { line in
+                                            Text(line)
+                                        }
+                                    }
+                                    Spacer()
+                                    Button(action: {
+                                        removeFavorite(favorite)
+                                    }) {
+                                        Image(systemName: "trash")
+                                            .foregroundColor(.red)
+                                    }
                                 }
                             }
-                            Spacer()
-                            Button(action: {
-                                removeFavorite(favorite)
-                            }) {
-                                Image(systemName: "trash")
-                                    .foregroundColor(.red)
+                            .onTapGesture {
+                                selectedFavorite = favorite
+                                loadExplanation(for: favorite.id)
                             }
                         }
-                    }
-                    .onTapGesture {
-                        selectedFavorite = favorite
-                        loadExplanation(for: favorite.id)
                     }
                 }
             }
