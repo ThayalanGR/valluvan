@@ -99,6 +99,8 @@ struct ContentView: View {
                     bottomBar
                 }
             }
+
+            .navigationBarTitle("Valluvan", displayMode: .inline)
             .navigationBarItems(leading: leadingBarItems, trailing: trailingBarItems)
             .navigationBarTitle(iyal, displayMode: .inline)
         }
