@@ -258,6 +258,7 @@ struct AdhigaramView: View {
                                             .foregroundColor(.blue)
                                             .font(.system(size: 20))
                                     }
+                                    .buttonStyle(PlainButtonStyle()) // Add this line
                                 }
                                 .padding(.vertical, 4)
                             }
@@ -332,7 +333,7 @@ struct AdhigaramView: View {
         }
     }
     
-    private func togglePlayPause(for adhigaramSong: String) {
+    private func togglePlayPause(for adhigaramSong: String) { 
         if let player = audioPlayers[adhigaramSong] {
             if player.isPlaying {
                 player.pause()
@@ -355,6 +356,8 @@ struct AdhigaramView: View {
                 } catch {
                     print("Error loading audio file: \(error.localizedDescription)")
                 }
+            } else {
+                print("Audio file not found: \(adhigaramSong).mp3") // Add this line for debugging
             }
         }
     }
