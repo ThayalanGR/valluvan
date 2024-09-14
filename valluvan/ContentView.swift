@@ -200,67 +200,68 @@ struct ContentView: View {
             }
         }
     }
-    struct IyalCard: View {
-    let iyal: String
-    let selectedLanguage: String
-    @Environment(\.colorScheme) var colorScheme
-    @EnvironmentObject var appState: AppState
-    @State private var translatedIyal: String = ""
 
-    var body: some View {
-        HStack {
-            Image(systemName: getSystemImageForIyal(iyal))
-                .foregroundColor(.yellow)
-                .padding(.trailing, 8)
-            VStack(alignment: .leading, spacing: 8) {
-                Text(translatedIyal)
-                    .font(.headline)
-                    .foregroundColor(.primary)
-                    .lineLimit(2)
-                    .multilineTextAlignment(.leading)
+    struct IyalCard: View {
+        let iyal: String
+        let selectedLanguage: String
+        @Environment(\.colorScheme) var colorScheme
+        @EnvironmentObject var appState: AppState
+        @State private var translatedIyal: String = ""
+
+        var body: some View {
+            HStack {
+                Image(systemName: getSystemImageForIyal(iyal))
+                    .foregroundColor(.yellow)
+                    .padding(.trailing, 8)
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(translatedIyal)
+                        .font(.headline)
+                        .foregroundColor(.primary)
+                        .lineLimit(2)
+                        .multilineTextAlignment(.leading)
+                }
+                .padding(.vertical, 12)
+                .padding(.horizontal, 16)
+                Spacer()
+                
+                Image(systemName: "chevron.right")
+                    .foregroundColor(.secondary)
+                    .padding(.trailing, 16)
             }
-            .padding(.vertical, 12)
-            .padding(.horizontal, 16)
-            Spacer()
-            
-            Image(systemName: "chevron.right")
-                .foregroundColor(.secondary)
-                .padding(.trailing, 16)
-        }
-        .frame(maxWidth: .infinity)
-        .background(backgroundColor)
-        .cornerRadius(10)
-        .shadow(color: shadowColor, radius: 3, x: 0, y: 2)
-        .environment(\.sizeCategory, appState.fontSize.textSizeCategory)
-        .onAppear {
-            Task {
-                await translateIyal()
-            }
-        }
-    }
-    
-    private var backgroundColor: Color {
-        colorScheme == .dark ? Color(.systemGray6) : Color(.systemBackground)
-    }
-    
-    private var shadowColor: Color {
-        colorScheme == .dark ? Color.white.opacity(0.1) : Color.black.opacity(0.1)
-    }
-    
-    private func translateIyal() async {
-        if selectedLanguage == "Tamil" {
-            translatedIyal = iyal
-        } else {
-            do {
-                let translated = try await TranslationUtil.getTranslation(for: iyal, to: selectedLanguage)
-                translatedIyal = translated
-            } catch {
-                print("Error translating iyal: \(error)")
-                translatedIyal = iyal // Fallback to original text if translation fails
+            .frame(maxWidth: .infinity)
+            .background(backgroundColor)
+            .cornerRadius(10)
+            .shadow(color: shadowColor, radius: 3, x: 0, y: 2)
+            .environment(\.sizeCategory, appState.fontSize.textSizeCategory)
+            .onAppear {
+                Task {
+                    await translateIyal()
+                }
             }
         }
+        
+        private var backgroundColor: Color {
+            colorScheme == .dark ? Color(.systemGray6) : Color(.systemBackground)
+        }
+        
+        private var shadowColor: Color {
+            colorScheme == .dark ? Color.white.opacity(0.1) : Color.black.opacity(0.1)
+        }
+        
+        private func translateIyal() async {
+            if selectedLanguage == "Tamil" {
+                translatedIyal = iyal
+            } else {
+                do {
+                    let translated = try await TranslationUtil.getTranslation(for: iyal, to: selectedLanguage)
+                    translatedIyal = translated
+                } catch {
+                    print("Error translating iyal: \(error)")
+                    translatedIyal = iyal // Fallback to original text if translation fails
+                }
+            }
+        }
     }
-}
     
     private var searchBar: some View {
         HStack {
@@ -289,21 +290,6 @@ struct ContentView: View {
         .padding()
     }
     
-    private var bottomBar: some View {
-        HStack {
-            ForEach(0..<3) { index in
-                PalButton(
-                    title: getCurrentTitle(index),
-                    query: getCurrentEnglishTitle(index),
-                    systemImage: getSystemImage(for: index),
-                    selectedLanguage: selectedLanguage,
-                    selectedPal: $selectedPal
-                )
-            }
-        }
-        .padding()
-        .background(Color(UIColor.secondarySystemBackground))
-    }
     
     private var leadingBarItems: some View {
         HStack {
@@ -332,12 +318,67 @@ struct ContentView: View {
         return englishTitle[index]
     }
     
+    private var bottomBar: some View {
+        HStack {
+            ForEach(0..<3) { index in
+                PalButton(
+                    title: getCurrentTitle(index),
+                    query: getCurrentEnglishTitle(index),
+                    systemImage: getSystemImage(for: index),
+                    selectedLanguage: selectedLanguage,
+                    selectedPal: $selectedPal
+                )
+            }
+        }
+        .padding()
+        .background(Color(UIColor.secondarySystemBackground))
+    }
+
     private func updateSelectedPal() {
         if let index = tamilTitle.firstIndex(of: selectedPal) {
             selectedPal = getCurrentTitle(index)
         }
     }
     
+    private func getCurrentTitle(_ index: Int) -> String {
+        switch selectedLanguage {
+        case "Tamil":
+            return tamilTitle[index]
+        case "English":
+            return englishTitle[index]
+        case "Telugu":
+            return teluguTitle[index]
+        case "Hindi":
+            return hindiTitle[index]
+        case "Kannad":
+            return kannadaTitle[index]
+        case "French":
+            return frenchTitle[index]
+        case "Arabic":
+            return arabicTitle[index]
+        case "Chinese":
+            return chineseTitle[index]
+        case "German":
+            return germanTitle[index]
+        case "Korean":
+            return koreanTitle[index]
+        case "Malay":
+            return malayTitle[index]
+        case "Malayalam":
+            return malayalamTitle[index]
+        case "Polish":
+            return polishTitle[index]
+        case "Russian":
+            return russianTitle[index]
+        case "Singalam":
+            return singalamTitle[index]
+        case "Swedish":
+            return swedishTitle[index]
+        default:
+            return englishTitle[index] // Fallback to English if language is not found
+        }
+    }
+
     private func loadIyals() {  
         iyals = DatabaseManager.shared.getIyals(for: selectedPal, language: selectedLanguage)
     }
@@ -427,45 +468,6 @@ struct ContentView: View {
             return "person.2.circle"
         default:
             return "\(index + 1).circle"
-        }
-    }
-    
-    private func getCurrentTitle(_ index: Int) -> String {
-        switch selectedLanguage {
-        case "Tamil":
-            return tamilTitle[index]
-        case "English":
-            return englishTitle[index]
-        case "Telugu":
-            return teluguTitle[index]
-        case "Hindi":
-            return hindiTitle[index]
-        case "Kannad":
-            return kannadaTitle[index]
-        case "French":
-            return frenchTitle[index]
-        case "Arabic":
-            return arabicTitle[index]
-        case "Chinese":
-            return chineseTitle[index]
-        case "German":
-            return germanTitle[index]
-        case "Korean":
-            return koreanTitle[index]
-        case "Malay":
-            return malayTitle[index]
-        case "Malayalam":
-            return malayalamTitle[index]
-        case "Polish":
-            return polishTitle[index]
-        case "Russian":
-            return russianTitle[index]
-        case "Singalam":
-            return singalamTitle[index]
-        case "Swedish":
-            return swedishTitle[index]
-        default:
-            return englishTitle[index] // Fallback to English if language is not found
         }
     }
 
