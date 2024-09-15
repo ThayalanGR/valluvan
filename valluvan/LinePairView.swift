@@ -12,12 +12,12 @@ struct LinePairView: View {
         let firstLine = String(parts[1])
         let secondLine = linePair.count > 1 ? linePair[1] : ""
         
-        HStack(alignment: .top, spacing: 15) {
+        HStack(alignment: .top, spacing: 1) {
             Text("\(kuralId)")
                 .font(.system(size: 12))
-                .foregroundColor(.white)
+                .foregroundColor(.black)
                 .frame(width: 32, height: 32)
-                .background(Color.blue)
+                .background(Color.teal)
                 .clipShape(Rectangle())
             
             VStack(alignment: .leading, spacing: 4) {
