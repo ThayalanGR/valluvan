@@ -131,7 +131,7 @@ struct AdhigaramView: View {
             stopAllAudio()
         }
         .sheet(item: $selectedLinePair) { pair in
-            ExplanationView(adhigaram: pair.adhigaram, adhigaramId: String((pair.kuralId + 9) / 10), lines: pair.lines, explanation: pair.explanation, selectedLanguage: selectedLanguage, kuralId: pair.kuralId)
+            ExplanationView(adhigaram: pair.adhigaram, adhigaramId: String((pair.kuralId + 9) / 10), lines: pair.lines, explanation: pair.explanation, selectedLanguage: selectedLanguage, kuralId: pair.kuralId, iyal: translatedIyal)
                 .environmentObject(appState)
         }
         .environment(\.sizeCategory, appState.fontSize.textSizeCategory)

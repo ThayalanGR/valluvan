@@ -135,7 +135,8 @@ struct ContentView: View {
                 lines: [result.content],
                 explanation: NSAttributedString(string: result.explanation),
                 selectedLanguage: selectedLanguage,
-                kuralId: result.kuralId
+                kuralId: result.kuralId,
+                iyal: ""
             )
             .environmentObject(appState)
         }
@@ -173,7 +174,8 @@ struct ContentView: View {
                     lines: [result.content],
                     explanation: NSAttributedString(string: result.explanation),
                     selectedLanguage: selectedLanguage,
-                    kuralId: result.kuralId
+                    kuralId: result.kuralId,
+                    iyal:""
                 )
                 .environmentObject(appState)
             }

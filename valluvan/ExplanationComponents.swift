@@ -4,25 +4,33 @@ struct HeaderView: View {
     let adhigaramId: String
     let adhigaram: String
     let kuralId: Int
+    let iyal: String
 
     var body: some View {
-        HStack {
-            Text(adhigaramId)
-                .font(.headline)
-                .foregroundColor(.blue)
-                .padding(8)
-                .background(Color.blue.opacity(0.1))
-                .clipShape(Circle())
+        VStack(alignment: .leading, spacing: 8) {
+            HStack {
+                Text(adhigaramId)
+                    .font(.headline)
+                    .foregroundColor(.blue)
+                    .padding(8)
+                    .background(Color.blue.opacity(0.1))
+                    .clipShape(Circle())
+                
+                Text(adhigaram)
+                    .font(.title)
+                    .fontWeight(.bold)
+                
+                Spacer()
+                
+                Text("Kural \(kuralId)")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+            }
             
-            Text(adhigaram)
-                .font(.title)
-                .fontWeight(.bold)
-            
-            Spacer()
-            
-            Text("Kural \(kuralId)")
+            Text(iyal)
                 .font(.subheadline)
                 .foregroundColor(.secondary)
+                .italic()
         }
     }
 }

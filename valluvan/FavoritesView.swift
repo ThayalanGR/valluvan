@@ -72,7 +72,8 @@ struct FavoritesView: View {
                     lines: favorite.lines,
                     explanation: explanationText,
                     selectedLanguage: selectedLanguage,
-                    kuralId: favorite.id
+                    kuralId: favorite.id,
+                    iyal: ""
                 ).environmentObject(appState)
             }
         }

@@ -8,17 +8,19 @@ struct ExplanationView: View {
     let explanation: NSAttributedString
     let selectedLanguage: String
     let kuralId: Int
+    let iyal: String
     @Environment(\.presentationMode) var presentationMode
     @StateObject private var viewModel: ExplanationViewModel
     @EnvironmentObject var appState: AppState
 
-    init(adhigaram: String, adhigaramId: String, lines: [String], explanation: NSAttributedString, selectedLanguage: String, kuralId: Int) {
+    init(adhigaram: String, adhigaramId: String, lines: [String], explanation: NSAttributedString, selectedLanguage: String, kuralId: Int, iyal: String) {
         self.adhigaram = adhigaram
         self.adhigaramId = adhigaramId
         self.lines = lines
         self.explanation = explanation
         self.selectedLanguage = selectedLanguage
         self.kuralId = kuralId
+        self.iyal = iyal
         _viewModel = StateObject(wrappedValue: ExplanationViewModel(kuralId: kuralId, adhigaram: adhigaram, adhigaramId: adhigaramId, lines: lines, explanation: explanation.string))
     }
 
@@ -26,7 +28,7 @@ struct ExplanationView: View {
         NavigationView {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
-                    HeaderView(adhigaramId: adhigaramId, adhigaram: adhigaram, kuralId: kuralId)
+                    HeaderView(adhigaramId: adhigaramId, adhigaram: adhigaram, kuralId: kuralId, iyal: iyal)
                     LinesView(lines: lines)
                     ExplanationTextView(selectedLanguage: selectedLanguage, explanation: explanation)
                 }
