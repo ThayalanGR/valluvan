@@ -149,7 +149,7 @@ struct ContentView: View {
                 Image(systemName: "arrow.right.circle")
             }
             Button(action: toggleLanguage) {
-                Image(systemName: selectedLanguage == "Tamil" ? "pencil.circle.fill" : "a.circle.fill")
+                Image(systemName: selectedLanguage == "Tamil" ? "a.circle.fill":"pencil.circle.fill" )
                     .foregroundColor(.blue)
             }
         }
