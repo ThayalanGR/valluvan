@@ -294,7 +294,7 @@ public class DatabaseManager {
     func searchTamilContent(query: String) -> [DatabaseSearchResult] {
         var results: [DatabaseSearchResult] = []
         let searchQuery = """
-            SELECT "திருக்குறள்", "இயல்", "அதிகாரம்", "First Line", "Second Line", "மணக்குடவர்", "பரிமேலழகர்", "மு. வரதராசன்", "கலைஞர்", "சாலமன் பாப்பையா", "வீ. முனிசாமி", "First Line English", "Second Line English", "Explanation", 
+            SELECT "திருக்குறள்", "இயல்", "அதிகாரம்", "First Line", "Second Line", "மணக்குடவர்", "பரிமேலழகர்", "மு. வரதராசன்", "கலைஞர்", "சாலமன் பாப்பையா", "வீ. முனிசாமி", "First Line English", "Second Line English", "Explanation"
             FROM tirukkural
             WHERE "இயல்" LIKE ? OR "அதிகாரம்" LIKE ? OR "First Line" LIKE ? OR "Second Line" LIKE ? OR "மணக்குடவர்" LIKE ? OR "பரிமேலழகர்" LIKE ? OR "மு. வரதராசன்" LIKE ? OR "கலைஞர்" LIKE ? OR "சாலமன் பாப்பையா" LIKE ? OR "வீ. முனிசாமி" LIKE ? OR "First Line English" LIKE ? OR "Second Line English" LIKE ? OR "Explanation" LIKE ?
             LIMIT 20
