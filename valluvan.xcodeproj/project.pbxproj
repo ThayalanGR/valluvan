@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		FE42A35C2C959D5300C30205 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE42A35B2C959D5300C30205 /* Launch Screen.storyboard */; };
 		FE624C112C92CCEC005195EC /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = FE624C102C92CCEC005195EC /* SQLite */; };
+		FE643BEF2C96D0380042676A /* ExplanationComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE643BEC2C96D0370042676A /* ExplanationComponents.swift */; };
+		FE643BF02C96D0380042676A /* ExplanationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE643BED2C96D0370042676A /* ExplanationView.swift */; };
+		FE643BF12C96D0380042676A /* ExplanationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE643BEE2C96D0380042676A /* ExplanationViewModel.swift */; };
 		FE7D91142C95CC4100A2E9A0 /* TranslationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7D91132C95CC4100A2E9A0 /* TranslationUtil.swift */; };
 		FEBC785A2C96A03B00411700 /* IyalUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBC78592C96A03B00411700 /* IyalUtils.swift */; };
 		FEBC786F2C96A5C800411700 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBC785B2C96A5C800411700 /* FavoritesView.swift */; };
@@ -46,6 +49,9 @@
 /* Begin PBXFileReference section */
 		FE1B2D832C92C133006DBC55 /* Valluvan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Valluvan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE42A35B2C959D5300C30205 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		FE643BEC2C96D0370042676A /* ExplanationComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExplanationComponents.swift; sourceTree = "<group>"; };
+		FE643BED2C96D0370042676A /* ExplanationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExplanationView.swift; sourceTree = "<group>"; };
+		FE643BEE2C96D0380042676A /* ExplanationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExplanationViewModel.swift; sourceTree = "<group>"; };
 		FE7D91122C95A78300A2E9A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Valluvan/Info.plist; sourceTree = "<group>"; };
 		FE7D91132C95CC4100A2E9A0 /* TranslationUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TranslationUtil.swift; sourceTree = "<group>"; };
 		FEBC78592C96A03B00411700 /* IyalUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IyalUtils.swift; sourceTree = "<group>"; };
@@ -132,6 +138,9 @@
 				FEBC78682C96A5C800411700 /* IyalUtils.swift */,
 				FEBC78662C96A5C800411700 /* LanguageSettingsView.swift */,
 				FE42A35B2C959D5300C30205 /* Launch Screen.storyboard */,
+				FE643BEC2C96D0370042676A /* ExplanationComponents.swift */,
+				FE643BED2C96D0370042676A /* ExplanationView.swift */,
+				FE643BEE2C96D0380042676A /* ExplanationViewModel.swift */,
 				FECB6FFF2C92F33E00989E70 /* ContentView.swift */,
 				FEBC78602C96A5C800411700 /* AdhigaramView.swift */,
 				FEBC78612C96A5C800411700 /* AppDelegate.swift */,
@@ -249,7 +258,9 @@
 				FEBC78732C96A5C800411700 /* AppState.swift in Sources */,
 				FEBC78752C96A5C800411700 /* AppDelegate.swift in Sources */,
 				FEBC78842C96A6C900411700 /* LanguageUtil.swift in Sources */,
+				FE643BF02C96D0380042676A /* ExplanationView.swift in Sources */,
 				FEBC787F2C96A5C800411700 /* ShareSheet.swift in Sources */,
+				FE643BEF2C96D0380042676A /* ExplanationComponents.swift in Sources */,
 				FEBC78702C96A5C800411700 /* NotificationManager.swift in Sources */,
 				FEBC78772C96A5C800411700 /* valluvanApp.swift in Sources */,
 				FEBC785A2C96A03B00411700 /* IyalUtils.swift in Sources */,
@@ -261,6 +272,7 @@
 				FEBC787C2C96A5C800411700 /* IyalUtils.swift in Sources */,
 				FEBC787B2C96A5C800411700 /* DatabaseManager.swift in Sources */,
 				FEBC78812C96A5C800411700 /* SearchResultsView.swift in Sources */,
+				FE643BF12C96D0380042676A /* ExplanationViewModel.swift in Sources */,
 				FEBC78802C96A5C800411700 /* TranslationUtil.swift in Sources */,
 				FECB708B2C92F33E00989E70 /* ContentView.swift in Sources */,
 				FEBC78762C96A5C800411700 /* GoToKuralView.swift in Sources */,

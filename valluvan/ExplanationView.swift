@@ -1,7 +1,6 @@
 import SwiftUI
 import AVFoundation
 
-
 struct ExplanationView: View {
     let adhigaram: String
     let adhigaramId: String
@@ -10,188 +9,49 @@ struct ExplanationView: View {
     let selectedLanguage: String
     let kuralId: Int
     @Environment(\.presentationMode) var presentationMode
-    @State private var isSpeaking = false
-    private let speechSynthesizer = AVSpeechSynthesizer()
-    @State private var isFavorite = false
-    @State private var showShareSheet = false
+    @StateObject private var viewModel: ExplanationViewModel
     @EnvironmentObject var appState: AppState
+
+    init(adhigaram: String, adhigaramId: String, lines: [String], explanation: NSAttributedString, selectedLanguage: String, kuralId: Int) {
+        self.adhigaram = adhigaram
+        self.adhigaramId = adhigaramId
+        self.lines = lines
+        self.explanation = explanation
+        self.selectedLanguage = selectedLanguage
+        self.kuralId = kuralId
+        _viewModel = StateObject(wrappedValue: ExplanationViewModel(kuralId: kuralId, adhigaram: adhigaram, adhigaramId: adhigaramId, lines: lines, explanation: explanation.string))
+    }
 
     var body: some View {
         NavigationView {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
-                    HStack {
-                        Text(adhigaramId)
-                            .font(.headline)
-                            .foregroundColor(.blue)
-                            .padding(8)
-                            .background(Color.blue.opacity(0.1))
-                            .clipShape(Circle())
-                        
-                        Text(adhigaram)
-                            .font(.title)
-                            .fontWeight(.bold)
-                        
-                        Spacer()
-                        
-                        Text("Kural \(kuralId)")
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                    }
-                    
-                    ForEach(lines, id: \.self) { line in
-                        Text(line)
-                            .font(.headline)
-                    }
-                    
-                    if selectedLanguage != "Tamil" {
-                        Text("Explanation:")
-                            .font(.title2)
-                            .fontWeight(.bold)
-                            .padding(.top)
-                    }
-                    
-                    Text(AttributedString(explanation))
-                        .font(.body)
+                    HeaderView(adhigaramId: adhigaramId, adhigaram: adhigaram, kuralId: kuralId)
+                    LinesView(lines: lines)
+                    ExplanationTextView(selectedLanguage: selectedLanguage, explanation: explanation)
                 }
                 .padding()
             }
-            .navigationBarItems(trailing: HStack {
-                Button(action: {
-                    toggleFavorite()
-                }) {
-                    Image(systemName: isFavorite ? "star.fill" : "star")
-                        .foregroundColor(.blue)
-                        .font(.system(size: 16))
-                }
-                Button(action: {
-                    let content = """
-                    Kural \(kuralId)
-                    \(adhigaramId) \(adhigaram)
-                    \(lines.joined(separator: "\n"))
-                    Explanation:
-                    \(explanation.string)
-                    """
-                    #if os(iOS)
-                    UIPasteboard.general.string = content
-                    #else
-                    NSPasteboard.general.clearContents()
-                    NSPasteboard.general.setString(content, forType: .string)
-                    #endif
-                }) {
-                    Image(systemName: "doc.on.doc")
-                        .foregroundColor(.blue)
-                        .font(.system(size: 16))
-                }
-                Button(action: {
-                    showShareSheet = true
-                }) {
-                    Image(systemName: "square.and.arrow.up")
-                        .foregroundColor(.blue)
-                        .font(.system(size: 16))
-                }
-                if selectedLanguage == "English" {
-                    Button(action: {
-                        toggleSpeech()
-                    }) {
-                        Image(systemName: isSpeaking ? "pause.circle" : "play.circle")
-                            .foregroundColor(.blue)
-                            .font(.system(size: 16))
-                    }
-                }
-                Button(action: {
-                    presentationMode.wrappedValue.dismiss()
-                }) {
-                    Image(systemName: "xmark.circle")
-                        .foregroundColor(.blue)
-                        .font(.system(size: 16))
-                }
-            })
+            .navigationBarItems(trailing: ToolbarView(
+                isFavorite: $viewModel.isFavorite,
+                isSpeaking: $viewModel.isSpeaking,
+                showShareSheet: $viewModel.showShareSheet,
+                selectedLanguage: selectedLanguage,
+                toggleFavorite: viewModel.toggleFavorite,
+                copyContent: viewModel.copyContent,
+                toggleSpeech: viewModel.toggleSpeech,
+                dismiss: { presentationMode.wrappedValue.dismiss() }
+            ))
         }
         .onAppear {
-            checkIfFavorite()
+            viewModel.checkIfFavorite()
         }
         .onDisappear {
-            stopSpeech()
+            viewModel.stopSpeech()
         }
-        .sheet(isPresented: $showShareSheet) {
-            let content = """
-            Kural \(kuralId)
-            \(adhigaramId) \(adhigaram)
-            \(lines.joined(separator: "\n"))
-            Explanation:
-            \(explanation.string)
-            """
-            ShareSheet(activityItems: [content])
+        .sheet(isPresented: $viewModel.showShareSheet) {
+            ShareSheet(activityItems: [viewModel.getShareContent()])
         }
         .environment(\.sizeCategory, appState.fontSize.textSizeCategory)
-    }
-
-    private func toggleFavorite() {
-        if isFavorite {
-            removeFavorite()
-        } else {
-            addFavorite()
-        }
-        isFavorite.toggle()
-    }
-
-    private func checkIfFavorite() {
-        if let data = UserDefaults.standard.data(forKey: "favorites") {
-            if let favorites = try? JSONDecoder().decode([Favorite].self, from: data) {
-                isFavorite = favorites.contains { $0.id == kuralId }
-            }
-        }
-    }
-
-    private func addFavorite() {
-        let favorite = Favorite(id: kuralId, adhigaram: adhigaram, adhigaramId: adhigaramId, lines: lines)
-        var favorites: [Favorite] = []
-        if let data = UserDefaults.standard.data(forKey: "favorites") {
-            if let decoded = try? JSONDecoder().decode([Favorite].self, from: data) {
-                favorites = decoded
-            }
-        }
-        favorites.append(favorite)
-        if let encoded = try? JSONEncoder().encode(favorites) {
-            UserDefaults.standard.set(encoded, forKey: "favorites")
-        }
-    }
-
-    private func removeFavorite() {
-        if let data = UserDefaults.standard.data(forKey: "favorites") {
-            if var favorites = try? JSONDecoder().decode([Favorite].self, from: data) {
-                favorites.removeAll { $0.id == kuralId }
-                if let encoded = try? JSONEncoder().encode(favorites) {
-                    UserDefaults.standard.set(encoded, forKey: "favorites")
-                }
-            }
-        }
-    }
-
-    private func toggleSpeech() {
-        if isSpeaking {
-            stopSpeech()
-        } else {
-            startSpeech()
-        }
-    }
-
-    private func startSpeech() {
-        let content = """
-        \(adhigaram)
-        \(lines.joined(separator: "\n"))
-        \(explanation.string)
-        """
-        let utterance = AVSpeechUtterance(string: content)
-        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
-        utterance.rate = 0.5
-        speechSynthesizer.speak(utterance)
-        isSpeaking = true
-    }
-
-    private func stopSpeech() {
-        speechSynthesizer.stopSpeaking(at: .immediate)
-        isSpeaking = false
     }
 }
