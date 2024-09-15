@@ -1,6 +1,6 @@
 import SwiftUI
-import AVKit // Add this import
-import MediaPlayer  // Add this import
+import AVKit
+import MediaPlayer
 
 struct AdhigaramView: View {
     let iyal: String
@@ -20,6 +20,7 @@ struct AdhigaramView: View {
     @State private var duration: [String: TimeInterval] = [:]
     @State private var timer: Timer?
     @State private var playerObservers: [NSKeyValueObservation] = []
+    @State private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
 
     var body: some View {
         List {
@@ -189,6 +190,14 @@ struct AdhigaramView: View {
                 
                 playerObservers.append(contentsOf: [statusObserver, durationObserver])
                 
+                // Configure audio session for background playback
+                do {
+                    try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.mixWithOthers, .defaultToSpeaker])
+                    try AVAudioSession.sharedInstance().setActive(true)
+                } catch {
+                    print("Failed to set audio session category.")
+                }
+                
                 player.play()
                 isPlaying[adhigaramSong] = true
                 currentTime[adhigaramSong] = 0
@@ -196,6 +205,9 @@ struct AdhigaramView: View {
                 
                 // Set up remote control events
                 setupRemoteTransportControls()
+                
+                // Start background task
+                startBackgroundTask()
             } else {
                 print("Audio file not found: \(adhigaramSong).mp3")
             }
@@ -231,6 +243,20 @@ struct AdhigaramView: View {
         commandCenter.pauseCommand.addTarget { event in
             self.pausePlayback()
             return .success
+        }
+         
+    }
+
+    private func startBackgroundTask() {
+        backgroundTask = UIApplication.shared.beginBackgroundTask {
+            self.endBackgroundTask()
+        }
+    }
+
+    private func endBackgroundTask() {
+        if backgroundTask != .invalid {
+            UIApplication.shared.endBackgroundTask(backgroundTask)
+            backgroundTask = .invalid
         }
     }
 
@@ -271,6 +297,8 @@ struct AdhigaramView: View {
         // Remove all observers
         playerObservers.forEach { $0.invalidate() }
         playerObservers.removeAll()
+        
+        endBackgroundTask()
     }
     
     private func loadExplanation(for adhigaram: String, lines: [String], kuralId: Int) {
