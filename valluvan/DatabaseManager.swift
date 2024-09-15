@@ -294,15 +294,15 @@ public class DatabaseManager {
     func searchTamilContent(query: String) -> [DatabaseSearchResult] {
         var results: [DatabaseSearchResult] = []
         let searchQuery = """
-            SELECT "திருக்குறள்", "இயல்", "அதிகாரம்", "First Line", "Second Line", "மணக்குடவர்", "பரிமேலழகர்", "மு. வரதராசன்", "கலைஞர்", "சாலமன் பாப்பையா", "வீ. முனிசாமி"
+            SELECT "திருக்குறள்", "இயல்", "அதிகாரம்", "First Line", "Second Line", "மணக்குடவர்", "பரிமேலழகர்", "மு. வரதராசன்", "கலைஞர்", "சாலமன் பாப்பையா", "வீ. முனிசாமி", "First Line English", "Second Line English", "Explanation", 
             FROM tirukkural
-            WHERE "இயல்" LIKE ? OR "அதிகாரம்" LIKE ? OR "First Line" LIKE ? OR "Second Line" LIKE ? OR "மணக்குடவர்" LIKE ? OR "பரிமேலழகர்" LIKE ? OR "மு. வரதராசன்" LIKE ? OR "கலைஞர்" LIKE ? OR "சாலமன் பாப்பையா" LIKE ? OR "வீ. முனிசாமி" LIKE ?
+            WHERE "இயல்" LIKE ? OR "அதிகாரம்" LIKE ? OR "First Line" LIKE ? OR "Second Line" LIKE ? OR "மணக்குடவர்" LIKE ? OR "பரிமேலழகர்" LIKE ? OR "மு. வரதராசன்" LIKE ? OR "கலைஞர்" LIKE ? OR "சாலமன் பாப்பையா" LIKE ? OR "வீ. முனிசாமி" LIKE ? OR "First Line English" LIKE ? OR "Second Line English" LIKE ? OR "Explanation" LIKE ?
             LIMIT 20
         """
         let searchPattern = "%\(query)%"
 
         do {
-            let rows = try db!.prepare(searchQuery, searchPattern, searchPattern, searchPattern, searchPattern, searchPattern, searchPattern, searchPattern, searchPattern, searchPattern, searchPattern)
+            let rows = try db!.prepare(searchQuery, searchPattern, searchPattern, searchPattern, searchPattern, searchPattern, searchPattern, searchPattern, searchPattern, searchPattern, searchPattern, searchPattern, searchPattern, searchPattern)
             for row in rows {
                 let result = DatabaseSearchResult(
                     heading: row[1] as? String ?? "",
