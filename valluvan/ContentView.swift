@@ -675,7 +675,7 @@ struct AdhigaramView: View {
             }
         }
         .listStyle(PlainListStyle())
-        .navigationTitle(translatedIyal)
+        .navigationBarTitle(translatedIyal, displayMode: .inline)
         .onAppear {
             loadAdhigarams()
         }
@@ -1079,8 +1079,8 @@ struct SearchResultsView: View {
                         onSelectResult(result)
                     }
                 }
-            }
-            .navigationTitle("Search Results (\(results.count))")
+            } 
+            .navigationBarTitle("Search Results (\(results.count))", displayMode: .inline)
             .navigationBarItems(trailing: Button(action: {
                 presentationMode.wrappedValue.dismiss()
             }) {
