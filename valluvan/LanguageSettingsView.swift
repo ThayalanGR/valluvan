@@ -29,17 +29,7 @@ struct LanguageSettingsView: View {
 
                 Section(header: Text("Notifications")) {
                     Toggle("Daily Thirukkural (9 AM)", isOn: $appState.isDailyKuralEnabled)
-                }
-                
-                
-                Section(header: Text("Quick Access")) {
-                    Button(action: { showFavorites = true }) {
-                        HStack {
-                            Image(systemName: "star.fill")
-                            Text("Favorites")
-                        }
-                    } 
-                }
+                } 
                 
                 Section(header: Text("About the Developer")) {
                     HStack {
@@ -91,6 +81,13 @@ struct LanguageSettingsView: View {
             }
             .navigationBarTitle("Settings", displayMode: .inline)
             .navigationBarItems(
+                leading: HStack{
+                    Button(action: { showFavorites = true }) {
+                        HStack {
+                            Image(systemName: "star.fill")
+                        }
+                    }
+                },
                 trailing: HStack {
                     Button(action: {
                         isDarkMode.toggle()
@@ -106,7 +103,7 @@ struct LanguageSettingsView: View {
                             .font(.system(size: 16))
                     }
                 }
-            )
+            ) 
         }
         .preferredColorScheme(isDarkMode ? .dark : .light)
         .environment(\.sizeCategory, appState.fontSize.textSizeCategory)
