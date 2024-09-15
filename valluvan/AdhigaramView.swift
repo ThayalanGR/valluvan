@@ -42,49 +42,6 @@ struct AdhigaramView: View {
                         VStack(alignment: .leading, spacing: 2) {
                             Text(adhigaram)
                                 .font(.headline)
-                            
-                            if expandedAdhigaram == adhigaram {
-                                HStack( spacing: 1) {
-                                    HStack {
-                                        Image(systemName: "music.note")
-                                            .foregroundColor(.blue)
-                                        Text(adhigaramSong)
-                                    }
-                                    .font(.subheadline)
-                                    Spacer()
-                                    Button(action: {
-                                        togglePlayPause(for: adhigaramSong, adhigaram: adhigaram, adhigaramId: adhigaramId)
-                                    }) {
-                                        Image(systemName: isPlaying[adhigaramSong] ?? false ? "pause.circle" : "play.circle")
-                                            .foregroundColor(.blue)
-                                            .font(.system(size: 20))
-                                    }
-                                    .buttonStyle(PlainButtonStyle())
-                                }
-                                
-                                if isPlaying[adhigaramSong] ?? false {
-                                    VStack(spacing: 5) {
-                                        Slider(value: Binding(
-                                            get: { self.currentTime[adhigaramSong] ?? 0 },
-                                            set: { newValue in
-                                                self.currentTime[adhigaramSong] = newValue
-                                                if let player = self.audioPlayers[adhigaramSong] {
-                                                    player.seek(to: CMTime(seconds: newValue, preferredTimescale: 1))
-                                                }
-                                            }
-                                        ), in: 0...(duration[adhigaramSong] ?? 0))
-                                        .accentColor(.blue)
-                                        
-                                        HStack {
-                                            Text(timeString(from: currentTime[adhigaramSong] ?? 0))
-                                            Spacer()
-                                            Text(timeString(from: duration[adhigaramSong] ?? 0))
-                                        }
-                                        .font(.caption)
-                                        .foregroundColor(.secondary)
-                                    }
-                                }
-                            }
                         }
                         
                         Spacer()
@@ -101,9 +58,49 @@ struct AdhigaramView: View {
                             expandedAdhigaram = adhigaram
                             loadAllLines(for: adhigaram)
                         }
-                    }
-                    
+                    }       
                     if expandedAdhigaram == adhigaram {
+                        HStack(spacing: 5) {
+                            Image(systemName: "music.note")
+                                .foregroundColor(.blue)
+                            Text(adhigaramSong)
+                                .font(.subheadline)
+                            Spacer()
+                            Button(action: {
+                                togglePlayPause(for: adhigaramSong, adhigaram: adhigaram, adhigaramId: adhigaramId)
+                            }) {
+                                Image(systemName: isPlaying[adhigaramSong] ?? false ? "pause.circle" : "play.circle")
+                                    .foregroundColor(.blue)
+                                    .font(.system(size: 20))
+                            }
+                            .buttonStyle(PlainButtonStyle())
+                        }
+                        .padding(.leading, 0)
+                        
+                        if isPlaying[adhigaramSong] ?? false {
+                            VStack(spacing: 5) {
+                                Slider(value: Binding(
+                                    get: { self.currentTime[adhigaramSong] ?? 0 },
+                                    set: { newValue in
+                                        self.currentTime[adhigaramSong] = newValue
+                                        if let player = self.audioPlayers[adhigaramSong] {
+                                            player.seek(to: CMTime(seconds: newValue, preferredTimescale: 1))
+                                        }
+                                    }
+                                ), in: 0...(duration[adhigaramSong] ?? 0))
+                                .accentColor(.blue)
+                                
+                                HStack {
+                                    Text(timeString(from: currentTime[adhigaramSong] ?? 0))
+                                    Spacer()
+                                    Text(timeString(from: duration[adhigaramSong] ?? 0))
+                                }
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                            }
+                            .padding(.leading, 0)
+                        }
+                        
                         VStack(spacing: 10) {
                             ForEach(allLines[adhigaram] ?? [], id: \.self) { linePair in
                                 LinePairView(
@@ -115,7 +112,7 @@ struct AdhigaramView: View {
                                 .environmentObject(appState)
                             }
                         }
-                        .padding(.leading, 43)
+                        .padding(.leading, 0)
                     }
                 }
                 .padding(.vertical, 8)

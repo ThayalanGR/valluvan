@@ -12,28 +12,31 @@ struct LinePairView: View {
         let firstLine = String(parts[1])
         let secondLine = linePair.count > 1 ? linePair[1] : ""
         
-        HStack(alignment: .top, spacing: 1) {
-            Text("\(kuralId)")
-                .font(.system(size: 12))
-                .foregroundColor(.black)
-                .frame(width: 32, height: 32)
-                .background(Color.teal)
-                .clipShape(Rectangle())
-            
-            VStack(alignment: .leading, spacing: 4) {
-                Text(firstLine)
-                    .font(.subheadline)
-                    .fontWeight(.medium)
-                if !secondLine.isEmpty {
-                    Text(secondLine)
+        ZStack(alignment: .topTrailing) {
+            HStack(alignment: .top, spacing: 15) {            
+                VStack(alignment: .leading, spacing: 0) {
+                    Text(firstLine)
                         .font(.subheadline)
                         .fontWeight(.medium)
+                    if !secondLine.isEmpty {
+                        Text(secondLine)
+                            .font(.subheadline)
+                            .fontWeight(.medium)
+                    }
                 }
+                Spacer()
             }
-            Spacer()
+            .padding(.vertical, 8)
+            .padding(.horizontal, 12)
+            
+            Text("\(kuralId)")
+                .font(.system(size: 12))
+                .foregroundColor(.white)
+                .frame(width: 32, height: 32)
+                .background(Color.teal.opacity(0.8))
+                .clipShape(Circle())
+                .padding([.top, .trailing], 4)
         }
-        .padding(.vertical, 8)
-        .padding(.horizontal, 12)
         .frame(maxWidth: .infinity)
         .background(colorScheme == .dark ? Color(.systemGray6) : Color(.systemBackground))
         .cornerRadius(10)
