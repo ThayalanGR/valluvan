@@ -11,6 +11,9 @@ struct LanguageSettingsView: View {
     @EnvironmentObject var appState: AppState
     @Environment(\.colorScheme) var colorScheme
 
+    // Add the languages array here
+    static let languages = ["Tamil", "English", "Telugu", "Hindi", "Kannad", "French", "Arabic", "Chinese", "German", "Korean", "Malay", "Malayalam", "Polish", "Russian", "Singalam", "Swedish"]
+
     var body: some View {
         NavigationView {
             List {

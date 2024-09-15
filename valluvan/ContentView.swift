@@ -23,24 +23,6 @@ struct ContentView: View {
     @State private var isExpanded: Bool = false
     @State private var iyal: String = ""  
     
-    let tamilTitle = ["அறத்துப்பால்", "பொருட்பால்", "இன்பத்துப்பால்"]
-    let englishTitle = ["Virtue", "Wealth", "Nature of Love"] 
-    let teluguTitle = ["ధర్మం", "సంపద", "ప్రేమ స్వభావం"]
-    let hindiTitle = ["धर्म", "धन", "प्रेम"]
-    let kannadaTitle = ["ಧರ್ಮ", "సంపద", "ಪ್ರೇಮ"]
-    let frenchTitle = ["Perfection", "Richesse", "Nature de l'Amour"]
-    let arabicTitle = ["فضيلة", "الثروة", "طبيعة الحب"]
-    let chineseTitle = ["美德", "财富", "爱的本质"]
-    let germanTitle = ["Tugend", "Wealth", "Natur des Verliebens"]
-    let koreanTitle = ["미덕", "재물", "사랑의 본성"]
-    let malayTitle = ["Kesempurnaan", "Kekayaan", "Sifat Cinta"]
-    let malayalamTitle = ["മന്നാല്‍", "പരിപാലനം", "അന്തരാളികം പ്രിയം"]
-    let polishTitle = ["Dobroć", "Bogactwo", "Natura miłości"]
-    let russianTitle = ["Добродетель", "Богатство", "Суть любви"]
-    let singalamTitle = ["දානය", "අරමුණ", "සතුට"]
-    let swedishTitle = ["Dygd", "Välst", "Kärlekens natur"]
-    let languages = ["Tamil", "English", "Telugu", "Hindi", "Kannad", "French", "Arabic", "Chinese", "German", "Korean", "Malay", "Malayalam", "Polish", "Russian", "Singalam", "Swedish"]
-    
     @State private var searchText = ""
     @State private var searchResults: [DatabaseSearchResult] = []
     @State private var showSearchResults = false
@@ -62,7 +44,7 @@ struct ContentView: View {
 
     init() {
         // Initialize selectedPal with the first pal title
-        let initialPal = tamilTitle[0]
+        let initialPal = LanguageUtil.getCurrentTitle(0, for: "Tamil")
         _selectedPal = State(initialValue: initialPal)
         setupAudioSession()
     }
@@ -146,8 +128,13 @@ struct ContentView: View {
                 .environmentObject(appState)
         }
         .sheet(isPresented: $showLanguageSettings) {
-            LanguageSettingsView(selectedLanguage: $selectedLanguage, selectedPal: $selectedPal, languages: languages, getCurrentTitle: getCurrentTitle)
-                .environmentObject(appState)
+            LanguageSettingsView(
+                selectedLanguage: $selectedLanguage,
+                selectedPal: $selectedPal,
+                languages: LanguageSettingsView.languages,
+                getCurrentTitle: getCurrentTitle
+            )
+            .environmentObject(appState)
         }
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
             if let kuralId = notificationKuralId.wrappedValue {
@@ -174,43 +161,9 @@ struct ContentView: View {
     }
 
     private func getCurrentTitle(_ index: Int) -> String {
-        switch selectedLanguage {
-        case "Tamil":
-            return tamilTitle[index]
-        case "English":
-            return englishTitle[index]
-        case "Telugu":
-            return teluguTitle[index]
-        case "Hindi":
-            return hindiTitle[index]
-        case "Kannad":
-            return kannadaTitle[index]
-        case "French":
-            return frenchTitle[index]
-        case "Arabic":
-            return arabicTitle[index]
-        case "Chinese":
-            return chineseTitle[index]
-        case "German":
-            return germanTitle[index]
-        case "Korean":
-            return koreanTitle[index]
-        case "Malay":
-            return malayTitle[index]
-        case "Malayalam":
-            return malayalamTitle[index]
-        case "Polish":
-            return polishTitle[index]
-        case "Russian":
-            return russianTitle[index]
-        case "Singalam":
-            return singalamTitle[index]
-        case "Swedish":
-            return swedishTitle[index]
-        default:
-            return englishTitle[index] // Fallback to English if language is not found
-        }
+        return LanguageUtil.getCurrentTitle(index, for: selectedLanguage)
     }
+    
     private var searchBar: some View {
         HStack {
             Image(systemName: "magnifyingglass")
@@ -263,7 +216,7 @@ struct ContentView: View {
     }
     
     private func getCurrentEnglishTitle(_ index: Int) -> String {
-        return englishTitle[index]
+        return LanguageUtil.getCurrentTitle(index, for: "English")
     }
     
     private var bottomBar: some View {
@@ -283,7 +236,7 @@ struct ContentView: View {
     }
 
     private func updateSelectedPal() {
-        if let index = tamilTitle.firstIndex(of: selectedPal) {
+        if let index = LanguageUtil.tamilTitle.firstIndex(of: selectedPal) {
             selectedPal = getCurrentTitle(index)
         } else {
             selectedPal = getCurrentTitle(0)
@@ -387,13 +340,13 @@ struct ContentView: View {
         switch selectedLanguage {
         case "Tamil":
             selectedLanguage = "English"
-            selectedPal = englishTitle[0]
+            selectedPal = LanguageUtil.getCurrentTitle(0, for: "English")
         case "English":
             selectedLanguage = "Tamil"
-            selectedPal = tamilTitle[0]
+            selectedPal = LanguageUtil.getCurrentTitle(0, for: "Tamil")
         default:
             selectedLanguage = "Tamil"
-            selectedPal = englishTitle[0]
+            selectedPal = LanguageUtil.getCurrentTitle(0, for: "English")
         } 
         updateSelectedPal()
     }

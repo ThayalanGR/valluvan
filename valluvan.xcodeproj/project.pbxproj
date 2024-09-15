@@ -163,6 +163,7 @@
 		FEBC78802C96A5C800411700 /* TranslationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBC786C2C96A5C800411700 /* TranslationUtil.swift */; };
 		FEBC78812C96A5C800411700 /* SearchResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBC786D2C96A5C800411700 /* SearchResultsView.swift */; };
 		FEBC78822C96A5C800411700 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBC786E2C96A5C800411700 /* ContentView.swift */; };
+		FEBC78842C96A6C900411700 /* LanguageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBC78832C96A6C900411700 /* LanguageUtil.swift */; };
 		FEC911FD2C956E7C00E6AE94 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC911FC2C956E7C00E6AE94 /* AppState.swift */; };
 		FEC912002C95719400E6AE94 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC911FE2C95719400E6AE94 /* AppDelegate.swift */; };
 		FEC912012C95719400E6AE94 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC911FF2C95719400E6AE94 /* NotificationManager.swift */; };
@@ -332,6 +333,7 @@
 		FEBC786C2C96A5C800411700 /* TranslationUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TranslationUtil.swift; sourceTree = "<group>"; };
 		FEBC786D2C96A5C800411700 /* SearchResultsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsView.swift; sourceTree = "<group>"; };
 		FEBC786E2C96A5C800411700 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		FEBC78832C96A6C900411700 /* LanguageUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageUtil.swift; sourceTree = "<group>"; };
 		FEC911FC2C956E7C00E6AE94 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppState.swift; path = valluvan/AppState.swift; sourceTree = SOURCE_ROOT; };
 		FEC911FE2C95719400E6AE94 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FEC911FF2C95719400E6AE94 /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
@@ -538,6 +540,7 @@
 				FEBC785F2C96A5C800411700 /* AppState.swift */,
 				FEBC786E2C96A5C800411700 /* ContentView.swift */,
 				FEBC78672C96A5C800411700 /* DatabaseManager.swift */,
+				FEBC78832C96A6C900411700 /* LanguageUtil.swift */,
 				FEBC78642C96A5C800411700 /* ExplanationView.swift */,
 				FEBC785B2C96A5C800411700 /* FavoritesView.swift */,
 				FEBC785E2C96A5C800411700 /* Launch Screen.storyboard */,
@@ -777,6 +780,7 @@
 				FEBC787E2C96A5C800411700 /* LinePairView.swift in Sources */,
 				FEBC78732C96A5C800411700 /* AppState.swift in Sources */,
 				FEBC78752C96A5C800411700 /* AppDelegate.swift in Sources */,
+				FEBC78842C96A6C900411700 /* LanguageUtil.swift in Sources */,
 				FEBC787F2C96A5C800411700 /* ShareSheet.swift in Sources */,
 				FEBC78702C96A5C800411700 /* NotificationManager.swift in Sources */,
 				FEBC78772C96A5C800411700 /* valluvanApp.swift in Sources */,
