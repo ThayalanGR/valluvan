@@ -9,7 +9,7 @@ struct SearchResultsView: View {
     var body: some View {
         NavigationView {
             VStack {
-                
+                Text("Search Results for \"\(originalSearchText)\"")
                 List {
                     ForEach(results.indices, id: \.self) { index in
                         let result = results[index]
@@ -24,7 +24,7 @@ struct SearchResultsView: View {
                     }
                 }
             }
-            .navigationBarTitle("Search Results for \"\(originalSearchText)\", count: (\(results.count))", displayMode: .inline)
+            .navigationBarTitle("Search Results : (\(results.count))", displayMode: .inline)
             .navigationBarItems(trailing: Button(action: {
                 presentationMode.wrappedValue.dismiss()
             }) {

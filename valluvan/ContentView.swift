@@ -196,7 +196,8 @@ struct ContentView: View {
         isSearchResultsReady = false
         
         originalSearchText = searchText  // Store the original search text
-        
+        // Remove all special characters from searchText
+        searchText = searchText.components(separatedBy: CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ").inverted).joined()
         // Split the search text into words
         let words = searchText.components(separatedBy: .whitespacesAndNewlines).filter { !$0.isEmpty }
         
@@ -229,7 +230,8 @@ struct ContentView: View {
                 results = self.searchTamilContent(query: searchQuery)
             } else { 
                 results = self.searchContent(query: searchQuery)
-            }
+            } 
+            print("results: \(searchQuery)")
             if results.count == 0 {
                 DispatchQueue.main.async {
                     let alert = UIAlertController(title: "No Results", message: "No kural, found for '\(self.originalSearchText)'", preferredStyle: .alert)
