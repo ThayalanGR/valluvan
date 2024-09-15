@@ -49,7 +49,7 @@ func getSystemImageForIyal(_ iyal: String) -> String {
 }
 
 struct ContentView: View {
-    @State private var selectedPal: String = "அறத்துப்பால்"
+    @State private var selectedPal: String
     @State private var iyals: [String] = []
     @State private var showLanguageSettings = false
     @State private var selectedLanguage = "Tamil"
@@ -94,6 +94,9 @@ struct ContentView: View {
     @State private var translatedIyals: [String: String] = [:]
 
     init() {
+        // Initialize selectedPal with the first pal title
+        let initialPal = tamilTitle[0]
+        _selectedPal = State(initialValue: initialPal)
         setupAudioSession()
     }
 
@@ -128,9 +131,7 @@ struct ContentView: View {
                         }
                         .padding()
                     }
-                    
-                    Divider()
-                    
+                    Divider()                    
                     bottomBar
                 }
             }
@@ -322,6 +323,8 @@ struct ContentView: View {
     private func updateSelectedPal() {
         if let index = tamilTitle.firstIndex(of: selectedPal) {
             selectedPal = getCurrentTitle(index)
+        } else {
+            selectedPal = getCurrentTitle(0)
         }
     }
     
