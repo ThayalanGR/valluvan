@@ -1,5 +1,5 @@
 import SwiftUI
-import AVFoundation
+import AVKit // Add this import
 import MediaPlayer  // Add this import
 
 struct AdhigaramView: View {
@@ -11,13 +11,15 @@ struct AdhigaramView: View {
     @State private var adhigaramSongs: [String] = []
     @State private var expandedAdhigaram: String?
     @State private var allLines: [String: [[String]]] = [:]
-    @State private var audioPlayers: [String: AVAudioPlayer] = [:]
+    @State private var audioPlayers: [String: AVPlayer] = [:]
+    @State private var playerItems: [String: AVPlayerItem] = [:]
     @State private var isPlaying: [String: Bool] = [:]
     @State private var selectedLinePair: SelectedLinePair?
     @EnvironmentObject var appState: AppState
     @State private var currentTime: [String: TimeInterval] = [:]
     @State private var duration: [String: TimeInterval] = [:]
     @State private var timer: Timer?
+    @State private var playerObservers: [NSKeyValueObservation] = []
 
     var body: some View {
         List {
@@ -66,7 +68,7 @@ struct AdhigaramView: View {
                                             set: { newValue in
                                                 self.currentTime[adhigaramSong] = newValue
                                                 if let player = self.audioPlayers[adhigaramSong] {
-                                                    player.currentTime = newValue
+                                                    player.seek(to: CMTime(seconds: newValue, preferredTimescale: 1))
                                                 }
                                             }
                                         ), in: 0...(duration[adhigaramSong] ?? 0))
@@ -158,7 +160,7 @@ struct AdhigaramView: View {
     
     private func togglePlayPause(for adhigaramSong: String) {
         if let player = audioPlayers[adhigaramSong] {
-            if player.isPlaying {
+            if player.timeControlStatus == .playing {
                 player.pause()
                 isPlaying[adhigaramSong] = false
                 timer?.invalidate()
@@ -168,26 +170,54 @@ struct AdhigaramView: View {
                 startTimer(for: adhigaramSong)
             }
         } else {
-            if let url = Bundle.main.url(forResource: adhigaramSong, withExtension: "mp3") {
-                do {
-                    let player = try AVAudioPlayer(contentsOf: url)
-                    player.numberOfLoops = -1 // Loop indefinitely
-                    audioPlayers[adhigaramSong] = player
-                    player.play()
-                    isPlaying[adhigaramSong] = true
-                    duration[adhigaramSong] = player.duration
-                    currentTime[adhigaramSong] = 0
-                    startTimer(for: adhigaramSong)
-                    
-                    // Set up remote control events
-                    setupRemoteTransportControls()
-                } catch {
-                    print("Error loading audio file: \(error.localizedDescription)")
+            if let url = URL(string: "https://raw.githubusercontent.com/nsdevaraj/valluvan/main/valluvan/Sounds/\(adhigaramSong.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? adhigaramSong).mp3") {
+                let playerItem = AVPlayerItem(url: url)
+                let player = AVPlayer(playerItem: playerItem)
+                player.actionAtItemEnd = .none // Prevent playback from stopping at the end
+                audioPlayers[adhigaramSong] = player
+                playerItems[adhigaramSong] = playerItem
+                
+                // Observe the status of the player item
+                let statusObserver = playerItem.observe(\.status) { item, change in
+                    self.handlePlayerItemStatusChange(item: item, adhigaramSong: adhigaramSong)
                 }
+                
+                // Observe the duration of the player item
+                let durationObserver = playerItem.observe(\.duration) { item, change in
+                    self.handlePlayerItemDurationChange(item: item, adhigaramSong: adhigaramSong)
+                }
+                
+                playerObservers.append(contentsOf: [statusObserver, durationObserver])
+                
+                player.play()
+                isPlaying[adhigaramSong] = true
+                currentTime[adhigaramSong] = 0
+                startTimer(for: adhigaramSong)
+                
+                // Set up remote control events
+                setupRemoteTransportControls()
             } else {
                 print("Audio file not found: \(adhigaramSong).mp3")
             }
         }
+    }
+
+    private func handlePlayerItemStatusChange(item: AVPlayerItem, adhigaramSong: String) {
+        switch item.status {
+        case .readyToPlay:
+            print("Player item is ready to play")
+        case .failed:
+            print("Player item failed. Error: \(String(describing: item.error))")
+        case .unknown:
+            print("Player item is not yet ready")
+        @unknown default:
+            print("Unknown player item status")
+        }
+    }
+
+    private func handlePlayerItemDurationChange(item: AVPlayerItem, adhigaramSong: String) {
+        let duration = item.duration
+        self.duration[adhigaramSong] = CMTimeGetSeconds(duration)
     }
 
     private func setupRemoteTransportControls() {
@@ -218,15 +248,29 @@ struct AdhigaramView: View {
         }
     }
     
+    private func startTimer(for adhigaramSong: String) {
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
+            if let player = audioPlayers[adhigaramSong] {
+                currentTime[adhigaramSong] = CMTimeGetSeconds(player.currentTime())
+            }
+        }
+    }
+    
     private func stopAllAudio() {
         for player in audioPlayers.values {
-            player.stop()
+            player.pause()
         }
         audioPlayers.removeAll()
+        playerItems.removeAll()
         isPlaying.removeAll()
         currentTime.removeAll()
         duration.removeAll()
         timer?.invalidate()
+        
+        // Remove all observers
+        playerObservers.forEach { $0.invalidate() }
+        playerObservers.removeAll()
     }
     
     private func loadExplanation(for adhigaram: String, lines: [String], kuralId: Int) {
@@ -234,15 +278,6 @@ struct AdhigaramView: View {
         selectedLinePair = SelectedLinePair(adhigaram: adhigaram, lines: lines, explanation: explanation, kuralId: kuralId)
     }
      
-    private func startTimer(for adhigaramSong: String) {
-        timer?.invalidate()
-        timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
-            if let player = audioPlayers[adhigaramSong] {
-                currentTime[adhigaramSong] = player.currentTime
-            }
-        }
-    }
-    
     private func timeString(from timeInterval: TimeInterval) -> String {
         let minutes = Int(timeInterval / 60)
         let seconds = Int(timeInterval.truncatingRemainder(dividingBy: 60))
