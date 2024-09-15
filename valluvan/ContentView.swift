@@ -205,10 +205,10 @@ struct ContentView: View {
         let searchQuery: String
         if words.count > 1 {
             let nouns = words.filter { word in
-                let tagger = NLTagger(tagSchemes: [.lexicalClass])
+                let tagger = NLTagger(tagSchemes: [.nameType])
                 tagger.string = word
-                let (tag, _) = tagger.tag(at: word.startIndex, unit: .word, scheme: .lexicalClass)
-                return tag == .noun
+                let (tag, _) = tagger.tag(at: word.startIndex, unit: .word, scheme: .nameType)
+                return tag != .personalName || tag == .placeName || tag == .organizationName
             }
             
             if !nouns.isEmpty {
