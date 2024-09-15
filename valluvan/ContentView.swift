@@ -62,6 +62,7 @@ struct ContentView: View {
     @State private var shouldNavigateToContentView = false
 
     @State private var isSearchResultsReady = false
+    @State private var originalSearchText = ""
 
     init() {
         // Initialize selectedPal with the first pal title
@@ -192,14 +193,30 @@ struct ContentView: View {
         
         isSearching = true
         isSearchResultsReady = false
+        
+        originalSearchText = searchText  // Store the original search text
+        
+        // Split the search text into words
+        let words = searchText.components(separatedBy: .whitespacesAndNewlines).filter { !$0.isEmpty }
+        
+        // Pick random words (up to 3) if there are multiple words
+        let searchQuery: String
+        if words.count > 1 {
+            let randomWords = words.shuffled().prefix(min(3, words.count))
+            searchQuery = randomWords[0]
+        } else {
+            searchQuery = searchText
+        }
+        
+        print("Search query: \(searchQuery)")
+        
         DispatchQueue.global(qos: .userInitiated).async {
             let results: [DatabaseSearchResult]
             if self.selectedLanguage == "Tamil" {
-                results = self.searchTamilContent()
+                results = self.searchTamilContent(query: searchQuery)
             } else {
-                results = self.searchContent()
+                results = self.searchContent(query: searchQuery)
             }
-            
             DispatchQueue.main.async {
                 self.searchResults = results
                 self.isSearching = false
@@ -214,8 +231,8 @@ struct ContentView: View {
         }
     }
 
-    func searchContent() -> [DatabaseSearchResult] {
-        let databaseResults = DatabaseManager.shared.searchContent(query: searchText, language: selectedLanguage)
+    func searchContent(query: String) -> [DatabaseSearchResult] {
+        let databaseResults = DatabaseManager.shared.searchContent(query: query, language: selectedLanguage)
         return databaseResults.map { dbResult in
             DatabaseSearchResult(
                 heading: dbResult.heading,
@@ -227,8 +244,8 @@ struct ContentView: View {
         }
     }
 
-    func searchTamilContent() -> [DatabaseSearchResult] {
-        let databaseResults = DatabaseManager.shared.searchTamilContent(query: searchText)
+    func searchTamilContent(query: String) -> [DatabaseSearchResult] {
+        let databaseResults = DatabaseManager.shared.searchTamilContent(query: query)
         return databaseResults.map { dbResult in
             DatabaseSearchResult(
                 heading: dbResult.heading,
@@ -331,10 +348,14 @@ struct ContentView: View {
 
     @ViewBuilder
     private func searchResultsSheet() -> some View {
-        SearchResultsView(results: searchResults, onSelectResult: { result in
-            selectedSearchResult = result
-            isShowingSearchResults = false
-        })
+        SearchResultsView(
+            results: searchResults,
+            originalSearchText: originalSearchText,
+            onSelectResult: { result in
+                selectedSearchResult = result
+                isShowingSearchResults = false
+            }
+        )
         .environmentObject(appState)
     }
 
