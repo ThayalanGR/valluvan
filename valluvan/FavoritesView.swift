@@ -8,6 +8,7 @@ struct FavoritesView: View {
     @State private var selectedFavorite: Favorite?
     @State private var showExplanation = false
     @State private var explanationText: NSAttributedString = NSAttributedString()
+    @State private var shouldNavigateToContentView = false
     @EnvironmentObject var appState: AppState
 
     init(favorites: [Favorite], selectedLanguage: String) {
@@ -73,11 +74,18 @@ struct FavoritesView: View {
                     explanation: explanationText,
                     selectedLanguage: selectedLanguage,
                     kuralId: favorite.id,
-                    iyal: ""
+                    iyal: "", 
+                    shouldNavigateToContentView: $shouldNavigateToContentView
                 ).environmentObject(appState)
             }
         }
         .environment(\.sizeCategory, appState.fontSize.textSizeCategory)
+        .onChange(of: shouldNavigateToContentView) { newValue in
+            if newValue {
+                presentationMode.wrappedValue.dismiss()
+                shouldNavigateToContentView = false
+            }
+        }
     }
 
     private func loadExplanation(for kuralId: Int) {

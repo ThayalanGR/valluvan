@@ -11,7 +11,6 @@ import MediaPlayer
 import Intents
 import IntentsUI
 
-
 struct Chapter: Identifiable {
     let id: Int
     let title: String
@@ -60,6 +59,7 @@ struct ContentView: View {
     @State private var isSearching = false
     @State private var translatedIyals: [String: String] = [:]
     @State private var siriShortcutProvider: INVoiceShortcutCenter?
+    @State private var shouldNavigateToContentView = false
 
     init() {
         // Initialize selectedPal with the first pal title
@@ -85,35 +85,26 @@ struct ContentView: View {
                 Color(UIColor.systemBackground).edgesIgnoringSafeArea(.all)
                 
                 VStack(spacing: 0) {
-                    searchBar
+                    SearchBarView(
+                        searchText: $searchText,
+                        isSearching: $isSearching,
+                        searchResults: $searchResults,
+                        showSearchResults: $showSearchResults,
+                        performSearch: performSearch
+                    )
                     
                     Divider()
                     
-                    ScrollView {
-                        LazyVStack(spacing: 16) {
-                            if iyals.isEmpty {
-                                VStack(spacing: 16) {
-                                    Image(systemName: "text.book.closed")
-                                        .font(.system(size: 50))
-                                        .foregroundColor(.gray)
-                                    Text("Please select a chapter from the bottom bar")
-                                        .font(.subheadline)
-                                        .foregroundColor(.secondary)
-                                }
-                                .padding()
-                                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                            } else {
-                                ForEach(iyals, id: \.self) { iyal in
-                                    NavigationLink(destination: AdhigaramView(iyal: iyal, selectedLanguage: selectedLanguage, translatedIyal: translatedIyals[iyal] ?? iyal).environmentObject(appState)) {
-                                        IyalCard(iyal: iyal, translatedIyal: translatedIyals[iyal] ?? iyal, selectedLanguage: selectedLanguage)
-                                    }
-                                }
-                            }
-                        }
-                        .padding()
-                    }
-                    Divider()                    
-                    bottomBar
+                    MainContentView(
+                        iyals: iyals,
+                        selectedLanguage: selectedLanguage,
+                        translatedIyals: translatedIyals,
+                        appState: _appState
+                    )
+                    
+                    Divider()
+                    
+                    BottomBarView(selectedPal: $selectedPal, selectedLanguage: selectedLanguage)
                 }
             }
             .navigationBarTitle("Valluvan", displayMode: .inline)
@@ -121,118 +112,23 @@ struct ContentView: View {
         }
         .preferredColorScheme(isDarkMode ? .dark : .light)
         .environment(\.sizeCategory, appState.fontSize.textSizeCategory)
-        .onAppear {
-            Task {
-                await loadIyals()
-                translateIyals()
-            }
-            setupSiriShortcut()
-        }
-        .onChange(of: selectedPal) { oldValue, newValue in
-            Task {
-                await loadIyals()
-                translateIyals()
-            }
-        }
-        .onChange(of: selectedLanguage) { oldValue, newValue in
-            updateSelectedPal()
-            translateIyals()
-        }
-        .sheet(isPresented: $showSearchResults) {
-            SearchResultsView(results: searchResults, onSelectResult: { result in
-                selectedSearchResult = result
-                showSearchResults = false
-            })
-            .environmentObject(appState)
-        }
-        .sheet(item: $selectedSearchResult) { result in
-            ExplanationView(
-                adhigaram: result.subheading,
-        adhigaramId: String((result.kuralId + 9) / 10),
-                lines: [result.content],
-                explanation: NSAttributedString(string: result.explanation),
-                selectedLanguage: selectedLanguage,
-                kuralId: result.kuralId,
-                iyal: ""
-            )
-            .environmentObject(appState)
-        }
-        .sheet(isPresented: $showFavorites) {
-            FavoritesView(favorites: loadFavorites(), selectedLanguage: selectedLanguage)
-                .environmentObject(appState)
-        }
-        .sheet(isPresented: $showGoToKural) {
-            GoToKuralView(isPresented: $showGoToKural, kuralId: $goToKuralId, onSubmit: goToKural)
-                .environmentObject(appState)
-        }
-        .sheet(isPresented: $showLanguageSettings) {
-            LanguageSettingsView(
-                selectedLanguage: $selectedLanguage,
-                selectedPal: $selectedPal,
-                languages: LanguageSettingsView.languages,
-                getCurrentTitle: getCurrentTitle
-            )
-            .environmentObject(appState)
-        }
-        .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
-            if let kuralId = notificationKuralId.wrappedValue {
-                if let result = DatabaseManager.shared.getKuralById(kuralId, language: selectedLanguage) {
-                    selectedSearchResult = result
-                    showExplanationView = true
-                }
-                notificationKuralId.wrappedValue = nil
-            }
-        }
-        .sheet(isPresented: $showExplanationView) {
-            if let result = selectedSearchResult {
-                ExplanationView(
-                    adhigaram: result.subheading,
-                    adhigaramId: String((result.kuralId + 9) / 10),
-                    lines: [result.content],
-                    explanation: NSAttributedString(string: result.explanation),
-                    selectedLanguage: selectedLanguage,
-                    kuralId: result.kuralId,
-                    iyal:""
-                )
-                .environmentObject(appState)
-            }
-        }
-        .task {
-            iyals = await DatabaseManager.shared.getIyals(for: selectedPal, language: selectedLanguage)
-        }
+        .onAppear(perform: onAppearActions)
+        .onChange(of: selectedPal, perform: onSelectedPalChange)
+        .onChange(of: selectedLanguage, perform: onSelectedLanguageChange)
+        .sheet(isPresented: $showSearchResults, content: searchResultsSheet)
+        .sheet(item: $selectedSearchResult, content: explanationSheet)
+        .onChange(of: shouldNavigateToContentView, perform: onShouldNavigateToContentViewChange)
+        .sheet(isPresented: $showFavorites, content: favoritesSheet)
+        .sheet(isPresented: $showGoToKural, content: goToKuralSheet)
+        .sheet(isPresented: $showLanguageSettings, content: languageSettingsSheet)
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification), perform: handleNotification)
+        .sheet(isPresented: $showExplanationView, content: explanationViewSheet)
+        .task(loadIyalsTask)
     }
 
     private func getCurrentTitle(_ index: Int) -> String {
         return LanguageUtil.getCurrentTitle(index, for: selectedLanguage)
     }
-    
-    private var searchBar: some View {
-        HStack {
-            Image(systemName: "magnifyingglass")
-                .foregroundColor(.gray)
-            TextField("Search", text: $searchText, onCommit: performSearch)
-                .textFieldStyle(PlainTextFieldStyle())
-            if !searchText.isEmpty {
-                Button(action: { 
-                    searchText = ""
-                    searchResults = []
-                    showSearchResults = false
-                }) {
-                    Image(systemName: "xmark.circle.fill")
-                        .foregroundColor(.gray)
-                }
-            }
-            if isSearching {
-                ProgressView()
-                    .progressViewStyle(CircularProgressViewStyle())
-            }
-        }
-        .padding()
-        .background(Color(UIColor.secondarySystemBackground))
-        .cornerRadius(10)
-        .padding()
-    }
-    
     
     private var leadingBarItems: some View {
         HStack {
@@ -261,22 +157,6 @@ struct ContentView: View {
         return LanguageUtil.getCurrentTitle(index, for: "English")
     }
     
-    private var bottomBar: some View {
-        HStack {
-            ForEach(0..<3) { index in
-                PalButton(
-                    title: getCurrentTitle(index),
-                    query: getCurrentEnglishTitle(index),
-                    systemImage: getSystemImage(for: index),
-                    selectedLanguage: selectedLanguage,
-                    selectedPal: $selectedPal
-                )
-            }
-        }
-        .padding()
-        .background(Color(UIColor.secondarySystemBackground))
-    }
-
     private func updateSelectedPal() {
         if let index = LanguageUtil.tamilTitle.firstIndex(of: selectedPal) {
             selectedPal = getCurrentTitle(index)
@@ -285,7 +165,6 @@ struct ContentView: View {
         }
     }
     
-
     private func loadIyals() async {  
         iyals = await DatabaseManager.shared.getIyals(for: selectedPal, language: selectedLanguage)
     }
@@ -429,7 +308,221 @@ struct ContentView: View {
         goToKuralId = String(kuralId)
         goToKural()
     }
-} 
+
+    @ViewBuilder
+    private func searchResultsSheet() -> some View {
+        SearchResultsView(results: searchResults, onSelectResult: { result in
+            selectedSearchResult = result
+            showSearchResults = false
+        })
+        .environmentObject(appState)
+    }
+
+    @ViewBuilder
+    private func explanationSheet(_ result: DatabaseSearchResult) -> some View {
+        ExplanationView(
+            adhigaram: result.subheading,
+            adhigaramId: String((result.kuralId + 9) / 10),
+            lines: [result.content],
+            explanation: NSAttributedString(string: result.explanation),
+            selectedLanguage: selectedLanguage,
+            kuralId: result.kuralId,
+            iyal: "",
+            shouldNavigateToContentView: $shouldNavigateToContentView
+        )
+        .environmentObject(appState)
+    }
+
+    @ViewBuilder
+    private func favoritesSheet() -> some View {
+        FavoritesView(favorites: loadFavorites(), selectedLanguage: selectedLanguage)
+            .environmentObject(appState)
+    }
+
+    @ViewBuilder
+    private func goToKuralSheet() -> some View {
+        GoToKuralView(isPresented: $showGoToKural, kuralId: $goToKuralId, onSubmit: goToKural)
+            .environmentObject(appState)
+    }
+
+    @ViewBuilder
+    private func languageSettingsSheet() -> some View {
+        LanguageSettingsView(
+            selectedLanguage: $selectedLanguage,
+            selectedPal: $selectedPal,
+            languages: LanguageSettingsView.languages,
+            getCurrentTitle: getCurrentTitle
+        )
+        .environmentObject(appState)
+    }
+
+    @ViewBuilder
+    private func explanationViewSheet() -> some View {
+        if let result = selectedSearchResult {
+            ExplanationView(
+                adhigaram: result.subheading,
+                adhigaramId: String((result.kuralId + 9) / 10),
+                lines: [result.content],
+                explanation: NSAttributedString(string: result.explanation),
+                selectedLanguage: selectedLanguage,
+                kuralId: result.kuralId,
+                iyal: "",
+                shouldNavigateToContentView: $shouldNavigateToContentView
+            )
+            .environmentObject(appState)
+        }
+    }
+
+    private func onAppearActions() {
+        Task {
+            await loadIyals()
+            translateIyals()
+        }
+        setupSiriShortcut()
+    }
+
+    private func onSelectedPalChange(_ newValue: String) {
+        Task {
+            await loadIyals()
+            translateIyals()
+        }
+    }
+
+    private func onSelectedLanguageChange(_ newValue: String) {
+        updateSelectedPal()
+        translateIyals()
+    }
+
+    private func onShouldNavigateToContentViewChange(_ newValue: Bool) {
+        if newValue {
+            shouldNavigateToContentView = false
+        }
+    }
+
+    private func handleNotification(_ _: Notification) {
+        if let kuralId = notificationKuralId.wrappedValue {
+            if let result = DatabaseManager.shared.getKuralById(kuralId, language: selectedLanguage) {
+                selectedSearchResult = result
+                showExplanationView = true
+            }
+            notificationKuralId.wrappedValue = nil
+        }
+    }
+
+    private func loadIyalsTask() async {
+        iyals = await DatabaseManager.shared.getIyals(for: selectedPal, language: selectedLanguage)
+    }
+}
+
+struct SearchBarView: View {
+    @Binding var searchText: String
+    @Binding var isSearching: Bool
+    @Binding var searchResults: [DatabaseSearchResult]
+    @Binding var showSearchResults: Bool
+    let performSearch: () -> Void
+
+    var body: some View {
+        HStack {
+            Image(systemName: "magnifyingglass")
+                .foregroundColor(.gray)
+            TextField("Search", text: $searchText, onCommit: performSearch)
+                .textFieldStyle(PlainTextFieldStyle())
+            if !searchText.isEmpty {
+                Button(action: { 
+                    searchText = ""
+                    searchResults = []
+                    showSearchResults = false
+                }) {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundColor(.gray)
+                }
+            }
+            if isSearching {
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle())
+            }
+        }
+        .padding()
+        .background(Color(UIColor.secondarySystemBackground))
+        .cornerRadius(10)
+        .padding()
+    }
+}
+
+struct MainContentView: View {
+    let iyals: [String]
+    let selectedLanguage: String
+    let translatedIyals: [String: String]
+    @EnvironmentObject var appState: AppState
+
+    var body: some View {
+        ScrollView {
+            LazyVStack(spacing: 16) {
+                if iyals.isEmpty {
+                    VStack(spacing: 16) {
+                        Image(systemName: "text.book.closed")
+                            .font(.system(size: 50))
+                            .foregroundColor(.gray)
+                        Text("Please select a chapter from the bottom bar")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                    }
+                    .padding()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                } else {
+                    ForEach(iyals, id: \.self) { iyal in
+                        NavigationLink(destination: AdhigaramView(iyal: iyal, selectedLanguage: selectedLanguage, translatedIyal: translatedIyals[iyal] ?? iyal).environmentObject(appState)) {
+                            IyalCard(iyal: iyal, translatedIyal: translatedIyals[iyal] ?? iyal, selectedLanguage: selectedLanguage)
+                        }
+                    }
+                }
+            }
+            .padding()
+        }
+    }
+}
+
+struct BottomBarView: View {
+    @Binding var selectedPal: String
+    let selectedLanguage: String
+
+    var body: some View {
+        HStack {
+            ForEach(0..<3) { index in
+                PalButton(
+                    title: getCurrentTitle(index),
+                    query: getCurrentEnglishTitle(index),
+                    systemImage: getSystemImage(for: index),
+                    selectedLanguage: selectedLanguage,
+                    selectedPal: $selectedPal
+                )
+            }
+        }
+        .padding()
+        .background(Color(UIColor.secondarySystemBackground))
+    }
+
+    private func getCurrentTitle(_ index: Int) -> String {
+        return LanguageUtil.getCurrentTitle(index, for: selectedLanguage)
+    }
+
+    private func getCurrentEnglishTitle(_ index: Int) -> String {
+        return LanguageUtil.getCurrentTitle(index, for: "English")
+    }
+
+    private func getSystemImage(for index: Int) -> String {
+        switch index {
+        case 0:
+            return "peacesign"
+        case 1:
+            return "dollarsign.circle"
+        case 2:
+            return "heart.circle"
+        default:
+            return "\(index + 1).circle"
+        }
+    }
+}
 
 #Preview {
     ContentView()

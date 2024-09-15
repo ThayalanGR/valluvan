@@ -9,11 +9,12 @@ struct ExplanationView: View {
     let selectedLanguage: String
     let kuralId: Int
     let iyal: String
+    @Binding var shouldNavigateToContentView: Bool
     @Environment(\.presentationMode) var presentationMode
     @StateObject private var viewModel: ExplanationViewModel
     @EnvironmentObject var appState: AppState
 
-    init(adhigaram: String, adhigaramId: String, lines: [String], explanation: NSAttributedString, selectedLanguage: String, kuralId: Int, iyal: String) {
+    init(adhigaram: String, adhigaramId: String, lines: [String], explanation: NSAttributedString, selectedLanguage: String, kuralId: Int, iyal: String, shouldNavigateToContentView: Binding<Bool>) {
         self.adhigaram = adhigaram
         self.adhigaramId = adhigaramId
         self.lines = lines
@@ -21,6 +22,7 @@ struct ExplanationView: View {
         self.selectedLanguage = selectedLanguage
         self.kuralId = kuralId
         self.iyal = iyal
+        self._shouldNavigateToContentView = shouldNavigateToContentView
         _viewModel = StateObject(wrappedValue: ExplanationViewModel(kuralId: kuralId, adhigaram: adhigaram, adhigaramId: adhigaramId, lines: lines, explanation: explanation.string))
     }
 
@@ -34,7 +36,18 @@ struct ExplanationView: View {
                 }
                 .padding()
             }
-            .navigationBarItems(trailing: ToolbarView(
+            .navigationBarItems(
+                leading: HStack{
+                    Button(action: {
+                        shouldNavigateToContentView = true
+                        presentationMode.wrappedValue.dismiss()
+                    }) {
+                        HStack {
+                            Image(systemName: "house")
+                        }
+                    }
+                },
+                trailing: ToolbarView(
                 isFavorite: $viewModel.isFavorite,
                 isSpeaking: $viewModel.isSpeaking,
                 showShareSheet: $viewModel.showShareSheet,

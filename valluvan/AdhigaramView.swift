@@ -22,6 +22,8 @@ struct AdhigaramView: View {
     @State private var timer: Timer?
     @State private var playerObservers: [NSKeyValueObservation] = []
     @State private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
+    @State private var shouldNavigateToContentView = false
+    @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
         List {
@@ -126,9 +128,24 @@ struct AdhigaramView: View {
         .onDisappear {
             stopAllAudio()
         }
-        .sheet(item: $selectedLinePair) { pair in
-            ExplanationView(adhigaram: pair.adhigaram, adhigaramId: String((pair.kuralId + 9) / 10), lines: pair.lines, explanation: pair.explanation, selectedLanguage: selectedLanguage, kuralId: pair.kuralId, iyal: translatedIyal)
-                .environmentObject(appState)
+        .sheet(item: $selectedLinePair) { linePair in
+            ExplanationView(
+                adhigaram: linePair.adhigaram,
+                adhigaramId: String((linePair.kuralId + 9) / 10),
+                lines: linePair.lines,
+                explanation: linePair.explanation,
+                selectedLanguage: selectedLanguage,
+                kuralId: linePair.kuralId,
+                iyal: iyal,
+                shouldNavigateToContentView: $shouldNavigateToContentView
+            )
+            .environmentObject(appState)
+        }
+        .onChange(of: shouldNavigateToContentView) { newValue in
+            if newValue {
+                presentationMode.wrappedValue.dismiss()
+                shouldNavigateToContentView = false
+            }
         }
         .environment(\.sizeCategory, appState.fontSize.textSizeCategory)
     }
