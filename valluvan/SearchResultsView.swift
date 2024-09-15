@@ -13,6 +13,7 @@ struct SearchResultsView: View {
                     VStack(alignment: .leading) {
                         Text("\(index + 1):")
                             .font(.headline)
+                        Text("Kural: \(result.kuralId)")
                         Text("Chapter: \(result.subheading)")
                         Text("Line: \(result.content)")
                     }

@@ -190,12 +190,12 @@ public class DatabaseManager {
                 if let row = try db!.pluck(query) {
                     let boldAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.boldSystemFont(ofSize: UIFont.systemFontSize)]
                     
-                    appendExplanation(to: &attributedExplanation, title: "கலைஞர்: ", content: row[explanationExpr], boldAttributes: boldAttributes)
-                    appendExplanation(to: &attributedExplanation, title: "மணக்குடவர்: ", content: row[manaExplanationExpr], boldAttributes: boldAttributes)
-                    appendExplanation(to: &attributedExplanation, title: "பரிமேலழகர்: ", content: row[pariExplanationExpr], boldAttributes: boldAttributes)
-                    appendExplanation(to: &attributedExplanation, title: "மு. வரதராசன்: ", content: row[varaExplanationExpr], boldAttributes: boldAttributes)
-                    appendExplanation(to: &attributedExplanation, title: "சாலமன் பாப்பையா: ", content: row[popsExplanationExpr], boldAttributes: boldAttributes)
-                    appendExplanation(to: &attributedExplanation, title: "வீ. முனிசாமி: ", content: row[muniExplanationExpr], boldAttributes: boldAttributes, isLast: true)
+                    appendExplanation(to: &attributedExplanation, title: "கலைஞர் விளக்கம்: ", content: row[explanationExpr], boldAttributes: boldAttributes)
+                    appendExplanation(to: &attributedExplanation, title: "மணக்குடவர் விளக்கம்: ", content: row[manaExplanationExpr], boldAttributes: boldAttributes)
+                    appendExplanation(to: &attributedExplanation, title: "பரிமேலழகர் விளக்கம்: ", content: row[pariExplanationExpr], boldAttributes: boldAttributes)
+                    appendExplanation(to: &attributedExplanation, title: "மு. வரதராசன் விளக்கம்: ", content: row[varaExplanationExpr], boldAttributes: boldAttributes)
+                    appendExplanation(to: &attributedExplanation, title: "சாலமன் பாப்பையா விளக்கம்: ", content: row[popsExplanationExpr], boldAttributes: boldAttributes)    
+                    appendExplanation(to: &attributedExplanation, title: "வீ. முனிசாமி விளக்கம்: ", content: row[muniExplanationExpr], boldAttributes: boldAttributes, isLast: true)
                 }
             } catch {
                 print("Error fetching Tamil explanation: \(error)")
