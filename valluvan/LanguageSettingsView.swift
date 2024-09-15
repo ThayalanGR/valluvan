@@ -55,6 +55,10 @@ struct LanguageSettingsView: View {
                             Image(systemName: "link")
                                 .foregroundColor(.blue)
                         }
+                        Link(destination: URL(string: "https://github.com/nsdevaraj/valluvan")!) {
+                            Image(systemName: "chevron.left.forwardslash.chevron.right")
+                                .foregroundColor(.blue)
+                        }
                     }
                 }
                 Section(header: Text("Language")) {
