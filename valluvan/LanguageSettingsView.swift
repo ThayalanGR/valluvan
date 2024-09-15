@@ -43,16 +43,16 @@ struct LanguageSettingsView: View {
                 
                 Section(header: Text("About the Developer")) {
                     HStack {
-                        Image(systemName: "trophy.fill")
-                                .foregroundColor(.blue)
+                        Image(systemName: "person.circle.fill")
+                            .foregroundColor(.blue)
                         Text("Devaraj NS")
                         Spacer()
-                        Link(destination: URL(string: "http://twitter.com/nsdevaraj")!) {
-                            Image(systemName: "x.circle.fill")
+                        Link(destination: URL(string: "https://x.com/nsdevaraj")!) {
+                            Image(systemName: "bird")
                                 .foregroundColor(.blue)
                         }
-                        Link(destination: URL(string: "http://linkedin.com/in/nsdevaraj")!) {
-                            Image(systemName: "link")
+                        Link(destination: URL(string: "https://linkedin.com/in/nsdevaraj")!) {
+                            Image(systemName: "briefcase.fill")
                                 .foregroundColor(.blue)
                         }
                         Link(destination: URL(string: "https://github.com/nsdevaraj/valluvan")!) {
