@@ -53,7 +53,7 @@ struct AdhigaramView: View {
                                     .font(.subheadline)
                                     Spacer()
                                     Button(action: {
-                                        togglePlayPause(for: adhigaramSong)
+                                        togglePlayPause(for: adhigaramSong, adhigaram: adhigaram, adhigaramId: adhigaramId)
                                     }) {
                                         Image(systemName: isPlaying[adhigaramSong] ?? false ? "pause.circle" : "play.circle")
                                             .foregroundColor(.blue)
@@ -160,7 +160,7 @@ struct AdhigaramView: View {
         }
     }
     
-    private func togglePlayPause(for adhigaramSong: String) {
+    private func togglePlayPause(for adhigaramSong: String, adhigaram: String, adhigaramId: String) {
         if let player = audioPlayers[adhigaramSong] {
             if player.timeControlStatus == .playing {
                 player.pause()
@@ -204,8 +204,9 @@ struct AdhigaramView: View {
                 currentTime[adhigaramSong] = 0
                 startTimer(for: adhigaramSong)
                 
-                // Set up remote control events
+                // Set up remote control events and Now Playing info
                 setupRemoteTransportControls()
+                setupNowPlayingInfo(adhigaram: adhigaram, adhigaramId: adhigaramId)
                 
                 // Start background task
                 startBackgroundTask()
@@ -311,5 +312,21 @@ struct AdhigaramView: View {
         let minutes = Int(timeInterval / 60)
         let seconds = Int(timeInterval.truncatingRemainder(dividingBy: 60))
         return String(format: "%02d:%02d", minutes, seconds)
+    }
+
+    private func setupNowPlayingInfo(adhigaram: String, adhigaramId: String) {
+        var nowPlayingInfo = [String: Any]()
+        nowPlayingInfo[MPMediaItemPropertyTitle] = adhigaram
+        nowPlayingInfo[MPMediaItemPropertyArtist] = "Thirukkural"
+        nowPlayingInfo[MPMediaItemPropertyAlbumTitle] = "Adhigaram \(adhigaramId)"
+
+        // Set artwork image
+        if let image = UIImage(named: "thirukkural_icon") {
+            nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: image.size) { size in
+                return image
+            }
+        }
+
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
     }
 }
