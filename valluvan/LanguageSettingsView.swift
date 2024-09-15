@@ -1,5 +1,5 @@
 import SwiftUI
-
+import UIKit
 
 struct LanguageSettingsView: View {
     @Binding var selectedLanguage: String
@@ -47,18 +47,27 @@ struct LanguageSettingsView: View {
                             .foregroundColor(.blue)
                         Text("Devaraj NS")
                         Spacer()
-                        Link(destination: URL(string: "https://x.com/nsdevaraj")!) {
+                        Button(action: {
+                            openURL("https://x.com/nsdevaraj")
+                        }) {
                             Image(systemName: "bird")
                                 .foregroundColor(.blue)
                         }
-                        Link(destination: URL(string: "https://linkedin.com/in/nsdevaraj")!) {
+                        .buttonStyle(PlainButtonStyle())
+                        Button(action: {
+                            openURL("https://linkedin.com/in/nsdevaraj")
+                        }) {
                             Image(systemName: "briefcase.fill")
                                 .foregroundColor(.blue)
                         }
-                        Link(destination: URL(string: "https://github.com/nsdevaraj/valluvan")!) {
+                        .buttonStyle(PlainButtonStyle())
+                        Button(action: {
+                            openURL("https://github.com/nsdevaraj/valluvan")
+                        }) {
                             Image(systemName: "chevron.left.forwardslash.chevron.right")
                                 .foregroundColor(.blue)
                         }
+                        .buttonStyle(PlainButtonStyle())
                     }
                 }
                 Section(header: Text("Language")) {
@@ -113,5 +122,10 @@ struct LanguageSettingsView: View {
             return favorites
         }
         return []
+    }
+    
+    private func openURL(_ urlString: String) {
+        guard let url = URL(string: urlString) else { return }
+        UIApplication.shared.open(url)
     }
 }
