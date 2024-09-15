@@ -42,7 +42,7 @@ struct ContentView: View {
     
     @State private var searchText = ""
     @State private var searchResults: [DatabaseSearchResult] = []
-    @State private var showSearchResults = false
+    @State private var isShowingSearchResults = false
     @State private var selectedSearchResult: DatabaseSearchResult? 
     @State private var hasSearched = false
     
@@ -60,6 +60,8 @@ struct ContentView: View {
     @State private var translatedIyals: [String: String] = [:]
     @State private var siriShortcutProvider: INVoiceShortcutCenter?
     @State private var shouldNavigateToContentView = false
+
+    @State private var isSearchResultsReady = false
 
     init() {
         // Initialize selectedPal with the first pal title
@@ -89,7 +91,7 @@ struct ContentView: View {
                         searchText: $searchText,
                         isSearching: $isSearching,
                         searchResults: $searchResults,
-                        showSearchResults: $showSearchResults,
+                        isShowingSearchResults: $isShowingSearchResults,
                         performSearch: performSearch
                     )
                     
@@ -115,7 +117,18 @@ struct ContentView: View {
         .onAppear(perform: onAppearActions)
         .onChange(of: selectedPal, perform: onSelectedPalChange)
         .onChange(of: selectedLanguage, perform: onSelectedLanguageChange)
-        .sheet(isPresented: $showSearchResults, content: searchResultsSheet)
+        .sheet(isPresented: $isShowingSearchResults) {
+            if isSearchResultsReady {
+                searchResultsSheet()
+            } else {
+                ProgressView("Loading results...")
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            self.isSearchResultsReady = true
+                        }
+                    }
+            }
+        }
         .sheet(item: $selectedSearchResult, content: explanationSheet)
         .onChange(of: shouldNavigateToContentView, perform: onShouldNavigateToContentViewChange)
         .sheet(isPresented: $showFavorites, content: favoritesSheet)
@@ -172,11 +185,13 @@ struct ContentView: View {
     func performSearch() {
         guard !searchText.isEmpty else {
             searchResults = []
-            showSearchResults = false
+            isShowingSearchResults = false
+            isSearchResultsReady = false
             return
         }
         
         isSearching = true
+        isSearchResultsReady = false
         DispatchQueue.global(qos: .userInitiated).async {
             let results: [DatabaseSearchResult]
             if self.selectedLanguage == "Tamil" {
@@ -187,9 +202,14 @@ struct ContentView: View {
             
             DispatchQueue.main.async {
                 self.searchResults = results
-                self.showSearchResults = true
-                self.hasSearched = true
                 self.isSearching = false
+                self.hasSearched = true
+                self.isShowingSearchResults = !results.isEmpty
+                
+                // Add a small delay before setting isSearchResultsReady to true
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    self.isSearchResultsReady = true
+                }
             }
         }
     }
@@ -313,7 +333,7 @@ struct ContentView: View {
     private func searchResultsSheet() -> some View {
         SearchResultsView(results: searchResults, onSelectResult: { result in
             selectedSearchResult = result
-            showSearchResults = false
+            isShowingSearchResults = false
         })
         .environmentObject(appState)
     }
