@@ -461,11 +461,11 @@ struct ContentView: View {
     private func getSystemImage(for index: Int) -> String {
         switch index {
         case 0:
-            return "heart.circle"
+            return "person.2.circle"
         case 1:
             return "dollarsign.circle"
         case 2:
-            return "person.2.circle"
+            return "heart.circle"
         default:
             return "\(index + 1).circle"
         }
@@ -505,15 +505,28 @@ struct GoToKuralView: View {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
                 .focused($isTextFieldFocused)
-
-                Button("Go to Kural") {
+                Button(action: {
                     validateAndSubmit()
+                }) {
+                HStack {
+                    Image(systemName: "arrow.right.circle.fill")
+                        .foregroundColor(.white)
+                    Text("Go to Kural")
+                        .foregroundColor(.white)
+                        .bold()
+                }
+                .padding()
+                .background(Color.blue)
+                .cornerRadius(10)
                 }
                 .padding()
             }
             .navigationBarTitle("Go to Kural", displayMode: .inline)
-            .navigationBarItems(trailing: Button("Cancel") {
+            .navigationBarItems(trailing: Button(action: {
                 isPresented = false
+            }) {
+                Image(systemName: "xmark.circle.fill")
+                    .foregroundColor(.blue)
             })
             .alert(isPresented: $showInvalidKuralAlert) {
                 Alert(
@@ -1105,7 +1118,6 @@ struct LanguageSettingsView: View {
                     .pickerStyle(SegmentedPickerStyle())
                 }
 
-
                 Section(header: Text("Notifications")) {
                     Toggle("Daily Thirukkural (9 AM)", isOn: $appState.isDailyKuralEnabled)
                 }
@@ -1125,6 +1137,23 @@ struct LanguageSettingsView: View {
                                         .font(.system(size: 16))
                                 }
                             }
+                        }
+                    }
+                }
+                
+                Section(header: Text("About the Developer")) {
+                    HStack {
+                        Image(systemName: "star.fill")
+                                .foregroundColor(.blue)
+                        Text("Devaraj NS")
+                        Spacer()
+                        Link(destination: URL(string: "http://twitter.com/nsdevaraj")!) {
+                            Image(systemName: "x.circle.fill")
+                                .foregroundColor(.blue)
+                        }
+                        Link(destination: URL(string: "http://linkedin.com/in/nsdevaraj")!) {
+                            Image(systemName: "link")
+                                .foregroundColor(.blue)
                         }
                     }
                 }
