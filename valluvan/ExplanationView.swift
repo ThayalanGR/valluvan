@@ -1,4 +1,5 @@
 import SwiftUI
+import AVFoundation
 
 
 struct ExplanationView: View {
@@ -10,6 +11,7 @@ struct ExplanationView: View {
     let kuralId: Int
     @Environment(\.presentationMode) var presentationMode
     @State private var isSpeaking = false
+    private let speechSynthesizer = AVSpeechSynthesizer()
     @State private var isFavorite = false
     @State private var showShareSheet = false
     @EnvironmentObject var appState: AppState
@@ -88,6 +90,15 @@ struct ExplanationView: View {
                         .foregroundColor(.blue)
                         .font(.system(size: 16))
                 }
+                if selectedLanguage == "English" {
+                    Button(action: {
+                        toggleSpeech()
+                    }) {
+                        Image(systemName: isSpeaking ? "pause.circle" : "play.circle")
+                            .foregroundColor(.blue)
+                            .font(.system(size: 16))
+                    }
+                }
                 Button(action: {
                     presentationMode.wrappedValue.dismiss()
                 }) {
@@ -99,6 +110,9 @@ struct ExplanationView: View {
         }
         .onAppear {
             checkIfFavorite()
+        }
+        .onDisappear {
+            stopSpeech()
         }
         .sheet(isPresented: $showShareSheet) {
             let content = """
@@ -153,5 +167,31 @@ struct ExplanationView: View {
                 }
             }
         }
+    }
+
+    private func toggleSpeech() {
+        if isSpeaking {
+            stopSpeech()
+        } else {
+            startSpeech()
+        }
+    }
+
+    private func startSpeech() {
+        let content = """
+        \(adhigaram)
+        \(lines.joined(separator: "\n"))
+        \(explanation.string)
+        """
+        let utterance = AVSpeechUtterance(string: content)
+        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+        utterance.rate = 0.5
+        speechSynthesizer.speak(utterance)
+        isSpeaking = true
+    }
+
+    private func stopSpeech() {
+        speechSynthesizer.stopSpeaking(at: .immediate)
+        isSpeaking = false
     }
 }
