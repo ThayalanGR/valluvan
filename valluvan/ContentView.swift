@@ -8,6 +8,9 @@
 import SwiftUI
 import AVFoundation
 import MediaPlayer
+import Intents
+import IntentsUI
+
 
 struct Chapter: Identifiable {
     let id: Int
@@ -56,6 +59,7 @@ struct ContentView: View {
 
     @State private var isSearching = false
     @State private var translatedIyals: [String: String] = [:]
+    @State private var siriShortcutProvider: INVoiceShortcutCenter?
 
     init() {
         // Initialize selectedPal with the first pal title
@@ -107,6 +111,7 @@ struct ContentView: View {
         .onAppear {
             loadIyals()
             translateIyals()
+            setupSiriShortcut()
         }
         .onChange(of: selectedPal) { oldValue, newValue in
             loadIyals()
@@ -387,6 +392,20 @@ struct ContentView: View {
                 }
             }
         }
+    }
+
+    private func setupSiriShortcut() {
+        let intent = INIntent()
+        intent.suggestedInvocationPhrase = "Go to Kural"
+
+        _ = INShortcut(intent: intent)
+        siriShortcutProvider = INVoiceShortcutCenter.shared
+
+    }
+
+    func handleSiriGoToKural(kuralId: Int) {
+        goToKuralId = String(kuralId)
+        goToKural()
     }
 } 
 

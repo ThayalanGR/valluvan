@@ -36,4 +36,19 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
         }
         completionHandler()
     }
+    
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        if userActivity.activityType == "com.devois.valluvan.goToKural",
+           let kuralId = userActivity.userInfo?["kuralId"] as? Int {
+            DispatchQueue.main.async {
+                // Assuming you have a way to access your ContentView instance
+                // You might need to adjust this based on your app's structure
+                if let contentView = UIApplication.shared.windows.first?.rootViewController?.view as? ContentView {
+                    contentView.handleSiriGoToKural(kuralId: kuralId)
+                }
+            }
+            return true
+        }
+        return false
+    }
 }
