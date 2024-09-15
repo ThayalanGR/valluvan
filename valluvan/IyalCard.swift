@@ -8,24 +8,23 @@ import SwiftUI
         @EnvironmentObject var appState: AppState
 
         var body: some View {
-            HStack {
+            HStack(spacing: 2) {
                 Image(systemName: IyalUtils.getSystemImageForIyal(iyal))
-                    .foregroundColor(.yellow)
-                    .padding(.trailing, 8)
-                VStack(alignment: .leading, spacing: 8) {
+                    .foregroundColor(.blue)
+                VStack(alignment: .leading, spacing: 4) { 
                     Text(translatedIyal)
                         .font(.headline)
                         .foregroundColor(.primary)
                         .lineLimit(2)
                         .multilineTextAlignment(.leading)
                 }
-                .padding(.vertical, 12)
-                .padding(.horizontal, 16)
+                .padding(.vertical, 8) 
+                .padding(.horizontal, 2)
                 Spacer()
                 
                 Image(systemName: "chevron.right")
                     .foregroundColor(.secondary)
-                    .padding(.trailing, 16)
+                    .padding(.trailing, 12) 
             }
             .frame(maxWidth: .infinity)
             .background(backgroundColor)
