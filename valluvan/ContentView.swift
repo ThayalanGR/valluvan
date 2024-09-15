@@ -122,13 +122,17 @@ struct ContentView: View {
         .preferredColorScheme(isDarkMode ? .dark : .light)
         .environment(\.sizeCategory, appState.fontSize.textSizeCategory)
         .onAppear {
-            loadIyals()
-            translateIyals()
+            Task {
+                await loadIyals()
+                translateIyals()
+            }
             setupSiriShortcut()
         }
         .onChange(of: selectedPal) { oldValue, newValue in
-            loadIyals()
-            translateIyals()
+            Task {
+                await loadIyals()
+                translateIyals()
+            }
         }
         .onChange(of: selectedLanguage) { oldValue, newValue in
             updateSelectedPal()
@@ -192,6 +196,9 @@ struct ContentView: View {
                 )
                 .environmentObject(appState)
             }
+        }
+        .task {
+            iyals = await DatabaseManager.shared.getIyals(for: selectedPal, language: selectedLanguage)
         }
     }
 
@@ -279,8 +286,8 @@ struct ContentView: View {
     }
     
 
-    private func loadIyals() {  
-        iyals = DatabaseManager.shared.getIyals(for: selectedPal, language: selectedLanguage)
+    private func loadIyals() async {  
+        iyals = await DatabaseManager.shared.getIyals(for: selectedPal, language: selectedLanguage)
     }
     
     func performSearch() {
