@@ -157,6 +157,8 @@ struct AdhigaramView: View {
     }
     
     private func togglePlayPause(for adhigaramSong: String, adhigaram: String, adhigaramId: String) {
+        stopAllAudioExcept(adhigaramSong)
+        
         if let player = audioPlayers[adhigaramSong] {
             if player.timeControlStatus == .playing {
                 player.pause()
@@ -277,6 +279,16 @@ struct AdhigaramView: View {
         timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
             if let player = audioPlayers[adhigaramSong] {
                 currentTime[adhigaramSong] = CMTimeGetSeconds(player.currentTime())
+            }
+        }
+    }
+    
+    private func stopAllAudioExcept(_ exceptSong: String) {
+        for (song, player) in audioPlayers {
+            if song != exceptSong {
+                player.pause()
+                isPlaying[song] = false
+                timer?.invalidate()
             }
         }
     }
