@@ -1,6 +1,7 @@
 import SwiftUI
 import AVKit
 import MediaPlayer
+import AVFoundation
 
 struct AdhigaramView: View {
     let iyal: String
