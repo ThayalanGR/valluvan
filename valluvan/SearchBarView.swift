@@ -10,7 +10,7 @@ struct SearchBarView: View {
     var body: some View {
         VStack {
             HStack {
-                TextField("Search", text: $searchText, onCommit: performSearch)
+                TextField("AI Search", text: $searchText, onCommit: performSearch)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding(.horizontal)
                 
