@@ -78,6 +78,7 @@
 		FEBC78832C96A6C900411700 /* LanguageUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageUtil.swift; sourceTree = "<group>"; };
 		FEBC78872C96C75900411700 /* GoToKural.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = GoToKural.intentdefinition; sourceTree = "<group>"; };
 		FEBC78882C96C9AF00411700 /* Valluvan.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Valluvan.entitlements; path = Valluvan/Valluvan.entitlements; sourceTree = "<group>"; };
+		FEC0795F2C96E00F00230ABE /* Valluvan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Valluvan.xctestplan; sourceTree = "<group>"; };
 		FEC911FC2C956E7C00E6AE94 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppState.swift; path = valluvan/AppState.swift; sourceTree = SOURCE_ROOT; };
 		FEC911FE2C95719400E6AE94 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FEC911FF2C95719400E6AE94 /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
@@ -104,6 +105,7 @@
 		FE1B2D7A2C92C133006DBC55 = {
 			isa = PBXGroup;
 			children = (
+				FEC0795F2C96E00F00230ABE /* Valluvan.xctestplan */,
 				FEBC78882C96C9AF00411700 /* Valluvan.entitlements */,
 				FEBC78872C96C75900411700 /* GoToKural.intentdefinition */,
 				FE7D91122C95A78300A2E9A0 /* Info.plist */,

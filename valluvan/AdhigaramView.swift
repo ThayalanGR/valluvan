@@ -39,12 +39,12 @@ struct AdhigaramView: View {
                             .background(Color.blue)
                             .clipShape(Circle())
                         
-                        VStack(alignment: .leading, spacing: 5) {
+                        VStack(alignment: .leading, spacing: 2) {
                             Text(adhigaram)
                                 .font(.headline)
                             
                             if expandedAdhigaram == adhigaram {
-                                HStack {
+                                HStack( spacing: 1) {
                                     HStack {
                                         Image(systemName: "music.note")
                                             .foregroundColor(.blue)
@@ -61,7 +61,6 @@ struct AdhigaramView: View {
                                     }
                                     .buttonStyle(PlainButtonStyle())
                                 }
-                                .padding(.vertical, 4)
                                 
                                 if isPlaying[adhigaramSong] ?? false {
                                     VStack(spacing: 5) {
