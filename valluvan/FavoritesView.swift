@@ -9,6 +9,8 @@ struct FavoritesView: View {
     @State private var showExplanation = false
     @State private var explanationText: NSAttributedString = NSAttributedString()
     @State private var shouldNavigateToContentView = false
+    @State private var isLoadingExplanation = false
+    @State private var explanationLoadError: String?
     @EnvironmentObject var appState: AppState
 
     init(favorites: [Favorite], selectedLanguage: String) {
@@ -105,16 +107,25 @@ struct FavoritesView: View {
     }
 
     private func explanationSheet(favorite: Favorite) -> some View {
-        ExplanationView(
-            adhigaram: favorite.adhigaram,
-            adhigaramId: String((favorite.id + 9) / 10),
-            lines: favorite.lines,
-            explanation: explanationText,
-            selectedLanguage: selectedLanguage,
-            kuralId: favorite.id,
-            iyal: "", 
-            shouldNavigateToContentView: $shouldNavigateToContentView
-        ).environmentObject(appState)
+        Group {
+            if isLoadingExplanation {
+                ProgressView("Loading explanation...")
+            } else if let error = explanationLoadError {
+                Text("Error: \(error)")
+                    .foregroundColor(.red)
+            } else {
+                ExplanationView(
+                    adhigaram: favorite.adhigaram,
+                    adhigaramId: String((favorite.id + 9) / 10),
+                    lines: favorite.lines,
+                    explanation: explanationText,
+                    selectedLanguage: selectedLanguage,
+                    kuralId: favorite.id,
+                    iyal: "", 
+                    shouldNavigateToContentView: $shouldNavigateToContentView
+                ).environmentObject(appState)
+            }
+        }
     }
 
     private func handleNavigationChange(_ newValue: Bool) {
@@ -125,8 +136,22 @@ struct FavoritesView: View {
     }
 
     private func loadExplanation(for kuralId: Int) {
-        explanationText = DatabaseManager.shared.getExplanation(for: kuralId, language: selectedLanguage)
-        showExplanation = true
+        isLoadingExplanation = true
+        explanationLoadError = nil
+        
+        DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 0.5) {
+            let explanation = DatabaseManager.shared.getExplanation(for: kuralId, language: selectedLanguage)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                if explanation.string.isEmpty {
+                    self.explanationLoadError = "Failed to load explanation"
+                } else {
+                    self.explanationText = explanation
+                }
+                self.isLoadingExplanation = false
+                self.showExplanation = true
+            }
+        }
     }
 
     private func removeFavorite(_ favorite: Favorite) {
