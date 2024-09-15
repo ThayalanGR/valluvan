@@ -10,8 +10,9 @@ struct LanguageSettingsView: View {
     @AppStorage("isDarkMode") private var isDarkMode = true
     @EnvironmentObject var appState: AppState
     @Environment(\.colorScheme) var colorScheme
-
-    // Add the languages array here
+    
+    @State private var showFavorites = false
+    
     static let languages = ["Tamil", "English", "Telugu", "Hindi", "Kannad", "French", "Arabic", "Chinese", "German", "Korean", "Malay", "Malayalam", "Polish", "Russian", "Singalam", "Swedish"]
 
     var body: some View {
@@ -30,6 +31,32 @@ struct LanguageSettingsView: View {
                     Toggle("Daily Thirukkural (9 AM)", isOn: $appState.isDailyKuralEnabled)
                 }
                 
+                
+                Section(header: Text("Quick Access")) {
+                    Button(action: { showFavorites = true }) {
+                        HStack {
+                            Image(systemName: "star.fill")
+                            Text("Favorites")
+                        }
+                    } 
+                }
+                
+                Section(header: Text("About the Developer")) {
+                    HStack {
+                        Image(systemName: "trophy.fill")
+                                .foregroundColor(.blue)
+                        Text("Devaraj NS")
+                        Spacer()
+                        Link(destination: URL(string: "http://twitter.com/nsdevaraj")!) {
+                            Image(systemName: "x.circle.fill")
+                                .foregroundColor(.blue)
+                        }
+                        Link(destination: URL(string: "http://linkedin.com/in/nsdevaraj")!) {
+                            Image(systemName: "link")
+                                .foregroundColor(.blue)
+                        }
+                    }
+                }
                 Section(header: Text("Language")) {
                     ForEach(languages, id: \.self) { language in
                         Button(action: {
@@ -45,23 +72,6 @@ struct LanguageSettingsView: View {
                                         .font(.system(size: 16))
                                 }
                             }
-                        }
-                    }
-                }
-                
-                Section(header: Text("About the Developer")) {
-                    HStack {
-                        Image(systemName: "star.fill")
-                                .foregroundColor(.blue)
-                        Text("Devaraj NS")
-                        Spacer()
-                        Link(destination: URL(string: "http://twitter.com/nsdevaraj")!) {
-                            Image(systemName: "x.circle.fill")
-                                .foregroundColor(.blue)
-                        }
-                        Link(destination: URL(string: "http://linkedin.com/in/nsdevaraj")!) {
-                            Image(systemName: "link")
-                                .foregroundColor(.blue)
                         }
                     }
                 }
@@ -87,5 +97,17 @@ struct LanguageSettingsView: View {
         }
         .preferredColorScheme(isDarkMode ? .dark : .light)
         .environment(\.sizeCategory, appState.fontSize.textSizeCategory)
-    } 
+        .sheet(isPresented: $showFavorites) {
+            FavoritesView(favorites: loadFavorites(), selectedLanguage: selectedLanguage)
+                .environmentObject(appState)
+        }
+    }
+    
+    private func loadFavorites() -> [Favorite] {
+        if let data = UserDefaults.standard.data(forKey: "favorites"),
+           let favorites = try? JSONDecoder().decode([Favorite].self, from: data) {
+            return favorites
+        }
+        return []
+    }
 }
