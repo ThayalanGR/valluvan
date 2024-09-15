@@ -10,6 +10,7 @@ import AVFoundation
 import MediaPlayer
 import Intents
 import IntentsUI
+import NaturalLanguage
 
 struct Chapter: Identifiable {
     let id: Int
@@ -199,11 +200,24 @@ struct ContentView: View {
         // Split the search text into words
         let words = searchText.components(separatedBy: .whitespacesAndNewlines).filter { !$0.isEmpty }
         
-        // Pick random words (up to 3) if there are multiple words
+        // Identify nouns and pick random nouns (up to 3) if there are multiple words
         let searchQuery: String
         if words.count > 1 {
-            let randomWords = words.shuffled().prefix(min(3, words.count))
-            searchQuery = randomWords[0]
+            let nouns = words.filter { word in
+                let tagger = NLTagger(tagSchemes: [.lexicalClass])
+                tagger.string = word
+                let (tag, _) = tagger.tag(at: word.startIndex, unit: .word, scheme: .lexicalClass)
+                return tag == .noun
+            }
+            
+            if !nouns.isEmpty {
+                let randomNouns = nouns.shuffled().prefix(min(3, nouns.count))
+                searchQuery = randomNouns[0]
+            } else {
+                // If no nouns found, use the original logic
+                let randomWords = words.shuffled().prefix(min(3, words.count))
+                searchQuery = randomWords[0]
+            }
         } else {
             searchQuery = searchText
         }
