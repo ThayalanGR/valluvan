@@ -222,14 +222,22 @@ struct ContentView: View {
             searchQuery = searchText
         }
         
-        print("Search query: \(searchQuery)")
         
         DispatchQueue.global(qos: .userInitiated).async {
             let results: [DatabaseSearchResult]
-            if self.selectedLanguage == "Tamil" {
+            if self.selectedLanguage == "Tamil" { 
                 results = self.searchTamilContent(query: searchQuery)
-            } else {
+            } else { 
                 results = self.searchContent(query: searchQuery)
+            }
+            if results.count == 0 {
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "No Results", message: "No kural, found for '\(self.originalSearchText)'", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                    if let rootViewController = UIApplication.shared.windows.first?.rootViewController {
+                        rootViewController.present(alert, animated: true, completion: nil)
+                    }
+                }
             }
             DispatchQueue.main.async {
                 self.searchResults = results
