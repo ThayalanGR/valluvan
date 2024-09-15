@@ -28,7 +28,6 @@ public class DatabaseManager {
         do {
             if let path = Bundle.main.path(forResource: "data", ofType: "sqlite") {
                 db = try Connection(path)
-                print("Connected to database at path: \(path)") 
             } else {
                 print("Database file not found in the main bundle.")
                 print("Searched for 'data.sqlite' in: \(Bundle.main.bundlePath)")

@@ -2,8 +2,7 @@ import SwiftUI
 
 struct SearchResultsView: View {
     let results: [DatabaseSearchResult]
-    let onSelectResult: (DatabaseSearchResult) -> Void
-    @EnvironmentObject var appState: AppState
+    let onSelectResult: (DatabaseSearchResult) -> Void 
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
@@ -30,7 +29,6 @@ struct SearchResultsView: View {
                     .foregroundColor(.blue)
                     .font(.system(size: 16))
             })
-        }
-        .environment(\.sizeCategory, appState.fontSize.textSizeCategory)
+        } 
     }
 }
