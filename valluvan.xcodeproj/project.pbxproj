@@ -31,7 +31,6 @@
 		FEBC787A2C96A5C800411700 /* LanguageSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBC78662C96A5C800411700 /* LanguageSettingsView.swift */; };
 		FEBC787B2C96A5C800411700 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBC78672C96A5C800411700 /* DatabaseManager.swift */; };
 		FEBC787C2C96A5C800411700 /* IyalUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBC78682C96A5C800411700 /* IyalUtils.swift */; };
-		FEBC787D2C96A5C800411700 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBC78692C96A5C800411700 /* SearchBar.swift */; };
 		FEBC787E2C96A5C800411700 /* LinePairView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBC786A2C96A5C800411700 /* LinePairView.swift */; };
 		FEBC787F2C96A5C800411700 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBC786B2C96A5C800411700 /* ShareSheet.swift */; };
 		FEBC78802C96A5C800411700 /* TranslationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBC786C2C96A5C800411700 /* TranslationUtil.swift */; };
@@ -75,7 +74,6 @@
 		FEBC78662C96A5C800411700 /* LanguageSettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageSettingsView.swift; sourceTree = "<group>"; };
 		FEBC78672C96A5C800411700 /* DatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		FEBC78682C96A5C800411700 /* IyalUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IyalUtils.swift; sourceTree = "<group>"; };
-		FEBC78692C96A5C800411700 /* SearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		FEBC786A2C96A5C800411700 /* LinePairView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinePairView.swift; sourceTree = "<group>"; };
 		FEBC786B2C96A5C800411700 /* ShareSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		FEBC786C2C96A5C800411700 /* TranslationUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TranslationUtil.swift; sourceTree = "<group>"; };
@@ -167,7 +165,6 @@
 				FEBC786A2C96A5C800411700 /* LinePairView.swift */,
 				FEBC785C2C96A5C800411700 /* NotificationManager.swift */,
 				FEBC785D2C96A5C800411700 /* PalButton.swift */,
-				FEBC78692C96A5C800411700 /* SearchBar.swift */,
 				FEBC786D2C96A5C800411700 /* SearchResultsView.swift */,
 				FEBC786B2C96A5C800411700 /* ShareSheet.swift */,
 				FEBC786C2C96A5C800411700 /* TranslationUtil.swift */,
@@ -277,7 +274,6 @@
 				FEBC78772C96A5C800411700 /* valluvanApp.swift in Sources */,
 				FEBC785A2C96A03B00411700 /* IyalUtils.swift in Sources */,
 				FE0C64472C96FD4300364D06 /* BottomBarView.swift in Sources */,
-				FEBC787D2C96A5C800411700 /* SearchBar.swift in Sources */,
 				FECB708D2C92F33E00989E70 /* DatabaseManager.swift in Sources */,
 				FE7D91142C95CC4100A2E9A0 /* TranslationUtil.swift in Sources */,
 				FEBC78822C96A5C800411700 /* ContentView.swift in Sources */,
