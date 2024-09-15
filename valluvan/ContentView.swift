@@ -15,6 +15,21 @@ struct Chapter: Identifiable {
     let audioPath: String
 }
 
+struct SelectedLinePair: Identifiable {
+    let id = UUID()
+    let adhigaram: String
+    let lines: [String]
+    let explanation: NSAttributedString
+    let kuralId: Int
+}
+
+struct Favorite: Codable, Identifiable {
+    let id: Int
+    let adhigaram: String
+    let adhigaramId: String
+    let lines: [String]
+}
+
 struct ContentView: View {
     @State private var selectedPal: String
     @State private var iyals: [String] = []
@@ -378,19 +393,3 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
-
-struct SelectedLinePair: Identifiable {
-    let id = UUID()
-    let adhigaram: String
-    let lines: [String]
-    let explanation: NSAttributedString
-    let kuralId: Int
-}
-
-struct Favorite: Codable, Identifiable {
-    let id: Int
-    let adhigaram: String
-    let adhigaramId: String
-    let lines: [String]
-}
-
