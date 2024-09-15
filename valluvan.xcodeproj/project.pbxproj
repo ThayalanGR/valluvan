@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FE0C64462C96FD4300364D06 /* MainContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0C64432C96FD4300364D06 /* MainContentView.swift */; };
+		FE0C64472C96FD4300364D06 /* BottomBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0C64442C96FD4300364D06 /* BottomBarView.swift */; };
+		FE0C64482C96FD4300364D06 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0C64452C96FD4300364D06 /* SearchBarView.swift */; };
 		FE42A35C2C959D5300C30205 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE42A35B2C959D5300C30205 /* Launch Screen.storyboard */; };
 		FE624C112C92CCEC005195EC /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = FE624C102C92CCEC005195EC /* SQLite */; };
 		FE643BEF2C96D0380042676A /* ExplanationComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE643BEC2C96D0370042676A /* ExplanationComponents.swift */; };
@@ -47,6 +50,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FE0C64432C96FD4300364D06 /* MainContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainContentView.swift; sourceTree = "<group>"; };
+		FE0C64442C96FD4300364D06 /* BottomBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBarView.swift; sourceTree = "<group>"; };
+		FE0C64452C96FD4300364D06 /* SearchBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		FE1B2D832C92C133006DBC55 /* Valluvan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Valluvan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE42A35B2C959D5300C30205 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		FE643BEC2C96D0370042676A /* ExplanationComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExplanationComponents.swift; sourceTree = "<group>"; };
@@ -141,6 +147,9 @@
 				FEBC78662C96A5C800411700 /* LanguageSettingsView.swift */,
 				FE42A35B2C959D5300C30205 /* Launch Screen.storyboard */,
 				FE643BEC2C96D0370042676A /* ExplanationComponents.swift */,
+				FE0C64442C96FD4300364D06 /* BottomBarView.swift */,
+				FE0C64432C96FD4300364D06 /* MainContentView.swift */,
+				FE0C64452C96FD4300364D06 /* SearchBarView.swift */,
 				FE643BED2C96D0370042676A /* ExplanationView.swift */,
 				FE643BEE2C96D0380042676A /* ExplanationViewModel.swift */,
 				FECB6FFF2C92F33E00989E70 /* ContentView.swift */,
@@ -263,9 +272,11 @@
 				FE643BF02C96D0380042676A /* ExplanationView.swift in Sources */,
 				FEBC787F2C96A5C800411700 /* ShareSheet.swift in Sources */,
 				FE643BEF2C96D0380042676A /* ExplanationComponents.swift in Sources */,
+				FE0C64462C96FD4300364D06 /* MainContentView.swift in Sources */,
 				FEBC78702C96A5C800411700 /* NotificationManager.swift in Sources */,
 				FEBC78772C96A5C800411700 /* valluvanApp.swift in Sources */,
 				FEBC785A2C96A03B00411700 /* IyalUtils.swift in Sources */,
+				FE0C64472C96FD4300364D06 /* BottomBarView.swift in Sources */,
 				FEBC787D2C96A5C800411700 /* SearchBar.swift in Sources */,
 				FECB708D2C92F33E00989E70 /* DatabaseManager.swift in Sources */,
 				FE7D91142C95CC4100A2E9A0 /* TranslationUtil.swift in Sources */,
@@ -282,6 +293,7 @@
 				FEC911FD2C956E7C00E6AE94 /* AppState.swift in Sources */,
 				FEBC787A2C96A5C800411700 /* LanguageSettingsView.swift in Sources */,
 				FEBC78782C96A5C800411700 /* ExplanationView.swift in Sources */,
+				FE0C64482C96FD4300364D06 /* SearchBarView.swift in Sources */,
 				FEBC786F2C96A5C800411700 /* FavoritesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
