@@ -142,6 +142,27 @@
 		FE6DD0D42C930E5D00736D71 /* புலவி நுணுக்கம்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0502C930E5D00736D71 /* புலவி நுணுக்கம்.mp3 */; };
 		FE6DD0D52C930E5D00736D71 /* நன்றியில்செல்வம்.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE6DD0512C930E5D00736D71 /* நன்றியில்செல்வம்.mp3 */; };
 		FE7D91142C95CC4100A2E9A0 /* TranslationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7D91132C95CC4100A2E9A0 /* TranslationUtil.swift */; };
+		FEBC785A2C96A03B00411700 /* IyalUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBC78592C96A03B00411700 /* IyalUtils.swift */; };
+		FEBC786F2C96A5C800411700 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBC785B2C96A5C800411700 /* FavoritesView.swift */; };
+		FEBC78702C96A5C800411700 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBC785C2C96A5C800411700 /* NotificationManager.swift */; };
+		FEBC78712C96A5C800411700 /* PalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBC785D2C96A5C800411700 /* PalButton.swift */; };
+		FEBC78722C96A5C800411700 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEBC785E2C96A5C800411700 /* Launch Screen.storyboard */; };
+		FEBC78732C96A5C800411700 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBC785F2C96A5C800411700 /* AppState.swift */; };
+		FEBC78742C96A5C800411700 /* AdhigaramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBC78602C96A5C800411700 /* AdhigaramView.swift */; };
+		FEBC78752C96A5C800411700 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBC78612C96A5C800411700 /* AppDelegate.swift */; };
+		FEBC78762C96A5C800411700 /* GoToKuralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBC78622C96A5C800411700 /* GoToKuralView.swift */; };
+		FEBC78772C96A5C800411700 /* valluvanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBC78632C96A5C800411700 /* valluvanApp.swift */; };
+		FEBC78782C96A5C800411700 /* ExplanationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBC78642C96A5C800411700 /* ExplanationView.swift */; };
+		FEBC78792C96A5C800411700 /* IyalCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBC78652C96A5C800411700 /* IyalCard.swift */; };
+		FEBC787A2C96A5C800411700 /* LanguageSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBC78662C96A5C800411700 /* LanguageSettingsView.swift */; };
+		FEBC787B2C96A5C800411700 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBC78672C96A5C800411700 /* DatabaseManager.swift */; };
+		FEBC787C2C96A5C800411700 /* IyalUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBC78682C96A5C800411700 /* IyalUtils.swift */; };
+		FEBC787D2C96A5C800411700 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBC78692C96A5C800411700 /* SearchBar.swift */; };
+		FEBC787E2C96A5C800411700 /* LinePairView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBC786A2C96A5C800411700 /* LinePairView.swift */; };
+		FEBC787F2C96A5C800411700 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBC786B2C96A5C800411700 /* ShareSheet.swift */; };
+		FEBC78802C96A5C800411700 /* TranslationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBC786C2C96A5C800411700 /* TranslationUtil.swift */; };
+		FEBC78812C96A5C800411700 /* SearchResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBC786D2C96A5C800411700 /* SearchResultsView.swift */; };
+		FEBC78822C96A5C800411700 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBC786E2C96A5C800411700 /* ContentView.swift */; };
 		FEC911FD2C956E7C00E6AE94 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC911FC2C956E7C00E6AE94 /* AppState.swift */; };
 		FEC912002C95719400E6AE94 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC911FE2C95719400E6AE94 /* AppDelegate.swift */; };
 		FEC912012C95719400E6AE94 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC911FF2C95719400E6AE94 /* NotificationManager.swift */; };
@@ -290,6 +311,27 @@
 		FE6DD0512C930E5D00736D71 /* நன்றியில்செல்வம்.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "நன்றியில்செல்வம்.mp3"; sourceTree = "<group>"; };
 		FE7D91122C95A78300A2E9A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Valluvan/Info.plist; sourceTree = "<group>"; };
 		FE7D91132C95CC4100A2E9A0 /* TranslationUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TranslationUtil.swift; sourceTree = "<group>"; };
+		FEBC78592C96A03B00411700 /* IyalUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IyalUtils.swift; sourceTree = "<group>"; };
+		FEBC785B2C96A5C800411700 /* FavoritesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
+		FEBC785C2C96A5C800411700 /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		FEBC785D2C96A5C800411700 /* PalButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PalButton.swift; sourceTree = "<group>"; };
+		FEBC785E2C96A5C800411700 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		FEBC785F2C96A5C800411700 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		FEBC78602C96A5C800411700 /* AdhigaramView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdhigaramView.swift; sourceTree = "<group>"; };
+		FEBC78612C96A5C800411700 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FEBC78622C96A5C800411700 /* GoToKuralView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoToKuralView.swift; sourceTree = "<group>"; };
+		FEBC78632C96A5C800411700 /* valluvanApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = valluvanApp.swift; sourceTree = "<group>"; };
+		FEBC78642C96A5C800411700 /* ExplanationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExplanationView.swift; sourceTree = "<group>"; };
+		FEBC78652C96A5C800411700 /* IyalCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IyalCard.swift; sourceTree = "<group>"; };
+		FEBC78662C96A5C800411700 /* LanguageSettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageSettingsView.swift; sourceTree = "<group>"; };
+		FEBC78672C96A5C800411700 /* DatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		FEBC78682C96A5C800411700 /* IyalUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IyalUtils.swift; sourceTree = "<group>"; };
+		FEBC78692C96A5C800411700 /* SearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		FEBC786A2C96A5C800411700 /* LinePairView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinePairView.swift; sourceTree = "<group>"; };
+		FEBC786B2C96A5C800411700 /* ShareSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
+		FEBC786C2C96A5C800411700 /* TranslationUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TranslationUtil.swift; sourceTree = "<group>"; };
+		FEBC786D2C96A5C800411700 /* SearchResultsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsView.swift; sourceTree = "<group>"; };
+		FEBC786E2C96A5C800411700 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FEC911FC2C956E7C00E6AE94 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppState.swift; path = valluvan/AppState.swift; sourceTree = SOURCE_ROOT; };
 		FEC911FE2C95719400E6AE94 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FEC911FF2C95719400E6AE94 /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
@@ -483,12 +525,33 @@
 				FECB6F772C92F33E00989E70 /* Preview Content */,
 				FECB6FFD2C92F33E00989E70 /* Sounds */,
 				FECB6FFE2C92F33E00989E70 /* Assets.xcassets */,
+				FEBC78622C96A5C800411700 /* GoToKuralView.swift */,
+				FEBC78652C96A5C800411700 /* IyalCard.swift */,
+				FEBC78682C96A5C800411700 /* IyalUtils.swift */,
+				FEBC78662C96A5C800411700 /* LanguageSettingsView.swift */,
 				FE42A35B2C959D5300C30205 /* Launch Screen.storyboard */,
 				FECB6FFF2C92F33E00989E70 /* ContentView.swift */,
+				FEBC78602C96A5C800411700 /* AdhigaramView.swift */,
+				FEBC78612C96A5C800411700 /* AppDelegate.swift */,
 				FEC911FC2C956E7C00E6AE94 /* AppState.swift */,
 				FECB70002C92F33E00989E70 /* data.sqlite */,
+				FEBC785F2C96A5C800411700 /* AppState.swift */,
+				FEBC786E2C96A5C800411700 /* ContentView.swift */,
+				FEBC78672C96A5C800411700 /* DatabaseManager.swift */,
+				FEBC78642C96A5C800411700 /* ExplanationView.swift */,
+				FEBC785B2C96A5C800411700 /* FavoritesView.swift */,
+				FEBC785E2C96A5C800411700 /* Launch Screen.storyboard */,
+				FEBC786A2C96A5C800411700 /* LinePairView.swift */,
+				FEBC785C2C96A5C800411700 /* NotificationManager.swift */,
+				FEBC785D2C96A5C800411700 /* PalButton.swift */,
+				FEBC78692C96A5C800411700 /* SearchBar.swift */,
+				FEBC786D2C96A5C800411700 /* SearchResultsView.swift */,
+				FEBC786B2C96A5C800411700 /* ShareSheet.swift */,
+				FEBC786C2C96A5C800411700 /* TranslationUtil.swift */,
+				FEBC78632C96A5C800411700 /* valluvanApp.swift */,
 				FEC911FE2C95719400E6AE94 /* AppDelegate.swift */,
 				FE7D91132C95CC4100A2E9A0 /* TranslationUtil.swift */,
+				FEBC78592C96A03B00411700 /* IyalUtils.swift */,
 				FEC911FF2C95719400E6AE94 /* NotificationManager.swift */,
 				FECB70012C92F33E00989E70 /* DatabaseManager.swift */,
 				FECB70022C92F33E00989E70 /* valluvanApp.swift */,
@@ -690,6 +753,7 @@
 				FE6DD0BB2C930E5D00736D71 /* சான்றாண்மை.mp3 in Resources */,
 				FE6DD06B2C930E5D00736D71 /* நடுவு நிலைமை.mp3 in Resources */,
 				FE6DD0652C930E5D00736D71 /* அறிவுடைமை.mp3 in Resources */,
+				FEBC78722C96A5C800411700 /* Launch Screen.storyboard in Resources */,
 				FE6DD0B22C930E5D00736D71 /* பழைமை.mp3 in Resources */,
 				FE6DD0942C930E5D00736D71 /* அமைச்சு.mp3 in Resources */,
 				FE6DD0542C930E5D00736D71 /* வலியறிதல்.mp3 in Resources */,
@@ -706,13 +770,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEBC78792C96A5C800411700 /* IyalCard.swift in Sources */,
 				FEC912012C95719400E6AE94 /* NotificationManager.swift in Sources */,
 				FECB708E2C92F33E00989E70 /* valluvanApp.swift in Sources */,
+				FEBC78712C96A5C800411700 /* PalButton.swift in Sources */,
+				FEBC787E2C96A5C800411700 /* LinePairView.swift in Sources */,
+				FEBC78732C96A5C800411700 /* AppState.swift in Sources */,
+				FEBC78752C96A5C800411700 /* AppDelegate.swift in Sources */,
+				FEBC787F2C96A5C800411700 /* ShareSheet.swift in Sources */,
+				FEBC78702C96A5C800411700 /* NotificationManager.swift in Sources */,
+				FEBC78772C96A5C800411700 /* valluvanApp.swift in Sources */,
+				FEBC785A2C96A03B00411700 /* IyalUtils.swift in Sources */,
+				FEBC787D2C96A5C800411700 /* SearchBar.swift in Sources */,
 				FECB708D2C92F33E00989E70 /* DatabaseManager.swift in Sources */,
 				FE7D91142C95CC4100A2E9A0 /* TranslationUtil.swift in Sources */,
+				FEBC78822C96A5C800411700 /* ContentView.swift in Sources */,
+				FEBC78742C96A5C800411700 /* AdhigaramView.swift in Sources */,
+				FEBC787C2C96A5C800411700 /* IyalUtils.swift in Sources */,
+				FEBC787B2C96A5C800411700 /* DatabaseManager.swift in Sources */,
+				FEBC78812C96A5C800411700 /* SearchResultsView.swift in Sources */,
+				FEBC78802C96A5C800411700 /* TranslationUtil.swift in Sources */,
 				FECB708B2C92F33E00989E70 /* ContentView.swift in Sources */,
+				FEBC78762C96A5C800411700 /* GoToKuralView.swift in Sources */,
 				FEC912002C95719400E6AE94 /* AppDelegate.swift in Sources */,
 				FEC911FD2C956E7C00E6AE94 /* AppState.swift in Sources */,
+				FEBC787A2C96A5C800411700 /* LanguageSettingsView.swift in Sources */,
+				FEBC78782C96A5C800411700 /* ExplanationView.swift in Sources */,
+				FEBC786F2C96A5C800411700 /* FavoritesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
