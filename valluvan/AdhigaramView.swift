@@ -155,7 +155,7 @@ struct AdhigaramView: View {
             )
             .environmentObject(appState)
         }
-        .onChange(of: shouldNavigateToContentView) { newValue in
+        .onChange(of: shouldNavigateToContentView) { _, newValue in
             if newValue {
                 presentationMode.wrappedValue.dismiss()
                 shouldNavigateToContentView = false
