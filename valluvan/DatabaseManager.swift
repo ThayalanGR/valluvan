@@ -72,7 +72,7 @@ public class DatabaseManager {
         return iyals
     }
  
-    public func getAdhigarams(for iyal: String, language: String) -> ([String], [Int], [String]) {
+    public func getAdhigarams(for iyal: String, language: String) -> ([String], [Int], [String], [String]) {
         let tirukkuralTable = Table("tirukkural")
         let kuralId = Expression<Int>("kno")
         let iyalExpr = language == "Tamil" ? Expression<String>("iyal") : Expression<String>("heading")
@@ -81,6 +81,7 @@ public class DatabaseManager {
         var adhigarams: [String] = []
         var kuralIds: [Int] = []
         var adhigaramSongs: [String] = []
+        var originalAdhigarams: [String] = []
         do {
             let query = tirukkuralTable
                 .select(adhigaramExpr, kuralId, adhigaramSongExpr)
@@ -90,6 +91,7 @@ public class DatabaseManager {
             
             for row in try db!.prepare(query) {
                 adhigarams.append(row[adhigaramExpr])   
+                originalAdhigarams.append(row[adhigaramExpr])
                 kuralIds.append(row[kuralId])
                 adhigaramSongs.append(row[adhigaramSongExpr])
             }
@@ -97,7 +99,7 @@ public class DatabaseManager {
             print("Error fetching adhigarams: \(error)")
         }
 
-        return (adhigarams, kuralIds, adhigaramSongs)
+        return (adhigarams, kuralIds, adhigaramSongs, originalAdhigarams)
     } 
 
     public func getSingleLine(for adhigaram: String, language: String) -> [String] {

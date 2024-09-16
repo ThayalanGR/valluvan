@@ -12,7 +12,7 @@ struct LinePairView: View {
         let firstLine = String(parts[1])
         let secondLine = linePair.count > 1 ? linePair[1] : ""
         
-        ZStack(alignment: .topTrailing) {
+        return ZStack(alignment: .topTrailing) {
             HStack(alignment: .top, spacing: 15) {            
                 VStack(alignment: .leading, spacing: 0) {
                     Text(firstLine)

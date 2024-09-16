@@ -20,6 +20,7 @@ struct AdhigaramView: View {
     let selectedLanguage: String
     let translatedIyal: String
     @State private var adhigarams: [String] = []
+    @State private var originalAdhigarams: [String] = []
     @State private var kuralIds: [Int] = []
     @State private var adhigaramSongs: [String] = []
     @State private var expandedAdhigaram: String?
@@ -45,6 +46,7 @@ struct AdhigaramView: View {
                 let kuralId = kuralIds[index]
                 let adhigaramId = String((kuralId + 9)/10)
                 let adhigaramSong = adhigaramSongs[index]
+                let originalAdhigaram = originalAdhigarams[index]
                 VStack(alignment: .leading, spacing: 10) {
                     HStack(alignment: .top, spacing: 15) {
                         Text(adhigaramId)
@@ -71,7 +73,7 @@ struct AdhigaramView: View {
                             expandedAdhigaram = nil
                         } else {
                             expandedAdhigaram = adhigaram
-                            loadAllLines(for: adhigaram)
+                            loadAllLines(for: originalAdhigaram)
                         }
                     }       
                     if expandedAdhigaram == adhigaram {
@@ -117,7 +119,7 @@ struct AdhigaramView: View {
                         }
                         
                         VStack(spacing: 10) {
-                            ForEach(allLines[adhigaram] ?? [], id: \.self) { linePair in
+                            ForEach(allLines[originalAdhigaram] ?? [], id: \.self) { linePair in
                                 LinePairView(
                                     linePair: linePair,
                                     onTap: { lines, kuralId in
@@ -136,8 +138,7 @@ struct AdhigaramView: View {
         .listStyle(PlainListStyle())
         .navigationBarTitle(translatedIyal, displayMode: .inline)
         .onAppear {
-            loadAdhigarams()
-            
+            loadAdhigarams()            
         }
         .onDisappear {
             stopAllAudio()
@@ -165,13 +166,14 @@ struct AdhigaramView: View {
     }
     
     private func loadAdhigarams() {
-        let (adhigarams, kuralIds, adhigaramSongs) = DatabaseManager.shared.getAdhigarams(for: iyal, language: selectedLanguage)
+        let (adhigarams, kuralIds, adhigaramSongs, originalAdhigarams) = DatabaseManager.shared.getAdhigarams(for: iyal, language: selectedLanguage)
         
         Task {
             do {
                 self.adhigarams = try await adhigarams.asyncMap { adhigaram in
                     try await TranslationUtil.getAdhigaramTranslation(for: adhigaram, to: selectedLanguage)
                 }
+                self.originalAdhigarams = originalAdhigarams
             } catch {
                 print("Error translating adhigarams: \(error)")
                 self.adhigarams = adhigarams // Fallback to untranslated adhigarams
@@ -195,7 +197,7 @@ struct AdhigaramView: View {
             let lines = DatabaseManager.shared.getSingleLine(for: adhigaram, language: selectedLanguage)
             // Wrap each line in an array to make it a 2D array
             allLines[adhigaram] = lines.map { [$0] }
-        }
+        } 
     }
     
     private func togglePlayPause(for adhigaramSong: String, adhigaram: String, adhigaramId: String) {
