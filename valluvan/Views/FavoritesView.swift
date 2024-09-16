@@ -32,7 +32,9 @@ struct FavoritesView: View {
             .sheet(item: $selectedFavorite, content: explanationSheet)
         }
         .environment(\.sizeCategory, appState.fontSize.textSizeCategory)
-        .onChange(of: shouldNavigateToContentView, perform: handleNavigationChange)
+        .onChange(of: shouldNavigateToContentView) { oldValue, newValue in
+            handleNavigationChange(newValue)
+        }
     }
 
     private var emptyFavoritesView: some View {

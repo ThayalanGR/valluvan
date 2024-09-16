@@ -41,9 +41,10 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
         if userActivity.activityType == "com.devois.valluvan.goToKural",
            let kuralId = userActivity.userInfo?["kuralId"] as? Int {
             DispatchQueue.main.async {
-                // Assuming you have a way to access your ContentView instance
-                // You might need to adjust this based on your app's structure
-                if let contentView = UIApplication.shared.windows.first?.rootViewController?.view as? ContentView {
+                // Get the active window scene
+                if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                   let window = windowScene.windows.first,
+                   let contentView = window.rootViewController?.view as? ContentView {
                     contentView.handleSiriGoToKural(kuralId: kuralId)
                 }
             }

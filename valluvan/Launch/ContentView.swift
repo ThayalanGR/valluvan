@@ -116,9 +116,24 @@ struct ContentView: View {
         }
         .preferredColorScheme(isDarkMode ? .dark : .light)
         .environment(\.sizeCategory, appState.fontSize.textSizeCategory)
-        .onAppear(perform: onAppearActions)
-        .onChange(of: selectedPal, perform: onSelectedPalChange)
-        .onChange(of: selectedLanguage, perform: onSelectedLanguageChange)
+        .onAppear {
+            onAppearActions()
+        }
+        .onChange(of: selectedPal) { oldValue, newValue in
+            Task {
+                await loadIyals()
+                translateIyals()
+            }
+        }
+        .onChange(of: selectedLanguage) { oldValue, newValue in
+            updateSelectedPal()
+            translateIyals()
+        }
+        .onChange(of: shouldNavigateToContentView) { oldValue, newValue in
+            if newValue {
+                shouldNavigateToContentView = false
+            }
+        }
         .sheet(isPresented: $isShowingSearchResults) {
             if isSearchResultsReady {
                 searchResultsSheet()
@@ -132,7 +147,6 @@ struct ContentView: View {
             }
         }
         .sheet(item: $selectedSearchResult, content: explanationSheet)
-        .onChange(of: shouldNavigateToContentView, perform: onShouldNavigateToContentViewChange)
         .sheet(isPresented: $showFavorites, content: favoritesSheet)
         .sheet(isPresented: $showGoToKural, content: goToKuralSheet)
         .sheet(isPresented: $showLanguageSettings, content: languageSettingsSheet)
@@ -180,7 +194,7 @@ struct ContentView: View {
         }
     }
     
-    private func loadIyals() async {  
+    private func loadIyals() async {
         iyals = await DatabaseManager.shared.getIyals(for: selectedPal, language: selectedLanguage)
     }
     
@@ -236,7 +250,8 @@ struct ContentView: View {
                 DispatchQueue.main.async {
                     let alert = UIAlertController(title: "No Results", message: "No kural, found for '\(self.originalSearchText)'", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .default))
-                    if let rootViewController = UIApplication.shared.windows.first?.rootViewController {
+                    if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                       let rootViewController = windowScene.windows.first?.rootViewController {
                         rootViewController.present(alert, animated: true, completion: nil)
                     }
                 }
@@ -446,24 +461,6 @@ struct ContentView: View {
         setupSiriShortcut()
     }
 
-    private func onSelectedPalChange(_ newValue: String) {
-        Task {
-            await loadIyals()
-            translateIyals()
-        }
-    }
-
-    private func onSelectedLanguageChange(_ newValue: String) {
-        updateSelectedPal()
-        translateIyals()
-    }
-
-    private func onShouldNavigateToContentViewChange(_ newValue: Bool) {
-        if newValue {
-            shouldNavigateToContentView = false
-        }
-    }
-
     private func handleNotification(_ _: Notification) {
         if let kuralId = notificationKuralId.wrappedValue {
             if let result = DatabaseManager.shared.getKuralById(kuralId, language: selectedLanguage) {
@@ -474,8 +471,9 @@ struct ContentView: View {
         }
     }
 
+    @Sendable
     private func loadIyalsTask() async {
-        iyals = await DatabaseManager.shared.getIyals(for: selectedPal, language: selectedLanguage)
+        await loadIyals()
     }
 }
  
