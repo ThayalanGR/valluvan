@@ -7,7 +7,7 @@ class TranslationUtil {
             "English": [
                 "Miscelleanous": "Misc"
             ],
-            "Telugu": [
+            "telugu": [
                 "Preface": "ముందుమాట",
                 "Domestic Virtue": "గృహస్థ ధర్మం",
                 "Ascetic Virtue": "సన్యాస ధర్మం",
@@ -19,7 +19,7 @@ class TranslationUtil {
                 "Pre-marital love": "వివాహపూర్వ ప్రేమ",
                 "Post-marital love": "వివాహానంతర ప్రేమ"
             ],
-            "Hindi": [
+            "hindi": [
                 "Preface": "प्रस्तावना",
                 "Domestic Virtue": "गृहस्थ धर्म",
                 "Ascetic Virtue": "संन्यास धर्म",
@@ -31,7 +31,7 @@ class TranslationUtil {
                 "Pre-marital love": "विवाह पूर्व प्रेम",
                 "Post-marital love": "विवाह के बाद का प्रेम"
             ],
-            "Kannad": [
+            "kannad": [
                 "Preface": "ಮುನ್ನುಡಿ",
                 "Domestic Virtue": "ಗೃಹಸ್ಥ ಧರ್ಮ",
                 "Ascetic Virtue": "ಸನ್ಯಾಸ ಧರ್ಮ",
@@ -43,7 +43,7 @@ class TranslationUtil {
                 "Pre-marital love": "ವಿವಾಹಪೂರ್ವ ಪ್ರೀತಿ",
                 "Post-marital love": "ವಿವಾಹಾನಂತರ ಪ್ರೀತಿ"
             ],
-            "French": [
+            "french": [
                 "Preface": "Préface",
                 "Domestic Virtue": "Vertu domestique",
                 "Ascetic Virtue": "Vertu ascétique",
@@ -55,7 +55,7 @@ class TranslationUtil {
                 "Pre-marital love": "Amour prénuptial",
                 "Post-marital love": "Amour post-marital"
             ],
-            "Arabic": [
+            "arabic": [
                 "Preface": "مقدمة",
                 "Domestic Virtue": "الفضيلة المنزلية",
                 "Ascetic Virtue": "الفضيلة الزهدية",
@@ -67,7 +67,7 @@ class TranslationUtil {
                 "Pre-marital love": "الحب قبل الزواج",
                 "Post-marital love": "الحب بعد الزواج"
             ],
-            "Chinese": [
+            "chinese": [
                 "Preface": "序言",
                 "Domestic Virtue": "家庭美德",
                 "Ascetic Virtue": "苦行美德",
@@ -79,7 +79,7 @@ class TranslationUtil {
                 "Pre-marital love": "婚前恋爱",
                 "Post-marital love": "婚后恋爱"
             ],
-            "German": [
+            "german": [
                 "Preface": "Vorwort",
                 "Domestic Virtue": "Häusliche Tugend",
                 "Ascetic Virtue": "Asketische Tugend",
@@ -91,7 +91,7 @@ class TranslationUtil {
                 "Pre-marital love": "Voreheliche Liebe",
                 "Post-marital love": "Nacheheliche Liebe"
             ],
-            "Korean": [
+            "korean": [
                 "Preface": "서문",
                 "Domestic Virtue": "가정의 미덕",
                 "Ascetic Virtue": "금욕의 미덕",
@@ -103,7 +103,7 @@ class TranslationUtil {
                 "Pre-marital love": "혼전 사랑",
                 "Post-marital love": "혼후 사랑"
             ],
-            "Malay": [
+            "malay": [
                 "Preface": "Prakata",
                 "Domestic Virtue": "Kebajikan Domestik",
                 "Ascetic Virtue": "Kebajikan Pertapaan",
@@ -115,7 +115,7 @@ class TranslationUtil {
                 "Pre-marital love": "Cinta Pra Perkahwinan",
                 "Post-marital love": "Cinta Pasca Perkahwinan"
             ],
-            "Malayalam": [
+            "malayalam": [
                 "Preface": "ആമുഖം",
                 "Domestic Virtue": "കുടുംബ സദ്ഗുണം",
                 "Ascetic Virtue": "സന്യാസ സദ്ഗുണം",
@@ -127,7 +127,7 @@ class TranslationUtil {
                 "Pre-marital love": "വിവാഹപൂർവ്വ പ്രണയം",
                 "Post-marital love": "വിവാഹാനന്തര പ്രണയം"
             ],
-            "Polish": [
+            "polish": [
                 "Preface": "Przedmowa",
                 "Domestic Virtue": "Cnota domowa",
                 "Ascetic Virtue": "Cnota ascetyczna",
@@ -139,7 +139,7 @@ class TranslationUtil {
                 "Pre-marital love": "Miłość przedmałżeńska",
                 "Post-marital love": "Miłość pomałżeńska"
             ],
-            "Russian": [
+            "russian": [
                 "Preface": "Предисловие",
                 "Domestic Virtue": "Домашняя добродетель",
                 "Ascetic Virtue": "Аскетическая добродетель",
@@ -151,7 +151,7 @@ class TranslationUtil {
                 "Pre-marital love": "Добрачная любовь",
                 "Post-marital love": "Послебрачная любовь"
             ],
-            "Singalam": [
+            "singalam": [
                 "Preface": "පෙරවදන",
                 "Domestic Virtue": "ගෘහස්ථ ගුණය",
                 "Ascetic Virtue": "තපස් ගුණය",
@@ -163,7 +163,7 @@ class TranslationUtil {
                 "Pre-marital love": "විවාහයට පෙර ආදරය",
                 "Post-marital love": "විවාහයෙන් පසු ආදරය"
             ],
-            "Swedish": [
+            "swedish": [
                 "Preface": "Förord",
                 "Domestic Virtue": "Huslig dygd",
                 "Ascetic Virtue": "Asketisk dygd",

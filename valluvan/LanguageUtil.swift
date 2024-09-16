@@ -24,33 +24,33 @@ struct LanguageUtil {
             return tamilTitle[index]
         case "English":
             return englishTitle[index]
-        case "Telugu":
+        case "telugu":
             return teluguTitle[index]
-        case "Hindi":
+        case "hindi":
             return hindiTitle[index]
-        case "Kannad":
+        case "kannad":
             return kannadaTitle[index]
-        case "French":
+        case "french":
             return frenchTitle[index]
-        case "Arabic":
+        case "arabic":
             return arabicTitle[index]
-        case "Chinese":
+        case "chinese":
             return chineseTitle[index]
-        case "German":
+        case "german":
             return germanTitle[index]
-        case "Korean":
+        case "korean":
             return koreanTitle[index]
-        case "Malay":
+        case "malay":
             return malayTitle[index]
-        case "Malayalam":
+        case "malayalam":
             return malayalamTitle[index]
-        case "Polish":
+        case "polish":
             return polishTitle[index]
-        case "Russian":
+        case "russian":
             return russianTitle[index]
-        case "Singalam":
+        case "singalam":
             return singalamTitle[index]
-        case "Swedish":
+        case "swedish":
             return swedishTitle[index]
         default:
             return englishTitle[index] // Fallback to English if language is not found

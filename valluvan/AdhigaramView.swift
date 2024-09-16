@@ -158,7 +158,7 @@ struct AdhigaramView: View {
     }
     
     private func loadAllLines(for adhigaram: String) {
-        let supportedLanguages = ["English", "Tamil", "Hindi", "Telugu"]
+        let supportedLanguages = ["English", "Tamil", "hindi", "telugu"]
         
         if supportedLanguages.contains(selectedLanguage) {
             let lines = DatabaseManager.shared.getFirstLine(for: adhigaram, language: selectedLanguage)

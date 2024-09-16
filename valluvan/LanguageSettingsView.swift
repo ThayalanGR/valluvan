@@ -13,7 +13,7 @@ struct LanguageSettingsView: View {
     
     @State private var showFavorites = false
     
-    static let languages = ["Tamil", "English", "Telugu", "Hindi", "Kannad", "French", "Arabic", "Chinese", "German", "Korean", "Malay", "Malayalam", "Polish", "Russian", "Singalam", "Swedish"]
+    static let languages = ["Tamil", "English", "telugu", "hindi", "kannad", "french", "arabic", "chinese", "german", "korean", "malay", "malayalam", "polish", "russian", "singalam", "swedish"]
 
     var body: some View {
         NavigationView {

@@ -49,9 +49,9 @@ public class DatabaseManager {
     
     public func getIyals(for pal: String, language: String) -> [String] {
         let tirukkuralTable = Table("tirukkural")
-        let kuralId = Expression<Int>("திருக்குறள்")
-        let palExpr = language == "Tamil" ? Expression<String>("பால்") : Expression<String>("English Title")
-        let iyalExpr = language == "Tamil" ? Expression<String>("இயல்") : Expression<String>("English Heading")
+        let kuralId = Expression<Int>("kno")
+        let palExpr = language == "Tamil" ? Expression<String>("pal") : Expression<String>("title")
+        let iyalExpr = language == "Tamil" ? Expression<String>("iyal") : Expression<String>("heading")
         
         var iyals: [String] = []
         
@@ -74,10 +74,10 @@ public class DatabaseManager {
  
     public func getAdhigarams(for iyal: String, language: String) -> ([String], [Int], [String]) {
         let tirukkuralTable = Table("tirukkural")
-        let kuralId = Expression<Int>("திருக்குறள்")
-        let iyalExpr = language == "Tamil" ? Expression<String>("இயல்") : Expression<String>("English Heading")
-        let adhigaramExpr = language == "Tamil" ? Expression<String>("அதிகாரம்") : Expression<String>("English Chapter")
-        let adhigaramSongExpr = Expression<String>("அதிகாரம்") 
+        let kuralId = Expression<Int>("kno")
+        let iyalExpr = language == "Tamil" ? Expression<String>("iyal") : Expression<String>("heading")
+        let adhigaramExpr = language == "Tamil" ? Expression<String>("tchapter") : Expression<String>("chapter")
+        let adhigaramSongExpr = Expression<String>("tchapter") 
         var adhigarams: [String] = []
         var kuralIds: [Int] = []
         var adhigaramSongs: [String] = []
@@ -102,8 +102,8 @@ public class DatabaseManager {
 
     public func getSingleLine(for adhigaram: String, language: String) -> [String] {
         let tirukkuralTable = Table("tirukkural")
-        let kuralId = Expression<Int>("திருக்குறள்") 
-        let adhigaramExpr = Expression<String>("English Chapter")
+        let kuralId = Expression<Int>("kno") 
+        let adhigaramExpr = Expression<String>("chapter")
         
         let firstLineExpr = Expression<String>(language) 
          
@@ -125,25 +125,25 @@ public class DatabaseManager {
 
     public func getFirstLine(for adhigaram: String, language: String) -> [String] {
         let tirukkuralTable = Table("tirukkural")
-        let kuralId = Expression<Int>("திருக்குறள்") 
-        let adhigaramExpr = language == "Tamil" ? Expression<String>("அதிகாரம்") : Expression<String>("English Chapter")
+        let kuralId = Expression<Int>("kno") 
+        let adhigaramExpr = language == "Tamil" ? Expression<String>("tchapter") : Expression<String>("chapter")
         
         let firstLineExpr: Expression<String>
         let secondLineExpr: Expression<String>
         
         switch language {
         case "Tamil":
-            firstLineExpr = Expression<String>("First Line")
-            secondLineExpr = Expression<String>("Second Line")
-        case "Telugu":
-            firstLineExpr = Expression<String>("Telugu 1")
-            secondLineExpr = Expression<String>("Telugu 2")
-        case "Hindi":
-            firstLineExpr = Expression<String>("Hindi 1")
-            secondLineExpr = Expression<String>("Hindi 2")
+            firstLineExpr = Expression<String>("firstline")
+            secondLineExpr = Expression<String>("secondline")
+        case "telugu":
+            firstLineExpr = Expression<String>("telugu1")
+            secondLineExpr = Expression<String>("telugu2")
+        case "hindi":
+            firstLineExpr = Expression<String>("hindi1")
+            secondLineExpr = Expression<String>("hindi2")
         default:
-            firstLineExpr = Expression<String>("First Line English")
-            secondLineExpr = Expression<String>("Second Line English")
+            firstLineExpr = Expression<String>("efirstline")
+            secondLineExpr = Expression<String>("esecondline")
         }
         
         var kurals: [String] = []
@@ -165,7 +165,7 @@ public class DatabaseManager {
     
     func getExplanation(for kuralId: Int, language: String) -> NSAttributedString {
         let tirukkuralTable = Table("tirukkural")
-        let kuralIdExpr = Expression<Int>("திருக்குறள்")
+        let kuralIdExpr = Expression<Int>("kno")
         let explanationExpr: Expression<String>
         let manaExplanationExpr: Expression<String>
         let pariExplanationExpr: Expression<String>
@@ -177,12 +177,12 @@ public class DatabaseManager {
 
         switch language {
         case "Tamil":
-            explanationExpr = Expression<String>("கலைஞர்")
-            manaExplanationExpr = Expression<String>("மணக்குடவர்")
-            pariExplanationExpr = Expression<String>("பரிமேலழகர")
-            varaExplanationExpr = Expression<String>("மு. வரதராசன்")
-            popsExplanationExpr = Expression<String>("சாலமன் பாப்பையா")
-            muniExplanationExpr = Expression<String>("வீ. முனிசாமி")
+            explanationExpr = Expression<String>("kalaignar")
+            manaExplanationExpr = Expression<String>("manakudavar")
+            pariExplanationExpr = Expression<String>("parimelazhagar")
+            varaExplanationExpr = Expression<String>("varadarajanar")
+            popsExplanationExpr = Expression<String>("salomon")
+            muniExplanationExpr = Expression<String>("munisamy")
             query = tirukkuralTable
                 .select(explanationExpr, manaExplanationExpr, pariExplanationExpr, varaExplanationExpr, popsExplanationExpr, muniExplanationExpr)
                 .filter(kuralIdExpr == kuralId) 
@@ -201,7 +201,7 @@ public class DatabaseManager {
                 print("Error fetching Tamil explanation: \(error)")
             }   
         default:
-            explanationExpr = Expression<String>("Explanation") 
+            explanationExpr = Expression<String>("explanation") 
             do {                 
                 query = tirukkuralTable
                     .select(explanationExpr)
@@ -230,11 +230,11 @@ public class DatabaseManager {
         let searchQuery: String
         let searchPattern = "%\(query)%"
 
-        if language != "English" && language != "Telugu" && language != "Hindi" {
+        if language != "English" && language != "telugu" && language != "hindi" {
             searchQuery = """
-                SELECT "திருக்குறள்", "English Heading", "English Chapter", "First Line English", "Second Line English", "Explanation", "\(language)"
+                SELECT "kno", "heading", "chapter", "efirstline", "esecondline", "explanation", "\(language)"
                 FROM tirukkural
-                WHERE "English Heading" LIKE ? OR "English Chapter" LIKE ? OR "First Line English" LIKE ? OR "Second Line English" LIKE ? OR "Explanation" LIKE ? OR "\(language)" LIKE ?
+                WHERE "heading" LIKE ? OR "chapter" LIKE ? OR "efirstline" LIKE ? OR "esecondline" LIKE ? OR "explanation" LIKE ? OR "\(language)" LIKE ?
                 LIMIT 20
             """
             
@@ -256,16 +256,16 @@ public class DatabaseManager {
         } else {
             if language == "English" {
                 searchQuery = """
-                    SELECT "திருக்குறள்", "English Heading", "English Chapter", "First Line English", "Second Line English", "Explanation"
+                    SELECT "kno", "heading", "chapter", "efirstline", "esecondline", "explanation"
                     FROM tirukkural
-                    WHERE "English Heading" LIKE ? OR "English Chapter" LIKE ? OR "First Line English" LIKE ? OR "Second Line English" LIKE ? OR "Explanation" LIKE ?
+                    WHERE "heading" LIKE ? OR "chapter" LIKE ? OR "efirstline" LIKE ? OR "esecondline" LIKE ? OR "explanation" LIKE ?
                     LIMIT 20
                 """
             } else {
                 searchQuery = """
-                    SELECT "திருக்குறள்", "English Heading", "English Chapter", "\(language) 1", "\(language) 2", "Explanation"
+                    SELECT "kno", "heading", "chapter", "\(language)1", "\(language)2", "explanation"
                     FROM tirukkural
-                    WHERE "English Heading" LIKE ? OR "English Chapter" LIKE ? OR "\(language) 1" LIKE ? OR "\(language) 2" LIKE ? OR "Explanation" LIKE ?
+                    WHERE "heading" LIKE ? OR "chapter" LIKE ? OR "\(language)1" LIKE ? OR "\(language)2" LIKE ? OR "explanation" LIKE ?
                     LIMIT 20
                 """
             }
@@ -293,9 +293,9 @@ public class DatabaseManager {
     func searchTamilContent(query: String) -> [DatabaseSearchResult] {
         var results: [DatabaseSearchResult] = []
         let searchQuery = """
-            SELECT "திருக்குறள்", "இயல்", "அதிகாரம்", "First Line", "Second Line", "மணக்குடவர்", "பரிமேலழகர்", "மு. வரதராசன்", "கலைஞர்", "சாலமன் பாப்பையா", "வீ. முனிசாமி", "First Line English", "Second Line English", "Explanation"
+            SELECT "kno", "iyal", "tchapter", "firstline", "secondline", "manakudavar", "parimelazhagar", "varadarajanar", "kalaignar", "salomon", "munisamy", "efirstline", "esecondline", "explanation"
             FROM tirukkural
-            WHERE "இயல்" LIKE ? OR "அதிகாரம்" LIKE ? OR "First Line" LIKE ? OR "Second Line" LIKE ? OR "மணக்குடவர்" LIKE ? OR "பரிமேலழகர்" LIKE ? OR "மு. வரதராசன்" LIKE ? OR "கலைஞர்" LIKE ? OR "சாலமன் பாப்பையா" LIKE ? OR "வீ. முனிசாமி" LIKE ? OR "First Line English" LIKE ? OR "Second Line English" LIKE ? OR "Explanation" LIKE ?
+            WHERE "iyal" LIKE ? OR "tchapter" LIKE ? OR "firstline" LIKE ? OR "secondline" LIKE ? OR "manakudavar" LIKE ? OR "parimelazhagar" LIKE ? OR "varadarajanar" LIKE ? OR "kalaignar" LIKE ? OR "salomon" LIKE ? OR "munisamy" LIKE ? OR "efirstline" LIKE ? OR "esecondline" LIKE ? OR "explanation" LIKE ?
             LIMIT 20
         """
         let searchPattern = "%\(query)%"
@@ -321,22 +321,22 @@ public class DatabaseManager {
 
     func getKuralById(_ kuralId: Int, language: String) -> DatabaseSearchResult? {
         let tirukkuralTable = Table("tirukkural")
-        let kuralIdExpr = Expression<Int>("திருக்குறள்")
-        let headingExpr = Expression<String>("English Heading")
-        let subheadingExpr = Expression<String>("English Chapter")
-        let contentExpr1 = Expression<String>("First Line")
-        let contentExpr2 = Expression<String>("Second Line")
-        let tfirstLineExpr = Expression<String>("Telugu 1")
-        let tsecondLineExpr = Expression<String>("Telugu 2")
-        let hfirstLineExpr = Expression<String>("Hindi 1")
-        let hsecondLineExpr = Expression<String>("Hindi 2")
+        let kuralIdExpr = Expression<Int>("kno")
+        let headingExpr = Expression<String>("heading")
+        let subheadingExpr = Expression<String>("chapter")
+        let contentExpr1 = Expression<String>("firstline")
+        let contentExpr2 = Expression<String>("secondline")
+        let tfirstLineExpr = Expression<String>("telugu1")
+        let tsecondLineExpr = Expression<String>("telugu2")
+        let hfirstLineExpr = Expression<String>("hindi1")
+        let hsecondLineExpr = Expression<String>("hindi2")
         let explanationExpr: Expression<String>
         
         switch language {
         case "Tamil":
-            explanationExpr = Expression<String>("கலைஞர்")
-        case "English", "Hindi", "Telugu":
-            explanationExpr = Expression<String>("Explanation")
+            explanationExpr = Expression<String>("kalaignar")
+        case "English", "hindi", "telugu":
+            explanationExpr = Expression<String>("explanation")
         default:
             explanationExpr = Expression<String>(language)
         }
@@ -350,7 +350,7 @@ public class DatabaseManager {
                 return DatabaseSearchResult(
                     heading: row[headingExpr],
                     subheading: row[subheadingExpr],
-                    content: language == "Telugu" ? "\(row[tfirstLineExpr])\n\(row[tsecondLineExpr])" : language == "Hindi" ? "\(row[hfirstLineExpr])\n\(row[hsecondLineExpr])" : "\(row[contentExpr1])\n\(row[contentExpr2])",
+                    content: language == "telugu" ? "\(row[tfirstLineExpr])\n\(row[tsecondLineExpr])" : language == "hindi" ? "\(row[hfirstLineExpr])\n\(row[hsecondLineExpr])" : "\(row[contentExpr1])\n\(row[contentExpr2])",
                     explanation: row[explanationExpr],
                     kuralId: kuralId
                 )
