@@ -7,7 +7,12 @@
 		<string>audio</string>
 	</array>
 	<key>UILaunchScreen</key>
-	<false/>
+	<dict>
+		<key>UIColorName</key>
+		<string>LaunchScreenBackground</string>
+		<key>UIImageName</key>
+		<string>LaunchScreenImage</string>
+	</dict>
 	<key>UILaunchStoryboardName</key>
 	<string>Launch Screen</string>
 </dict>
