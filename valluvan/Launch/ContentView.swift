@@ -120,7 +120,9 @@ struct ContentView: View {
             onAppearActions()
         }
         .onChange(of: selectedPal) { oldValue, newValue in
-            loadIyals()
+            Task {
+                await loadIyals()
+            }
             translateIyals()
         }
         .onChange(of: selectedLanguage) { oldValue, newValue in
@@ -148,7 +150,11 @@ struct ContentView: View {
         .sheet(isPresented: $showFavorites, content: favoritesSheet)
         .sheet(isPresented: $showGoToKural, content: goToKuralSheet)
         .sheet(isPresented: $showLanguageSettings, content: languageSettingsSheet)
-        .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification), perform: handleNotification)
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
+            Task {
+                await handleNotification()
+            }
+        }
         .sheet(isPresented: $showExplanationView, content: explanationViewSheet)
         .task(loadIyalsTask)
     }
@@ -192,12 +198,10 @@ struct ContentView: View {
         }
     }
     
-    private func loadIyals() {
-        Task {
-            let newIyals = await DatabaseManager.shared.getIyals(for: selectedPal, language: selectedLanguage)
-            DispatchQueue.main.async {
-                self.iyals = newIyals
-            }
+    private func loadIyals() async {
+        let newIyals = await DatabaseManager.shared.getIyals(for: selectedPal, language: selectedLanguage)
+        DispatchQueue.main.async {
+            self.iyals = newIyals
         }
     }
     
@@ -464,13 +468,18 @@ struct ContentView: View {
         setupSiriShortcut()
     }
 
-    private func handleNotification(_ _: Notification) {
+    @Sendable
+    private func handleNotification() async {
         if let kuralId = notificationKuralId.wrappedValue {
-            if let result = DatabaseManager.shared.getKuralById(kuralId, language: selectedLanguage) {
-                selectedSearchResult = result
-                showExplanationView = true
+            if let result = await DatabaseManager.shared.getKuralById(kuralId, language: selectedLanguage) {
+                await MainActor.run {
+                    selectedSearchResult = result
+                    showExplanationView = true
+                }
             }
-            notificationKuralId.wrappedValue = nil
+            await MainActor.run {
+                notificationKuralId.wrappedValue = nil
+            }
         }
     }
 
