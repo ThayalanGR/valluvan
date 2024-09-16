@@ -25,7 +25,7 @@ struct AdhigaramView: View {
     @State private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
     @State private var shouldNavigateToContentView = false
     @Environment(\.presentationMode) var presentationMode
-    @State private var translatedAdhigarams: [String: String] = [:]
+     
 
     var body: some View {
         List {
@@ -44,7 +44,7 @@ struct AdhigaramView: View {
                             .clipShape(Circle())
                         
                         VStack(alignment: .leading, spacing: 2) {
-                            Text(translatedAdhigarams[adhigaram] ?? adhigaram)
+                            Text(adhigaram)
                                 .font(.headline)
                         }
                         
@@ -126,7 +126,7 @@ struct AdhigaramView: View {
         .navigationBarTitle(translatedIyal, displayMode: .inline)
         .onAppear {
             loadAdhigarams()
-            translateAdhigarams()
+            
         }
         .onDisappear {
             stopAllAudio()
@@ -358,53 +358,4 @@ struct AdhigaramView: View {
         MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
     }
 
-    private func translateAdhigarams() {
-        if selectedLanguage != "English"  || selectedLanguage != "Tamil"{
-            for adhigaram in adhigarams {
-                translateText(adhigaram, from: "English", to: selectedLanguage) { translatedText in
-                    DispatchQueue.main.async {
-                        self.translatedAdhigarams[adhigaram] = translatedText
-                        print("Translated adhigaram: \(adhigaram) -> \(translatedText) \(selectedLanguage)")
-                    }
-                }
-            }
-        }
-    }
-
-    private func translateText(_ text: String, from sourceLanguage: String, to targetLanguage: String, completion: @escaping (String) -> Void) {
-        let apiKey = ProcessInfo.processInfo.environment["GOOGLE_TRANSLATE_API_KEY1"] ?? ""
-        let urlStr = "https://translation.googleapis.com/language/translate/v2?key=\(apiKey)"
-        let params = [
-            "q": text,
-            "source": sourceLanguage,
-            "target": targetLanguage,
-            "format": "text"
-        ]
-        print("call: \(targetLanguage)")
-        
-        var request = URLRequest(url: URL(string: urlStr)!)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
-        
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {
-                print("Error: \(error?.localizedDescription ?? "Unknown error")")
-                completion(text)
-                return
-            }
-            
-            if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
-               let data = json["data"] as? [String: Any],
-               let translations = data["translations"] as? [[String: Any]],
-               let translatedText = translations.first?["translatedText"] as? String {
-                completion(translatedText)
-            } else {
-                completion(text)
-            }
-        }
-        
-        task.resume()
-        completion(text)
-    }
 }
