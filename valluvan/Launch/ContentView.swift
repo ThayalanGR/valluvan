@@ -120,10 +120,8 @@ struct ContentView: View {
             onAppearActions()
         }
         .onChange(of: selectedPal) { oldValue, newValue in
-            Task {
-                await loadIyals()
-                translateIyals()
-            }
+            loadIyals()
+            translateIyals()
         }
         .onChange(of: selectedLanguage) { oldValue, newValue in
             updateSelectedPal()
@@ -194,8 +192,13 @@ struct ContentView: View {
         }
     }
     
-    private func loadIyals() async {
-        iyals = await DatabaseManager.shared.getIyals(for: selectedPal, language: selectedLanguage)
+    private func loadIyals() {
+        Task {
+            let newIyals = await DatabaseManager.shared.getIyals(for: selectedPal, language: selectedLanguage)
+            DispatchQueue.main.async {
+                self.iyals = newIyals
+            }
+        }
     }
     
     func performSearch() {
@@ -471,7 +474,6 @@ struct ContentView: View {
         }
     }
 
-    @Sendable
     private func loadIyalsTask() async {
         await loadIyals()
     }
