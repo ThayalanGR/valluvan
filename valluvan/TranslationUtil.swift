@@ -309,7 +309,7 @@ class TranslationUtil {
                 "The worth of a wife": "The worth of a wife",
                 "Truth consciousness": "Truth consciousness",
                 "Unforgetfulness": "Unforgetfulness",
-                "Veracity": "Veracity",
+                "Veracity": "Veracity"
             ]
              "hindi": [
                  
@@ -439,7 +439,7 @@ class TranslationUtil {
                 "The worth of a wife": "The worth of a wife",
                 "Truth consciousness": "Truth consciousness",
                 "Unforgetfulness": "Unforgetfulness",
-                "Veracity": "Veracity",
+                "Veracity": "Veracity"
             ],
             "kannad": [ 
 
@@ -569,7 +569,7 @@ class TranslationUtil {
                 "The worth of a wife": "The worth of a wife",
                 "Truth consciousness": "Truth consciousness",
                 "Unforgetfulness": "Unforgetfulness",
-                "Veracity": "Veracity",
+                "Veracity": "Veracity"
             ],
             "french": [ 
 
@@ -699,7 +699,7 @@ class TranslationUtil {
                 "The worth of a wife": "The worth of a wife",
                 "Truth consciousness": "Truth consciousness",
                 "Unforgetfulness": "Unforgetfulness",
-                "Veracity": "Veracity",
+                "Veracity": "Veracity"
             ],
             "arabic": [ 
 
@@ -829,7 +829,7 @@ class TranslationUtil {
                 "The worth of a wife": "The worth of a wife",
                 "Truth consciousness": "Truth consciousness",
                 "Unforgetfulness": "Unforgetfulness",
-                "Veracity": "Veracity",
+                "Veracity": "Veracity"
             ],
             "chinese": [ 
 
@@ -959,7 +959,7 @@ class TranslationUtil {
                 "The worth of a wife": "The worth of a wife",
                 "Truth consciousness": "Truth consciousness",
                 "Unforgetfulness": "Unforgetfulness",
-                "Veracity": "Veracity",
+                "Veracity": "Veracity"
             ],
             "german": [ 
 
@@ -1089,7 +1089,7 @@ class TranslationUtil {
                 "The worth of a wife": "The worth of a wife",
                 "Truth consciousness": "Truth consciousness",
                 "Unforgetfulness": "Unforgetfulness",
-                "Veracity": "Veracity",
+                "Veracity": "Veracity"
             ],
             "korean": [ 
 
@@ -1219,7 +1219,7 @@ class TranslationUtil {
                 "The worth of a wife": "The worth of a wife",
                 "Truth consciousness": "Truth consciousness",
                 "Unforgetfulness": "Unforgetfulness",
-                "Veracity": "Veracity",
+                "Veracity": "Veracity"
             ],
             "malay": [ 
 
@@ -1349,7 +1349,7 @@ class TranslationUtil {
                 "The worth of a wife": "The worth of a wife",
                 "Truth consciousness": "Truth consciousness",
                 "Unforgetfulness": "Unforgetfulness",
-                "Veracity": "Veracity",
+                "Veracity": "Veracity"
             ],
             "malayalam": [ 
 
@@ -1479,7 +1479,7 @@ class TranslationUtil {
                 "The worth of a wife": "The worth of a wife",
                 "Truth consciousness": "Truth consciousness",
                 "Unforgetfulness": "Unforgetfulness",
-                "Veracity": "Veracity",
+                "Veracity": "Veracity"
             ],
             "polish": [ 
 
@@ -1609,7 +1609,7 @@ class TranslationUtil {
                 "The worth of a wife": "The worth of a wife",
                 "Truth consciousness": "Truth consciousness",
                 "Unforgetfulness": "Unforgetfulness",
-                "Veracity": "Veracity",
+                "Veracity": "Veracity"
             ],
             "russian": [ 
 
@@ -1739,7 +1739,7 @@ class TranslationUtil {
                 "The worth of a wife": "The worth of a wife",
                 "Truth consciousness": "Truth consciousness",
                 "Unforgetfulness": "Unforgetfulness",
-                "Veracity": "Veracity",
+                "Veracity": "Veracity"
             ],
             "singalam": [ 
 
@@ -1869,7 +1869,7 @@ class TranslationUtil {
                 "The worth of a wife": "The worth of a wife",
                 "Truth consciousness": "Truth consciousness",
                 "Unforgetfulness": "Unforgetfulness",
-                "Veracity": "Veracity",
+                "Veracity": "Veracity"
             ],
             "swedish": [ 
 
@@ -1999,7 +1999,7 @@ class TranslationUtil {
                 "The worth of a wife": "The worth of a wife",
                 "Truth consciousness": "Truth consciousness",
                 "Unforgetfulness": "Unforgetfulness",
-                "Veracity": "Veracity",
+                "Veracity": "Veracity"
             ]
         ]
         
