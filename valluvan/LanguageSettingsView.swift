@@ -13,7 +13,24 @@ struct LanguageSettingsView: View {
     
     @State private var showFavorites = false
     
-    static let languages = ["Tamil", "English", "telugu", "hindi", "kannad", "french", "arabic", "chinese", "german", "korean", "malay", "malayalam", "polish", "russian", "singalam", "swedish"]
+    static let languages: [(key: String, displayName: String)] = [
+        ("Tamil", "தமிழ்"),
+        ("English", "English"),
+        ("telugu", "తెలుగు"),
+        ("hindi", "हिन्दी"),
+        ("kannad", "ಕನ್ನಡ"),
+        ("french", "Français"),
+        ("arabic", "العربية"),
+        ("chinese", "中文"),
+        ("german", "Deutsch"),
+        ("korean", "한국어"),
+        ("malay", "Bahasa Melayu"),
+        ("malayalam", "മലയാളം"),
+        ("polish", "Polski"),
+        ("russian", "Русский"),
+        ("singalam", "සිංහල"),
+        ("swedish", "Svenska")
+    ]
 
     var body: some View {
         NavigationView {
@@ -68,16 +85,16 @@ struct LanguageSettingsView: View {
                     }
                 }
                 Section(header: Text("Language")) {
-                    ForEach(languages, id: \.self) { language in
+                    ForEach(Self.languages, id: \.key) { language in
                         Button(action: {
-                            selectedLanguage = language 
+                            selectedLanguage = language.key
                             selectedPal = getCurrentTitle(0)
                             presentationMode.wrappedValue.dismiss()
                         }) {
                             HStack {
-                                Text(language)
+                                Text(language.displayName)
                                 Spacer()
-                                if language == selectedLanguage {
+                                if language.key == selectedLanguage {
                                     Image(systemName: "checkmark")
                                         .font(.system(size: 16))
                                 }

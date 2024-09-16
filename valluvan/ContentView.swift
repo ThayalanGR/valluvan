@@ -37,7 +37,7 @@ struct ContentView: View {
     @State private var selectedPal: String
     @State private var iyals: [String] = []
     @State private var showLanguageSettings = false
-    @State private var selectedLanguage = "Tamil"
+    @State private var selectedLanguage = LanguageSettingsView.languages[0].key
     @State private var isExpanded: Bool = false
     @State private var iyal: String = ""  
     
@@ -415,7 +415,7 @@ struct ContentView: View {
         LanguageSettingsView(
             selectedLanguage: $selectedLanguage,
             selectedPal: $selectedPal,
-            languages: LanguageSettingsView.languages,
+            languages: LanguageSettingsView.languages.map { $0.key },
             getCurrentTitle: getCurrentTitle
         )
         .environmentObject(appState)
