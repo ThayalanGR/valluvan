@@ -58,6 +58,13 @@ struct LanguageSettingsView: View {
                                 .foregroundColor(.blue)
                         }
                         .buttonStyle(PlainButtonStyle())
+                        Button(action: {
+                            sendFeedbackEmail()
+                        }) {
+                            Image(systemName: "envelope.fill")
+                                .foregroundColor(.blue)
+                        }
+                        .buttonStyle(PlainButtonStyle())
                     }
                 }
                 Section(header: Text("Language")) {
@@ -124,5 +131,20 @@ struct LanguageSettingsView: View {
     private func openURL(_ urlString: String) {
         guard let url = URL(string: urlString) else { return }
         UIApplication.shared.open(url)
+    }
+    
+    private func sendFeedbackEmail() {
+        let deviceInfo = "\(UIDevice.current.systemName) \(UIDevice.current.systemVersion)"
+        let emailSubject = "Valluvan App Feedback"
+        let emailBody = "Device: \(deviceInfo)"
+        
+        let encodedSubject = emailSubject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        let encodedBody = emailBody.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        
+        let urlString = "mailto:nsdevaraj@gmail.com?subject=\(encodedSubject)&body=\(encodedBody)"
+        
+        if let url = URL(string: urlString) {
+            UIApplication.shared.open(url)
+        }
     }
 }
