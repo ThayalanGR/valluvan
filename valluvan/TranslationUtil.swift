@@ -310,7 +310,7 @@ class TranslationUtil {
                 "Truth consciousness": "Truth consciousness",
                 "Unforgetfulness": "Unforgetfulness",
                 "Veracity": "Veracity"
-            ]
+            ],
              "hindi": [
                  
                 "Abstinence from flesh": "Abstinence from flesh",
