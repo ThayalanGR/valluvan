@@ -180,7 +180,7 @@ class TranslationUtil {
         return translations[targetLanguage]?[word] ?? word
     }
 
-    static func getAdhigaramTranslation(for word: String, to targetLanguage: String) async throws -> String {
+    static func getAdhigaramTranslation(for adhigaram: String, to targetLanguage: String) async throws -> String {
         let translations: [String: [String: String]] = [
             "telugu": [
                 "Abstinence from flesh": "Abstinence from flesh",
@@ -434,7 +434,7 @@ class TranslationUtil {
                 "The merit of Ascetics": "The merit of Ascetics",
                 "The possession of knowledge": "The possession of knowledge",
                 "The power of virtue": "The power of virtue",
-                "The praise of God": "The praise of God",
+                "The praise of God": "Thes praise of God",
                 "The wealth of children": "The wealth of children",
                 "The worth of a wife": "The worth of a wife",
                 "Truth consciousness": "Truth consciousness",
@@ -2003,6 +2003,6 @@ class TranslationUtil {
             ]
         ]
         
-        return translations[targetLanguage]?[word] ?? word
+        return translations[targetLanguage]?[adhigaram] ?? adhigaram
     }
 }

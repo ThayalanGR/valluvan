@@ -4,6 +4,17 @@ import MediaPlayer
 import AVFoundation
 import Foundation
 
+// Add this extension at the top of the file, outside of the AdhigaramView struct
+extension Sequence {
+    func asyncMap<T>(_ transform: (Element) async throws -> T) async rethrows -> [T] {
+        var values = [T]()
+        for element in self {
+            try await values.append(transform(element))
+        }
+        return values
+    }
+}
+
 struct AdhigaramView: View {
     let iyal: String
     let selectedLanguage: String
@@ -155,7 +166,18 @@ struct AdhigaramView: View {
     
     private func loadAdhigarams() {
         let (adhigarams, kuralIds, adhigaramSongs) = DatabaseManager.shared.getAdhigarams(for: iyal, language: selectedLanguage)
-        self.adhigarams = adhigarams
+        
+        Task {
+            do {
+                self.adhigarams = try await adhigarams.asyncMap { adhigaram in
+                    try await TranslationUtil.getAdhigaramTranslation(for: adhigaram, to: selectedLanguage)
+                }
+            } catch {
+                print("Error translating adhigarams: \(error)")
+                self.adhigarams = adhigarams // Fallback to untranslated adhigarams
+            }
+        }
+        
         self.kuralIds = kuralIds
         self.adhigaramSongs = adhigaramSongs
     }
