@@ -49,9 +49,9 @@ public class DatabaseManager {
     
     public func getIyals(for pal: String, language: String) -> [String] {
         let tirukkuralTable = Table("tirukkural")
-        let kuralId = Expression<Int>("kno")
-        let palExpr = language == "Tamil" ? Expression<String>("pal") : Expression<String>("title")
-        let iyalExpr = language == "Tamil" ? Expression<String>("iyal") : Expression<String>("heading")
+        let kuralId = SQLite.Expression<Int>("kno")
+        let palExpr = language == "Tamil" ? SQLite.Expression<String>("pal") : SQLite.Expression<String>("title")
+        let iyalExpr = language == "Tamil" ? SQLite.Expression<String>("iyal") : SQLite.Expression<String>("heading")
         
         var iyals: [String] = []
         
@@ -60,7 +60,7 @@ public class DatabaseManager {
                 .select(iyalExpr)
                 .filter(palExpr == pal)
                 .group(iyalExpr)
-                .order(kuralId)
+                .order(kuralId.asc)
              
             for row in try db!.prepare(query) {
                 iyals.append(row[iyalExpr])
@@ -74,10 +74,10 @@ public class DatabaseManager {
  
     public func getAdhigarams(for iyal: String, language: String) -> ([String], [Int], [String], [String]) {
         let tirukkuralTable = Table("tirukkural")
-        let kuralId = Expression<Int>("kno")
-        let iyalExpr = language == "Tamil" ? Expression<String>("iyal") : Expression<String>("heading")
-        let adhigaramExpr = language == "Tamil" ? Expression<String>("tchapter") : Expression<String>("chapter")
-        let adhigaramSongExpr = Expression<String>("tchapter") 
+        let kuralId = SQLite.Expression<Int>("kno")
+        let iyalExpr = language == "Tamil" ? SQLite.Expression<String>("iyal") : SQLite.Expression<String>("heading")
+        let adhigaramExpr = language == "Tamil" ? SQLite.Expression<String>("tchapter") : SQLite.Expression<String>("chapter")
+        let adhigaramSongExpr = SQLite.Expression<String>("tchapter") 
         var adhigarams: [String] = []
         var kuralIds: [Int] = []
         var adhigaramSongs: [String] = []
@@ -87,7 +87,7 @@ public class DatabaseManager {
                 .select(adhigaramExpr, kuralId, adhigaramSongExpr)
                 .filter(iyalExpr == iyal)
                 .group(adhigaramExpr)
-                .order(kuralId)
+                .order(kuralId.asc)
             
             for row in try db!.prepare(query) {
                 adhigarams.append(row[adhigaramExpr])   
@@ -104,17 +104,17 @@ public class DatabaseManager {
 
     public func getSingleLine(for adhigaram: String, language: String) -> [String] {
         let tirukkuralTable = Table("tirukkural")
-        let kuralId = Expression<Int>("kno") 
-        let adhigaramExpr = Expression<String>("chapter")
+        let kuralId = SQLite.Expression<Int>("kno") 
+        let adhigaramExpr = SQLite.Expression<String>("chapter")
         
-        let firstLineExpr = Expression<String>(language) 
+        let firstLineExpr = SQLite.Expression<String>(language) 
          
         var kurals: [String] = []
         do {
             let query = tirukkuralTable
                 .select(kuralId, firstLineExpr)   
                 .filter(adhigaramExpr == adhigaram)
-                .order(kuralId)  
+                .order(kuralId.asc)  
 
             for row in try db!.prepare(query) {
                 kurals.append(String(row[kuralId]) + " " + row[firstLineExpr]) 
@@ -127,25 +127,25 @@ public class DatabaseManager {
 
     public func getFirstLine(for adhigaram: String, language: String) -> [String] {
         let tirukkuralTable = Table("tirukkural")
-        let kuralId = Expression<Int>("kno") 
-        let adhigaramExpr = language == "Tamil" ? Expression<String>("tchapter") : Expression<String>("chapter")
+        let kuralId = SQLite.Expression<Int>("kno") 
+        let adhigaramExpr = language == "Tamil" ? SQLite.Expression<String>("tchapter") : SQLite.Expression<String>("chapter")
         
-        let firstLineExpr: Expression<String>
-        let secondLineExpr: Expression<String>
+        let firstLineExpr: SQLite.Expression<String>
+        let secondLineExpr: SQLite.Expression<String>
         
         switch language {
         case "Tamil":
-            firstLineExpr = Expression<String>("firstline")
-            secondLineExpr = Expression<String>("secondline")
+            firstLineExpr = SQLite.Expression<String>("firstline")
+            secondLineExpr = SQLite.Expression<String>("secondline")
         case "telugu":
-            firstLineExpr = Expression<String>("telugu1")
-            secondLineExpr = Expression<String>("telugu2")
+            firstLineExpr = SQLite.Expression<String>("telugu1")
+            secondLineExpr = SQLite.Expression<String>("telugu2")
         case "hindi":
-            firstLineExpr = Expression<String>("hindi1")
-            secondLineExpr = Expression<String>("hindi2")
+            firstLineExpr = SQLite.Expression<String>("hindi1")
+            secondLineExpr = SQLite.Expression<String>("hindi2")
         default:
-            firstLineExpr = Expression<String>("efirstline")
-            secondLineExpr = Expression<String>("esecondline")
+            firstLineExpr = SQLite.Expression<String>("efirstline")
+            secondLineExpr = SQLite.Expression<String>("esecondline")
         }
         
         var kurals: [String] = []
@@ -153,7 +153,7 @@ public class DatabaseManager {
             let query = tirukkuralTable
                 .select(kuralId, firstLineExpr, secondLineExpr)   
                 .filter(adhigaramExpr == adhigaram)
-                .order(kuralId)  
+                .order(kuralId.asc)  
 
             for row in try db!.prepare(query) {
                 kurals.append(String(row[kuralId]) + " " + row[firstLineExpr])
@@ -167,24 +167,24 @@ public class DatabaseManager {
     
     func getExplanation(for kuralId: Int, language: String) -> NSAttributedString {
         let tirukkuralTable = Table("tirukkural")
-        let kuralIdExpr = Expression<Int>("kno")
-        let explanationExpr: Expression<String>
-        let manaExplanationExpr: Expression<String>
-        let pariExplanationExpr: Expression<String>
-        let varaExplanationExpr: Expression<String>
-        let popsExplanationExpr: Expression<String>
-        let muniExplanationExpr: Expression<String>
+        let kuralIdExpr = SQLite.Expression<Int>("kno")
+        let explanationExpr: SQLite.Expression<String>
+        let manaExplanationExpr: SQLite.Expression<String>
+        let pariExplanationExpr: SQLite.Expression<String>
+        let varaExplanationExpr: SQLite.Expression<String>
+        let popsExplanationExpr: SQLite.Expression<String>
+        let muniExplanationExpr: SQLite.Expression<String>
         var query: Table
         var attributedExplanation = NSMutableAttributedString()
 
         switch language {
         case "Tamil":
-            explanationExpr = Expression<String>("kalaignar")
-            manaExplanationExpr = Expression<String>("manakudavar")
-            pariExplanationExpr = Expression<String>("parimelazhagar")
-            varaExplanationExpr = Expression<String>("varadarajanar")
-            popsExplanationExpr = Expression<String>("salomon")
-            muniExplanationExpr = Expression<String>("munisamy")
+            explanationExpr = SQLite.Expression<String>("kalaignar")
+            manaExplanationExpr = SQLite.Expression<String>("manakudavar")
+            pariExplanationExpr = SQLite.Expression<String>("parimelazhagar")
+            varaExplanationExpr = SQLite.Expression<String>("varadarajanar")
+            popsExplanationExpr = SQLite.Expression<String>("salomon")
+            muniExplanationExpr = SQLite.Expression<String>("munisamy")
             query = tirukkuralTable
                 .select(explanationExpr, manaExplanationExpr, pariExplanationExpr, varaExplanationExpr, popsExplanationExpr, muniExplanationExpr)
                 .filter(kuralIdExpr == kuralId) 
@@ -203,7 +203,7 @@ public class DatabaseManager {
                 print("Error fetching Tamil explanation: \(error)")
             }   
         default:
-            explanationExpr = Expression<String>("explanation") 
+            explanationExpr = SQLite.Expression<String>("explanation") 
             do {                 
                 query = tirukkuralTable
                     .select(explanationExpr)
@@ -323,24 +323,24 @@ public class DatabaseManager {
 
     func getKuralById(_ kuralId: Int, language: String) -> DatabaseSearchResult? {
         let tirukkuralTable = Table("tirukkural")
-        let kuralIdExpr = Expression<Int>("kno")
-        let headingExpr = Expression<String>("heading")
-        let subheadingExpr = Expression<String>("chapter")
-        let contentExpr1 = Expression<String>("firstline")
-        let contentExpr2 = Expression<String>("secondline")
-        let tfirstLineExpr = Expression<String>("telugu1")
-        let tsecondLineExpr = Expression<String>("telugu2")
-        let hfirstLineExpr = Expression<String>("hindi1")
-        let hsecondLineExpr = Expression<String>("hindi2")
-        let explanationExpr: Expression<String>
+        let kuralIdExpr = SQLite.Expression<Int>("kno")
+        let headingExpr = SQLite.Expression<String>("heading")
+        let subheadingExpr = SQLite.Expression<String>("chapter")
+        let contentExpr1 = SQLite.Expression<String>("firstline")
+        let contentExpr2 = SQLite.Expression<String>("secondline")
+        let tfirstLineExpr = SQLite.Expression<String>("telugu1")
+        let tsecondLineExpr = SQLite.Expression<String>("telugu2")
+        let hfirstLineExpr = SQLite.Expression<String>("hindi1")
+        let hsecondLineExpr = SQLite.Expression<String>("hindi2")
+        let explanationExpr: SQLite.Expression<String>
         
         switch language {
         case "Tamil":
-            explanationExpr = Expression<String>("kalaignar")
+            explanationExpr = SQLite.Expression<String>("kalaignar")
         case "English", "hindi", "telugu":
-            explanationExpr = Expression<String>("explanation")
+            explanationExpr = SQLite.Expression<String>("explanation")
         default:
-            explanationExpr = Expression<String>(language)
+            explanationExpr = SQLite.Expression<String>(language)
         }
 
         do {
