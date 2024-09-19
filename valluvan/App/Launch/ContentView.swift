@@ -450,7 +450,7 @@ struct ContentView: View {
 
     private func handleAppBecomeActive() async {
         if let kuralId = notificationKuralId.wrappedValue {
-            if let result = await DatabaseManager.shared.getKuralById(kuralId, language: selectedLanguage) {
+            if let result =  DatabaseManager.shared.getKuralById(kuralId, language: selectedLanguage) {
                 await MainActor.run {
                     selectedSearchResult = result
                     showExplanationView = true
