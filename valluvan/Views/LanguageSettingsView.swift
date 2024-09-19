@@ -12,7 +12,12 @@ struct LanguageSettingsView: View {
     @Environment(\.colorScheme) var colorScheme
     
     @State private var showFavorites = false
-    
+    @State private var podcastPlayingStates: [String: Bool] = [
+        "Virtue": false,
+        "Wealth": false,
+        "Love": false
+    ]
+
     static let languages: [(key: String, displayName: String)] = [
         ("Tamil", "தமிழ்"),
         ("English", "English"),
@@ -49,15 +54,45 @@ struct LanguageSettingsView: View {
                 }
 
                 Section(header: Text("Podcasts")) {
-                    DisclosureGroup("Listen in Podcast mode") { 
-                        Button(action: { playSong(named: "Virtue") }) {
+                    DisclosureGroup("Podcast Mode") { 
+                        HStack {
+                            Image(systemName: "mic")
+                                .foregroundColor(.blue)
                             Text("Virtue")
+                                .foregroundColor(podcastPlayingStates["Virtue"] == true ? .green : .primary)
+                            Spacer()
+                            Button(action: {
+                                togglePodcastPlayback(named: "Virtue")
+                            }) {
+                                Image(systemName: podcastPlayingStates["Virtue"] == true ? "pause.fill" : "play.fill")
+                                    .foregroundColor(.blue)
+                            }
                         }
-                        Button(action: { playSong(named: "Wealth") }) {
+                        HStack {
+                            Image(systemName: "mic")
+                                .foregroundColor(.blue)
                             Text("Wealth")
+                                .foregroundColor(podcastPlayingStates["Wealth"] == true ? .green : .primary)
+                            Spacer()
+                            Button(action: {
+                                togglePodcastPlayback(named: "Wealth")
+                            }) {
+                                Image(systemName: podcastPlayingStates["Wealth"] == true ? "pause.fill" : "play.fill")
+                                    .foregroundColor(.blue)
+                            }
                         }
-                        Button(action: { playSong(named: "Love") }) {
+                        HStack {
+                            Image(systemName: "mic")
+                                .foregroundColor(.blue)
                             Text("Love")
+                                .foregroundColor(podcastPlayingStates["Love"] == true ? .green : .primary)
+                            Spacer()
+                            Button(action: {
+                                togglePodcastPlayback(named: "Love")
+                            }) {
+                                Image(systemName: podcastPlayingStates["Love"] == true ? "pause.fill" : "play.fill")
+                                    .foregroundColor(.blue)
+                            }
                         }
                     }
                 }
@@ -180,6 +215,21 @@ struct LanguageSettingsView: View {
     }
     
     private func playSong(named songName: String) {
-        AdhigaramView().playAudio(for: songName)
+        AudioManager.shared.playAudio(for: songName)
+    }
+    
+    private func togglePodcastPlayback(named songName: String) {
+        AudioManager.shared.toggleAudio(for: songName)
+        podcastPlayingStates[songName]?.toggle()
+
+        
+        if podcastPlayingStates[songName] == true {
+            for (otherSong, isPlaying) in podcastPlayingStates {
+                if otherSong != songName && isPlaying {
+                    AudioManager.shared.pauseAudio(for: otherSong)
+                    podcastPlayingStates[otherSong] = false
+                }
+            }
+        }
     }
 }

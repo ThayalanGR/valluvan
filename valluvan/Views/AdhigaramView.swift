@@ -385,19 +385,4 @@ struct AdhigaramView: View {
 
         MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
     }
-
-    func playAudio(for songName: String) {
-        let songMap: [String: String] = [
-            "Virtue": "Virtue.mp3",
-            "Wealth": "Wealth.mp3",
-            "Love": "Love.mp3"
-        ]
-        
-        guard let fileName = songMap[songName],
-              let url = URL(string: "https://raw.githubusercontent.com/nsdevaraj/valluvan/main/valluvan/Podcasts/\(fileName)") else { return }
-         
-        let player = AVPlayer(url: url)
-        player.play()
-    }
-
 }
