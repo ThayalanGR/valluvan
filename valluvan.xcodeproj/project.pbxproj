@@ -69,7 +69,7 @@
 		FEBC78872C96C75900411700 /* GoToKural.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = GoToKural.intentdefinition; sourceTree = "<group>"; };
 		FEBC78882C96C9AF00411700 /* Valluvan.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Valluvan.entitlements; path = Valluvan/Valluvan.entitlements; sourceTree = "<group>"; };
 		FEC0795F2C96E00F00230ABE /* Valluvan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Valluvan.xctestplan; sourceTree = "<group>"; };
-		FEC911FC2C956E7C00E6AE94 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppState.swift; path = valluvan/Launch/AppState.swift; sourceTree = SOURCE_ROOT; };
+		FEC911FC2C956E7C00E6AE94 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppState.swift; path = valluvan/App/Launch/AppState.swift; sourceTree = SOURCE_ROOT; };
 		FECB6F762C92F33E00989E70 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FECB6FFE2C92F33E00989E70 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FECB6FFF2C92F33E00989E70 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -93,7 +93,6 @@
 			children = (
 				FEC0795F2C96E00F00230ABE /* Valluvan.xctestplan */,
 				FEBC78882C96C9AF00411700 /* Valluvan.entitlements */,
-				FEBC78872C96C75900411700 /* GoToKural.intentdefinition */,
 				FE7D91122C95A78300A2E9A0 /* Info.plist */,
 				FECB70032C92F33E00989E70 /* valluvan */,
 				FE1B2D842C92C133006DBC55 /* Products */,
@@ -176,6 +175,21 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		FEA1D52F2C9C745A000DA310 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				FECB70002C92F33E00989E70 /* data.sqlite */,
+				FE5EEAF92C981FB600F23A5F /* Search */,
+				FE5EEAF82C981F7F00F23A5F /* Launch */,
+				FE5EEAFA2C98205D00F23A5F /* Explanation */,
+				FE5EEAFD2C9820D200F23A5F /* Managers */,
+				FE5EEAFC2C9820A800F23A5F /* Views */,
+				FE5EEAFB2C98208F00F23A5F /* Utils */,
+				FEBC78872C96C75900411700 /* GoToKural.intentdefinition */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
 		FECB6F772C92F33E00989E70 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
@@ -187,15 +201,9 @@
 		FECB70032C92F33E00989E70 /* valluvan */ = {
 			isa = PBXGroup;
 			children = (
+				FEA1D52F2C9C745A000DA310 /* App */,
 				FECB6F772C92F33E00989E70 /* Preview Content */,
 				FECB6FFE2C92F33E00989E70 /* Assets.xcassets */,
-				FECB70002C92F33E00989E70 /* data.sqlite */,
-				FE5EEAF92C981FB600F23A5F /* Search */,
-				FE5EEAF82C981F7F00F23A5F /* Launch */,
-				FE5EEAFA2C98205D00F23A5F /* Explanation */,
-				FE5EEAFD2C9820D200F23A5F /* Managers */,
-				FE5EEAFC2C9820A800F23A5F /* Views */,
-				FE5EEAFB2C98208F00F23A5F /* Utils */,
 			);
 			path = valluvan;
 			sourceTree = "<group>";
