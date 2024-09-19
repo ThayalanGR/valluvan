@@ -249,6 +249,10 @@ struct AdhigaramView: View {
                 isPlaying[adhigaramSong] = true
                 currentTime[adhigaramSong] = 0
                 startTimer(for: adhigaramSong)
+                 
+                if language != "Tamil" {
+                    player.seek(to: CMTime(seconds: 20, preferredTimescale: 1))
+                }
                 
                 // Set up remote control events and Now Playing info
                 setupRemoteTransportControls()
