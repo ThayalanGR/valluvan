@@ -46,8 +46,22 @@ struct LanguageSettingsView: View {
 
                 Section(header: Text("Notifications")) {
                     Toggle("Daily Thirukkural (9 AM)", isOn: $appState.isDailyKuralEnabled)
-                } 
-                
+                }
+
+                Section(header: Text("Podcasts")) {
+                    DisclosureGroup("Listen in Podcast mode") { 
+                        Button(action: { playSong(named: "Virtue") }) {
+                            Text("Virtue")
+                        }
+                        Button(action: { playSong(named: "Wealth") }) {
+                            Text("Wealth")
+                        }
+                        Button(action: { playSong(named: "Love") }) {
+                            Text("Love")
+                        }
+                    }
+                }
+
                 Section(header: Text("About the Developer")) {
                     HStack {
                         Image(systemName: "person.circle.fill")
@@ -163,5 +177,9 @@ struct LanguageSettingsView: View {
         if let url = URL(string: urlString) {
             UIApplication.shared.open(url)
         }
+    }
+    
+    private func playSong(named songName: String) {
+        AdhigaramView().playAudio(for: songName)
     }
 }
