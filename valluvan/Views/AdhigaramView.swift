@@ -84,7 +84,7 @@ struct AdhigaramView: View {
                                 .font(.subheadline)
                             Spacer()
                             Button(action: {
-                                togglePlayPause(for: adhigaramSong, adhigaram: adhigaram, adhigaramId: adhigaramId)
+                                togglePlayPause(for: adhigaramSong, adhigaram: adhigaram, adhigaramId: adhigaramId, language: selectedLanguage)
                             }) {
                                 Image(systemName: isPlaying[adhigaramSong] ?? false ? "pause.circle" : "play.circle")
                                     .foregroundColor(.blue)
@@ -200,7 +200,7 @@ struct AdhigaramView: View {
         } 
     }
     
-    private func togglePlayPause(for adhigaramSong: String, adhigaram: String, adhigaramId: String) {
+    private func togglePlayPause(for adhigaramSong: String, adhigaram: String, adhigaramId: String, language: String) {
         stopAllAudioExcept(adhigaramSong)
         
         if let player = audioPlayers[adhigaramSong] {
@@ -214,7 +214,11 @@ struct AdhigaramView: View {
                 startTimer(for: adhigaramSong)
             }
         } else {
-            if let url = URL(string: "https://raw.githubusercontent.com/nsdevaraj/valluvan/main/valluvan/Sounds/\(adhigaramSong.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? adhigaramSong).mp3") {
+            let tamilURL = URL(string: "https://raw.githubusercontent.com/nsdevaraj/valluvan/main/valluvan/Sounds/\(adhigaramSong.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? adhigaramSong).mp3")
+            let leadingZero = String(format: "%03d", Int(adhigaramId) ?? 0)
+            let englishURL = URL(string: "https://raw.githubusercontent.com/nsdevaraj/valluvan/main/valluvan/EnglishAudio/\(leadingZero).mp3")
+            let playURL = (language == "Tamil") ? tamilURL : englishURL
+            if let url = playURL {
                 let playerItem = AVPlayerItem(url: url)
                 let player = AVPlayer(playerItem: playerItem)
                 player.actionAtItemEnd = .none // Prevent playback from stopping at the end
@@ -380,6 +384,20 @@ struct AdhigaramView: View {
         }
 
         MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
+    }
+
+    func playAudio(for songName: String) {
+        let songMap: [String: String] = [
+            "Virtue": "Virtue.mp3",
+            "Wealth": "Wealth.mp3",
+            "Love": "Love.mp3"
+        ]
+        
+        guard let fileName = songMap[songName],
+              let url = URL(string: "https://raw.githubusercontent.com/nsdevaraj/valluvan/main/valluvan/Podcasts/\(fileName)") else { return }
+         
+        let player = AVPlayer(url: url)
+        player.play()
     }
 
 }
