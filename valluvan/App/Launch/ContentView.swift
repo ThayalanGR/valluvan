@@ -191,7 +191,7 @@ struct ContentView: View {
         let words = searchText.components(separatedBy: .whitespacesAndNewlines).filter { !$0.isEmpty }
 
         let searchQuery = prepareSearchQuery(from: words)
-
+        print(searchQuery)
         DispatchQueue.global(qos: .userInitiated).async {
             let results = selectedLanguage == "Tamil" ?
             searchTamilContent(query: searchQuery) :
@@ -210,14 +210,36 @@ struct ContentView: View {
     private func prepareSearchQuery(from words: [String]) -> String {
         guard words.count > 1 else { return searchText }
 
-        let nouns = words.filter { word in
-            let tagger = NLTagger(tagSchemes: [.nameType])
-            tagger.string = word
-            let (tag, _) = tagger.tag(at: word.startIndex, unit: .word, scheme: .nameType)
-            return tag != .personalName || tag == .placeName || tag == .organizationName
+        let specialWord: String = firstWordsOfTypes(from:searchText)
+
+        return specialWord == "" ? words.shuffled().prefix(min(3, words.count))[0] :specialWord
+    }
+    
+   private func firstWordsOfTypes(from sentence: String) -> String {
+        let tagger = NSLinguisticTagger(tagSchemes: [.lexicalClass], options: 0)
+        tagger.string = sentence
+
+        var firstAdjective: String?
+        var firstNoun: String?
+        var adjNoun: String = ""
+
+        tagger.enumerateTags(in: NSRange(location: 0, length: sentence.utf16.count), unit: .word, scheme: .lexicalClass) { tag, tokenRange, stop in
+            let range = Range(tokenRange, in: sentence)!
+            let word = String(sentence[range])
+
+            if firstAdjective == nil, tag == .adjective {
+                firstAdjective = word
+            } else if firstNoun == nil, tag == .noun {
+                firstNoun = word
+            }
+
+            if firstAdjective != nil || firstNoun != nil  {
+                adjNoun = word
+                stop.pointee = true // Stop enumeration
+            }
         }
 
-        return nouns.isEmpty ? words.shuffled().prefix(min(3, words.count))[0] : nouns.shuffled().prefix(min(3, nouns.count))[0]
+        return adjNouVerb
     }
 
     private func resetSearch() {
