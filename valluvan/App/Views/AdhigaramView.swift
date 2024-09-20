@@ -67,6 +67,7 @@ struct AdhigaramView: View {
                             .foregroundColor(.blue)
                             .font(.system(size: 16))
                     }
+                    .environment(\.layoutDirection, selectedLanguage == "arabic" ? .rightToLeft : .leftToRight)
                     .contentShape(Rectangle())
                     .onTapGesture {
                         if expandedAdhigaram == adhigaram {
