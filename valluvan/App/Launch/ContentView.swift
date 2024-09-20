@@ -361,6 +361,18 @@ struct ContentView: View {
         siriShortcutProvider = INVoiceShortcutCenter.shared
     }
 
+    private func explanationView(result:DatabaseSearchResult)  -> some View {
+        ExplanationView(
+            adhigaram: result.subheading,
+            adhigaramId: String((result.kuralId + 9) / 10),
+            lines: [result.content],
+            explanation: NSAttributedString(string: result.explanation),
+            selectedLanguage: selectedLanguage,
+            kuralId: result.kuralId,
+            iyal: "",
+            shouldNavigateToContentView: $shouldNavigateToContentView
+        )
+    }
     func handleSiriGoToKural(kuralId: Int) {
         goToKuralId = String(kuralId)
         goToKural()
@@ -435,16 +447,7 @@ struct ContentView: View {
 
     @ViewBuilder
     private func explanationSheet(_ result: DatabaseSearchResult) -> some View {
-        ExplanationView(
-            adhigaram: result.subheading,
-            adhigaramId: String((result.kuralId + 9) / 10),
-            lines: [result.content],
-            explanation: NSAttributedString(string: result.explanation),
-            selectedLanguage: selectedLanguage,
-            kuralId: result.kuralId,
-            iyal: "",
-            shouldNavigateToContentView: $shouldNavigateToContentView
-        )
+        explanationView(result: result)
         .environmentObject(appState)
     }
 
@@ -474,17 +477,7 @@ struct ContentView: View {
     @ViewBuilder
     private func explanationViewSheet() -> some View {
         if let result = selectedSearchResult {
-            ExplanationView(
-                adhigaram: result.subheading,
-                adhigaramId: String((result.kuralId + 9) / 10),
-                lines: [result.content],
-                explanation: NSAttributedString(string: result.explanation),
-                selectedLanguage: selectedLanguage,
-                kuralId: result.kuralId,
-                iyal: "",
-                shouldNavigateToContentView: $shouldNavigateToContentView
-            )
-            .environmentObject(appState)
+            explanationView(result: result)
         }
     }
 }
