@@ -122,6 +122,7 @@ struct AdhigaramView: View {
                             ForEach(allLines[originalAdhigaram] ?? [], id: \.self) { linePair in
                                 LinePairView(
                                     linePair: linePair,
+                                    language: selectedLanguage,
                                     onTap: { lines, kuralId in
                                         loadExplanation(for: adhigaram, lines: lines, kuralId: kuralId)
                                     }
