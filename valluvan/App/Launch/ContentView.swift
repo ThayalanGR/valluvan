@@ -124,7 +124,18 @@ struct ContentView: View {
             if newValue { shouldNavigateToContentView = false }
         }
         // Sheets
-        .sheet(isPresented: $isShowingSearchResults, content: searchResultsSheet)
+        .sheet(isPresented: $isShowingSearchResults) {
+            if isSearchResultsReady {
+                searchResultsSheet()
+            } else {
+                ProgressView("Loading results...")
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            self.isSearchResultsReady = true
+                        }
+                    }
+            }
+        }
         .sheet(item: $selectedSearchResult, content: explanationSheet)
         .sheet(isPresented: $showFavorites, content: favoritesSheet)
         .sheet(isPresented: $showGoToKural, content: goToKuralSheet)
