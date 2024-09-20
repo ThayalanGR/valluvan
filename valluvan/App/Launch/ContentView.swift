@@ -239,7 +239,7 @@ struct ContentView: View {
             }
         }
 
-        return adjNouVerb
+        return adjNoun
     }
 
     private func resetSearch() {

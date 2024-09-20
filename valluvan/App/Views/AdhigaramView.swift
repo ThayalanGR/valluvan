@@ -151,7 +151,7 @@ struct AdhigaramView: View {
                 explanation: linePair.explanation,
                 selectedLanguage: selectedLanguage,
                 kuralId: linePair.kuralId,
-                iyal: iyal,
+                iyal: translatedIyal,
                 shouldNavigateToContentView: $shouldNavigateToContentView
             )
             .environmentObject(appState)
