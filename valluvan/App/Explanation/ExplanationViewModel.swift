@@ -11,13 +11,15 @@ class ExplanationViewModel: ObservableObject {
     private let adhigaramId: String
     private let lines: [String]
     private let explanation: String
+    private let iyal: String
 
-    init(kuralId: Int, adhigaram: String, adhigaramId: String, lines: [String], explanation: String) {
+    init(kuralId: Int, adhigaram: String, adhigaramId: String, lines: [String], explanation: String, iyal: String) {
         self.kuralId = kuralId
         self.adhigaram = adhigaram
         self.adhigaramId = adhigaramId
         self.lines = lines
         self.explanation = explanation
+        self.iyal = iyal
         checkIfFavorite()
     }
 
@@ -39,7 +41,7 @@ class ExplanationViewModel: ObservableObject {
     }
 
     private func addFavorite() {
-        let favorite = Favorite(id: kuralId, adhigaram: adhigaram, adhigaramId: adhigaramId, lines: lines)
+        let favorite = Favorite(id: kuralId, adhigaram: adhigaram, adhigaramId: adhigaramId, lines: lines, iyal: iyal)
         var favorites: [Favorite] = []
         if let data = UserDefaults.standard.data(forKey: "favorites") {
             if let decoded = try? JSONDecoder().decode([Favorite].self, from: data) {

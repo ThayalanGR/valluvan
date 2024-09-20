@@ -32,6 +32,7 @@ struct Favorite: Codable, Identifiable {
     let adhigaram: String
     let adhigaramId: String
     let lines: [String]
+    let iyal: String
 }
 
 //ContentView
