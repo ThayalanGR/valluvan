@@ -198,14 +198,48 @@ struct ContentView: View {
         isSearching = true
         isSearchResultsReady = false
         originalSearchText = searchText 
-        DispatchQueue.global(qos: .userInitiated).async {
-            let results: [DatabaseSearchResult]
-            if self.selectedLanguage == "Tamil" {
-                results = self.searchTamilContent()
-            } else {
-                results = self.searchContent()
+        searchText = searchText.components(separatedBy: CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ").inverted).joined()
+        // Split the search text into words
+        let words = searchText.components(separatedBy: .whitespacesAndNewlines).filter { !$0.isEmpty }
+        
+        // Identify nouns and pick random nouns (up to 3) if there are multiple words
+        let searchQuery: String
+        if words.count > 1 {
+            let nouns = words.filter { word in
+                let tagger = NLTagger(tagSchemes: [.nameType])
+                tagger.string = word
+                let (tag, _) = tagger.tag(at: word.startIndex, unit: .word, scheme: .nameType)
+                return tag != .personalName || tag == .placeName || tag == .organizationName
             }
             
+            if !nouns.isEmpty {
+                let randomNouns = nouns.shuffled().prefix(min(3, nouns.count))
+                searchText = randomNouns[0]
+            } else {
+                // If no nouns found, use the original logic
+                let randomWords = words.shuffled().prefix(min(3, words.count))
+                searchText = randomWords[0]
+            }
+        } else {
+            searchText = searchText
+        }
+        DispatchQueue.global(qos: .userInitiated).async {
+            let results: [DatabaseSearchResult]
+            if self.selectedLanguage == "Tamil" { 
+                results = self.searchTamilContent()
+            } else { 
+                results = self.searchContent()
+            } 
+            print("results: \(searchText)")
+            if results.count == 0 {
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "No Results", message: "No kural, found for '\(self.originalSearchText)'", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                    if let rootViewController = UIApplication.shared.windows.first?.rootViewController {
+                        rootViewController.present(alert, animated: true, completion: nil)
+                    }
+                }
+            }
             DispatchQueue.main.async {
                 self.searchResults = results
                 self.isSearching = false
