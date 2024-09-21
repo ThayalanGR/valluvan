@@ -186,6 +186,33 @@ struct ContentView: View {
         if iyals.isEmpty { iyals = ["Preface", "Domestic Virtue", "Ascetic Virtue"] }
         translateIyals()
     }
+
+    private func firstWordsOfTypes(from sentence: String) -> String {
+        let tagger = NSLinguisticTagger(tagSchemes: [.lexicalClass], options: 0)
+        tagger.string = sentence
+
+        var firstAdjective: String?
+        var firstNoun: String?
+        var adjNoun: String = ""
+
+        tagger.enumerateTags(in: NSRange(location: 0, length: sentence.utf16.count), unit: .word, scheme: .lexicalClass) { tag, tokenRange, stop in
+            let range = Range(tokenRange, in: sentence)!
+            let word = String(sentence[range])
+
+            if firstAdjective == nil, tag == .adjective {
+                firstAdjective = word
+            } else if firstNoun == nil, tag == .noun {
+                firstNoun = word
+            }
+
+            if firstAdjective != nil || firstNoun != nil  {
+                adjNoun = word
+                stop.pointee = true // Stop enumeration
+            }
+        }
+
+        return adjNoun
+    }
     
     func performSearch() {
         guard !searchText.isEmpty else {
@@ -201,25 +228,11 @@ struct ContentView: View {
         searchText = searchText.components(separatedBy: CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ").inverted).joined()
         // Split the search text into words
         let words = searchText.components(separatedBy: .whitespacesAndNewlines).filter { !$0.isEmpty }
-        
-        // Identify nouns and pick random nouns (up to 3) if there are multiple words
-        let searchQuery: String
+         
         if words.count > 1 {
-            let nouns = words.filter { word in
-                let tagger = NLTagger(tagSchemes: [.nameType])
-                tagger.string = word
-                let (tag, _) = tagger.tag(at: word.startIndex, unit: .word, scheme: .nameType)
-                return tag != .personalName || tag == .placeName || tag == .organizationName
-            }
-            
-            if !nouns.isEmpty {
-                let randomNouns = nouns.shuffled().prefix(min(3, nouns.count))
-                searchText = randomNouns[0]
-            } else {
-                // If no nouns found, use the original logic
-                let randomWords = words.shuffled().prefix(min(3, words.count))
-                searchText = randomWords[0]
-            }
+           let specialWord: String = firstWordsOfTypes(from:searchText)
+            searchText = specialWord == "" ? words.shuffled().prefix(min(3, words.count))[0] :specialWord
+            print("searchText: \(searchText)")
         } else {
             searchText = searchText
         }
@@ -244,9 +257,7 @@ struct ContentView: View {
                 self.searchResults = results
                 self.isSearching = false
                 self.hasSearched = true
-                self.isShowingSearchResults = !results.isEmpty
-                
-                // Add a small delay before setting isSearchResultsReady to true
+                self.isShowingSearchResults = !results.isEmpty 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     self.isSearchResultsReady = true
                 }
