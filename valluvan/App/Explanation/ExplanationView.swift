@@ -68,5 +68,6 @@ struct ExplanationView: View {
             ShareSheet(activityItems: [viewModel.getShareContent()])
         }
         .environment(\.sizeCategory, appState.fontSize.textSizeCategory)
+        .environment(\.layoutDirection, selectedLanguage == "arabic" ? .rightToLeft : .leftToRight)
     }
 }
