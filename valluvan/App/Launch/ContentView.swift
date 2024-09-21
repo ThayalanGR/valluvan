@@ -237,12 +237,8 @@ struct ContentView: View {
             searchText = searchText
         }
         DispatchQueue.global(qos: .userInitiated).async {
-            let results: [DatabaseSearchResult]
-            if self.selectedLanguage == "Tamil" { 
-                results = self.searchTamilContent()
-            } else { 
-                results = self.searchContent()
-            } 
+            let results: [DatabaseSearchResult] 
+            results = self.aiSearchContent() 
             print("results: \(searchText)")
             if results.count == 0 {
                 DispatchQueue.main.async {
@@ -265,9 +261,12 @@ struct ContentView: View {
         }
     }
 
-    func searchContent() -> [DatabaseSearchResult] {
-        let databaseResults = DatabaseManager.shared.searchContent(query: searchText, language: selectedLanguage)
-        return databaseResults.map { dbResult in
+
+    func aiSearchContent() -> [DatabaseSearchResult] { 
+        print("searchText: \(searchText)")
+        if self.selectedLanguage != "Tamil" {  
+            let databaseResults = DatabaseManager.shared.searchContent(query: searchText, language: selectedLanguage)
+            return databaseResults.map { dbResult in
             DatabaseSearchResult(
                 heading: dbResult.heading,
                 subheading: dbResult.subheading,
@@ -275,21 +274,21 @@ struct ContentView: View {
                 explanation: dbResult.explanation,
                 kuralId: dbResult.kuralId
             )
-        }
+        }   
+        } else{
+            let databaseResults = DatabaseManager.shared.searchTamilContent(query: searchText)
+            return databaseResults.map { dbResult in
+                DatabaseSearchResult(
+                heading: dbResult.heading,
+                subheading: dbResult.subheading,
+                content: dbResult.content,
+                explanation: dbResult.explanation,
+                kuralId: dbResult.kuralId
+                )
+            }
+        } 
     }
 
-    func searchTamilContent() -> [DatabaseSearchResult] {
-        let databaseResults = DatabaseManager.shared.searchTamilContent(query: searchText)
-        return databaseResults.map { dbResult in
-            DatabaseSearchResult(
-                heading: dbResult.heading,
-                subheading: dbResult.subheading,
-                content: dbResult.content,
-                explanation: dbResult.explanation,
-                kuralId: dbResult.kuralId
-            )
-        }
-    }
 
     private func loadFavorites() -> [Favorite] {
         if let data = UserDefaults.standard.data(forKey: "favorites"),
