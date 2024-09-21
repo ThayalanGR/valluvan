@@ -162,7 +162,13 @@ struct LanguageSettingsView: View {
                             presentationMode.wrappedValue.dismiss()
                         }) {
                             HStack {
-                                Text(language.displayName)
+                                if language.key == "arabic" {
+                                    Text(language.displayName)
+                                        .multilineTextAlignment(.trailing) 
+                                        .frame(maxWidth: .infinity, alignment: .trailing)
+                                }else{
+                                    Text(language.displayName)
+                                }
                                 Spacer()
                                 if language.key == selectedLanguage {
                                     Image(systemName: "checkmark")
