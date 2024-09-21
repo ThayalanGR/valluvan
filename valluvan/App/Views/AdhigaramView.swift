@@ -67,6 +67,7 @@ struct AdhigaramView: View {
                             .foregroundColor(.blue)
                             .font(.system(size: 16))
                     }
+                    .environment(\.layoutDirection, selectedLanguage == "arabic" ? .rightToLeft : .leftToRight)
                     .contentShape(Rectangle())
                     .onTapGesture {
                         if expandedAdhigaram == adhigaram {
@@ -122,6 +123,7 @@ struct AdhigaramView: View {
                             ForEach(allLines[originalAdhigaram] ?? [], id: \.self) { linePair in
                                 LinePairView(
                                     linePair: linePair,
+                                    language: selectedLanguage,
                                     onTap: { lines, kuralId in
                                         loadExplanation(for: adhigaram, lines: lines, kuralId: kuralId)
                                     }
@@ -151,7 +153,7 @@ struct AdhigaramView: View {
                 explanation: linePair.explanation,
                 selectedLanguage: selectedLanguage,
                 kuralId: linePair.kuralId,
-                iyal: iyal,
+                iyal: translatedIyal,
                 shouldNavigateToContentView: $shouldNavigateToContentView
             )
             .environmentObject(appState)
