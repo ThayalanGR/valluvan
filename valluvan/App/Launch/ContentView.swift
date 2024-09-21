@@ -43,6 +43,7 @@ struct ContentView: View {
     @State private var iyal: String = ""  
     
     @State private var searchText = ""
+    @State private var searchQuery = ""
     @State private var searchResults: [DatabaseSearchResult] = []
     @State private var isShowingSearchResults = false
     @State private var selectedSearchResult: DatabaseSearchResult? 
@@ -225,17 +226,7 @@ struct ContentView: View {
         isSearching = true
         isSearchResultsReady = false
         originalSearchText = searchText 
-        searchText = searchText.components(separatedBy: CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ").inverted).joined()
-        // Split the search text into words
-        let words = searchText.components(separatedBy: .whitespacesAndNewlines).filter { !$0.isEmpty }
-         
-        if words.count > 1 {
-           let specialWord: String = firstWordsOfTypes(from:searchText)
-            searchText = specialWord == "" ? words.shuffled().prefix(min(3, words.count))[0] :specialWord
-            print("searchText: \(searchText)")
-        } else {
-            searchText = searchText
-        }
+        
         DispatchQueue.global(qos: .userInitiated).async {
             let results: [DatabaseSearchResult] 
             results = self.aiSearchContent() 
@@ -263,9 +254,21 @@ struct ContentView: View {
 
 
     func aiSearchContent() -> [DatabaseSearchResult] { 
+        searchQuery = searchText
+        searchText = searchText.components(separatedBy: CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ").inverted).joined()
+        // Split the search text into words
+        let words = searchText.components(separatedBy: .whitespacesAndNewlines).filter { !$0.isEmpty }
+         
+        if words.count > 1 {
+           let specialWord: String = firstWordsOfTypes(from:searchText)
+            searchQuery = specialWord == "" ? words.shuffled().prefix(min(3, words.count))[0] :specialWord
+            print("searchText: \(searchQuery)")
+        } else {
+            searchText = searchText
+        }
         print("searchText: \(searchText)")
         if self.selectedLanguage != "Tamil" {  
-            let databaseResults = DatabaseManager.shared.searchContent(query: searchText, language: selectedLanguage)
+            let databaseResults = DatabaseManager.shared.searchContent(query: searchQuery, language: selectedLanguage)
             return databaseResults.map { dbResult in
             DatabaseSearchResult(
                 heading: dbResult.heading,
@@ -276,7 +279,7 @@ struct ContentView: View {
             )
         }   
         } else{
-            let databaseResults = DatabaseManager.shared.searchTamilContent(query: searchText)
+            let databaseResults = DatabaseManager.shared.searchTamilContent(query: searchQuery)
             return databaseResults.map { dbResult in
                 DatabaseSearchResult(
                 heading: dbResult.heading,
